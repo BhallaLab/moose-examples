@@ -18,6 +18,8 @@ __status__           = "Development"
 
    
 import moose
+import pylab
+
 
 model = None
 soma = None 
@@ -52,9 +54,8 @@ def main():
     moose.reinit()
     t = 500e-2
     moose.start(t)
-    import pylab
-    t = pylab.linspace(0, t, len(vmtab.vector))
-    pylab.plot(t, vmtab.vector)
+    time_vector = pylab.linspace(0, t, len(vmtab.vector))
+    pylab.plot(time_vector, vmtab.vector)
     pylab.savefig('soma_passive.png')
 
 if __name__ == '__main__':
