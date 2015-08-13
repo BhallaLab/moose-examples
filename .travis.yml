@@ -1,5 +1,10 @@
 # Travis-CI script to install & test MOOSE with NeuroML
 
+notifications:
+    email:
+        recipients:
+            - dilawar.s.rajput@gmail.com
+
 install:
 
   - sudo add-apt-repository -y ppa:bhallalab/moose
