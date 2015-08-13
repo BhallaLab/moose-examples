@@ -5,7 +5,7 @@ PYC=`which python`
 RUNDIR=./_test_dir_moose-examples_
 echo "Creating $RUNDIR"
 mkdir -p $RUNDIR
-MATPLOTRC=data/matplotlibrc
+MATPLOTRC=_travis/matplotlibrc
 echo "copying examples out of source"
 cp -r moose-examples/* $RUNDIR/
 PYFILES=`find $RUNDIR -name "*.py"`
