@@ -56,7 +56,7 @@ for f in `cat $TORUN`; do
     cp $MATPLOTRC $basedir
     (
         coloredPrint INFO "Running file $f"
-        cd $basdir 
+        cd $basedir 
         $PYC $filename >> __run__.log || echo "$f" >> FAILED
     )
 done
