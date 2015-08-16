@@ -57,6 +57,6 @@ for f in `cat $TORUN`; do
     (
         coloredPrint INFO "Running file $f"
         cd $basedir 
-        $PYC $filename | tee  __run__.log || echo "$f" >> FAILED
+        #$PYC $filename | tee  __run__.log || echo "$f" >> FAILED
     )
 done
