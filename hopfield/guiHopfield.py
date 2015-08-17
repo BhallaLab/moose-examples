@@ -1,5 +1,5 @@
 import os
-os.environ['NUMPTHREADS'] = '1'
+import sys
 from PyQt4 import QtCore,QtGui
 from PyQt4.QtCore import QEvent, Qt
 import numpy as np
