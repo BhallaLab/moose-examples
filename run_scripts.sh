@@ -17,7 +17,7 @@ for f in `cat ./TORUN`; do
     (
         cp $MATPLOTRC $d/
         cd $d
-        $PYC $fn | tee __run__log.txt || echo "$1" >> $BLACKLISTED
+        $PYC $fn || echo "$1" >> $BLACKLISTED
     )
 done
 
