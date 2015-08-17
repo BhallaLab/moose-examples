@@ -1,13 +1,14 @@
 #!/bin/bash
 # Run scripts in ./TORUN file
+PWD=$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)
 
 if [ ! -f ./TORUN ]; then
     ./find_scripts_to_run.sh 
 fi
 
 PYC=`which python`
-MATPLOTRC=./_travis/matplotlibrc
-BLACKLISTED=./BLACKLISTED
+MATPLOTRC=$PWD/_travis/matplotlibrc
+BLACKLISTED=$PWD/BLACKLISTED
 
 for f in `cat ./TORUN`; do
     d=`dirname $f`
