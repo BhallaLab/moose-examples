@@ -13,5 +13,5 @@ install:
   - sudo apt-get install moose-python  moose-gui  moose-moogli
 
 script:
-    - python test_all_scripts.py
+    - ./run_scripts.sh
 
