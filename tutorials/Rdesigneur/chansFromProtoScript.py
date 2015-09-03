@@ -17,7 +17,7 @@ import matplotlib.pyplot as plt
 import sys
 import os
 from moose.neuroml.ChannelML import ChannelML
-sys.path.append('../../../Demos/util')
+#sys.path.append('../../../Demos/util')
 import rdesigneur as rd
 
 PI = 3.14159265359
@@ -58,18 +58,19 @@ def buildRdesigneur():
     ##################################################################
     '''
     cellProto = [ [ "./cells/" + elecFileName, "elec" ] ]
+    path = os.path.abspath(os.path.dirname(__file__))
     chanProto = [ \
-        [ 'proto20.make_K_AHP()', 'kap' ], \
-        [ 'proto20.make_K_A()', 'kad' ], \
-        [ 'proto20.make_K_C()', 'kca' ], \
-        [ 'proto20.make_K_DR()', 'kdr' ], \
-        [ 'proto20.make_Na()', 'na3' ], \
-        [ 'proto20.make_Na()', 'nax' ], \
-        [ 'proto20.make_Ca_conc()', 'Ca_conc' ], \
-        [ 'proto20.make_Ca()', 'Ca' ], \
-        [ 'proto20.make_NMDA()', 'NMDA' ], \
-        [ 'proto20.make_glu()', 'glu' ], \
-        [ 'proto20.make_GABA()', 'GABA' ], \
+        [ path+'/proto20.make_K_AHP()', 'kap' ], \
+        [ path+'/proto20.make_K_A()', 'kad' ], \
+        [ path+'/proto20.make_K_C()', 'kca' ], \
+        [ path+'/proto20.make_K_DR()', 'kdr' ], \
+        [ path+'/proto20.make_Na()', 'na3' ], \
+        [ path+'/proto20.make_Na()', 'nax' ], \
+        [ path+'/proto20.make_Ca_conc()', 'Ca_conc' ], \
+        [ path+'/proto20.make_Ca()', 'Ca' ], \
+        [ path+'/proto20.make_NMDA()', 'NMDA' ], \
+        [ path+'/proto20.make_glu()', 'glu' ], \
+        [ path+'/proto20.make_GABA()', 'GABA' ], \
     ]
     spineProto = [ \
         ['makeSpineProto()', 'spine' ]

@@ -27,9 +27,9 @@
 
 # Apr 2012 update for pymoose. Converted to equivalent MOOSE funcs.
 
-#import moose
-#import numpy
-#import math
+import moose
+import numpy as np
+import math
 
 #CONSTANTS
 global EK
