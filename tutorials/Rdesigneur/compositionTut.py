@@ -19,6 +19,8 @@ import os
 from moose.neuroml.ChannelML import ChannelML
 sys.path.append('../../../Demos/util')
 import rdesigneur as rd
+from matplotlib.cm import rainbow as vm_colormap
+from matplotlib.cm import rainbow as ca_colormap
 
 PI = 3.14159265359
 useGssa = True
@@ -309,8 +311,7 @@ def build3dDisplay( rdes ):
     eComptPath = map( lambda x: x.path, compts )
     morphology1 = moogli.read_morphology_from_moose( name = "", \
             path = rdes.elecid.path )
-    morphology1.create_group( "group_all", eComptPath, -0.08, 0.02, \
-        [0.0, 0.0, 1.0, 1.0], [1.0, 1.0, 0.0, 0.1] )
+    morphology1.create_group( "group_all", eComptPath, -0.08, 0.02, vm_colormap)
     viewer1 = moogli.DynamicMorphologyViewerWidget(morphology1)
     def callback1( morphology, viewer1 ):
         moose.start( frameRunTime )
@@ -323,7 +324,7 @@ def build3dDisplay( rdes ):
             return True
         displayPlots()
         return False
-
+    viewer1.set_background_color(1.0, 1.0, 1.0, 1.0)
     viewer1.set_callback( callback1, idletime = 0 )
     viewer1.pitch( PI/2, 0 )
     viewer1.zoom( 0.4, 0 )
@@ -333,15 +334,14 @@ def build3dDisplay( rdes ):
 
     morphology2 = moogli.read_morphology_from_moose( name = "", \
             path = rdes.elecid.path )
-    morphology2.create_group( "group_all", eComptPath, 0.0, 0.002, \
-        [1.0, 0.0, 0.0, 1.0], [0.0, 1.0, 1.0, 0.1] )
+    morphology2.create_group( "group_all", eComptPath, 0.0, 0.002, ca_colormap)
     viewer2 = moogli.DynamicMorphologyViewerWidget(morphology2)
     def callback2( morphology, viewer2 ):
         Ca = map( lambda x: moose.element( x ).Ca, caElements )
         morphology.set_color( "group_all", Ca )
         viewer2.yaw( 0.01, 0 )
         return True
-
+    viewer2.set_background_color(1.0, 1.0, 1.0, 1.0)
     viewer2.set_callback( callback2, idletime = 0 )
     viewer2.pitch( PI/2, 0 )
     viewer2.zoom( 0.4, 0 )
