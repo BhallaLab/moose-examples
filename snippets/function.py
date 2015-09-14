@@ -107,7 +107,7 @@ def example():
     function.c['c0'] = 1.0
     function.c['c1'] = 2.0
     function.x.num = 1
-    function.expr = 'c0 * exp(c1*x0) * cos(y0)'
+    function.expr = 'c0 * exp(c1*x0) * cos(y0) + sin(t)'
     # mode 0 - evaluate function value, derivative and rate
     # mode 1 - just evaluate function value,
     # mode 2 - evaluate derivative,
@@ -156,8 +156,8 @@ def example():
     # Uncomment the following lines and the import matplotlib.pyplot as plt on top
     # of this file to display the plot.
     plt.subplot(3,1,1)
-    plt.plot(x_rec.vector, result.vector, 'r-', label='z = c0 * exp(c1 * x0) * cos(y0)')
-    z = function.c['c0'] * np.exp(function.c['c1'] * xarr) * np.cos(yarr)
+    plt.plot(x_rec.vector, result.vector, 'r-', label='z = {}'.format(function.expr))
+    z = function.c['c0'] * np.exp(function.c['c1'] * xarr) * np.cos(yarr) + np.sin(np.arange(len(xarr)) * dt)
     plt.plot(xarr, z, 'b--', label='numpy computed')
     plt.xlabel('x')
     plt.ylabel('z')
