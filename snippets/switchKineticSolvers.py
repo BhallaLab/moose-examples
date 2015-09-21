@@ -82,7 +82,7 @@ def main():
     """
 
     solver = "gsl"  # Pick any of gsl, gssa, ee..
-    mfile = '../Genesis_files/kkit_objects_example.g'
+    mfile = '../genesis/kkit_objects_example.g'
     modelId = moose.loadModel( mfile, 'model', solver )
     # Increase volume so that the stochastic solver gssa 
     # gives an interesting output

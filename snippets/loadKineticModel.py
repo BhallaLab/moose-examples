@@ -23,13 +23,13 @@ import sys
 
 def main():
         solver = "gsl"  # Pick any of gsl, gssa, ee..
-	mfile = '../Genesis_files/kkit_objects_example.g'
+	mfile = '../genesis/kkit_objects_example.g'
 	runtime = 20.0
 	if ( len( sys.argv ) >= 3 ):
             if sys.argv[1][0] == '/':
 		mfile = sys.argv[1]
             else:
-		mfile = '../Genesis_files/' + sys.argv[1]
+		mfile = '../genesis/' + sys.argv[1]
     	    runtime = float( sys.argv[2] )
 	if ( len( sys.argv ) == 4 ):
                 solver = sys.argv[3]

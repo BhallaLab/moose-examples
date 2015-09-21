@@ -16,9 +16,9 @@ import numpy
 import matplotlib.pyplot as plt
 import moose
 import sys
-sys.path.append( '../util' )
-import rdesigneur as rd
+#sys.path.append( '../util' )
 from PyQt4 import QtGui
+import rdesigneur as rd
 import moogli
 
 RM = 1.0

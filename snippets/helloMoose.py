@@ -25,7 +25,7 @@ def main():
     in this case Table objects hoding the simulation results. They were 
     all defined in the model file.
     """
-    mfile = '../Genesis_files/kkit_objects_example.g'
+    mfile = '../genesis/kkit_objects_example.g'
     modelId = moose.loadModel( mfile, 'model', 'gsl' ) # Load it
     moose.reinit()          # Set initial conditions
     moose.start( 20.0 )     # Run it

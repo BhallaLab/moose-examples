@@ -11,10 +11,10 @@
 
 import moogli
 import moose
+from matplotlib.cm import gnuplot
 from PyQt4 import Qt, QtCore, QtGui
 import sys
 import os
-sys.path.append( '../util' )
 import rdesigneur as rd
 
 PI = 3.14159265358979
@@ -58,10 +58,13 @@ def main():
     compts[0].inject = inject
     ecomptPath = map( lambda x : x.path, compts )
     morphology = moogli.read_morphology_from_moose(name = "", path = "/model/elec")
+    #morphology.create_group( "group_all", ecomptPath, -0.08, 0.02, \
+    #        [0.0, 0.5, 1.0, 1.0], [1.0, 0.0, 0.0, 0.9] ) 
     morphology.create_group( "group_all", ecomptPath, -0.08, 0.02, \
-            [0.0, 0.5, 1.0, 1.0], [1.0, 0.0, 0.0, 0.9] ) 
+            gnuplot )
 
     viewer = moogli.DynamicMorphologyViewerWidget(morphology)
+    viewer.set_background_color( 1.0, 1.0, 1.0, 1.0 )
     def callback( morphology, viewer ):
         moose.start( frameRunTime )
         Vm = map( lambda x: moose.element( x ).Vm, compts )

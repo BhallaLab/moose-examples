@@ -45,7 +45,7 @@ def loadElec():
 
 def loadChem():
     chem = moose.Neutral( '/model/chem' )
-    modelId = moose.loadModel( '../Genesis_files/chanPhosphByCaMKII.g', '/model/chem', 'gsl' )
+    modelId = moose.loadModel( '../genesis/chanPhosphByCaMKII.g', '/model/chem', 'gsl' )
     nmstoich = moose.element( '/model/chem/kinetics/stoich' )
 
 def makeModel():

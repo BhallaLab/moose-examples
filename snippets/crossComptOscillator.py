@@ -26,7 +26,7 @@ def main():
         """
         # the kkit reader doesn't know how to do multicompt solver setup.
         solver = "ee"  
-	mfile = '../Genesis_files/OSC_diff_vols.g'
+	mfile = '../genesis/OSC_diff_vols.g'
 	runtime = 3000.0
         simDt = 1.0
 	modelId = moose.loadModel( mfile, 'model', solver )

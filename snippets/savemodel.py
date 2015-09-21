@@ -50,7 +50,7 @@ sys.path.append('../../python')
 import moose
 
 if __name__ == '__main__':
-    model = moose.loadModel('../Genesis_files/reaction.g', '/model')
+    model = moose.loadModel('../genesis/reaction.g', '/model')
     ms = moose.Mstring('/model/ModelFamily')
     ms.value = 'kinetic'
     moose.saveModel('/model', 'testsave.g')

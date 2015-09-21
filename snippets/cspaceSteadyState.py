@@ -73,7 +73,7 @@ def getState( ksolve, state ):
 def main():
 		# The wildcard uses # for single level, and ## for recursive.
 		#compartment = makeModel()
-                moose.loadModel( '../Genesis_files/M1719.cspace', '/model', 'ee' )
+                moose.loadModel( '../genesis/M1719.cspace', '/model', 'ee' )
                 compartment = moose.element( 'model/kinetics' )
                 compartment.name = 'compartment'
 		ksolve = moose.Ksolve( '/model/compartment/ksolve' )

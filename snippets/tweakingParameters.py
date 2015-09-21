@@ -42,7 +42,7 @@ def main():
     the initial amounts of M. We run it further again to see what happens.
     This model takes several seconds to run.
     """
-    mfile = '../Genesis_files/OSC_Cspace.g'
+    mfile = '../genesis/OSC_Cspace.g'
     runtime = 4000.0
     modelId = moose.loadModel( mfile, 'model', 'gsl' )
 
