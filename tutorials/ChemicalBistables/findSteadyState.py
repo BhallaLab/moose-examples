@@ -77,7 +77,7 @@ def main():
 		moose.setClock( 8, 1.0 ) # for the plots
 		# The wildcard uses # for single level, and ## for recursive.
 		#compartment = makeModel()
-                moose.loadModel( '../../Genesis_files/M1719.g', '/model', 'ee' )
+                moose.loadModel( '../../genesis/M1719.g', '/model', 'ee' )
                 compartment = moose.element( 'model/kinetics' )
                 compartment.name = 'compartment'
 		ksolve = moose.Ksolve( '/model/compartment/ksolve' )
