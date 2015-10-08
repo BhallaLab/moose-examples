@@ -55,7 +55,10 @@ def main():
         print ksolve0.numLocalVoxels, ksolve0.numPools, stoich0.numAllPools
         assert( ksolve0.numLocalVoxels == 1 )
         assert( ksolve0.numPools == 7 )
-        assert( stoich0.numAllPools == 6 )
+        assert( stoich0.numVarPools == 5 )
+        assert( stoich0.numBufPools == 1 )
+        assert( stoich0.numProxyPools == 1 )
+        assert( stoich0.numAllPools == 7 )
         print len( stoich0.proxyPools[stoich1] ),
         print len( stoich1.proxyPools[stoich0] )
         assert( len( stoich0.proxyPools[stoich1] ) == 1 )
@@ -63,7 +66,7 @@ def main():
         print ksolve1.numLocalVoxels, ksolve1.numPools, stoich1.numAllPools
         assert( ksolve1.numLocalVoxels == 1 )
         assert( ksolve1.numPools == 6 )
-        assert( stoich1.numAllPools == 5 )
+        assert( stoich1.numAllPools == 6 )
         stoich0.buildXreacs( stoich1 )
         print moose.element( '/model/kinetics/endo' )
         print moose.element( '/model/compartment_1/exo' )

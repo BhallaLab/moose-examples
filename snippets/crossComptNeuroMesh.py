@@ -106,7 +106,8 @@ def makeModel():
                 elec = makeNeuron( numSeg )
                 # assign geometry to mesh
                 compt0.diffLength = 10e-6
-                compt0.cell = elec
+                #compt0.cell = elec
+                compt0.subTreePath = elec.path + "/##"
 
                 # Build the solvers. No need for diffusion in this version.
                 ksolve0 = moose.Ksolve( '/model/compt0/ksolve' )
