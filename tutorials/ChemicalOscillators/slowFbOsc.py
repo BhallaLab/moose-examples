@@ -60,7 +60,7 @@ def main():
     """
 
     solver = "gsl"
-    mfile = '../../Genesis_files/Kholodenko.g'
+    mfile = '../../genesis/Kholodenko.g'
     runtime = 5000.0
     if ( len( sys.argv ) >= 2 ):
         solver = sys.argv[1]

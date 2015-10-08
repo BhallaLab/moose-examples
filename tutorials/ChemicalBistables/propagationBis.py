@@ -60,7 +60,7 @@ def makeModel():
 		concA = 1 # millimolar
 		diffDt = 0.02  # for the diffusion
 		chemDt = 0.2   # for the reaction
-                mfile = '../../Genesis_files/M1719.g'
+                mfile = '../../genesis/M1719.g'
 
 		model = moose.Neutral( 'model' )
 		compartment = moose.CylMesh( '/model/kinetics' )

@@ -37,7 +37,7 @@ def main():
         """
         solver = "gsl"  # Pick any of gsl, gssa, ee..
         #solver = "gssa"  # Pick any of gsl, gssa, ee..
-	mfile = '../../Genesis_files/acc35.g'
+	mfile = '../../genesis/acc35.g'
 	runtime = 2000.0
 	if ( len( sys.argv ) == 2 ):
                 solver = sys.argv[1]
