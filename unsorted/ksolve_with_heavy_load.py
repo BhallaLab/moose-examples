@@ -59,8 +59,8 @@ def makeModel():
     mesh = moose.element( '/model/compartment/mesh' ) 
 
     # create molecules and reactions
-    numComprtments = 100
-    for i in range(numComprtments):
+    size = 100
+    for i in range(size):
         a = moose.Pool( '/model/compartment/a%s' % i )
         b = moose.Pool( '/model/compartment/b%s'  % i )
         c = moose.Pool( '/model/compartment/c%s' % i )
