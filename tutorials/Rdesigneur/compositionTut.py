@@ -27,9 +27,9 @@ useGssa = True
 combineSegments = True
 # Pick your favourite cell here.
 #elecFileName = "ca1_minimal.p"
-elecFileName = "h10.CNG.swc"
+#elecFileName = "h10.CNG.swc"
 #elecFileName = "CA1.morph.xml"
-#elecFileName = "VHC-neuron.CNG.swc"
+elecFileName = "VHC-neuron.CNG.swc"
 synSpineList = []
 synDendList = []
 probeInterval = 0.1
