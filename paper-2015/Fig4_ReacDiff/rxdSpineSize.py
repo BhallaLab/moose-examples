@@ -22,8 +22,6 @@ import moogli
 import moogli.extensions.moose
 import matplotlib
 
-import time
-print "times ",time.time()
 PI = 3.141592653
 ScalingForTesting = 10
 RM = 1.0 / ScalingForTesting
@@ -150,8 +148,6 @@ def main():
     highly abstracted equation, whose product diffuses into the spines and
     makes them bigger.
     """
-    s = time.time()
-    print " tie ",time.time()
     makeModel()
     elec = moose.element( '/model/elec' )
     elec.setSpineAndPsdMesh( moose.element('/model/chem/spine'), moose.element('/model/chem/psd') )
@@ -186,8 +182,6 @@ def main():
     morphology = moogli.read_morphology_from_moose( name="", path = '/model/elec' )
     widget = moogli.MorphologyViewerWidget( morphology )
     widget.show()
-    e = time.time()
-    print "e -s ", e-s
     return app.exec_()
     quit()
 
