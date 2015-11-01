@@ -854,7 +854,6 @@ if __name__=='__main__':
     moose.setClock( 1, dt )
     moose.setClock( 2, dt )
     moose.setClock( 3, dt )
-    #moose.setClock( moose.element( '/cell/hsolve' ), dt )
     moose.setClock( 9, dt )
 
     if plotif:
@@ -862,17 +861,16 @@ if __name__=='__main__':
         fig = plt.figure( 1, figsize=(12, 10), facecolor='white' )
         fig.subplots_adjust( left = 0.18 )
         fig2, ret = makeScatterPlot( 20, 20, Vm )
-        #cellFig = bcs.neuronPlot( '/model/elec', '/model/chem/psd/tot_PSD_R[]' )
+        title = fig2.text( 0.1, 0.95, "Simulation starting..." )
 
     moose.reinit()
     t1 = time.time()
     print 'starting'
-    #moose.start(simtime)
     for currTime in np.arange( 0, simtime, updateDt ):
         moose.start(updateDt)
         lastt = net.network.vec.lastEventTime
         lastt = np.exp( 2 * (lastt - currTime ) )
-        print currTime, time.time() - t1
+        title.set_text( "t = " + str( currTime ) )
         ret.set_array( lastt )
         fig2.canvas.draw()
 
@@ -882,7 +880,6 @@ if __name__=='__main__':
         net._plot( fig )
 
     extra_plots(net)
-    #bcs.displayCellPlots( plt )
     saveNeuronPlots( fig, rdes )
     plt.show()
     plt.savefig( fname + '.svg', bbox_inches='tight')
