@@ -5,6 +5,8 @@ notifications:
         recipients:
             - dilawar.s.rajput@gmail.com
 
+dist: trusty
+
 install:
 
   - sudo add-apt-repository -y ppa:bhallalab/moose
