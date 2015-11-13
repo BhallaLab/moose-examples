@@ -14,5 +14,5 @@ install:
   - sudo apt-get install moogli
 
 script:
-    - ./run_scripts.sh
+  - ( cd _travis && ./run_scripts.sh )
 
