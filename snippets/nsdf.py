@@ -161,7 +161,7 @@ crossing times as Event data. '''
     nsdf.stringAttr['/data/uniform/PulseGen/outputValue/unit'] = 'A'
     eventDataPath = '/data/event/SpikeGen/spikeOut/{}_{}_{}/unit'.format(t_lead.vec.value,
                                                                          t_lead.getDataIndex(), 
-                                                                         t_lead.getFieldIndex())
+                                                                         t_lead.fieldIndex)
     nsdf.stringAttr[eventDataPath] = 's'
 
 
