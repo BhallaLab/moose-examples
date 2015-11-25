@@ -53,7 +53,7 @@ def buildRdesigneur():
     ##################################################################
     cellProto = [ ['ca1_minimal.p', 'elec'] ]
     spineProto = [ ['makeSpineProto()', 'spine' ]]
-    chemProto = [ ['CaMKII_merged42.g', 'chem'] ]
+    chemProto = [ ['CaMKII_merged77.g', 'chem'] ]
 
     ##################################################################
     # Here we define what goes where, and any parameters. Each distribution
@@ -113,8 +113,7 @@ def buildRdesigneur():
 
     return rdes
 
-
-def create_vm_viewer(rdes):
+def createVmViewer(rdes):
     network = moogli.extensions.moose.read(rdes.elecid.path)
     normalizer = moogli.utilities.normalizer(-0.08,
                                              0.02,
@@ -177,7 +176,7 @@ def main():
             else:
                 i.diameter *= 4.0
                 i.Vm = -0.05
-        vm_viewer = create_vm_viewer(rdes)
+        vm_viewer = createVmViewer(rdes)
         vm_viewer.showMaximized()
         vm_viewer.start()
         app.exec_()

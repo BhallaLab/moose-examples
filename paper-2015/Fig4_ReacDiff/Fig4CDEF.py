@@ -8,13 +8,15 @@
 # too. The program runs the model with a strong but brief calcium input
 # synapses at 10 seconds, and a long but smaller Ca influx from 290 to 
 # 650 seconds. This simulation runs using a deterministic method.
-# The runtime on a 2.2 GHz Intel core I7 processor is about 370 s.
+# The runtime on a 2.2 GHz Intel core I7 processor is about 550 s.
 ########################################################################
+import moogli
 import numpy
 import time
 import pylab
 import moose
 from moose import neuroml
+from PyQt4 import Qt, QtCore, QtGui
 import matplotlib.pyplot as plt
 import sys
 import os
@@ -31,6 +33,7 @@ interTetTime = 20
 postTetTime = 240
 ltdTime = 360
 postLtdTime = 60
+do3D = False
 dt = 0.001
 plotdt = 0.1
 psdTetCa = 8e-3
@@ -54,7 +57,7 @@ def buildRdesigneur():
     ##################################################################
     cellProto = [ ['ca1_minimal.p', 'elec'] ]
     spineProto = [ ['makeSpineProto()', 'spine' ]]
-    chemProto = [ ['CaMKII_merged42.g', 'chem'] ]
+    chemProto = [ ['CaMKII_merged77.g', 'chem'] ]
 
     ##################################################################
     # Here we define what goes where, and any parameters. Each distribution
@@ -177,54 +180,20 @@ def displayPlots():
     plt.xlabel( 'Time (s)', fontsize = 16 )
     plt.show()
 
-
-
-def create_vm_viewer(rdes):
-    network = moogli.extensions.moose.read(rdes.elecid.path)
-    normalizer = moogli.utilities.normalizer(-0.08,
-                                             0.02,
-                                             clipleft=True,
-                                             clipright=True)
-    colormap = moogli.colors.UniformColorMap([moogli.colors.Color(0.0,
-                                                                  0.5,
-                                                                  1.0,
-                                                                  1.0),
-                                              moogli.colors.Color(1.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.9)])
-    mapper = moogli.utilities.mapper(colormap, normalizer)
-
-    def prelude(view):
-        view.pitch(PI/2.0)
-
-    def interlude(view):
-        moose.start(0.1)
-        vms = [moose.element(x).Vm for x in network.shapes.keys()]
-        network.set("color", vms, mapper)
-
-    viewer = moogli.Viewer("vm-viewer")
-    viewer.attach_shapes(network.shapes.values())
-    view = moogli.View("vm-view",
-                       prelude=prelude,
-                       interlude=interlude)
-    viewer.attach_view(view)
-    return viewer
-
-
 def main():
     numpy.random.seed( 1234 )
     rdes = buildRdesigneur()
     rdes.buildModel( '/model' )
     assert( moose.exists( '/model' ) )
     moose.element( '/model/elec/hsolve' ).tick = -1
+    for i in range( 0, 10 ):
+        moose.setClock( i, 100 )
     for i in range( 10, 18 ):
         moose.setClock( i, dt )
     moose.setClock( 18, plotdt )
     moose.reinit()
     buildPlots()
-
-    # Run for baseline, tetanus, and post-tetanic settling time
+    # Run for baseline, tetanus, and post-tetanic settling time 
     print 'starting...'
     t1 = time.time()
     moose.start( baselineTime )
@@ -250,6 +219,22 @@ def main():
     caDend.concInit = basalCa
     moose.start( postLtdTime )
     print 'real time = ', time.time() - t1
+
+    if do3D:
+        app = QtGui.QApplication(sys.argv)
+        compts = moose.wildcardFind( "/model/elec/#[ISA=compartmentBase]" )
+        ecomptPath = map( lambda x : x.path, compts )
+        morphology = moogli.read_morphology_from_moose(name = "", path = "/model/elec")
+        morphology.create_group( "group_all", ecomptPath, -0.08, 0.02, \
+            [0.0, 0.5, 1.0, 1.0], [1.0, 0.0, 0.0, 0.9] )
+        viewer = moogli.DynamicMorphologyViewerWidget(morphology)
+        def callback( morphology, viewer ):
+            moose.start( 0.1 )
+            return True
+        viewer.set_callback( callback, idletime = 0 )
+        viewer.showMaximized()
+        viewer.show()
+        app.exec_()
 
     displayPlots()
 

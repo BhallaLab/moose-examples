@@ -1,7 +1,7 @@
 //genesis
 // kkit Version 11 flat dumpfile
  
-// Saved on Sat Sep 26 22:30:23 2015
+// Saved on Sun Nov 15 09:10:36 2015
  
 include kkit {argv 1}
  
@@ -54,9 +54,15 @@ simundump geometry /kinetics/geometry[1] 0 1e-18 3 sphere "" white black 1 \
   -24 0
 simundump geometry /kinetics/geometry[2] 0 9e-20 3 sphere "" white black 4 \
   -20 0
-simundump geometry /kinetics/geometry[3] 0 1e-20 3 sphere "" white black 0 0 \
+simundump geometry /kinetics/geometry[3] 0 1e-20 3 sphere "" white black 3 -6 \
   0
-simundump geometry /kinetics/geometry[4] 0 1e-18 3 sphere "" white black 0 0 \
+simundump geometry /kinetics/geometry[4] 0 1e-18 3 sphere "" white black -2 \
+  -12 0
+simundump geometry /kinetics/geometry[5] 0 1e-18 3 sphere "" white black 9 \
+  -11 0
+simundump geometry /kinetics/geometry[6] 0 9e-20 3 sphere "" white black 10 \
+  -15 0
+simundump geometry /kinetics/geometry[7] 0 1e-20 3 sphere "" white black 0 0 \
   0
 simundump text /kinetics/notes 0 ""
 call /kinetics/notes LOAD \
@@ -75,6 +81,15 @@ call /kinetics/geometry[3]/notes LOAD \
 ""
 simundump text /kinetics/geometry[4]/notes 0 ""
 call /kinetics/geometry[4]/notes LOAD \
+""
+simundump text /kinetics/geometry[5]/notes 0 ""
+call /kinetics/geometry[5]/notes LOAD \
+""
+simundump text /kinetics/geometry[6]/notes 0 ""
+call /kinetics/geometry[6]/notes LOAD \
+""
+simundump text /kinetics/geometry[7]/notes 0 ""
+call /kinetics/geometry[7]/notes LOAD \
 ""
 simundump group /kinetics/PSD 0 20 black x 0 0 "" PSD defaultfile.g 0 0 0 27 \
   12 0
@@ -185,17 +200,17 @@ simundump text /kinetics/PSD/PP1_PSD/I1_p/notes 0 \
   "Dephosph is mainly by PP2B"
 call /kinetics/PSD/PP1_PSD/I1_p/notes LOAD \
 "Dephosph is mainly by PP2B"
-simundump kpool /kinetics/PSD/PP1_PSD/CaN 0 1e-12 1 1 6 6 0 0 6 0 \
+simundump kpool /kinetics/PSD/PP1_PSD/CaN 0 0 1 1 6 6 0 0 6 0 \
   /kinetics/geometry 1 yellow -1 33 0
 simundump text /kinetics/PSD/PP1_PSD/CaN/notes 0 ""
 call /kinetics/PSD/PP1_PSD/CaN/notes LOAD \
 ""
-simundump kreac /kinetics/PSD/PP1_PSD/CaM-Bind-CaN 0 7.6667 0.002 "" white \
+simundump kreac /kinetics/PSD/PP1_PSD/CaM-Bind-CaN 0 7.6667 0.5 "" white \
   yellow 21 40 0
 simundump text /kinetics/PSD/PP1_PSD/CaM-Bind-CaN/notes 0 ""
 call /kinetics/PSD/PP1_PSD/CaM-Bind-CaN/notes LOAD \
 ""
-simundump kpool /kinetics/PSD/PP1_PSD/Ca2_CaN 0 1e-12 0 0 0 0 0 0 6 0 \
+simundump kpool /kinetics/PSD/PP1_PSD/Ca2_CaN 0 0 0 0 0 0 0 0 6 0 \
   /kinetics/geometry blue yellow 12 33 0
 simundump text /kinetics/PSD/PP1_PSD/Ca2_CaN/notes 0 ""
 call /kinetics/PSD/PP1_PSD/Ca2_CaN/notes LOAD \
@@ -232,13 +247,13 @@ call /kinetics/PSD/basal_phosphatase/notes LOAD \
 "There isn't any clear info for this. I had originally called " \
 "it PP2A, but that causes odd interactions with other pathways." \
 ""
-simundump kenz /kinetics/PSD/basal_phosphatase/P1 0 0 0 0 0 60 0.46295 \
-  0.44443 0.11111 0 0 "" red 61 "" -6 -1 0
+simundump kenz /kinetics/PSD/basal_phosphatase/P1 0 0 0 0 0 60 0.62499 \
+  0.59998 0.15 0 0 "" red 61 "" -6 -1 0
 simundump text /kinetics/PSD/basal_phosphatase/P1/notes 0 ""
 call /kinetics/PSD/basal_phosphatase/P1/notes LOAD \
 ""
-simundump kenz /kinetics/PSD/basal_phosphatase/P2 0 0 0 0 0 60 0.46295 \
-  0.44443 0.11111 0 0 "" red 61 "" -2 -1 0
+simundump kenz /kinetics/PSD/basal_phosphatase/P2 0 0 0 0 0 60 0.62499 \
+  0.59998 0.15 0 0 "" red 61 "" -2 -1 0
 simundump text /kinetics/PSD/basal_phosphatase/P2/notes 0 ""
 call /kinetics/PSD/basal_phosphatase/P2/notes LOAD \
 ""
@@ -257,39 +272,23 @@ simundump group /kinetics/PSD/CaMKII_PSD 0 33 20 x 0 0 "" CaMKII_PSD \
 simundump text /kinetics/PSD/CaMKII_PSD/notes 0 ""
 call /kinetics/PSD/CaMKII_PSD/notes LOAD \
 ""
-simundump kpool /kinetics/PSD/CaMKII_PSD/NMDAR 0 0 40 40 240 240 0 0 6 0 \
-  /kinetics/geometry blue 33 67 8 0
-simundump text /kinetics/PSD/CaMKII_PSD/NMDAR/notes 0 \
-  "The stochiometry is a bit off here. Each NMDAR actually\nbinds to a holoenzyme, about 12 CaMKII subunits. But\nour CaMKII calculations are in terms of individual\nsubunits. So as a hack, we put in much more NMDAR than\nis actually there.\n\nDec 2011: Reconsidered this, now only 120 NMDARs.\n\nJune 02 2012. Consider these as anchor points for a dodecamer.\nThere are far more effected CaMKII bindin...."
-call /kinetics/PSD/CaMKII_PSD/NMDAR/notes LOAD \
-"The stochiometry is a bit off here. Each NMDAR actually" \
-"binds to a holoenzyme, about 12 CaMKII subunits. But" \
-"our CaMKII calculations are in terms of individual" \
-"subunits. So as a hack, we put in much more NMDAR than" \
-"is actually there." \
-"" \
-"Dec 2011: Reconsidered this, now only 120 NMDARs." \
-"" \
-"June 02 2012. Consider these as anchor points for a dodecamer." \
-"There are far more effected CaMKII binding sites then, than" \
-"individual molecules of NMDAR. Raised limit to 40."
-simundump kpool /kinetics/PSD/CaMKII_PSD/tot-auto 0 0 2 1 6 12 0 0 6 0 \
+simundump kpool /kinetics/PSD/CaMKII_PSD/tot-auto 0 0 2 0.5 3 12 0 0 6 0 \
   /kinetics/geometry 29 33 74 36 0
 simundump text /kinetics/PSD/CaMKII_PSD/tot-auto/notes 0 ""
 call /kinetics/PSD/CaMKII_PSD/tot-auto/notes LOAD \
 ""
 simundump kenz /kinetics/PSD/CaMKII_PSD/tot-auto/auton-autoph 0 0 0 0 0 7.732 \
-  0.0033333 8 2 0 0 "" red 29 "" 72 23 0
+  0.066667 8 2 0 0 "" red 29 "" 72 23 0
 simundump text /kinetics/PSD/CaMKII_PSD/tot-auto/auton-autoph/notes 0 ""
 call /kinetics/PSD/CaMKII_PSD/tot-auto/auton-autoph/notes LOAD \
 ""
 simundump kenz /kinetics/PSD/CaMKII_PSD/tot-auto/auton-286 0 0 0 0 0 7.732 \
-  0.00083333 2 0.5 0 0 "" red 29 "" 59 23 0
+  0.016667 2 0.5 0 0 "" red 29 "" 59 23 0
 simundump text /kinetics/PSD/CaMKII_PSD/tot-auto/auton-286/notes 0 ""
 call /kinetics/PSD/CaMKII_PSD/tot-auto/auton-286/notes LOAD \
 ""
 simundump kenz /kinetics/PSD/CaMKII_PSD/tot-auto/auton-305 0 0 0 0 0 54.001 \
-  0.01 24 6 0 0 "" red 29 "" 78 23 0
+  0.2 24 6 0 0 "" red 29 "" 78 23 0
 simundump text /kinetics/PSD/CaMKII_PSD/tot-auto/auton-305/notes 0 ""
 call /kinetics/PSD/CaMKII_PSD/tot-auto/auton-305/notes LOAD \
 ""
@@ -309,22 +308,22 @@ simundump text /kinetics/PSD/CaMKII_PSD/tot-CaM-CaMKII/notes 0 ""
 call /kinetics/PSD/CaMKII_PSD/tot-CaM-CaMKII/notes LOAD \
 ""
 simundump kenz /kinetics/PSD/CaMKII_PSD/tot-CaM-CaMKII/CaM_act_autoph 0 0 0 0 \
-  0 7.732 0.0052083 8 2 0 0 "" red 47 "" 72 20 0
+  0 7.732 0.10417 8 2 0 0 "" red 47 "" 72 20 0
 simundump text /kinetics/PSD/CaMKII_PSD/tot-CaM-CaMKII/CaM_act_autoph/notes 0 \
   ""
 call /kinetics/PSD/CaMKII_PSD/tot-CaM-CaMKII/CaM_act_autoph/notes LOAD \
 ""
 simundump kenz /kinetics/PSD/CaMKII_PSD/tot-CaM-CaMKII/CaM-act-305 0 0 0 0 0 \
-  54.001 0.015625 24 6 0 0 "" red 47 "" 78 20 0
+  54.001 0.3125 24 6 0 0 "" red 47 "" 78 20 0
 simundump text /kinetics/PSD/CaMKII_PSD/tot-CaM-CaMKII/CaM-act-305/notes 0 ""
 call /kinetics/PSD/CaMKII_PSD/tot-CaM-CaMKII/CaM-act-305/notes LOAD \
 ""
 simundump kenz /kinetics/PSD/CaMKII_PSD/tot-CaM-CaMKII/CaM-act-286 0 0 0 0 0 \
-  7.732 0.0013021 2 0.5 0 0 "" red 47 "" 60 20 0
+  7.732 0.026042 2 0.5 0 0 "" red 47 "" 60 20 0
 simundump text /kinetics/PSD/CaMKII_PSD/tot-CaM-CaMKII/CaM-act-286/notes 0 ""
 call /kinetics/PSD/CaMKII_PSD/tot-CaM-CaMKII/CaM-act-286/notes LOAD \
 ""
-simundump kpool /kinetics/PSD/CaMKII_PSD/basal_CaMKII 0 0 1 1 6 6 0 0 6 0 \
+simundump kpool /kinetics/PSD/CaMKII_PSD/basal_CaMKII 0 0 0.5 0.5 3 3 0 0 6 0 \
   /kinetics/geometry blue 33 81 33 0
 simundump text /kinetics/PSD/CaMKII_PSD/basal_CaMKII/notes 0 ""
 call /kinetics/PSD/CaMKII_PSD/basal_CaMKII/notes LOAD \
@@ -341,37 +340,32 @@ simundump kreac /kinetics/PSD/CaMKII_PSD/CaMKII-bind-CaM 0 10.945 2.2 "" \
 simundump text /kinetics/PSD/CaMKII_PSD/CaMKII-bind-CaM/notes 0 ""
 call /kinetics/PSD/CaMKII_PSD/CaMKII-bind-CaM/notes LOAD \
 ""
-simundump kpool /kinetics/PSD/CaMKII_PSD/CaMKII-thr286-CaM 0 0 0 0 0 0 0 0 6 \
-  0 /kinetics/geometry 47 33 56 22 0
-simundump text /kinetics/PSD/CaMKII_PSD/CaMKII-thr286-CaM/notes 0 ""
-call /kinetics/PSD/CaMKII_PSD/CaMKII-thr286-CaM/notes LOAD \
+simundump kpool /kinetics/PSD/CaMKII_PSD/NMDAR 0 0 40 40 240 240 0 0 6 0 \
+  /kinetics/geometry blue 33 67 8 0
+simundump text /kinetics/PSD/CaMKII_PSD/NMDAR/notes 0 \
+  "The stochiometry is a bit off here. Each NMDAR actually\nbinds to a holoenzyme, about 12 CaMKII subunits. But\nour CaMKII calculations are in terms of individual\nsubunits. So as a hack, we put in much more NMDAR than\nis actually there.\n\nDec 2011: Reconsidered this, now only 120 NMDARs.\n\nJune 02 2012. Consider these as anchor points for a dodecamer.\nThere are far more effected CaMKII bindin...."
+call /kinetics/PSD/CaMKII_PSD/NMDAR/notes LOAD \
+"The stochiometry is a bit off here. Each NMDAR actually" \
+"binds to a holoenzyme, about 12 CaMKII subunits. But" \
+"our CaMKII calculations are in terms of individual" \
+"subunits. So as a hack, we put in much more NMDAR than" \
+"is actually there." \
+"" \
+"Dec 2011: Reconsidered this, now only 120 NMDARs." \
+"" \
+"June 02 2012. Consider these as anchor points for a dodecamer." \
+"There are far more effected CaMKII binding sites then, than" \
+"individual molecules of NMDAR. Raised limit to 40."
+simundump kreac /kinetics/PSD/CaMKII_PSD/transloc_2 0 0.002 0 "" white 33 56 \
+  12 0
+simundump text /kinetics/PSD/CaMKII_PSD/transloc_2/notes 0 \
+  "Same as for transloc_1\n\n\n"
+call /kinetics/PSD/CaMKII_PSD/transloc_2/notes LOAD \
+"Same as for transloc_1" \
+"" \
+"" \
 ""
-simundump kpool /kinetics/PSD/CaMKII_PSD/CaMKII-CaM 0 0 0 0 0 0 0 0 6 0 \
-  /kinetics/geometry 50 33 63 22 0
-simundump text /kinetics/PSD/CaMKII_PSD/CaMKII-CaM/notes 0 ""
-call /kinetics/PSD/CaMKII_PSD/CaMKII-CaM/notes LOAD \
-""
-simundump kpool /kinetics/PSD/CaMKII_PSD/CaMKII-thr286 0 0 0 0 0 0 0 0 6 0 \
-  /kinetics/geometry 57 33 69 22 0
-simundump text /kinetics/PSD/CaMKII_PSD/CaMKII-thr286/notes 0 ""
-call /kinetics/PSD/CaMKII_PSD/CaMKII-thr286/notes LOAD \
-""
-simundump kpool /kinetics/PSD/CaMKII_PSD/CaMKII 0 0 0 0 0 0 0 0 6 0 \
-  /kinetics/geometry 62 33 75 22 0
-simundump text /kinetics/PSD/CaMKII_PSD/CaMKII/notes 0 ""
-call /kinetics/PSD/CaMKII_PSD/CaMKII/notes LOAD \
-""
-simundump kpool /kinetics/PSD/CaMKII_PSD/CaMKII-thr305 0 0 0 0 0 0 0 0 6 0 \
-  /kinetics/geometry 30 33 88 22 0
-simundump text /kinetics/PSD/CaMKII_PSD/CaMKII-thr305/notes 0 ""
-call /kinetics/PSD/CaMKII_PSD/CaMKII-thr305/notes LOAD \
-""
-simundump kpool /kinetics/PSD/CaMKII_PSD/CaMKII_p_p_p 0 0 0 0 0 0 0 0 6 0 \
-  /kinetics/geometry 0 33 81 22 0
-simundump text /kinetics/PSD/CaMKII_PSD/CaMKII_p_p_p/notes 0 ""
-call /kinetics/PSD/CaMKII_PSD/CaMKII_p_p_p/notes LOAD \
-""
-simundump kreac /kinetics/PSD/CaMKII_PSD/transloc_1 0 0.0001 0 "" white 33 63 \
+simundump kreac /kinetics/PSD/CaMKII_PSD/transloc_1 0 0.002 0 "" white 33 63 \
   12 0
 simundump text /kinetics/PSD/CaMKII_PSD/transloc_1/notes 0 ""
 call /kinetics/PSD/CaMKII_PSD/transloc_1/notes LOAD \
@@ -383,20 +377,71 @@ simundump text /kinetics/PSD/CaMKII_PSD/back_1/notes 0 \
 call /kinetics/PSD/CaMKII_PSD/back_1/notes LOAD \
 "Rates set by the translocation experiments of " \
 "Shen and Meyer, Science 1999."
-simundump kreac /kinetics/PSD/CaMKII_PSD/transloc_2 0 0.0001 0 "" white 33 56 \
-  12 0
-simundump text /kinetics/PSD/CaMKII_PSD/transloc_2/notes 0 \
-  "Same as for transloc_1\n\n\n"
-call /kinetics/PSD/CaMKII_PSD/transloc_2/notes LOAD \
-"Same as for transloc_1" \
-"" \
-"" \
-""
 simundump kreac /kinetics/PSD/CaMKII_PSD/back_2 0 0.04 6.6667e-06 "" white 33 \
   89 13 0
 simundump text /kinetics/PSD/CaMKII_PSD/back_2/notes 0 "Same as for back_1\n"
 call /kinetics/PSD/CaMKII_PSD/back_2/notes LOAD \
 "Same as for back_1" \
+""
+simundump kpool /kinetics/PSD/CaMKII_PSD/sCaMKII-thr286-CaM 0 0 0 0 0 0 0 0 6 \
+  0 /kinetics/geometry 47 33 56 22 0
+simundump text /kinetics/PSD/CaMKII_PSD/sCaMKII-thr286-CaM/notes 0 ""
+call /kinetics/PSD/CaMKII_PSD/sCaMKII-thr286-CaM/notes LOAD \
+""
+simundump kpool /kinetics/PSD/CaMKII_PSD/sCaMKII-CaM 0 0 0 0 0 0 0 0 6 0 \
+  /kinetics/geometry 50 33 63 22 0
+simundump text /kinetics/PSD/CaMKII_PSD/sCaMKII-CaM/notes 0 ""
+call /kinetics/PSD/CaMKII_PSD/sCaMKII-CaM/notes LOAD \
+""
+simundump kpool /kinetics/PSD/CaMKII_PSD/sCaMKII 0 0 0 0 0 0 0 0 6 0 \
+  /kinetics/geometry 62 33 75 22 0
+simundump text /kinetics/PSD/CaMKII_PSD/sCaMKII/notes 0 ""
+call /kinetics/PSD/CaMKII_PSD/sCaMKII/notes LOAD \
+""
+simundump kpool /kinetics/PSD/CaMKII_PSD/sCaMKII_p_p_p 0 0 0 0 0 0 0 0 6 0 \
+  /kinetics/geometry 0 33 81 22 0
+simundump text /kinetics/PSD/CaMKII_PSD/sCaMKII_p_p_p/notes 0 ""
+call /kinetics/PSD/CaMKII_PSD/sCaMKII_p_p_p/notes LOAD \
+""
+simundump kpool /kinetics/PSD/CaMKII_PSD/sCaMKII-thr305 0 0 0 0 0 0 0 0 6 0 \
+  /kinetics/geometry 30 33 88 22 0
+simundump text /kinetics/PSD/CaMKII_PSD/sCaMKII-thr305/notes 0 ""
+call /kinetics/PSD/CaMKII_PSD/sCaMKII-thr305/notes LOAD \
+""
+simundump kpool /kinetics/PSD/CaMKII_PSD/CaMKII-CaM 0 1e-12 0 0 0 0 0 0 6 0 \
+  /kinetics/geometry[7] 50 black 66 17 0
+simundump text /kinetics/PSD/CaMKII_PSD/CaMKII-CaM/notes 0 ""
+call /kinetics/PSD/CaMKII_PSD/CaMKII-CaM/notes LOAD \
+""
+simundump kpool /kinetics/PSD/CaMKII_PSD/CaMKII_p_p_p 0 1e-12 0 0 0 0 0 0 6 0 \
+  /kinetics/geometry[7] 2 black 84 17 0
+simundump text /kinetics/PSD/CaMKII_PSD/CaMKII_p_p_p/notes 0 ""
+call /kinetics/PSD/CaMKII_PSD/CaMKII_p_p_p/notes LOAD \
+""
+simundump kpool /kinetics/PSD/CaMKII_PSD/CaMKII-thr286-CaM 0 1e-12 0 0 0 0 0 \
+  0 6 0 /kinetics/geometry[7] 46 black 58 17 0
+simundump text /kinetics/PSD/CaMKII_PSD/CaMKII-thr286-CaM/notes 0 ""
+call /kinetics/PSD/CaMKII_PSD/CaMKII-thr286-CaM/notes LOAD \
+""
+simundump kpool /kinetics/PSD/CaMKII_PSD/CaMKII 0 5e-13 0 0 0 0 0 0 6 0 \
+  /kinetics/geometry[7] 61 black 78 17 0
+simundump text /kinetics/PSD/CaMKII_PSD/CaMKII/notes 0 ""
+call /kinetics/PSD/CaMKII_PSD/CaMKII/notes LOAD \
+""
+simundump kpool /kinetics/PSD/CaMKII_PSD/CaMKII-thr305 0 1e-12 0 0 0 0 0 0 6 \
+  0 /kinetics/geometry[7] 36 black 91 17 0
+simundump text /kinetics/PSD/CaMKII_PSD/CaMKII-thr305/notes 0 ""
+call /kinetics/PSD/CaMKII_PSD/CaMKII-thr305/notes LOAD \
+""
+simundump kpool /kinetics/PSD/CaMKII_PSD/sCaMKII-thr286 0 0 0 0 0 0 0 0 6 0 \
+  /kinetics/geometry 57 33 69 22 0
+simundump text /kinetics/PSD/CaMKII_PSD/sCaMKII-thr286/notes 0 ""
+call /kinetics/PSD/CaMKII_PSD/sCaMKII-thr286/notes LOAD \
+""
+simundump kpool /kinetics/PSD/CaMKII_PSD/CaMKII-thr286 0 1e-12 0 0 0 0 0 0 6 \
+  0 /kinetics/geometry[7] 54 black 73 17 0
+simundump text /kinetics/PSD/CaMKII_PSD/CaMKII-thr286/notes 0 ""
+call /kinetics/PSD/CaMKII_PSD/CaMKII-thr286/notes LOAD \
 ""
 simundump kpool /kinetics/PSD/PP2A 1 0 1 1 6 6 0 0 6 0 /kinetics/geometry red \
   20 45 17 0
@@ -424,7 +469,7 @@ simundump group /kinetics/PSD/CaM 1 blue 20 x 0 0 "" defaultfile \
 simundump text /kinetics/PSD/CaM/notes 0 ""
 call /kinetics/PSD/CaM/notes LOAD \
 ""
-simundump kpool /kinetics/PSD/CaM/CaM 1 1e-12 20 20 120 120 0 0 6 0 \
+simundump kpool /kinetics/PSD/CaM/CaM 1 5e-13 20 20 120 120 0 0 6 0 \
   /kinetics/geometry pink blue 35 39 0
 simundump text /kinetics/PSD/CaM/CaM/notes 0 \
   "There is a LOT of this in the cell: upto 1% of total protein mass. (Alberts et al)\nSay 25 uM. Meyer et al Science 256 1199-1202 1992 refer to studies saying\nit is comparable to CaMK levels. \n"
@@ -531,8 +576,8 @@ simundump kreac /kinetics/PSD/CaM/Ca_stim 0 50 50 "" white black 46 31 0
 simundump text /kinetics/PSD/CaM/Ca_stim/notes 0 ""
 call /kinetics/PSD/CaM/Ca_stim/notes LOAD \
 ""
-simundump kpool /kinetics/PSD/CaM_CaN 1 1e-12 0 0 0 0 0 0 6 0 \
-  /kinetics/geometry 1 20 30 33 0
+simundump kpool /kinetics/PSD/CaM_CaN 1 0 0 0 0 0 0 0 6 0 /kinetics/geometry \
+  1 20 30 33 0
 simundump text /kinetics/PSD/CaM_CaN/notes 0 ""
 call /kinetics/PSD/CaM_CaN/notes LOAD \
 ""
@@ -546,13 +591,13 @@ simundump kenz /kinetics/PSD/CaM_CaN/dephosph_inhib1 1 0 0 0 0 54.001 \
 simundump text /kinetics/PSD/CaM_CaN/dephosph_inhib1/notes 0 ""
 call /kinetics/PSD/CaM_CaN/dephosph_inhib1/notes LOAD \
 ""
-simundump kenz /kinetics/PSD/CaM_CaN/CaN_1 0 0 0 0 0 6 0.125 6 1.5 0 0 "" red \
-  pink "" -6 -4 0
+simundump kenz /kinetics/PSD/CaM_CaN/CaN_1 0 0 0 0 0 6 0.033333 8 2 0 0 "" \
+  red pink "" -6 -4 0
 simundump text /kinetics/PSD/CaM_CaN/CaN_1/notes 0 ""
 call /kinetics/PSD/CaM_CaN/CaN_1/notes LOAD \
 ""
-simundump kenz /kinetics/PSD/CaM_CaN/CaN_2 0 0 0 0 0 6 0.125 6 1.5 0 0 "" red \
-  pink "" -2 -4 0
+simundump kenz /kinetics/PSD/CaM_CaN/CaN_2 0 0 0 0 0 6 0.033333 8 2 0 0 "" \
+  red pink "" -2 -4 0
 simundump text /kinetics/PSD/CaM_CaN/CaN_2/notes 0 ""
 call /kinetics/PSD/CaM_CaN/CaN_2/notes LOAD \
 ""
@@ -561,17 +606,12 @@ simundump group /kinetics/DEND 0 13 black x 0 0 "" DEND defaultfile.g 0 0 0 \
 simundump text /kinetics/DEND/notes 0 ""
 call /kinetics/DEND/notes LOAD \
 ""
-simundump kpool /kinetics/DEND/Ca 1 1e-11 0.08 0.08 48 48 0 0 600 0 \
-  /kinetics/geometry red 13 46 -36 0
-simundump text /kinetics/DEND/Ca/notes 0 ""
-call /kinetics/DEND/Ca/notes LOAD \
-""
 simundump group /kinetics/DEND/CaM 1 blue 13 x 0 0 "" defaultfile \
   defaultfile.g 0 fbb0ff81553508bc01f3dd51428742fb 0 34 -32 0
 simundump text /kinetics/DEND/CaM/notes 0 ""
 call /kinetics/DEND/CaM/notes LOAD \
 ""
-simundump kpool /kinetics/DEND/CaM/CaM 1 1e-12 1 1 600 600 0 0 600 0 \
+simundump kpool /kinetics/DEND/CaM/CaM 1 5e-13 1 1 600 600 0 0 600 0 \
   /kinetics/geometry pink blue 38 -30 0
 simundump text /kinetics/DEND/CaM/CaM/notes 0 \
   "There is a LOT of this in the cell: upto 1% of total protein mass. (Alberts et al)\nSay 25 uM. Meyer et al Science 256 1199-1202 1992 refer to studies saying\nit is comparable to CaMK levels. \n"
@@ -661,37 +701,37 @@ simundump kpool /kinetics/DEND/CaM/CaM-Ca4 1 1e-12 0 0 0 0 0 0 600 0 \
 simundump text /kinetics/DEND/CaM/CaM-Ca4/notes 0 ""
 call /kinetics/DEND/CaM/CaM-Ca4/notes LOAD \
 ""
-simundump kpool /kinetics/DEND/CaM/CaM_dend 0 0 0 0 0 0 0 0 600 0 \
-  /kinetics/geometry[1] blue blue 19 -32 0
-simundump text /kinetics/DEND/CaM/CaM_dend/notes 0 ""
-call /kinetics/DEND/CaM/CaM_dend/notes LOAD \
-""
-simundump kreac /kinetics/DEND/CaM/CaM_x2 0 1 10 "" white black 28 -30 0
+simundump kreac /kinetics/DEND/CaM/CaM_x2 0 10 10 "" white black 28 -30 0
 simundump text /kinetics/DEND/CaM/CaM_x2/notes 0 ""
 call /kinetics/DEND/CaM/CaM_x2/notes LOAD \
+""
+simundump kpool /kinetics/DEND/CaM/CaM_xchange 0 2e-11 0 0 0 0 0 0 600 0 \
+  /kinetics/geometry[1] blue blue 19 -32 0
+simundump text /kinetics/DEND/CaM/CaM_xchange/notes 0 ""
+call /kinetics/DEND/CaM/CaM_xchange/notes LOAD \
 ""
 simundump group /kinetics/DEND/CaMKII_BULK 0 33 13 x 0 0 "" CaMKII_BULK \
   defaultfile.g 0 0 0 42 -37 0
 simundump text /kinetics/DEND/CaMKII_BULK/notes 0 ""
 call /kinetics/DEND/CaMKII_BULK/notes LOAD \
 ""
-simundump kpool /kinetics/DEND/CaMKII_BULK/tot-auto 0 0 0.18 1 600 108 0 0 \
+simundump kpool /kinetics/DEND/CaMKII_BULK/tot-auto 0 0 0.18 0.5 300 108 0 0 \
   600 0 /kinetics/geometry 29 33 77 -33 0
 simundump text /kinetics/DEND/CaMKII_BULK/tot-auto/notes 0 ""
 call /kinetics/DEND/CaMKII_BULK/tot-auto/notes LOAD \
 ""
 simundump kenz /kinetics/DEND/CaMKII_BULK/tot-auto/auton-autoph 0 0 0 0 0 \
-  69.588 3.3333e-05 8 2 0 0 "" red 29 "" 75 -46 0
+  69.588 0.00066667 8 2 0 0 "" red 29 "" 75 -46 0
 simundump text /kinetics/DEND/CaMKII_BULK/tot-auto/auton-autoph/notes 0 ""
 call /kinetics/DEND/CaMKII_BULK/tot-auto/auton-autoph/notes LOAD \
 ""
 simundump kenz /kinetics/DEND/CaMKII_BULK/tot-auto/auton-286 0 0 0 0 0 69.588 \
-  8.3333e-06 2 0.5 0 0 "" red 29 "" 62 -46 0
+  0.00016667 2 0.5 0 0 "" red 29 "" 62 -46 0
 simundump text /kinetics/DEND/CaMKII_BULK/tot-auto/auton-286/notes 0 ""
 call /kinetics/DEND/CaMKII_BULK/tot-auto/auton-286/notes LOAD \
 ""
 simundump kenz /kinetics/DEND/CaMKII_BULK/tot-auto/auton-305 0 0 0 0 0 486.01 \
-  0.0001 24 6 0 0 "" red 29 "" 81 -46 0
+  0.002 24 6 0 0 "" red 29 "" 81 -46 0
 simundump text /kinetics/DEND/CaMKII_BULK/tot-auto/auton-305/notes 0 ""
 call /kinetics/DEND/CaMKII_BULK/tot-auto/auton-305/notes LOAD \
 ""
@@ -706,25 +746,25 @@ simundump text /kinetics/DEND/CaMKII_BULK/tot-CaM-CaMKII/notes 0 ""
 call /kinetics/DEND/CaMKII_BULK/tot-CaM-CaMKII/notes LOAD \
 ""
 simundump kenz /kinetics/DEND/CaMKII_BULK/tot-CaM-CaMKII/CaM_act_autoph 0 0 0 \
-  0 0 69.588 5.2083e-05 8 2 0 0 "" red 47 "" 75 -49 0
+  0 0 69.588 0.0010417 8 2 0 0 "" red 47 "" 75 -49 0
 simundump text /kinetics/DEND/CaMKII_BULK/tot-CaM-CaMKII/CaM_act_autoph/notes 0 \
   ""
 call /kinetics/DEND/CaMKII_BULK/tot-CaM-CaMKII/CaM_act_autoph/notes LOAD \
 ""
 simundump kenz /kinetics/DEND/CaMKII_BULK/tot-CaM-CaMKII/CaM-act-305 0 0 0 0 \
-  0 486.01 0.00015625 24 6 0 0 "" red 47 "" 81 -49 0
+  0 486.01 0.003125 24 6 0 0 "" red 47 "" 81 -49 0
 simundump text /kinetics/DEND/CaMKII_BULK/tot-CaM-CaMKII/CaM-act-305/notes 0 \
   ""
 call /kinetics/DEND/CaMKII_BULK/tot-CaM-CaMKII/CaM-act-305/notes LOAD \
 ""
 simundump kenz /kinetics/DEND/CaMKII_BULK/tot-CaM-CaMKII/CaM-act-286 0 0 0 0 \
-  0 69.588 1.3021e-05 2 0.5 0 0 "" red 47 "" 63 -49 0
+  0 69.588 0.00026042 2 0.5 0 0 "" red 47 "" 63 -49 0
 simundump text /kinetics/DEND/CaMKII_BULK/tot-CaM-CaMKII/CaM-act-286/notes 0 \
   ""
 call /kinetics/DEND/CaMKII_BULK/tot-CaM-CaMKII/CaM-act-286/notes LOAD \
 ""
-simundump kpool /kinetics/DEND/CaMKII_BULK/basal_CaMKII 0 0 1 1 600 600 0 0 \
-  600 0 /kinetics/geometry blue 33 84 -36 0
+simundump kpool /kinetics/DEND/CaMKII_BULK/basal_CaMKII 0 0 0.5 0.5 300 300 0 \
+  0 600 0 /kinetics/geometry blue 33 84 -36 0
 simundump text /kinetics/DEND/CaMKII_BULK/basal_CaMKII/notes 0 ""
 call /kinetics/DEND/CaMKII_BULK/basal_CaMKII/notes LOAD \
 ""
@@ -755,7 +795,7 @@ simundump kpool /kinetics/DEND/CaMKII_BULK/CaMKII-thr286 0 1e-12 0 0 0 0 0 0 \
 simundump text /kinetics/DEND/CaMKII_BULK/CaMKII-thr286/notes 0 ""
 call /kinetics/DEND/CaMKII_BULK/CaMKII-thr286/notes LOAD \
 ""
-simundump kpool /kinetics/DEND/CaMKII_BULK/CaMKII 0 1e-12 1 1 600 600 0 0 600 \
+simundump kpool /kinetics/DEND/CaMKII_BULK/CaMKII 0 5e-13 1 1 600 600 0 0 600 \
   0 /kinetics/geometry 62 33 78 -47 0
 simundump text /kinetics/DEND/CaMKII_BULK/CaMKII/notes 0 ""
 call /kinetics/DEND/CaMKII_BULK/CaMKII/notes LOAD \
@@ -770,40 +810,50 @@ simundump kpool /kinetics/DEND/CaMKII_BULK/CaMKII_p_p_p 0 1e-12 0 0 0 0 0 0 \
 simundump text /kinetics/DEND/CaMKII_BULK/CaMKII_p_p_p/notes 0 ""
 call /kinetics/DEND/CaMKII_BULK/CaMKII_p_p_p/notes LOAD \
 ""
+simundump kreac /kinetics/DEND/CaMKII_BULK/CaMKII_x2 0 10 10 "" white black \
+  95 -49 0
+simundump text /kinetics/DEND/CaMKII_BULK/CaMKII_x2/notes 0 ""
+call /kinetics/DEND/CaMKII_BULK/CaMKII_x2/notes LOAD \
+""
+simundump kpool /kinetics/DEND/CaMKII_BULK/CaMKII_xchange 0 2e-11 0 0 0 0 0 0 \
+  600 0 /kinetics/geometry[5] blue black 99 -47 0
+simundump text /kinetics/DEND/CaMKII_BULK/CaMKII_xchange/notes 0 ""
+call /kinetics/DEND/CaMKII_BULK/CaMKII_xchange/notes LOAD \
+""
 simundump kpool /kinetics/DEND/actCaMKII 0 0 0.18 0.18 108 108 0 0 600 0 \
   /kinetics/geometry 12 5 73 -36 0
 simundump text /kinetics/DEND/actCaMKII/notes 0 ""
 call /kinetics/DEND/actCaMKII/notes LOAD \
 ""
-simundump kpool /kinetics/DEND/PP2A 1 0 1 1 600 600 0 0 600 0 \
+simundump kpool /kinetics/DEND/PP2A 1 0 1.2 1.2 720 720 0 0 600 0 \
   /kinetics/geometry 62 5 47 -44 0
 simundump text /kinetics/DEND/PP2A/notes 0 \
   "Strack et al JBC 1997 show that PP2A is the primary\nphosphatase acting on CaMKII in the bulk."
 call /kinetics/DEND/PP2A/notes LOAD \
 "Strack et al JBC 1997 show that PP2A is the primary" \
 "phosphatase acting on CaMKII in the bulk."
-simundump kenz /kinetics/DEND/PP2A/Deph-thr286 0 0 0 0 0 486.01 0.00083333 2 \
-  0.5 0 0 "" red 62 "" 64 -44 0
+simundump kenz /kinetics/DEND/PP2A/Deph-thr286 0 0 0 0 0 486.01 0.0033334 8 2 \
+  0 0 "" red 62 "" 64 -44 0
 simundump text /kinetics/DEND/PP2A/Deph-thr286/notes 0 ""
 call /kinetics/DEND/PP2A/Deph-thr286/notes LOAD \
 ""
-simundump kenz /kinetics/DEND/PP2A/Deph-thr286b 0 0 0 0 0 486.01 0.0092593 2 \
-  0.5 0 0 "" red 62 "" 74 -44 0
+simundump kenz /kinetics/DEND/PP2A/Deph-thr286b 0 0 0 0 0 486.01 0.0033334 8 \
+  2 0 0 "" red 62 "" 74 -44 0
 simundump text /kinetics/DEND/PP2A/Deph-thr286b/notes 0 ""
 call /kinetics/DEND/PP2A/Deph-thr286b/notes LOAD \
 ""
-simundump kenz /kinetics/DEND/PP2A/Deph-thr305 0 0 0 0 0 486.01 0.0092593 2 \
-  0.5 0 0 "" red 62 "" 81 -44 0
+simundump kenz /kinetics/DEND/PP2A/Deph-thr305 0 0 0 0 0 486.01 0.0033334 8 2 \
+  0 0 "" red 62 "" 81 -44 0
 simundump text /kinetics/DEND/PP2A/Deph-thr305/notes 0 ""
 call /kinetics/DEND/PP2A/Deph-thr305/notes LOAD \
 ""
-simundump kenz /kinetics/DEND/PP2A/Deph-thr286c 0 0 0 0 0 486.01 0.0023148 \
-  0.5 0.125 0 0 "" red 62 "" 91 -44 0
+simundump kenz /kinetics/DEND/PP2A/Deph-thr286c 0 0 0 0 0 486.01 0.00083332 2 \
+  0.5 0 0 "" red 62 "" 91 -44 0
 simundump text /kinetics/DEND/PP2A/Deph-thr286c/notes 0 ""
 call /kinetics/DEND/PP2A/Deph-thr286c/notes LOAD \
 ""
-simundump kenz /kinetics/DEND/PP2A/Deph-thr305a 0 0 0 0 0 486.01 0.0092593 2 \
-  0.5 0 0 "" red 62 "" 86 -44 0
+simundump kenz /kinetics/DEND/PP2A/Deph-thr305a 0 0 0 0 0 486.01 0.0033334 8 \
+  2 0 0 "" red 62 "" 86 -44 0
 simundump text /kinetics/DEND/PP2A/Deph-thr305a/notes 0 ""
 call /kinetics/DEND/PP2A/Deph-thr305a/notes LOAD \
 ""
@@ -832,7 +882,7 @@ simundump group /kinetics/SPINE/CaM 1 blue 5 x 0 0 "" defaultfile \
 simundump text /kinetics/SPINE/CaM/notes 0 ""
 call /kinetics/SPINE/CaM/notes LOAD \
 ""
-simundump kpool /kinetics/SPINE/CaM/CaM 1 1e-12 20 20 1080 1080 0 0 54 0 \
+simundump kpool /kinetics/SPINE/CaM/CaM 1 5e-13 20 20 1080 1080 0 0 54 0 \
   /kinetics/geometry pink blue 37 4 0
 simundump text /kinetics/SPINE/CaM/CaM/notes 0 \
   "There is a LOT of this in the cell: upto 1% of total protein mass. (Alberts et al)\nSay 25 uM. Meyer et al Science 256 1199-1202 1992 refer to studies saying\nit is comparable to CaMK levels. \n"
@@ -927,42 +977,37 @@ simundump kpool /kinetics/SPINE/CaM/CaM-Ca4 1 1e-12 0 0 0 0 0 0 54 0 \
 simundump text /kinetics/SPINE/CaM/CaM-Ca4/notes 0 ""
 call /kinetics/SPINE/CaM/CaM-Ca4/notes LOAD \
 ""
-simundump kpool /kinetics/SPINE/CaM/CaM_spine 0 0 0 0 0 0 0 0 54 0 \
-  /kinetics/geometry[2] blue black 29 7 0
-simundump text /kinetics/SPINE/CaM/CaM_spine/notes 0 ""
-call /kinetics/SPINE/CaM/CaM_spine/notes LOAD \
-""
-simundump kreac /kinetics/SPINE/CaM/CaM_xchange 0 10 0.1 "" white black 17 9 \
-  0
-simundump text /kinetics/SPINE/CaM/CaM_xchange/notes 0 ""
-call /kinetics/SPINE/CaM/CaM_xchange/notes LOAD \
-""
-simundump kreac /kinetics/SPINE/CaM/CaM_x2 0 1 10 "" white black 34 10 0
+simundump kreac /kinetics/SPINE/CaM/CaM_x2 0 1 100 "" white black 34 10 0
 simundump text /kinetics/SPINE/CaM/CaM_x2/notes 0 ""
 call /kinetics/SPINE/CaM/CaM_x2/notes LOAD \
+""
+simundump kpool /kinetics/SPINE/CaM/CaM_xchange 0 2e-11 0 0 0 0 0 0 54 0 \
+  /kinetics/geometry[2] blue black 29 7 0
+simundump text /kinetics/SPINE/CaM/CaM_xchange/notes 0 ""
+call /kinetics/SPINE/CaM/CaM_xchange/notes LOAD \
 ""
 simundump group /kinetics/SPINE/CaMKII_BULK 0 33 5 x 0 0 "" CaMKII_BULK \
   defaultfile.g 0 0 0 41 -3 0
 simundump text /kinetics/SPINE/CaMKII_BULK/notes 0 ""
 call /kinetics/SPINE/CaMKII_BULK/notes LOAD \
 ""
-simundump kpool /kinetics/SPINE/CaMKII_BULK/tot-auto 0 0 2 1 54 108 0 0 54 0 \
-  /kinetics/geometry 29 33 76 1 0
+simundump kpool /kinetics/SPINE/CaMKII_BULK/tot-auto 0 0 2 0.5 27 108 0 0 54 \
+  0 /kinetics/geometry 29 33 76 1 0
 simundump text /kinetics/SPINE/CaMKII_BULK/tot-auto/notes 0 ""
 call /kinetics/SPINE/CaMKII_BULK/tot-auto/notes LOAD \
 ""
 simundump kenz /kinetics/SPINE/CaMKII_BULK/tot-auto/auton-autoph 0 0 0 0 0 \
-  69.588 0.00037037 8 2 0 0 "" red 29 "" 74 -12 0
+  69.588 0.0074074 8 2 0 0 "" red 29 "" 74 -12 0
 simundump text /kinetics/SPINE/CaMKII_BULK/tot-auto/auton-autoph/notes 0 ""
 call /kinetics/SPINE/CaMKII_BULK/tot-auto/auton-autoph/notes LOAD \
 ""
 simundump kenz /kinetics/SPINE/CaMKII_BULK/tot-auto/auton-286 0 0 0 0 0 \
-  69.588 9.2592e-05 2 0.5 0 0 "" red 29 "" 61 -12 0
+  69.588 0.0018519 2 0.5 0 0 "" red 29 "" 61 -12 0
 simundump text /kinetics/SPINE/CaMKII_BULK/tot-auto/auton-286/notes 0 ""
 call /kinetics/SPINE/CaMKII_BULK/tot-auto/auton-286/notes LOAD \
 ""
 simundump kenz /kinetics/SPINE/CaMKII_BULK/tot-auto/auton-305 0 0 0 0 0 \
-  486.01 0.0011111 24 6 0 0 "" red 29 "" 80 -12 0
+  486.01 0.022222 24 6 0 0 "" red 29 "" 80 -12 0
 simundump text /kinetics/SPINE/CaMKII_BULK/tot-auto/auton-305/notes 0 ""
 call /kinetics/SPINE/CaMKII_BULK/tot-auto/auton-305/notes LOAD \
 ""
@@ -982,25 +1027,25 @@ simundump text /kinetics/SPINE/CaMKII_BULK/tot-CaM-CaMKII/notes 0 ""
 call /kinetics/SPINE/CaMKII_BULK/tot-CaM-CaMKII/notes LOAD \
 ""
 simundump kenz /kinetics/SPINE/CaMKII_BULK/tot-CaM-CaMKII/CaM_act_autoph 0 0 \
-  0 0 0 69.588 0.0005787 8 2 0 0 "" red 47 "" 74 -15 0
+  0 0 0 69.588 0.011574 8 2 0 0 "" red 47 "" 74 -15 0
 simundump text /kinetics/SPINE/CaMKII_BULK/tot-CaM-CaMKII/CaM_act_autoph/notes 0 \
   ""
 call /kinetics/SPINE/CaMKII_BULK/tot-CaM-CaMKII/CaM_act_autoph/notes LOAD \
 ""
 simundump kenz /kinetics/SPINE/CaMKII_BULK/tot-CaM-CaMKII/CaM-act-305 0 0 0 0 \
-  0 486.01 0.0017361 24 6 0 0 "" red 47 "" 80 -15 0
+  0 486.01 0.034722 24 6 0 0 "" red 47 "" 80 -15 0
 simundump text /kinetics/SPINE/CaMKII_BULK/tot-CaM-CaMKII/CaM-act-305/notes 0 \
   ""
 call /kinetics/SPINE/CaMKII_BULK/tot-CaM-CaMKII/CaM-act-305/notes LOAD \
 ""
 simundump kenz /kinetics/SPINE/CaMKII_BULK/tot-CaM-CaMKII/CaM-act-286 0 0 0 0 \
-  0 69.588 0.00014468 2 0.5 0 0 "" red 47 "" 62 -15 0
+  0 69.588 0.0028935 2 0.5 0 0 "" red 47 "" 62 -15 0
 simundump text /kinetics/SPINE/CaMKII_BULK/tot-CaM-CaMKII/CaM-act-286/notes 0 \
   ""
 call /kinetics/SPINE/CaMKII_BULK/tot-CaM-CaMKII/CaM-act-286/notes LOAD \
 ""
-simundump kpool /kinetics/SPINE/CaMKII_BULK/basal_CaMKII 0 0 1 1 54 54 0 0 54 \
-  0 /kinetics/geometry blue 33 83 -2 0
+simundump kpool /kinetics/SPINE/CaMKII_BULK/basal_CaMKII 0 0 0.5 0.5 27 27 0 \
+  0 54 0 /kinetics/geometry blue 33 83 -2 0
 simundump text /kinetics/SPINE/CaMKII_BULK/basal_CaMKII/notes 0 ""
 call /kinetics/SPINE/CaMKII_BULK/basal_CaMKII/notes LOAD \
 ""
@@ -1016,37 +1061,47 @@ simundump kreac /kinetics/SPINE/CaMKII_BULK/CaMKII-bind-CaM 0 1.2161 2.2 "" \
 simundump text /kinetics/SPINE/CaMKII_BULK/CaMKII-bind-CaM/notes 0 ""
 call /kinetics/SPINE/CaMKII_BULK/CaMKII-bind-CaM/notes LOAD \
 ""
-simundump kpool /kinetics/SPINE/CaMKII_BULK/CaMKII-thr286-CaM 0 0 0 0 0 0 0 0 \
-  54 0 /kinetics/geometry 47 33 58 -13 0
+simundump kpool /kinetics/SPINE/CaMKII_BULK/CaMKII-thr286-CaM 0 1e-12 0 0 0 0 \
+  0 0 54 0 /kinetics/geometry 47 33 58 -13 0
 simundump text /kinetics/SPINE/CaMKII_BULK/CaMKII-thr286-CaM/notes 0 ""
 call /kinetics/SPINE/CaMKII_BULK/CaMKII-thr286-CaM/notes LOAD \
 ""
-simundump kpool /kinetics/SPINE/CaMKII_BULK/CaMKII-CaM 0 0 0 0 0 0 0 0 54 0 \
-  /kinetics/geometry 50 33 65 -13 0
+simundump kpool /kinetics/SPINE/CaMKII_BULK/CaMKII-CaM 0 1e-12 0 0 0 0 0 0 54 \
+  0 /kinetics/geometry 50 33 65 -13 0
 simundump text /kinetics/SPINE/CaMKII_BULK/CaMKII-CaM/notes 0 ""
 call /kinetics/SPINE/CaMKII_BULK/CaMKII-CaM/notes LOAD \
 ""
-simundump kpool /kinetics/SPINE/CaMKII_BULK/CaMKII-thr286 0 0 0 0 0 0 0 0 54 \
-  0 /kinetics/geometry 57 33 71 -13 0
+simundump kpool /kinetics/SPINE/CaMKII_BULK/CaMKII-thr286 0 1e-12 0 0 0 0 0 0 \
+  54 0 /kinetics/geometry 57 33 71 -13 0
 simundump text /kinetics/SPINE/CaMKII_BULK/CaMKII-thr286/notes 0 ""
 call /kinetics/SPINE/CaMKII_BULK/CaMKII-thr286/notes LOAD \
 ""
-simundump kpool /kinetics/SPINE/CaMKII_BULK/CaMKII 0 0 20 20 1080 1080 0 0 54 \
-  0 /kinetics/geometry 62 33 77 -13 0
+simundump kpool /kinetics/SPINE/CaMKII_BULK/CaMKII 0 5e-13 20 20 1080 1080 0 \
+  0 54 0 /kinetics/geometry 62 33 77 -13 0
 simundump text /kinetics/SPINE/CaMKII_BULK/CaMKII/notes 0 ""
 call /kinetics/SPINE/CaMKII_BULK/CaMKII/notes LOAD \
 ""
-simundump kpool /kinetics/SPINE/CaMKII_BULK/CaMKII-thr305 0 0 0 0 0 0 0 0 54 \
-  0 /kinetics/geometry 30 33 90 -13 0
+simundump kpool /kinetics/SPINE/CaMKII_BULK/CaMKII-thr305 0 1e-12 0 0 0 0 0 0 \
+  54 0 /kinetics/geometry 30 33 90 -13 0
 simundump text /kinetics/SPINE/CaMKII_BULK/CaMKII-thr305/notes 0 ""
 call /kinetics/SPINE/CaMKII_BULK/CaMKII-thr305/notes LOAD \
 ""
-simundump kpool /kinetics/SPINE/CaMKII_BULK/CaMKII_p_p_p 0 0 0 0 0 0 0 0 54 0 \
-  /kinetics/geometry 0 33 83 -13 0
+simundump kpool /kinetics/SPINE/CaMKII_BULK/CaMKII_p_p_p 0 1e-12 0 0 0 0 0 0 \
+  54 0 /kinetics/geometry 0 33 83 -13 0
 simundump text /kinetics/SPINE/CaMKII_BULK/CaMKII_p_p_p/notes 0 ""
 call /kinetics/SPINE/CaMKII_BULK/CaMKII_p_p_p/notes LOAD \
 ""
-simundump kpool /kinetics/SPINE/CaM_CaN 1 1e-12 0 0 0 0 0 0 54 0 \
+simundump kreac /kinetics/SPINE/CaMKII_BULK/CaMKII_x2 0 1 100 "" white black \
+  92 -15 0
+simundump text /kinetics/SPINE/CaMKII_BULK/CaMKII_x2/notes 0 ""
+call /kinetics/SPINE/CaMKII_BULK/CaMKII_x2/notes LOAD \
+""
+simundump kpool /kinetics/SPINE/CaMKII_BULK/CaMKII_xchange 0 2e-11 0 0 0 0 0 \
+  0 54 0 /kinetics/geometry[6] blue black 98 -13 0
+simundump text /kinetics/SPINE/CaMKII_BULK/CaMKII_xchange/notes 0 ""
+call /kinetics/SPINE/CaMKII_BULK/CaMKII_xchange/notes LOAD \
+""
+simundump kpool /kinetics/SPINE/CaM_CaN 1 0 0 0 0 0 0 0 54 0 \
   /kinetics/geometry 1 5 32 -2 0
 simundump text /kinetics/SPINE/CaM_CaN/notes 0 ""
 call /kinetics/SPINE/CaM_CaN/notes LOAD \
@@ -1056,35 +1111,35 @@ simundump kpool /kinetics/SPINE/actCaMKII 0 0 2 2 108 108 0 0 54 0 \
 simundump text /kinetics/SPINE/actCaMKII/notes 0 ""
 call /kinetics/SPINE/actCaMKII/notes LOAD \
 ""
-simundump kpool /kinetics/SPINE/PP2A 1 0 4 4 216 216 0 0 54 0 \
+simundump kpool /kinetics/SPINE/PP2A 1 0 5 5 270 270 0 0 54 0 \
   /kinetics/geometry 62 5 46 -10 0
 simundump text /kinetics/SPINE/PP2A/notes 0 \
   "Strack et al JBC 1997 show that PP2A is the primary\nphosphatase acting on CaMKII in the bulk."
 call /kinetics/SPINE/PP2A/notes LOAD \
 "Strack et al JBC 1997 show that PP2A is the primary" \
 "phosphatase acting on CaMKII in the bulk."
-simundump kenz /kinetics/SPINE/PP2A/Deph-thr286 0 0 0 0 0 486.01 0.0092593 2 \
-  0.5 0 0 "" red 62 "" 63 -10 0
+simundump kenz /kinetics/SPINE/PP2A/Deph-thr286 0 0 0 0 0 486.01 0.037038 8 2 \
+  0 0 "" red 62 "" 63 -10 0
 simundump text /kinetics/SPINE/PP2A/Deph-thr286/notes 0 ""
 call /kinetics/SPINE/PP2A/Deph-thr286/notes LOAD \
 ""
-simundump kenz /kinetics/SPINE/PP2A/Deph-thr286b 0 0 0 0 0 486.01 0.0092593 2 \
-  0.5 0 0 "" red 62 "" 73 -10 0
+simundump kenz /kinetics/SPINE/PP2A/Deph-thr286b 0 0 0 0 0 486.01 0.037038 8 \
+  2 0 0 "" red 62 "" 73 -10 0
 simundump text /kinetics/SPINE/PP2A/Deph-thr286b/notes 0 ""
 call /kinetics/SPINE/PP2A/Deph-thr286b/notes LOAD \
 ""
-simundump kenz /kinetics/SPINE/PP2A/Deph-thr305 0 0 0 0 0 486.01 0.0092593 2 \
-  0.5 0 0 "" red 62 "" 80 -10 0
+simundump kenz /kinetics/SPINE/PP2A/Deph-thr305 0 0 0 0 0 486.01 0.037038 8 2 \
+  0 0 "" red 62 "" 80 -10 0
 simundump text /kinetics/SPINE/PP2A/Deph-thr305/notes 0 ""
 call /kinetics/SPINE/PP2A/Deph-thr305/notes LOAD \
 ""
-simundump kenz /kinetics/SPINE/PP2A/Deph-thr286c 0 0 0 0 0 486.01 0.0023148 \
-  0.5 0.125 0 0 "" red 62 "" 90 -10 0
+simundump kenz /kinetics/SPINE/PP2A/Deph-thr286c 0 0 0 0 0 486.01 0.0092593 2 \
+  0.5 0 0 "" red 62 "" 90 -10 0
 simundump text /kinetics/SPINE/PP2A/Deph-thr286c/notes 0 ""
 call /kinetics/SPINE/PP2A/Deph-thr286c/notes LOAD \
 ""
-simundump kenz /kinetics/SPINE/PP2A/Deph-thr305a 0 0 0 0 0 486.01 0.0092593 2 \
-  0.5 0 0 "" red 62 "" 85 -10 0
+simundump kenz /kinetics/SPINE/PP2A/Deph-thr305a 0 0 0 0 0 486.01 0.037038 8 \
+  2 0 0 "" red 62 "" 85 -10 0
 simundump text /kinetics/SPINE/PP2A/Deph-thr305a/notes 0 ""
 call /kinetics/SPINE/PP2A/Deph-thr305a/notes LOAD \
 ""
@@ -1094,13 +1149,13 @@ simundump group /kinetics/SPINE/CaN_BULK 1 yellow 5 x 0 0 "" CaN_BULK \
 simundump text /kinetics/SPINE/CaN_BULK/notes 0 ""
 call /kinetics/SPINE/CaN_BULK/notes LOAD \
 ""
-simundump kpool /kinetics/SPINE/CaN_BULK/CaN 0 1e-12 1 1 54 54 0 0 54 0 \
+simundump kpool /kinetics/SPINE/CaN_BULK/CaN 0 0 1 1 54 54 0 0 54 0 \
   /kinetics/geometry 1 yellow 4 -2 0
 simundump text /kinetics/SPINE/CaN_BULK/CaN/notes 0 ""
 call /kinetics/SPINE/CaN_BULK/CaN/notes LOAD \
 ""
-simundump kreac /kinetics/SPINE/CaN_BULK/CaM-Bind-CaN 0 0.85185 0.002 "" \
-  white yellow 23 5 0
+simundump kreac /kinetics/SPINE/CaN_BULK/CaM-Bind-CaN 0 0.85185 0.5 "" white \
+  yellow 23 5 0
 simundump text /kinetics/SPINE/CaN_BULK/CaM-Bind-CaN/notes 0 \
   "From Quintana et al 2005"
 call /kinetics/SPINE/CaN_BULK/CaM-Bind-CaN/notes LOAD \
@@ -1110,10 +1165,15 @@ simundump kreac /kinetics/SPINE/CaN_BULK/Ca_bind_CaN 0 0.0085734 1 "" white \
 simundump text /kinetics/SPINE/CaN_BULK/Ca_bind_CaN/notes 0 ""
 call /kinetics/SPINE/CaN_BULK/Ca_bind_CaN/notes LOAD \
 ""
-simundump kpool /kinetics/SPINE/CaN_BULK/Ca2_CaN 0 1e-12 0 0 0 0 0 0 54 0 \
+simundump kpool /kinetics/SPINE/CaN_BULK/Ca2_CaN 0 0 0 0 0 0 0 0 54 0 \
   /kinetics/geometry[1] blue yellow 15 -2 0
 simundump text /kinetics/SPINE/CaN_BULK/Ca2_CaN/notes 0 ""
 call /kinetics/SPINE/CaN_BULK/Ca2_CaN/notes LOAD \
+""
+simundump kpool /kinetics/Ca 1 1e-11 0.08 0.08 48 48 0 0 600 0 \
+  /kinetics/geometry red 13 46 -36 0
+simundump text /kinetics/Ca/notes 0 ""
+call /kinetics/Ca/notes LOAD \
 ""
 simundump xgraph /graphs/conc1 0 0 2000 0 4 0
 simundump xgraph /graphs/conc2 0 0 2000 0 16.804 0
@@ -1139,7 +1199,7 @@ simundump xplot /moregraphs/conc3/actCaMKII.Co 3 524288 \
   "delete_plot.w <s> <d>; edit_plot.D <w>" 12 0 0 1
 simundump xplot /moregraphs/conc3/CaM-Ca4.Co 3 524288 \
   "delete_plot.w <s> <d>; edit_plot.D <w>" blue 0 0 1
-simundump xcoredraw /edit/draw 0 -10 93 -51 42
+simundump xcoredraw /edit/draw 0 -10 101 -51 42
 simundump xtree /edit/draw/tree 0 \
   /kinetics/#[],/kinetics/#[]/#[],/kinetics/#[]/#[]/#[][TYPE!=proto],/kinetics/#[]/#[]/#[][TYPE!=linkinfo]/##[] \
   "edit_elm.D <v>; drag_from_edit.w <d> <S> <x> <y> <z>" auto 0.6
@@ -1229,14 +1289,87 @@ xtextload /file/notes \
 "26 Sep 2015. CaMKII_merged42.g" \
 "Moved PP1_1 and PP1_2 enzymes to CaM_CaN" \
 "Some rates changes." \
+"CaMKII_merged42a.g: moved /kinetics/DEND/Ca to /kinetics/Ca so" \
+"that the system isn't confused during diffusions setup." \
+"" \
+"29 Sep 2015. CaMKII_merged43.g" \
+"Added back the CaMKII exchange reaction, and CaMKII diffusion" \
+"between dend and spine. Also moved the CaM_xchange reaction to" \
+"the dend as its substrate is there." \
+"CaMKII_merged44.g: Lower Keq rate of both xchangeReactions from" \
+"10 to 2. kb now 0.5, kf still 1." \
+"" \
+"02 Oct 2015: CaMKII_merged50.g. Moved NMDAR to Spine rather than" \
+"PSD, to keep both substrates in same compt. Also moved reac to" \
+"same compt as substrates." \
+"" \
+"05 Nov 2015: CaMKII_merged57.g. Put all the translocation reactions" \
+"in the PSD itself, now the CaMKII phospho forms just diffuse" \
+"into the PSD if they want to translocate. Then they bind to" \
+"NMDAR and form the scaffolded version." \
+"CaMKII_merged58.g: There was too little CaM and CaMKII in the " \
+"spine. Increased the rate of the reactions pumping them in." \
+"" \
+"09 Nov 2015" \
+"CaMKII_merged59.g: 3 major changes. " \
+"1. Lowered basal activity of CaMKII to 0.5 uM from 1 uM." \
+"2. Fixed Km of intramolecular CaMKII. Divide Km by 20 for" \
+"   each of the intramolecular reactions, this brings it into the" \
+"   same range as the total amount of CaMKII" \
+"3. CaN is now activated by Ca2.CaM, not by Ca4.CaM." \
+"CaMKII_merged60.g. Fix to Km for PP2A on CaMKII in Dend: it had" \
+"   been reduced to 0.45, restored to 5 so that it is the same as" \
+"   in PSD. Also doubled kcat for PP2A action on CaMKII phospho-" \
+"   forms, across the board." \
+"" \
+"CaMKII_merged61.g: Zero out diffusion constt for all CaN forms." \
+"CaMKII_merged62.g: Double PP2A rates on CaMKII phosph forms in" \
+"    dend and spine. Raise back-reac rate for Ca2.CaM binding to" \
+"    CaN by factor of 10." \
+"" \
+"10 Nov 2015. CaMKII_merged63.g: Raised PP2A levels in dend and" \
+"spine head by 25%. Doubled kcat for CaMKII on PSDR. Doubled" \
+"back rate for CaM binding to CaN." \
+"" \
+"" \
+"11 Nov 2015. CaMKII_merged65.g: (64 was a dead end). Removed" \
+"xchange reacs between dend and spine, which were there for setting" \
+"up the steady-state conc gradient of CaM and CaMKII. Replaced" \
+"with a diffusion process and local reacs to achieve gradient." \
+"CaMKII_merged66.g: Changed local rates to steepen gradient." \
+"CaMKII_merged67.g: Further sped up diffusion of xchange molecules" \
+"to steepen gradient. Also lowered CaN affinity for CaM." \
+"CaMKII_merged68.g: Lowered CaN affinity for CaM. Lowered CaMKII" \
+"activity on PSDR. Increased 10x rate for NMDAR binding to CaMKII." \
+"CaMKII_merged69.g: further lowered CaN affinity for CaM to ~0.1." \
+"Lowered CaMKII basal activity to 0.2 uM." \
+"Increased 2x further NMDAR binding to CaMKII." \
+"CaMKII_merged70.g: Double CaMKII rate on PSDR." \
+"" \
+"13 Nov 2015. CaMKII_merged71.g. Fine-tuning to restore bistability" \
+"in the PSDR. Lowered CaN kcas on PSDR to 0.8. Raised basal" \
+"CaMKII back to 0.5 uM, from 0.2, in PSD." \
+"" \
+"14 Nov 2015. CaMKII_merged74.g. Did various tests for the" \
+"bistability of the PSDR system. This one has slower CaN kcat on" \
+"PSDR, from 0.8 to 0.2. Based on psdr2.g" \
+"CaMKII_merged75.g. The prev one didn't acheive turnoff. Doubled" \
+"CaN kcat on psdr, now at 0.4." \
+"15 Nov 2015." \
+"CaMKII_merged76.g. Raised kcat and Km both for CaN on PSDR, to" \
+"lessen saturation." \
+"CaMKII_merged77.g. Raised kcat of basal_phosphatase for PSDR from" \
+"0.11 to 0.15, in order to raise threshold and lessen spontaneous" \
+"turnons." \
+"" \
 ""
 addmsg /kinetics/PSD/R_S2 /kinetics/PSD/tot_PSD_R SUMTOTAL n nInit 
 addmsg /kinetics/PSD/R_SpS /kinetics/PSD/tot_PSD_R SUMTOTAL n nInit 
 addmsg /kinetics/PSD/R_SpSp /kinetics/PSD/tot_PSD_R SUMTOTAL n nInit 
 addmsg /kinetics/PSD/actCaMKII/CaMKII_1 /kinetics/PSD/actCaMKII REAC eA B 
 addmsg /kinetics/PSD/actCaMKII/CaMKII_2 /kinetics/PSD/actCaMKII REAC eA B 
-addmsg /kinetics/PSD/CaMKII_PSD/CaMKII-thr286-CaM /kinetics/PSD/actCaMKII SUMTOTAL n nInit 
-addmsg /kinetics/PSD/CaMKII_PSD/CaMKII-CaM /kinetics/PSD/actCaMKII SUMTOTAL n nInit 
+addmsg /kinetics/PSD/CaMKII_PSD/sCaMKII-thr286-CaM /kinetics/PSD/actCaMKII SUMTOTAL n nInit 
+addmsg /kinetics/PSD/CaMKII_PSD/sCaMKII-CaM /kinetics/PSD/actCaMKII SUMTOTAL n nInit 
 addmsg /kinetics/PSD/CaMKII_PSD/tot-auto /kinetics/PSD/actCaMKII SUMTOTAL n nInit 
 addmsg /kinetics/PSD/actCaMKII /kinetics/PSD/actCaMKII/CaMKII_1 ENZYME n 
 addmsg /kinetics/PSD/R_S2 /kinetics/PSD/actCaMKII/CaMKII_1 SUBSTRATE n 
@@ -1250,15 +1383,15 @@ addmsg /kinetics/PSD/PP1_PSD/PP1-active/Deph-thr286c /kinetics/PSD/PP1_PSD/PP1-a
 addmsg /kinetics/PSD/PP1_PSD/dissoc-PP1-I1 /kinetics/PSD/PP1_PSD/PP1-active REAC B A 
 addmsg /kinetics/PSD/PP1_PSD/Inact-PP1 /kinetics/PSD/PP1_PSD/PP1-active REAC A B 
 addmsg /kinetics/PSD/PP1_PSD/PP1-active /kinetics/PSD/PP1_PSD/PP1-active/Deph-thr286 ENZYME n 
-addmsg /kinetics/PSD/CaMKII_PSD/CaMKII-thr286-CaM /kinetics/PSD/PP1_PSD/PP1-active/Deph-thr286 SUBSTRATE n 
+addmsg /kinetics/PSD/CaMKII_PSD/sCaMKII-thr286-CaM /kinetics/PSD/PP1_PSD/PP1-active/Deph-thr286 SUBSTRATE n 
 addmsg /kinetics/PSD/PP1_PSD/PP1-active /kinetics/PSD/PP1_PSD/PP1-active/Deph-thr286b ENZYME n 
-addmsg /kinetics/PSD/CaMKII_PSD/CaMKII-thr286 /kinetics/PSD/PP1_PSD/PP1-active/Deph-thr286b SUBSTRATE n 
+addmsg /kinetics/PSD/CaMKII_PSD/sCaMKII-thr286 /kinetics/PSD/PP1_PSD/PP1-active/Deph-thr286b SUBSTRATE n 
 addmsg /kinetics/PSD/PP1_PSD/PP1-active /kinetics/PSD/PP1_PSD/PP1-active/Deph-thr305 ENZYME n 
-addmsg /kinetics/PSD/CaMKII_PSD/CaMKII_p_p_p /kinetics/PSD/PP1_PSD/PP1-active/Deph-thr305 SUBSTRATE n 
+addmsg /kinetics/PSD/CaMKII_PSD/sCaMKII_p_p_p /kinetics/PSD/PP1_PSD/PP1-active/Deph-thr305 SUBSTRATE n 
 addmsg /kinetics/PSD/PP1_PSD/PP1-active /kinetics/PSD/PP1_PSD/PP1-active/Deph-thr286c ENZYME n 
-addmsg /kinetics/PSD/CaMKII_PSD/CaMKII_p_p_p /kinetics/PSD/PP1_PSD/PP1-active/Deph-thr286c SUBSTRATE n 
+addmsg /kinetics/PSD/CaMKII_PSD/sCaMKII_p_p_p /kinetics/PSD/PP1_PSD/PP1-active/Deph-thr286c SUBSTRATE n 
 addmsg /kinetics/PSD/PP1_PSD/PP1-active /kinetics/PSD/PP1_PSD/PP1-active/Deph-thr305a ENZYME n 
-addmsg /kinetics/PSD/CaMKII_PSD/CaMKII-thr305 /kinetics/PSD/PP1_PSD/PP1-active/Deph-thr305a SUBSTRATE n 
+addmsg /kinetics/PSD/CaMKII_PSD/sCaMKII-thr305 /kinetics/PSD/PP1_PSD/PP1-active/Deph-thr305a SUBSTRATE n 
 addmsg /kinetics/PSD/PP1_PSD/dissoc-PP1-I1 /kinetics/PSD/PP1_PSD/I1 REAC B A 
 addmsg /kinetics/PSD/PKA-active/PKA-phosph-I1 /kinetics/PSD/PP1_PSD/I1 REAC sA B 
 addmsg /kinetics/PSD/CaM_CaN/dephosph_inhib1 /kinetics/PSD/PP1_PSD/I1 MM_PRD pA 
@@ -1280,9 +1413,9 @@ addmsg /kinetics/PSD/PKA-active/PKA-phosph-I1 /kinetics/PSD/PP1_PSD/I1_p MM_PRD 
 addmsg /kinetics/PSD/CaM_CaN/dephosph_inhib1 /kinetics/PSD/PP1_PSD/I1_p REAC sA B 
 addmsg /kinetics/PSD/PP2A/PP2A-dephosph-I1 /kinetics/PSD/PP1_PSD/I1_p REAC sA B 
 addmsg /kinetics/PSD/PP1_PSD/Ca_bind_CaN /kinetics/PSD/PP1_PSD/CaN REAC A B 
-addmsg /kinetics/PSD/CaM/CaM-Ca4 /kinetics/PSD/PP1_PSD/CaM-Bind-CaN SUBSTRATE n 
 addmsg /kinetics/PSD/CaM_CaN /kinetics/PSD/PP1_PSD/CaM-Bind-CaN PRODUCT n 
 addmsg /kinetics/PSD/PP1_PSD/Ca2_CaN /kinetics/PSD/PP1_PSD/CaM-Bind-CaN SUBSTRATE n 
+addmsg /kinetics/PSD/CaM/CaM-Ca2 /kinetics/PSD/PP1_PSD/CaM-Bind-CaN SUBSTRATE n 
 addmsg /kinetics/PSD/PP1_PSD/Ca_bind_CaN /kinetics/PSD/PP1_PSD/Ca2_CaN REAC B A 
 addmsg /kinetics/PSD/PP1_PSD/CaM-Bind-CaN /kinetics/PSD/PP1_PSD/Ca2_CaN REAC A B 
 addmsg /kinetics/PSD/PP1_PSD/CaN /kinetics/PSD/PP1_PSD/Ca_bind_CaN SUBSTRATE n 
@@ -1313,86 +1446,90 @@ addmsg /kinetics/PSD/R_SpSp /kinetics/PSD/basal_phosphatase/P2 SUBSTRATE n
 addmsg /kinetics/PSD/PKA-active/PKA-phosph-I1 /kinetics/PSD/PKA-active REAC eA B 
 addmsg /kinetics/PSD/PKA-active /kinetics/PSD/PKA-active/PKA-phosph-I1 ENZYME n 
 addmsg /kinetics/PSD/PP1_PSD/I1 /kinetics/PSD/PKA-active/PKA-phosph-I1 SUBSTRATE n 
-addmsg /kinetics/PSD/CaMKII_PSD/transloc_2 /kinetics/PSD/CaMKII_PSD/NMDAR REAC A B 
-addmsg /kinetics/PSD/CaMKII_PSD/transloc_1 /kinetics/PSD/CaMKII_PSD/NMDAR REAC A B 
-addmsg /kinetics/PSD/CaMKII_PSD/back_1 /kinetics/PSD/CaMKII_PSD/NMDAR REAC B A 
-addmsg /kinetics/PSD/CaMKII_PSD/back_2 /kinetics/PSD/CaMKII_PSD/NMDAR REAC B A 
-addmsg /kinetics/PSD/CaMKII_PSD/CaMKII-thr286 /kinetics/PSD/CaMKII_PSD/tot-auto SUMTOTAL n nInit 
-addmsg /kinetics/PSD/CaMKII_PSD/CaMKII_p_p_p /kinetics/PSD/CaMKII_PSD/tot-auto SUMTOTAL n nInit 
+addmsg /kinetics/PSD/CaMKII_PSD/sCaMKII-thr286 /kinetics/PSD/CaMKII_PSD/tot-auto SUMTOTAL n nInit 
+addmsg /kinetics/PSD/CaMKII_PSD/sCaMKII_p_p_p /kinetics/PSD/CaMKII_PSD/tot-auto SUMTOTAL n nInit 
 addmsg /kinetics/PSD/CaMKII_PSD/tot-auto/auton-305 /kinetics/PSD/CaMKII_PSD/tot-auto REAC eA B 
 addmsg /kinetics/PSD/CaMKII_PSD/tot-auto/auton-286 /kinetics/PSD/CaMKII_PSD/tot-auto REAC eA B 
 addmsg /kinetics/PSD/CaMKII_PSD/basal_CaMKII /kinetics/PSD/CaMKII_PSD/tot-auto SUMTOTAL n nInit 
 addmsg /kinetics/PSD/CaMKII_PSD/tot-auto/auton-autoph /kinetics/PSD/CaMKII_PSD/tot-auto REAC eA B 
 addmsg /kinetics/PSD/CaMKII_PSD/tot-auto /kinetics/PSD/CaMKII_PSD/tot-auto/auton-autoph ENZYME n 
-addmsg /kinetics/PSD/CaMKII_PSD/CaMKII /kinetics/PSD/CaMKII_PSD/tot-auto/auton-autoph SUBSTRATE n 
+addmsg /kinetics/PSD/CaMKII_PSD/sCaMKII /kinetics/PSD/CaMKII_PSD/tot-auto/auton-autoph SUBSTRATE n 
 addmsg /kinetics/PSD/CaMKII_PSD/tot-auto /kinetics/PSD/CaMKII_PSD/tot-auto/auton-286 ENZYME n 
-addmsg /kinetics/PSD/CaMKII_PSD/CaMKII-CaM /kinetics/PSD/CaMKII_PSD/tot-auto/auton-286 SUBSTRATE n 
+addmsg /kinetics/PSD/CaMKII_PSD/sCaMKII-CaM /kinetics/PSD/CaMKII_PSD/tot-auto/auton-286 SUBSTRATE n 
 addmsg /kinetics/PSD/CaMKII_PSD/tot-auto /kinetics/PSD/CaMKII_PSD/tot-auto/auton-305 ENZYME n 
-addmsg /kinetics/PSD/CaMKII_PSD/CaMKII-thr286 /kinetics/PSD/CaMKII_PSD/tot-auto/auton-305 SUBSTRATE n 
+addmsg /kinetics/PSD/CaMKII_PSD/sCaMKII-thr286 /kinetics/PSD/CaMKII_PSD/tot-auto/auton-305 SUBSTRATE n 
 addmsg /kinetics/PSD/actCaMKII /kinetics/PSD/CaMKII_PSD/tot_CaMKII SUMTOTAL n nInit 
-addmsg /kinetics/PSD/CaMKII_PSD/CaMKII /kinetics/PSD/CaMKII_PSD/tot_CaMKII SUMTOTAL n nInit 
-addmsg /kinetics/PSD/CaMKII_PSD/CaMKII-thr305 /kinetics/PSD/CaMKII_PSD/tot_CaMKII SUMTOTAL n nInit 
-addmsg /kinetics/PSD/CaMKII_PSD/CaMKII-thr286-CaM /kinetics/PSD/CaMKII_PSD/286P SUMTOTAL n nInit 
-addmsg /kinetics/PSD/CaMKII_PSD/CaMKII-thr286 /kinetics/PSD/CaMKII_PSD/286P SUMTOTAL n nInit 
-addmsg /kinetics/PSD/CaMKII_PSD/CaMKII-thr286-CaM /kinetics/PSD/CaMKII_PSD/tot-CaM-CaMKII SUMTOTAL n nInit 
-addmsg /kinetics/PSD/CaMKII_PSD/CaMKII-CaM /kinetics/PSD/CaMKII_PSD/tot-CaM-CaMKII SUMTOTAL n nInit 
+addmsg /kinetics/PSD/CaMKII_PSD/sCaMKII /kinetics/PSD/CaMKII_PSD/tot_CaMKII SUMTOTAL n nInit 
+addmsg /kinetics/PSD/CaMKII_PSD/sCaMKII-thr305 /kinetics/PSD/CaMKII_PSD/tot_CaMKII SUMTOTAL n nInit 
+addmsg /kinetics/PSD/CaMKII_PSD/sCaMKII-thr286-CaM /kinetics/PSD/CaMKII_PSD/286P SUMTOTAL n nInit 
+addmsg /kinetics/PSD/CaMKII_PSD/sCaMKII-thr286 /kinetics/PSD/CaMKII_PSD/286P SUMTOTAL n nInit 
+addmsg /kinetics/PSD/CaMKII_PSD/sCaMKII-thr286-CaM /kinetics/PSD/CaMKII_PSD/tot-CaM-CaMKII SUMTOTAL n nInit 
+addmsg /kinetics/PSD/CaMKII_PSD/sCaMKII-CaM /kinetics/PSD/CaMKII_PSD/tot-CaM-CaMKII SUMTOTAL n nInit 
 addmsg /kinetics/PSD/CaMKII_PSD/tot-CaM-CaMKII/CaM-act-305 /kinetics/PSD/CaMKII_PSD/tot-CaM-CaMKII REAC eA B 
 addmsg /kinetics/PSD/CaMKII_PSD/tot-CaM-CaMKII/CaM-act-286 /kinetics/PSD/CaMKII_PSD/tot-CaM-CaMKII REAC eA B 
 addmsg /kinetics/PSD/CaMKII_PSD/tot-CaM-CaMKII/CaM_act_autoph /kinetics/PSD/CaMKII_PSD/tot-CaM-CaMKII REAC eA B 
 addmsg /kinetics/PSD/CaMKII_PSD/tot-CaM-CaMKII /kinetics/PSD/CaMKII_PSD/tot-CaM-CaMKII/CaM_act_autoph ENZYME n 
-addmsg /kinetics/PSD/CaMKII_PSD/CaMKII /kinetics/PSD/CaMKII_PSD/tot-CaM-CaMKII/CaM_act_autoph SUBSTRATE n 
+addmsg /kinetics/PSD/CaMKII_PSD/sCaMKII /kinetics/PSD/CaMKII_PSD/tot-CaM-CaMKII/CaM_act_autoph SUBSTRATE n 
 addmsg /kinetics/PSD/CaMKII_PSD/tot-CaM-CaMKII /kinetics/PSD/CaMKII_PSD/tot-CaM-CaMKII/CaM-act-305 ENZYME n 
-addmsg /kinetics/PSD/CaMKII_PSD/CaMKII-thr286 /kinetics/PSD/CaMKII_PSD/tot-CaM-CaMKII/CaM-act-305 SUBSTRATE n 
+addmsg /kinetics/PSD/CaMKII_PSD/sCaMKII-thr286 /kinetics/PSD/CaMKII_PSD/tot-CaM-CaMKII/CaM-act-305 SUBSTRATE n 
 addmsg /kinetics/PSD/CaMKII_PSD/tot-CaM-CaMKII /kinetics/PSD/CaMKII_PSD/tot-CaM-CaMKII/CaM-act-286 ENZYME n 
-addmsg /kinetics/PSD/CaMKII_PSD/CaMKII-CaM /kinetics/PSD/CaMKII_PSD/tot-CaM-CaMKII/CaM-act-286 SUBSTRATE n 
-addmsg /kinetics/PSD/CaMKII_PSD/CaMKII-thr286 /kinetics/PSD/CaMKII_PSD/CaMKII-thr286-bind-CaM SUBSTRATE n 
-addmsg /kinetics/PSD/CaMKII_PSD/CaMKII-thr286-CaM /kinetics/PSD/CaMKII_PSD/CaMKII-thr286-bind-CaM PRODUCT n 
+addmsg /kinetics/PSD/CaMKII_PSD/sCaMKII-CaM /kinetics/PSD/CaMKII_PSD/tot-CaM-CaMKII/CaM-act-286 SUBSTRATE n 
+addmsg /kinetics/PSD/CaMKII_PSD/sCaMKII-thr286 /kinetics/PSD/CaMKII_PSD/CaMKII-thr286-bind-CaM SUBSTRATE n 
+addmsg /kinetics/PSD/CaMKII_PSD/sCaMKII-thr286-CaM /kinetics/PSD/CaMKII_PSD/CaMKII-thr286-bind-CaM PRODUCT n 
 addmsg /kinetics/PSD/CaM/CaM-Ca4 /kinetics/PSD/CaMKII_PSD/CaMKII-thr286-bind-CaM SUBSTRATE n 
-addmsg /kinetics/PSD/CaMKII_PSD/CaMKII /kinetics/PSD/CaMKII_PSD/CaMKII-bind-CaM SUBSTRATE n 
+addmsg /kinetics/PSD/CaMKII_PSD/sCaMKII /kinetics/PSD/CaMKII_PSD/CaMKII-bind-CaM SUBSTRATE n 
 addmsg /kinetics/PSD/CaM/CaM-Ca4 /kinetics/PSD/CaMKII_PSD/CaMKII-bind-CaM SUBSTRATE n 
-addmsg /kinetics/PSD/CaMKII_PSD/CaMKII-CaM /kinetics/PSD/CaMKII_PSD/CaMKII-bind-CaM PRODUCT n 
-addmsg /kinetics/PSD/CaMKII_PSD/transloc_2 /kinetics/PSD/CaMKII_PSD/CaMKII-thr286-CaM REAC B A 
-addmsg /kinetics/PSD/CaMKII_PSD/CaMKII-thr286-bind-CaM /kinetics/PSD/CaMKII_PSD/CaMKII-thr286-CaM REAC B A 
-addmsg /kinetics/PSD/CaMKII_PSD/tot-CaM-CaMKII/CaM-act-286 /kinetics/PSD/CaMKII_PSD/CaMKII-thr286-CaM MM_PRD pA 
-addmsg /kinetics/PSD/CaMKII_PSD/tot-auto/auton-286 /kinetics/PSD/CaMKII_PSD/CaMKII-thr286-CaM MM_PRD pA 
-addmsg /kinetics/PSD/PP1_PSD/PP1-active/Deph-thr286 /kinetics/PSD/CaMKII_PSD/CaMKII-thr286-CaM REAC sA B 
-addmsg /kinetics/PSD/CaMKII_PSD/transloc_1 /kinetics/PSD/CaMKII_PSD/CaMKII-CaM REAC B A 
-addmsg /kinetics/PSD/CaMKII_PSD/tot-CaM-CaMKII/CaM-act-286 /kinetics/PSD/CaMKII_PSD/CaMKII-CaM REAC sA B 
-addmsg /kinetics/PSD/CaMKII_PSD/tot-auto/auton-286 /kinetics/PSD/CaMKII_PSD/CaMKII-CaM REAC sA B 
-addmsg /kinetics/PSD/PP1_PSD/PP1-active/Deph-thr286 /kinetics/PSD/CaMKII_PSD/CaMKII-CaM MM_PRD pA 
-addmsg /kinetics/PSD/CaMKII_PSD/CaMKII-bind-CaM /kinetics/PSD/CaMKII_PSD/CaMKII-CaM REAC B A 
-addmsg /kinetics/PSD/CaMKII_PSD/tot-CaM-CaMKII/CaM-act-305 /kinetics/PSD/CaMKII_PSD/CaMKII-thr286 REAC sA B 
-addmsg /kinetics/PSD/CaMKII_PSD/tot-auto/auton-305 /kinetics/PSD/CaMKII_PSD/CaMKII-thr286 REAC sA B 
-addmsg /kinetics/PSD/CaMKII_PSD/CaMKII-thr286-bind-CaM /kinetics/PSD/CaMKII_PSD/CaMKII-thr286 REAC A B 
-addmsg /kinetics/PSD/PP1_PSD/PP1-active/Deph-thr286b /kinetics/PSD/CaMKII_PSD/CaMKII-thr286 REAC sA B 
-addmsg /kinetics/PSD/PP1_PSD/PP1-active/Deph-thr305 /kinetics/PSD/CaMKII_PSD/CaMKII-thr286 MM_PRD pA 
-addmsg /kinetics/PSD/CaMKII_PSD/tot-CaM-CaMKII/CaM_act_autoph /kinetics/PSD/CaMKII_PSD/CaMKII-thr286 MM_PRD pA 
-addmsg /kinetics/PSD/CaMKII_PSD/tot-auto/auton-autoph /kinetics/PSD/CaMKII_PSD/CaMKII-thr286 MM_PRD pA 
-addmsg /kinetics/PSD/CaMKII_PSD/back_1 /kinetics/PSD/CaMKII_PSD/CaMKII REAC A B 
-addmsg /kinetics/PSD/CaMKII_PSD/CaMKII-bind-CaM /kinetics/PSD/CaMKII_PSD/CaMKII REAC A B 
-addmsg /kinetics/PSD/PP1_PSD/PP1-active/Deph-thr305a /kinetics/PSD/CaMKII_PSD/CaMKII MM_PRD pA 
-addmsg /kinetics/PSD/PP1_PSD/PP1-active/Deph-thr286b /kinetics/PSD/CaMKII_PSD/CaMKII MM_PRD pA 
-addmsg /kinetics/PSD/CaMKII_PSD/tot-CaM-CaMKII/CaM_act_autoph /kinetics/PSD/CaMKII_PSD/CaMKII REAC sA B 
-addmsg /kinetics/PSD/CaMKII_PSD/tot-auto/auton-autoph /kinetics/PSD/CaMKII_PSD/CaMKII REAC sA B 
-addmsg /kinetics/PSD/CaMKII_PSD/back_2 /kinetics/PSD/CaMKII_PSD/CaMKII-thr305 REAC A B 
-addmsg /kinetics/PSD/PP1_PSD/PP1-active/Deph-thr305a /kinetics/PSD/CaMKII_PSD/CaMKII-thr305 REAC sA B 
-addmsg /kinetics/PSD/PP1_PSD/PP1-active/Deph-thr286c /kinetics/PSD/CaMKII_PSD/CaMKII-thr305 MM_PRD pA 
-addmsg /kinetics/PSD/CaMKII_PSD/tot-CaM-CaMKII/CaM-act-305 /kinetics/PSD/CaMKII_PSD/CaMKII_p_p_p MM_PRD pA 
-addmsg /kinetics/PSD/CaMKII_PSD/tot-auto/auton-305 /kinetics/PSD/CaMKII_PSD/CaMKII_p_p_p MM_PRD pA 
-addmsg /kinetics/PSD/PP1_PSD/PP1-active/Deph-thr305 /kinetics/PSD/CaMKII_PSD/CaMKII_p_p_p REAC sA B 
-addmsg /kinetics/PSD/PP1_PSD/PP1-active/Deph-thr286c /kinetics/PSD/CaMKII_PSD/CaMKII_p_p_p REAC sA B 
-addmsg /kinetics/PSD/CaMKII_PSD/CaMKII-CaM /kinetics/PSD/CaMKII_PSD/transloc_1 PRODUCT n 
-addmsg /kinetics/PSD/CaMKII_PSD/NMDAR /kinetics/PSD/CaMKII_PSD/transloc_1 SUBSTRATE n 
-addmsg /kinetics/SPINE/CaMKII_BULK/CaMKII-CaM /kinetics/PSD/CaMKII_PSD/transloc_1 SUBSTRATE n 
-addmsg /kinetics/PSD/CaMKII_PSD/CaMKII /kinetics/PSD/CaMKII_PSD/back_1 SUBSTRATE n 
-addmsg /kinetics/PSD/CaMKII_PSD/NMDAR /kinetics/PSD/CaMKII_PSD/back_1 PRODUCT n 
-addmsg /kinetics/SPINE/CaMKII_BULK/CaMKII /kinetics/PSD/CaMKII_PSD/back_1 PRODUCT n 
-addmsg /kinetics/PSD/CaMKII_PSD/CaMKII-thr286-CaM /kinetics/PSD/CaMKII_PSD/transloc_2 PRODUCT n 
+addmsg /kinetics/PSD/CaMKII_PSD/sCaMKII-CaM /kinetics/PSD/CaMKII_PSD/CaMKII-bind-CaM PRODUCT n 
+addmsg /kinetics/PSD/CaMKII_PSD/transloc_2 /kinetics/PSD/CaMKII_PSD/NMDAR REAC A B 
+addmsg /kinetics/PSD/CaMKII_PSD/transloc_1 /kinetics/PSD/CaMKII_PSD/NMDAR REAC A B 
+addmsg /kinetics/PSD/CaMKII_PSD/back_1 /kinetics/PSD/CaMKII_PSD/NMDAR REAC B A 
+addmsg /kinetics/PSD/CaMKII_PSD/back_2 /kinetics/PSD/CaMKII_PSD/NMDAR REAC B A 
+addmsg /kinetics/PSD/CaMKII_PSD/sCaMKII-thr286-CaM /kinetics/PSD/CaMKII_PSD/transloc_2 PRODUCT n 
 addmsg /kinetics/PSD/CaMKII_PSD/NMDAR /kinetics/PSD/CaMKII_PSD/transloc_2 SUBSTRATE n 
-addmsg /kinetics/SPINE/CaMKII_BULK/CaMKII-thr286-CaM /kinetics/PSD/CaMKII_PSD/transloc_2 SUBSTRATE n 
-addmsg /kinetics/PSD/CaMKII_PSD/CaMKII-thr305 /kinetics/PSD/CaMKII_PSD/back_2 SUBSTRATE n 
+addmsg /kinetics/PSD/CaMKII_PSD/CaMKII-thr286-CaM /kinetics/PSD/CaMKII_PSD/transloc_2 SUBSTRATE n 
+addmsg /kinetics/PSD/CaMKII_PSD/sCaMKII-CaM /kinetics/PSD/CaMKII_PSD/transloc_1 PRODUCT n 
+addmsg /kinetics/PSD/CaMKII_PSD/NMDAR /kinetics/PSD/CaMKII_PSD/transloc_1 SUBSTRATE n 
+addmsg /kinetics/PSD/CaMKII_PSD/CaMKII-CaM /kinetics/PSD/CaMKII_PSD/transloc_1 SUBSTRATE n 
+addmsg /kinetics/PSD/CaMKII_PSD/sCaMKII /kinetics/PSD/CaMKII_PSD/back_1 SUBSTRATE n 
+addmsg /kinetics/PSD/CaMKII_PSD/NMDAR /kinetics/PSD/CaMKII_PSD/back_1 PRODUCT n 
+addmsg /kinetics/PSD/CaMKII_PSD/CaMKII /kinetics/PSD/CaMKII_PSD/back_1 PRODUCT n 
+addmsg /kinetics/PSD/CaMKII_PSD/sCaMKII-thr305 /kinetics/PSD/CaMKII_PSD/back_2 SUBSTRATE n 
 addmsg /kinetics/PSD/CaMKII_PSD/NMDAR /kinetics/PSD/CaMKII_PSD/back_2 PRODUCT n 
-addmsg /kinetics/SPINE/CaMKII_BULK/CaMKII-thr305 /kinetics/PSD/CaMKII_PSD/back_2 PRODUCT n 
+addmsg /kinetics/PSD/CaMKII_PSD/CaMKII-thr305 /kinetics/PSD/CaMKII_PSD/back_2 PRODUCT n 
+addmsg /kinetics/PSD/CaMKII_PSD/transloc_2 /kinetics/PSD/CaMKII_PSD/sCaMKII-thr286-CaM REAC B A 
+addmsg /kinetics/PSD/CaMKII_PSD/CaMKII-thr286-bind-CaM /kinetics/PSD/CaMKII_PSD/sCaMKII-thr286-CaM REAC B A 
+addmsg /kinetics/PSD/CaMKII_PSD/tot-CaM-CaMKII/CaM-act-286 /kinetics/PSD/CaMKII_PSD/sCaMKII-thr286-CaM MM_PRD pA 
+addmsg /kinetics/PSD/CaMKII_PSD/tot-auto/auton-286 /kinetics/PSD/CaMKII_PSD/sCaMKII-thr286-CaM MM_PRD pA 
+addmsg /kinetics/PSD/PP1_PSD/PP1-active/Deph-thr286 /kinetics/PSD/CaMKII_PSD/sCaMKII-thr286-CaM REAC sA B 
+addmsg /kinetics/PSD/CaMKII_PSD/transloc_1 /kinetics/PSD/CaMKII_PSD/sCaMKII-CaM REAC B A 
+addmsg /kinetics/PSD/CaMKII_PSD/tot-CaM-CaMKII/CaM-act-286 /kinetics/PSD/CaMKII_PSD/sCaMKII-CaM REAC sA B 
+addmsg /kinetics/PSD/CaMKII_PSD/tot-auto/auton-286 /kinetics/PSD/CaMKII_PSD/sCaMKII-CaM REAC sA B 
+addmsg /kinetics/PSD/PP1_PSD/PP1-active/Deph-thr286 /kinetics/PSD/CaMKII_PSD/sCaMKII-CaM MM_PRD pA 
+addmsg /kinetics/PSD/CaMKII_PSD/CaMKII-bind-CaM /kinetics/PSD/CaMKII_PSD/sCaMKII-CaM REAC B A 
+addmsg /kinetics/PSD/CaMKII_PSD/back_1 /kinetics/PSD/CaMKII_PSD/sCaMKII REAC A B 
+addmsg /kinetics/PSD/CaMKII_PSD/CaMKII-bind-CaM /kinetics/PSD/CaMKII_PSD/sCaMKII REAC A B 
+addmsg /kinetics/PSD/PP1_PSD/PP1-active/Deph-thr305a /kinetics/PSD/CaMKII_PSD/sCaMKII MM_PRD pA 
+addmsg /kinetics/PSD/PP1_PSD/PP1-active/Deph-thr286b /kinetics/PSD/CaMKII_PSD/sCaMKII MM_PRD pA 
+addmsg /kinetics/PSD/CaMKII_PSD/tot-CaM-CaMKII/CaM_act_autoph /kinetics/PSD/CaMKII_PSD/sCaMKII REAC sA B 
+addmsg /kinetics/PSD/CaMKII_PSD/tot-auto/auton-autoph /kinetics/PSD/CaMKII_PSD/sCaMKII REAC sA B 
+addmsg /kinetics/PSD/CaMKII_PSD/tot-CaM-CaMKII/CaM-act-305 /kinetics/PSD/CaMKII_PSD/sCaMKII_p_p_p MM_PRD pA 
+addmsg /kinetics/PSD/CaMKII_PSD/tot-auto/auton-305 /kinetics/PSD/CaMKII_PSD/sCaMKII_p_p_p MM_PRD pA 
+addmsg /kinetics/PSD/PP1_PSD/PP1-active/Deph-thr305 /kinetics/PSD/CaMKII_PSD/sCaMKII_p_p_p REAC sA B 
+addmsg /kinetics/PSD/PP1_PSD/PP1-active/Deph-thr286c /kinetics/PSD/CaMKII_PSD/sCaMKII_p_p_p REAC sA B 
+addmsg /kinetics/PSD/CaMKII_PSD/back_2 /kinetics/PSD/CaMKII_PSD/sCaMKII-thr305 REAC A B 
+addmsg /kinetics/PSD/PP1_PSD/PP1-active/Deph-thr305a /kinetics/PSD/CaMKII_PSD/sCaMKII-thr305 REAC sA B 
+addmsg /kinetics/PSD/PP1_PSD/PP1-active/Deph-thr286c /kinetics/PSD/CaMKII_PSD/sCaMKII-thr305 MM_PRD pA 
+addmsg /kinetics/PSD/CaMKII_PSD/transloc_1 /kinetics/PSD/CaMKII_PSD/CaMKII-CaM REAC A B 
+addmsg /kinetics/PSD/CaMKII_PSD/transloc_2 /kinetics/PSD/CaMKII_PSD/CaMKII-thr286-CaM REAC A B 
+addmsg /kinetics/PSD/CaMKII_PSD/back_1 /kinetics/PSD/CaMKII_PSD/CaMKII REAC B A 
+addmsg /kinetics/PSD/CaMKII_PSD/back_2 /kinetics/PSD/CaMKII_PSD/CaMKII-thr305 REAC B A 
+addmsg /kinetics/PSD/CaMKII_PSD/tot-CaM-CaMKII/CaM-act-305 /kinetics/PSD/CaMKII_PSD/sCaMKII-thr286 REAC sA B 
+addmsg /kinetics/PSD/CaMKII_PSD/tot-auto/auton-305 /kinetics/PSD/CaMKII_PSD/sCaMKII-thr286 REAC sA B 
+addmsg /kinetics/PSD/CaMKII_PSD/CaMKII-thr286-bind-CaM /kinetics/PSD/CaMKII_PSD/sCaMKII-thr286 REAC A B 
+addmsg /kinetics/PSD/PP1_PSD/PP1-active/Deph-thr286b /kinetics/PSD/CaMKII_PSD/sCaMKII-thr286 REAC sA B 
+addmsg /kinetics/PSD/PP1_PSD/PP1-active/Deph-thr305 /kinetics/PSD/CaMKII_PSD/sCaMKII-thr286 MM_PRD pA 
+addmsg /kinetics/PSD/CaMKII_PSD/tot-CaM-CaMKII/CaM_act_autoph /kinetics/PSD/CaMKII_PSD/sCaMKII-thr286 MM_PRD pA 
+addmsg /kinetics/PSD/CaMKII_PSD/tot-auto/auton-autoph /kinetics/PSD/CaMKII_PSD/sCaMKII-thr286 MM_PRD pA 
 addmsg /kinetics/PSD/PP2A/PP2A-dephosph-I1 /kinetics/PSD/PP2A REAC eA B 
 addmsg /kinetics/PSD/PP2A/PP2A-dephosph-PP1-I_p /kinetics/PSD/PP2A REAC eA B 
 addmsg /kinetics/PSD/PP2A /kinetics/PSD/PP2A/PP2A-dephosph-PP1-I_p ENZYME n 
@@ -1410,6 +1547,7 @@ addmsg /kinetics/PSD/CaM/Ca /kinetics/PSD/CaM/CaM-bind-Ca SUBSTRATE n
 addmsg /kinetics/PSD/CaM/CaM-Ca /kinetics/PSD/CaM/CaM-bind-Ca PRODUCT n 
 addmsg /kinetics/PSD/CaM/CaM-Ca2-bind-Ca /kinetics/PSD/CaM/CaM-Ca2 REAC A B 
 addmsg /kinetics/PSD/CaM/CaM-Ca-bind-Ca /kinetics/PSD/CaM/CaM-Ca2 REAC B A 
+addmsg /kinetics/PSD/PP1_PSD/CaM-Bind-CaN /kinetics/PSD/CaM/CaM-Ca2 REAC A B 
 addmsg /kinetics/PSD/CaM/CaM-Ca2 /kinetics/PSD/CaM/CaM-Ca2-bind-Ca SUBSTRATE n 
 addmsg /kinetics/PSD/CaM/Ca /kinetics/PSD/CaM/CaM-Ca2-bind-Ca SUBSTRATE n 
 addmsg /kinetics/PSD/CaM/CaM-Ca3 /kinetics/PSD/CaM/CaM-Ca2-bind-Ca PRODUCT n 
@@ -1428,7 +1566,6 @@ addmsg /kinetics/PSD/CaM/Ca_stim /kinetics/PSD/CaM/Ca REAC B A
 addmsg /kinetics/PSD/CaMKII_PSD/CaMKII-thr286-bind-CaM /kinetics/PSD/CaM/CaM-Ca4 REAC A B 
 addmsg /kinetics/PSD/CaMKII_PSD/CaMKII-bind-CaM /kinetics/PSD/CaM/CaM-Ca4 REAC A B 
 addmsg /kinetics/PSD/CaM/CaM-Ca3-bind-Ca /kinetics/PSD/CaM/CaM-Ca4 REAC B A 
-addmsg /kinetics/PSD/PP1_PSD/CaM-Bind-CaN /kinetics/PSD/CaM/CaM-Ca4 REAC A B 
 addmsg /kinetics/PSD/CaM/Ca_stim /kinetics/PSD/CaM/Ca_input REAC A B 
 addmsg /kinetics/PSD/CaM/Ca_input /kinetics/PSD/CaM/Ca_stim SUBSTRATE n 
 addmsg /kinetics/PSD/CaM/Ca /kinetics/PSD/CaM/Ca_stim PRODUCT n 
@@ -1445,38 +1582,32 @@ addmsg /kinetics/PSD/R_SpS /kinetics/PSD/CaM_CaN/CaN_1 SUBSTRATE n
 addmsg /kinetics/PSD/CaM_CaN /kinetics/PSD/CaM_CaN/CaN_1 ENZYME n 
 addmsg /kinetics/PSD/R_SpSp /kinetics/PSD/CaM_CaN/CaN_2 SUBSTRATE n 
 addmsg /kinetics/PSD/CaM_CaN /kinetics/PSD/CaM_CaN/CaN_2 ENZYME n 
-addmsg /kinetics/DEND/CaM/CaM-bind-Ca /kinetics/DEND/Ca REAC A B 
-addmsg /kinetics/DEND/CaM/CaM-Ca2-bind-Ca /kinetics/DEND/Ca REAC A B 
-addmsg /kinetics/DEND/CaM/CaM-Ca3-bind-Ca /kinetics/DEND/Ca REAC A B 
-addmsg /kinetics/DEND/CaM/CaM-Ca-bind-Ca /kinetics/DEND/Ca REAC A B 
-addmsg /kinetics/DEND/Ca_stim /kinetics/DEND/Ca REAC B A 
 addmsg /kinetics/DEND/CaM/CaM-bind-Ca /kinetics/DEND/CaM/CaM REAC A B 
 addmsg /kinetics/DEND/CaM/CaM_x2 /kinetics/DEND/CaM/CaM REAC A B 
 addmsg /kinetics/DEND/CaM/CaM-Ca3 /kinetics/DEND/CaM/CaM-Ca3-bind-Ca SUBSTRATE n 
-addmsg /kinetics/DEND/Ca /kinetics/DEND/CaM/CaM-Ca3-bind-Ca SUBSTRATE n 
+addmsg /kinetics/Ca /kinetics/DEND/CaM/CaM-Ca3-bind-Ca SUBSTRATE n 
 addmsg /kinetics/DEND/CaM/CaM-Ca4 /kinetics/DEND/CaM/CaM-Ca3-bind-Ca PRODUCT n 
 addmsg /kinetics/DEND/CaM/CaM-Ca2-bind-Ca /kinetics/DEND/CaM/CaM-Ca3 REAC B A 
 addmsg /kinetics/DEND/CaM/CaM-Ca3-bind-Ca /kinetics/DEND/CaM/CaM-Ca3 REAC A B 
 addmsg /kinetics/DEND/CaM/CaM /kinetics/DEND/CaM/CaM-bind-Ca SUBSTRATE n 
-addmsg /kinetics/DEND/Ca /kinetics/DEND/CaM/CaM-bind-Ca SUBSTRATE n 
+addmsg /kinetics/Ca /kinetics/DEND/CaM/CaM-bind-Ca SUBSTRATE n 
 addmsg /kinetics/DEND/CaM/CaM-Ca /kinetics/DEND/CaM/CaM-bind-Ca PRODUCT n 
 addmsg /kinetics/DEND/CaM/CaM-Ca2-bind-Ca /kinetics/DEND/CaM/CaM-Ca2 REAC A B 
 addmsg /kinetics/DEND/CaM/CaM-Ca-bind-Ca /kinetics/DEND/CaM/CaM-Ca2 REAC B A 
 addmsg /kinetics/DEND/CaM/CaM-Ca2 /kinetics/DEND/CaM/CaM-Ca2-bind-Ca SUBSTRATE n 
-addmsg /kinetics/DEND/Ca /kinetics/DEND/CaM/CaM-Ca2-bind-Ca SUBSTRATE n 
+addmsg /kinetics/Ca /kinetics/DEND/CaM/CaM-Ca2-bind-Ca SUBSTRATE n 
 addmsg /kinetics/DEND/CaM/CaM-Ca3 /kinetics/DEND/CaM/CaM-Ca2-bind-Ca PRODUCT n 
 addmsg /kinetics/DEND/CaM/CaM-Ca /kinetics/DEND/CaM/CaM-Ca-bind-Ca SUBSTRATE n 
-addmsg /kinetics/DEND/Ca /kinetics/DEND/CaM/CaM-Ca-bind-Ca SUBSTRATE n 
+addmsg /kinetics/Ca /kinetics/DEND/CaM/CaM-Ca-bind-Ca SUBSTRATE n 
 addmsg /kinetics/DEND/CaM/CaM-Ca2 /kinetics/DEND/CaM/CaM-Ca-bind-Ca PRODUCT n 
 addmsg /kinetics/DEND/CaM/CaM-bind-Ca /kinetics/DEND/CaM/CaM-Ca REAC B A 
 addmsg /kinetics/DEND/CaM/CaM-Ca-bind-Ca /kinetics/DEND/CaM/CaM-Ca REAC A B 
 addmsg /kinetics/DEND/CaMKII_BULK/CaMKII-thr286-bind-CaM /kinetics/DEND/CaM/CaM-Ca4 REAC A B 
 addmsg /kinetics/DEND/CaMKII_BULK/CaMKII-bind-CaM /kinetics/DEND/CaM/CaM-Ca4 REAC A B 
 addmsg /kinetics/DEND/CaM/CaM-Ca3-bind-Ca /kinetics/DEND/CaM/CaM-Ca4 REAC B A 
-addmsg /kinetics/SPINE/CaM/CaM_xchange /kinetics/DEND/CaM/CaM_dend REAC A B 
-addmsg /kinetics/DEND/CaM/CaM_x2 /kinetics/DEND/CaM/CaM_dend REAC B A 
 addmsg /kinetics/DEND/CaM/CaM /kinetics/DEND/CaM/CaM_x2 SUBSTRATE n 
-addmsg /kinetics/DEND/CaM/CaM_dend /kinetics/DEND/CaM/CaM_x2 PRODUCT n 
+addmsg /kinetics/DEND/CaM/CaM_xchange /kinetics/DEND/CaM/CaM_x2 PRODUCT n 
+addmsg /kinetics/DEND/CaM/CaM_x2 /kinetics/DEND/CaM/CaM_xchange REAC B A 
 addmsg /kinetics/DEND/CaMKII_BULK/CaMKII-thr286 /kinetics/DEND/CaMKII_BULK/tot-auto SUMTOTAL n nInit 
 addmsg /kinetics/DEND/CaMKII_BULK/CaMKII_p_p_p /kinetics/DEND/CaMKII_BULK/tot-auto SUMTOTAL n nInit 
 addmsg /kinetics/DEND/CaMKII_BULK/tot-auto/auton-305 /kinetics/DEND/CaMKII_BULK/tot-auto REAC eA B 
@@ -1529,12 +1660,16 @@ addmsg /kinetics/DEND/PP2A/Deph-thr305a /kinetics/DEND/CaMKII_BULK/CaMKII MM_PRD
 addmsg /kinetics/DEND/PP2A/Deph-thr286b /kinetics/DEND/CaMKII_BULK/CaMKII MM_PRD pA 
 addmsg /kinetics/DEND/CaMKII_BULK/tot-CaM-CaMKII/CaM_act_autoph /kinetics/DEND/CaMKII_BULK/CaMKII REAC sA B 
 addmsg /kinetics/DEND/CaMKII_BULK/tot-auto/auton-autoph /kinetics/DEND/CaMKII_BULK/CaMKII REAC sA B 
+addmsg /kinetics/DEND/CaMKII_BULK/CaMKII_x2 /kinetics/DEND/CaMKII_BULK/CaMKII REAC A B 
 addmsg /kinetics/DEND/PP2A/Deph-thr305a /kinetics/DEND/CaMKII_BULK/CaMKII-thr305 REAC sA B 
 addmsg /kinetics/DEND/PP2A/Deph-thr286c /kinetics/DEND/CaMKII_BULK/CaMKII-thr305 MM_PRD pA 
 addmsg /kinetics/DEND/CaMKII_BULK/tot-CaM-CaMKII/CaM-act-305 /kinetics/DEND/CaMKII_BULK/CaMKII_p_p_p MM_PRD pA 
 addmsg /kinetics/DEND/CaMKII_BULK/tot-auto/auton-305 /kinetics/DEND/CaMKII_BULK/CaMKII_p_p_p MM_PRD pA 
 addmsg /kinetics/DEND/PP2A/Deph-thr305 /kinetics/DEND/CaMKII_BULK/CaMKII_p_p_p REAC sA B 
 addmsg /kinetics/DEND/PP2A/Deph-thr286c /kinetics/DEND/CaMKII_BULK/CaMKII_p_p_p REAC sA B 
+addmsg /kinetics/DEND/CaMKII_BULK/CaMKII /kinetics/DEND/CaMKII_BULK/CaMKII_x2 SUBSTRATE n 
+addmsg /kinetics/DEND/CaMKII_BULK/CaMKII_xchange /kinetics/DEND/CaMKII_BULK/CaMKII_x2 PRODUCT n 
+addmsg /kinetics/DEND/CaMKII_BULK/CaMKII_x2 /kinetics/DEND/CaMKII_BULK/CaMKII_xchange REAC B A 
 addmsg /kinetics/DEND/CaMKII_BULK/CaMKII-thr286-CaM /kinetics/DEND/actCaMKII SUMTOTAL n nInit 
 addmsg /kinetics/DEND/CaMKII_BULK/CaMKII-CaM /kinetics/DEND/actCaMKII SUMTOTAL n nInit 
 addmsg /kinetics/DEND/CaMKII_BULK/tot-auto /kinetics/DEND/actCaMKII SUMTOTAL n nInit 
@@ -1555,7 +1690,7 @@ addmsg /kinetics/DEND/PP2A /kinetics/DEND/PP2A/Deph-thr305a ENZYME n
 addmsg /kinetics/DEND/CaMKII_BULK/CaMKII-thr305 /kinetics/DEND/PP2A/Deph-thr305a SUBSTRATE n 
 addmsg /kinetics/DEND/Ca_stim /kinetics/DEND/Ca_input REAC A B 
 addmsg /kinetics/DEND/Ca_input /kinetics/DEND/Ca_stim SUBSTRATE n 
-addmsg /kinetics/DEND/Ca /kinetics/DEND/Ca_stim PRODUCT n 
+addmsg /kinetics/Ca /kinetics/DEND/Ca_stim PRODUCT n 
 addmsg /kinetics/PSD/move_to_PSD /kinetics/SPINE/iR REAC A B 
 addmsg /kinetics/SPINE/CaM/CaM-bind-Ca /kinetics/SPINE/CaM/CaM REAC A B 
 addmsg /kinetics/SPINE/CaM/CaM_x2 /kinetics/SPINE/CaM/CaM REAC A B 
@@ -1569,6 +1704,7 @@ addmsg /kinetics/SPINE/CaM/Ca /kinetics/SPINE/CaM/CaM-bind-Ca SUBSTRATE n
 addmsg /kinetics/SPINE/CaM/CaM-Ca /kinetics/SPINE/CaM/CaM-bind-Ca PRODUCT n 
 addmsg /kinetics/SPINE/CaM/CaM-Ca2-bind-Ca /kinetics/SPINE/CaM/CaM-Ca2 REAC A B 
 addmsg /kinetics/SPINE/CaM/CaM-Ca-bind-Ca /kinetics/SPINE/CaM/CaM-Ca2 REAC B A 
+addmsg /kinetics/SPINE/CaN_BULK/CaM-Bind-CaN /kinetics/SPINE/CaM/CaM-Ca2 REAC A B 
 addmsg /kinetics/SPINE/CaM/CaM-Ca2 /kinetics/SPINE/CaM/CaM-Ca2-bind-Ca SUBSTRATE n 
 addmsg /kinetics/SPINE/CaM/Ca /kinetics/SPINE/CaM/CaM-Ca2-bind-Ca SUBSTRATE n 
 addmsg /kinetics/SPINE/CaM/CaM-Ca3 /kinetics/SPINE/CaM/CaM-Ca2-bind-Ca PRODUCT n 
@@ -1586,13 +1722,9 @@ addmsg /kinetics/SPINE/CaN_BULK/Ca_bind_CaN /kinetics/SPINE/CaM/Ca REAC A B
 addmsg /kinetics/SPINE/CaMKII_BULK/CaMKII-thr286-bind-CaM /kinetics/SPINE/CaM/CaM-Ca4 REAC A B 
 addmsg /kinetics/SPINE/CaMKII_BULK/CaMKII-bind-CaM /kinetics/SPINE/CaM/CaM-Ca4 REAC A B 
 addmsg /kinetics/SPINE/CaM/CaM-Ca3-bind-Ca /kinetics/SPINE/CaM/CaM-Ca4 REAC B A 
-addmsg /kinetics/SPINE/CaN_BULK/CaM-Bind-CaN /kinetics/SPINE/CaM/CaM-Ca4 REAC A B 
-addmsg /kinetics/SPINE/CaM/CaM_xchange /kinetics/SPINE/CaM/CaM_spine REAC B A 
-addmsg /kinetics/SPINE/CaM/CaM_x2 /kinetics/SPINE/CaM/CaM_spine REAC B A 
-addmsg /kinetics/DEND/CaM/CaM_dend /kinetics/SPINE/CaM/CaM_xchange SUBSTRATE n 
-addmsg /kinetics/SPINE/CaM/CaM_spine /kinetics/SPINE/CaM/CaM_xchange PRODUCT n 
 addmsg /kinetics/SPINE/CaM/CaM /kinetics/SPINE/CaM/CaM_x2 SUBSTRATE n 
-addmsg /kinetics/SPINE/CaM/CaM_spine /kinetics/SPINE/CaM/CaM_x2 PRODUCT n 
+addmsg /kinetics/SPINE/CaM/CaM_xchange /kinetics/SPINE/CaM/CaM_x2 PRODUCT n 
+addmsg /kinetics/SPINE/CaM/CaM_x2 /kinetics/SPINE/CaM/CaM_xchange REAC B A 
 addmsg /kinetics/SPINE/CaMKII_BULK/CaMKII-thr286 /kinetics/SPINE/CaMKII_BULK/tot-auto SUMTOTAL n nInit 
 addmsg /kinetics/SPINE/CaMKII_BULK/CaMKII_p_p_p /kinetics/SPINE/CaMKII_BULK/tot-auto SUMTOTAL n nInit 
 addmsg /kinetics/SPINE/CaMKII_BULK/tot-auto/auton-305 /kinetics/SPINE/CaMKII_BULK/tot-auto REAC eA B 
@@ -1631,12 +1763,10 @@ addmsg /kinetics/SPINE/CaMKII_BULK/CaMKII-thr286-bind-CaM /kinetics/SPINE/CaMKII
 addmsg /kinetics/SPINE/CaMKII_BULK/tot-CaM-CaMKII/CaM-act-286 /kinetics/SPINE/CaMKII_BULK/CaMKII-thr286-CaM MM_PRD pA 
 addmsg /kinetics/SPINE/CaMKII_BULK/tot-auto/auton-286 /kinetics/SPINE/CaMKII_BULK/CaMKII-thr286-CaM MM_PRD pA 
 addmsg /kinetics/SPINE/PP2A/Deph-thr286 /kinetics/SPINE/CaMKII_BULK/CaMKII-thr286-CaM REAC sA B 
-addmsg /kinetics/PSD/CaMKII_PSD/transloc_2 /kinetics/SPINE/CaMKII_BULK/CaMKII-thr286-CaM REAC A B 
 addmsg /kinetics/SPINE/CaMKII_BULK/tot-CaM-CaMKII/CaM-act-286 /kinetics/SPINE/CaMKII_BULK/CaMKII-CaM REAC sA B 
 addmsg /kinetics/SPINE/CaMKII_BULK/tot-auto/auton-286 /kinetics/SPINE/CaMKII_BULK/CaMKII-CaM REAC sA B 
 addmsg /kinetics/SPINE/PP2A/Deph-thr286 /kinetics/SPINE/CaMKII_BULK/CaMKII-CaM MM_PRD pA 
 addmsg /kinetics/SPINE/CaMKII_BULK/CaMKII-bind-CaM /kinetics/SPINE/CaMKII_BULK/CaMKII-CaM REAC B A 
-addmsg /kinetics/PSD/CaMKII_PSD/transloc_1 /kinetics/SPINE/CaMKII_BULK/CaMKII-CaM REAC A B 
 addmsg /kinetics/SPINE/CaMKII_BULK/tot-CaM-CaMKII/CaM-act-305 /kinetics/SPINE/CaMKII_BULK/CaMKII-thr286 REAC sA B 
 addmsg /kinetics/SPINE/CaMKII_BULK/tot-auto/auton-305 /kinetics/SPINE/CaMKII_BULK/CaMKII-thr286 REAC sA B 
 addmsg /kinetics/SPINE/CaMKII_BULK/CaMKII-thr286-bind-CaM /kinetics/SPINE/CaMKII_BULK/CaMKII-thr286 REAC A B 
@@ -1649,14 +1779,16 @@ addmsg /kinetics/SPINE/PP2A/Deph-thr305a /kinetics/SPINE/CaMKII_BULK/CaMKII MM_P
 addmsg /kinetics/SPINE/PP2A/Deph-thr286b /kinetics/SPINE/CaMKII_BULK/CaMKII MM_PRD pA 
 addmsg /kinetics/SPINE/CaMKII_BULK/tot-CaM-CaMKII/CaM_act_autoph /kinetics/SPINE/CaMKII_BULK/CaMKII REAC sA B 
 addmsg /kinetics/SPINE/CaMKII_BULK/tot-auto/auton-autoph /kinetics/SPINE/CaMKII_BULK/CaMKII REAC sA B 
-addmsg /kinetics/PSD/CaMKII_PSD/back_1 /kinetics/SPINE/CaMKII_BULK/CaMKII REAC B A 
+addmsg /kinetics/SPINE/CaMKII_BULK/CaMKII_x2 /kinetics/SPINE/CaMKII_BULK/CaMKII REAC A B 
 addmsg /kinetics/SPINE/PP2A/Deph-thr305a /kinetics/SPINE/CaMKII_BULK/CaMKII-thr305 REAC sA B 
 addmsg /kinetics/SPINE/PP2A/Deph-thr286c /kinetics/SPINE/CaMKII_BULK/CaMKII-thr305 MM_PRD pA 
-addmsg /kinetics/PSD/CaMKII_PSD/back_2 /kinetics/SPINE/CaMKII_BULK/CaMKII-thr305 REAC B A 
 addmsg /kinetics/SPINE/CaMKII_BULK/tot-CaM-CaMKII/CaM-act-305 /kinetics/SPINE/CaMKII_BULK/CaMKII_p_p_p MM_PRD pA 
 addmsg /kinetics/SPINE/CaMKII_BULK/tot-auto/auton-305 /kinetics/SPINE/CaMKII_BULK/CaMKII_p_p_p MM_PRD pA 
 addmsg /kinetics/SPINE/PP2A/Deph-thr305 /kinetics/SPINE/CaMKII_BULK/CaMKII_p_p_p REAC sA B 
 addmsg /kinetics/SPINE/PP2A/Deph-thr286c /kinetics/SPINE/CaMKII_BULK/CaMKII_p_p_p REAC sA B 
+addmsg /kinetics/SPINE/CaMKII_BULK/CaMKII /kinetics/SPINE/CaMKII_BULK/CaMKII_x2 SUBSTRATE n 
+addmsg /kinetics/SPINE/CaMKII_BULK/CaMKII_xchange /kinetics/SPINE/CaMKII_BULK/CaMKII_x2 PRODUCT n 
+addmsg /kinetics/SPINE/CaMKII_BULK/CaMKII_x2 /kinetics/SPINE/CaMKII_BULK/CaMKII_xchange REAC B A 
 addmsg /kinetics/SPINE/CaN_BULK/CaM-Bind-CaN /kinetics/SPINE/CaM_CaN REAC B A 
 addmsg /kinetics/SPINE/CaMKII_BULK/CaMKII-thr286-CaM /kinetics/SPINE/actCaMKII SUMTOTAL n nInit 
 addmsg /kinetics/SPINE/CaMKII_BULK/CaMKII-CaM /kinetics/SPINE/actCaMKII SUMTOTAL n nInit 
@@ -1677,15 +1809,20 @@ addmsg /kinetics/SPINE/CaMKII_BULK/CaMKII_p_p_p /kinetics/SPINE/PP2A/Deph-thr286
 addmsg /kinetics/SPINE/PP2A /kinetics/SPINE/PP2A/Deph-thr305a ENZYME n 
 addmsg /kinetics/SPINE/CaMKII_BULK/CaMKII-thr305 /kinetics/SPINE/PP2A/Deph-thr305a SUBSTRATE n 
 addmsg /kinetics/SPINE/CaN_BULK/Ca_bind_CaN /kinetics/SPINE/CaN_BULK/CaN REAC A B 
-addmsg /kinetics/SPINE/CaM/CaM-Ca4 /kinetics/SPINE/CaN_BULK/CaM-Bind-CaN SUBSTRATE n 
 addmsg /kinetics/SPINE/CaM_CaN /kinetics/SPINE/CaN_BULK/CaM-Bind-CaN PRODUCT n 
 addmsg /kinetics/SPINE/CaN_BULK/Ca2_CaN /kinetics/SPINE/CaN_BULK/CaM-Bind-CaN SUBSTRATE n 
+addmsg /kinetics/SPINE/CaM/CaM-Ca2 /kinetics/SPINE/CaN_BULK/CaM-Bind-CaN SUBSTRATE n 
 addmsg /kinetics/SPINE/CaN_BULK/CaN /kinetics/SPINE/CaN_BULK/Ca_bind_CaN SUBSTRATE n 
 addmsg /kinetics/SPINE/CaN_BULK/Ca2_CaN /kinetics/SPINE/CaN_BULK/Ca_bind_CaN PRODUCT n 
 addmsg /kinetics/SPINE/CaM/Ca /kinetics/SPINE/CaN_BULK/Ca_bind_CaN SUBSTRATE n 
 addmsg /kinetics/SPINE/CaM/Ca /kinetics/SPINE/CaN_BULK/Ca_bind_CaN SUBSTRATE n 
 addmsg /kinetics/SPINE/CaN_BULK/Ca_bind_CaN /kinetics/SPINE/CaN_BULK/Ca2_CaN REAC B A 
 addmsg /kinetics/SPINE/CaN_BULK/CaM-Bind-CaN /kinetics/SPINE/CaN_BULK/Ca2_CaN REAC A B 
+addmsg /kinetics/DEND/CaM/CaM-bind-Ca /kinetics/Ca REAC A B 
+addmsg /kinetics/DEND/CaM/CaM-Ca2-bind-Ca /kinetics/Ca REAC A B 
+addmsg /kinetics/DEND/CaM/CaM-Ca3-bind-Ca /kinetics/Ca REAC A B 
+addmsg /kinetics/DEND/CaM/CaM-Ca-bind-Ca /kinetics/Ca REAC A B 
+addmsg /kinetics/DEND/Ca_stim /kinetics/Ca REAC B A 
 addmsg /kinetics/PSD/CaM/Ca /graphs/conc1/Ca.Co PLOT Co *Ca.Co *red 
 addmsg /kinetics/PSD/actCaMKII /graphs/conc1/actCaMKII.Co PLOT Co *actCaMKII.Co *12 
 addmsg /kinetics/PSD/tot_PSD_R /graphs/conc1/tot_PSD_R.Co PLOT Co *tot_PSD_R.Co *blue 
@@ -1693,7 +1830,7 @@ addmsg /kinetics/PSD/CaM/CaM-Ca4 /graphs/conc1/CaM-Ca4.Co PLOT Co *CaM-Ca4.Co *b
 addmsg /kinetics/SPINE/CaM/Ca /graphs/conc2/Ca.Co PLOT Co *Ca.Co *red 
 addmsg /kinetics/SPINE/actCaMKII /graphs/conc2/actCaMKII.Co PLOT Co *actCaMKII.Co *12 
 addmsg /kinetics/SPINE/CaM/CaM-Ca4 /graphs/conc2/CaM-Ca4.Co PLOT Co *CaM-Ca4.Co *blue 
-addmsg /kinetics/DEND/Ca /moregraphs/conc3/Ca.Co PLOT Co *Ca.Co *red 
+addmsg /kinetics/Ca /moregraphs/conc3/Ca.Co PLOT Co *Ca.Co *red 
 addmsg /kinetics/DEND/actCaMKII /moregraphs/conc3/actCaMKII.Co PLOT Co *actCaMKII.Co *12 
 addmsg /kinetics/DEND/CaM/CaM-Ca4 /moregraphs/conc3/CaM-Ca4.Co PLOT Co *CaM-Ca4.Co *blue 
 enddump
@@ -1726,6 +1863,9 @@ call /kinetics/PSD/basal_phosphatase/notes LOAD \
 "There isn't any clear info for this. I had originally called " \
 "it PP2A, but that causes odd interactions with other pathways." \
 ""
+call /kinetics/PSD/CaMKII_PSD/CaMKII-thr286-bind-CaM/notes LOAD \
+"Same values as for the main compartment" \
+"Can the main compartment pool of Ca/CaM be used?"
 call /kinetics/PSD/CaMKII_PSD/NMDAR/notes LOAD \
 "The stochiometry is a bit off here. Each NMDAR actually" \
 "binds to a holoenzyme, about 12 CaMKII subunits. But" \
@@ -1738,17 +1878,14 @@ call /kinetics/PSD/CaMKII_PSD/NMDAR/notes LOAD \
 "June 02 2012. Consider these as anchor points for a dodecamer." \
 "There are far more effected CaMKII binding sites then, than" \
 "individual molecules of NMDAR. Raised limit to 40."
-call /kinetics/PSD/CaMKII_PSD/CaMKII-thr286-bind-CaM/notes LOAD \
-"Same values as for the main compartment" \
-"Can the main compartment pool of Ca/CaM be used?"
-call /kinetics/PSD/CaMKII_PSD/back_1/notes LOAD \
-"Rates set by the translocation experiments of " \
-"Shen and Meyer, Science 1999."
 call /kinetics/PSD/CaMKII_PSD/transloc_2/notes LOAD \
 "Same as for transloc_1" \
 "" \
 "" \
 ""
+call /kinetics/PSD/CaMKII_PSD/back_1/notes LOAD \
+"Rates set by the translocation experiments of " \
+"Shen and Meyer, Science 1999."
 call /kinetics/PSD/CaMKII_PSD/back_2/notes LOAD \
 "Same as for back_1" \
 ""

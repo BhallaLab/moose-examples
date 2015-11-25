@@ -25,7 +25,7 @@ Figure panel	Runtime(s)	Uses 3-D?	Notes
 4CDEF		370		No
 4GHIJ		300		No		
 
-5A		20		Yes		Still buggy.
+5A		20		Yes		Pops up four windows.
 5BCDE		240		No		Text only output.		
 
 6A		60		Yes		Spines exaggerated for display
