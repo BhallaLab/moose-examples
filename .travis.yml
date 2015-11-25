@@ -1,18 +1,21 @@
 # Travis-CI script to install & test MOOSE with NeuroML
+dist: trusty
+sudo: required
 
 notifications:
     email:
         recipients:
             - dilawar.s.rajput@gmail.com
 
+
 install:
 
   - sudo add-apt-repository -y ppa:bhallalab/moose
-  - sudo apt-get update
-  - sudo apt-get install openscenegraph # temp
-  - sudo apt-get install moose-python  moose-gui  
-  - sudo apt-get install moogli
+  - sudo apt-get -y update
+  - sudo apt-get -y install openscenegraph # temp
+  - sudo apt-get -y install moose-python  moose-gui  
+  - sudo apt-get -y install moogli
 
 script:
-    - ./run_scripts.sh
+  - ( cd _travis && ./run_scripts.sh )
 

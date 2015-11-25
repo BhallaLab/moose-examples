@@ -1,10 +1,15 @@
 #!/bin/bash
+#set -x
 source ./colors.sh
 
 # matplotlibrc file.
-MATPLOTRC=./_travis/matplotlibrc
+MATPLOTRC=./matplotlibrc
 
 PWD=$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)
+
+# All scripts are here.
+SRCDIR=$PWD/..
+
 MAINLESS=$PWD/MAINLESS
 BLACKLISTED=$PWD/BLACKLISTED
 GUI=$PWD/GUISCRIPTS
@@ -40,14 +45,35 @@ function check_file
     fi
 }
 
-PYFILES=`find . -name "*.py"`
-for pyf in $PYFILES; do
-    let a=a+1
-    dn=`dirname $pyf`
-    fn=`basename $pyf`
-    # copy matplotlibrc file to working directory
-    check_file $pyf
-done
+function find_files 
+{
+    echo "|| searching for files in $1"
+    PYFILES=`find "$1" \( -name "*.py" ! -iname "test_all*" \)`
+    for pyf in $PYFILES; do
+        let a=a+1
+        dn=`dirname $pyf`
+        fn=`basename $pyf`
+        # copy matplotlibrc file to working directory
+        check_file $pyf
+    done
+}
+
+# Search files to run. One can ignore directories which has .dont_run_on_travis
+# file in them.
+
+DIRS_TO_SEARCH=""
+while read -r dir; do
+    echo $dir
+    if [ -f $dir/.ignore_on_travis ]; then
+        echo "Ignoring this directory on travis"
+    else
+        echo "Find script from this directory to run"
+        find_files $dir
+    fi
+done < <(find $SRCDIR -mindepth 1 -maxdepth 1 -type d)
+
+exit
+
 
 # Run those files which are stored in $TORUN script.
 for f in `cat $TORUN`; do

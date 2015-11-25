@@ -17,7 +17,8 @@ for f in `cat ./TORUN`; do
     (
         cp $MATPLOTRC $d/
         cd $d
-        $PYC $fn || echo "$1" >> $BLACKLISTED
+        # Do not run more than a minute. 
+        timeout 1m $PYC $fn || echo "$1" >> $BLACKLISTED
     )
 done
 
