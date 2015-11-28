@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Run scripts in ./TORUN file
 set -x
 PWD=$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)
@@ -8,7 +8,11 @@ if [ ! -f ./TORUN ]; then
 fi
 
 PYC=`which python`
-MATPLOTRC=$PWD/_travis/matplotlibrc
+MATPLOTRC=$PWD/matplotlibrc
+if [ ! -f $MATPLOTRC ]; then
+    echo "$MATPLOTRC not found"
+    exit
+fi
 BLACKLISTED=$PWD/BLACKLISTED
 
 for f in `cat ./TORUN`; do
