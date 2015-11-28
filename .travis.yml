@@ -12,8 +12,7 @@ install:
 
   - sudo add-apt-repository -y ppa:bhallalab/moose
   - sudo apt-get -y update
-  - sudo apt-get -y install openscenegraph # temp
-  - sudo apt-get -y install moose-python  moose-gui  
+  - sudo apt-get -y install moose
   - sudo apt-get -y install moogli
 
 script:
