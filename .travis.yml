@@ -1,7 +1,3 @@
-# Travis-CI script to install & test MOOSE with NeuroML
-dist: trusty
-sudo: required
-
 notifications:
     email:
         recipients:
@@ -9,12 +5,12 @@ notifications:
 
 
 install:
-
-  - sudo add-apt-repository -y ppa:bhallalab/moose
-  - sudo apt-get -y update
-  - sudo apt-get -y install moose
-  - sudo apt-get -y install moogli
+    - sudo add-apt-repository -y ppa:bhallalab/moose
+    - sudo apt-get -y update
+    - sudo apt-get -y install moose
+    - sudo apt-get -y install moogli
 
 script:
-  - ( cd _travis && ./run_scripts.sh )
-
+    - python -c 'import moose'
+    - python -c 'import moogli'
+    - ( cd _travis && ./run_scripts.sh )
