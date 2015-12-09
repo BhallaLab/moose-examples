@@ -6,9 +6,9 @@
 # Maintainer: 
 # Created: Fri Apr 17 23:58:49 2009 (+0530)
 # Version: 
-# Last-Updated: Sat Dec  8 15:52:42 2012 (+0530)
-#           By: subha
-#     Update #: 1057
+# Last-Updated: Wed Dec  9 12:29:24 2015 (-0500)
+#           By: Subhasis Ray
+#     Update #: 1062
 # URL: 
 # Keywords: 
 # Compatibility: 
@@ -211,11 +211,11 @@ class KC(KCaChannel):
     Zpower = 1
     tableA_z = where(ca_conc < 250.0, ca_conc / 250.0, 1.0)
     tableB_z = ones(ca_divs + 1)
-    tableA_x = where(v_array < -10e-3, 
+    alpha_x = where(v_array < -10e-3, 
                       2e3 / 37.95 * ( exp( ( v_array * 1e3 + 50 ) / 11 - ( v_array * 1e3 + 53.5 ) / 27 ) ),
                       2e3 * exp(( - v_array * 1e3 - 53.5) / 27))
-    tableB_x = where(v_array < -10e-3,
-                   2e3 * exp(( - v_array * 1e3 - 53.5) / 27), 
+    beta_x = where(v_array < -10e-3,
+                   2e3 * exp(( - v_array * 1e3 - 53.5) / 27 - alpha_x), 
                    0.0)
     instant = 4
 
@@ -229,8 +229,8 @@ class KC_FAST(KC):
     annotation = {'cno': 'cno_0000106'}
     abstract = False
 
-    tableA_x = KC.tableA_x * 2
-    tableB_x = KC.tableB_x * 2
+    alpha_x = KC.alpha_x * 2
+    beta_x = KC.beta_x * 2
 
     def __init__(self, path):
         KC.__init__(self, path)
