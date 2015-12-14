@@ -1,7 +1,7 @@
 ## Aditya Gilra, NCBS, Bangalore, 2012
 
 """
-Inside the .../Demos/CA1PyramidalCell/ directory supplied with MOOSE, run
+Inside the .../moose-examples/CA1PyramidalCell/ directory supplied with MOOSE, run
 python CA1.py <filename>
 (if no filename is specified, the single compartment CA1 cell is used.)
 (supporting channels and different morph xml files are already present in this same directory).

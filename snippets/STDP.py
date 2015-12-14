@@ -149,7 +149,7 @@ def make_neuron_spike(nrnidx,I=1e-7,duration=1e-3):
 
 def main():
     '''
-    On the command-line, in Demos/snippets directory, run ``python STDP.py``
+    On the command-line, in moose-examples/snippets directory, run ``python STDP.py``
     '''
     setupModel()
     dwlist_neg = []
