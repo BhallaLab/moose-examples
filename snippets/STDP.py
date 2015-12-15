@@ -190,11 +190,11 @@ def main():
     # ###########################################
 
     # insert spikes so that Vm reset doesn't look weird
-    Vmseries0 = Vms.vec[0].vector
+    Vmseries0 = list(Vms.vec[0].vector)
     numsteps = len(Vmseries0)
     for t in spikes.vec[0].vector:
         Vmseries0[int(t/dt)-1] = 30e-3 # V
-    Vmseries1 = Vms.vec[1].vector
+    Vmseries1 = list(Vms.vec[1].vector)
     for t in spikes.vec[1].vector:
         Vmseries1[int(t/dt)-1] = 30e-3 # V
 
