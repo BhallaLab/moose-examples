@@ -6,9 +6,9 @@
 # Maintainer: 
 # Created: Fri Jun 26 12:23:07 2015 (-0400)
 # Version: 
-# Last-Updated: 
-#           By: 
-#     Update #: 0
+# Last-Updated: Sun Dec 20 00:03:07 2015 (-0500)
+#           By: subha
+#     Update #: 5
 # URL: 
 # Keywords: 
 # Compatibility: 
@@ -87,8 +87,8 @@ attribute if desired as shown in this example.
 
 References: 
 
-Ray, Chintaluri, Bhalla and Wojcik. NSDF: Neuroscience Simulation
-Data Format (submitted).
+Ray, Chintaluri, Bhalla and Wojcik. NSDF: Neuroscience Simulation Data
+Format, Neuroinformatics, 2015.
 
 http://nsdf.readthedocs.org/en/latest/
 
@@ -136,10 +136,10 @@ def setup_model():
     for ii in range(32):
         moose.setClock(ii, dt)
     moose.connect(pulse, 'output', tab, 'spike')
-    print datetime.now().isoformat()
+    print 'Starting simulation at:', datetime.now().isoformat()
     moose.reinit()
     moose.start(simtime)
-    print datetime.now().isoformat()
+    print 'Finished simulation at:', datetime.now().isoformat()
     np.savetxt('nsdf.txt', tab.vector)
     ###################################
     # Set the environment attributes
