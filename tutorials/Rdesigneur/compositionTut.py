@@ -26,10 +26,10 @@ PI = 3.14159265359
 useGssa = True
 combineSegments = True
 # Pick your favourite cell here.
-#elecFileName = "ca1_minimal.p"
-#elecFileName = "h10.CNG.swc"
-#elecFileName = "CA1.morph.xml"
-elecFileName = "VHC-neuron.CNG.swc"
+#elecFileName = "ca1_minimal.p" # Runs fast
+#elecFileName = "h10.CNG.swc"   # Runs fast, about 30 sec
+#elecFileName = "CA1.morph.xml" # Runs slow, about 5 min
+elecFileName = "VHC-neuron.CNG.swc" # Runs slow, about 3 min
 synSpineList = []
 synDendList = []
 probeInterval = 0.1
@@ -121,8 +121,8 @@ def buildRdesigneur():
                 "300*H(p - 100e-6)*(1+p*1e4)" ], \
                 ["Ca", "#dend#,#apical#", "Gbar", "p<160e-6? 10+ p*0.25e-6 : 50" ], \
             ["Ca", "#soma#", "Gbar", "10" ], \
-            ["glu", "#dend#,#apical#", "Gbar", "200*H(p-200e-6)" ], \
-            ["NMDA", "#dend#,#apical#", "Gbar", "2*H(p-200e-6)" ] \
+            ["glu", "#dend#,#apical#", "modulation", "200*H(p-200e-6)" ], \
+            ["NMDA", "#dend#,#apical#", "modulation", "2*H(p-200e-6)" ] \
         ]
     spineDistrib = [ \
             ["spine", '#apical#', "spineSpacing", "20e-6", \
@@ -225,7 +225,7 @@ def saveAndClearPlots( name ):
         i.xplot( name + '.xplot', i.name )
     moose.delete( "/graphs" )
 
-def displayPlots():
+def displayPlots( dummy ):
     pylab.figure(1, figsize = (8,10 ) )
     pylab.subplot( 4,1,1)
     for i in moose.wildcardFind( "/graphs/psdRtab[]" ):
@@ -299,6 +299,7 @@ def printPsd( name ):
     f.close()
 
 def build3dDisplay( rdes ):
+
     print "building 3d Display"
     app = QtGui.QApplication( sys.argv )
     compts = moose.wildcardFind( rdes.elecid.path + "/#[ISA=CompartmentBase]" )
@@ -309,45 +310,83 @@ def build3dDisplay( rdes ):
         else:
             caElements.append( moose.element( '/library/Ca_conc' ) )
     eComptPath = map( lambda x: x.path, compts )
-    morphology1 = moogli.read_morphology_from_moose( name = "", \
-            path = rdes.elecid.path )
-    morphology1.create_group( "group_all", eComptPath, -0.08, 0.02, vm_colormap)
-    viewer1 = moogli.DynamicMorphologyViewerWidget(morphology1)
-    def callback1( morphology, viewer1 ):
+    morphology1 = moogli.extensions.moose.read( rdes.elecid.path )
+    normalizer = moogli.utilities.normalizer(-0.08, 0.02,
+        clipleft=True, clipright=True)
+    colormap = moogli.colors.UniformColorMap([moogli.colors.Color(0.0,
+                                                                  0.5,
+                                                                  1.0,
+                                                                  1.0), 
+                                              moogli.colors.Color(1.0, 
+                                                                0.0, 
+                                                                0.0, 
+                                                                0.9)])
+    mapper = moogli.utilities.mapper(colormap, normalizer)
+    vms = [moose.element(x).Vm for x in morphology1.shapes.keys()]
+    morphology1.set( "color", vms, mapper )
+    def prelude( view ):
+        view.pitch( PI / 2.0 )
+
+    def callback1( viewer1 ):
         moose.start( frameRunTime )
-        Vm = map( lambda x: moose.element( x ).Vm, compts )
-        morphology.set_color( "group_all", Vm )
+        #Vm = map( lambda x: moose.element( x ).Vm, compts )
+        #morphology1.set_color( "group_all", Vm )
+        Vm = [moose.element(x).Vm for x in morphology1.shapes.keys()]
+        morphology1.set( "color", Vm, mapper )
         currTime = moose.element( '/clock' ).currentTime
-        viewer1.yaw( 0.01, 0 )
+        viewer1.yaw( 0.01 )
         if ( currTime < runtime ):
             deliverStim( currTime )
-            return True
-        displayPlots()
-        return False
-    viewer1.set_background_color(1.0, 1.0, 1.0, 1.0)
-    viewer1.set_callback( callback1, idletime = 0 )
-    viewer1.pitch( PI/2, 0 )
-    viewer1.zoom( 0.4, 0 )
+        else:
+            viewer1.stop()
+        #displayPlots()
+    viewer1 = moogli.Viewer( "vm-viewer" )
+    viewer1.attach_shapes(morphology1.shapes.values())
+    view = moogli.View("vm-view", prelude = prelude, interlude=callback1, postlude = displayPlots )
+    viewer1.attach_view(view)
+    '''
+    morphology1 = moogli.read_morphology_from_moose( name = "", path = rdes.elecid.path )
+    morphology1.create_group( "group_all", eComptPath, -0.08, 0.02, vm_colormap)
+    viewer1 = moogli.DynamicMorphologyViewerWidget(morphology1)
+    '''
+    #viewer1.set_background_color(1.0, 1.0, 1.0, 1.0)
+    #viewer1.set_callback( callback1, idletime = 0 )
+    #viewer1.pitch( PI/2 )
+    viewer1.zoom( 0.4 )
     viewer1.resize( 900, 900 )
     #viewer1.showMaximized()
     viewer1.show()
+    viewer1.start()
 
+    '''
     morphology2 = moogli.read_morphology_from_moose( name = "", \
             path = rdes.elecid.path )
     morphology2.create_group( "group_all", eComptPath, 0.0, 0.002, ca_colormap)
     viewer2 = moogli.DynamicMorphologyViewerWidget(morphology2)
-    def callback2( morphology, viewer2 ):
-        Ca = map( lambda x: moose.element( x ).Ca, caElements )
-        morphology.set_color( "group_all", Ca )
-        viewer2.yaw( 0.01, 0 )
-        return True
-    viewer2.set_background_color(1.0, 1.0, 1.0, 1.0)
-    viewer2.set_callback( callback2, idletime = 0 )
-    viewer2.pitch( PI/2, 0 )
-    viewer2.zoom( 0.4, 0 )
+    '''
+    morphology2 = moogli.extensions.moose.read( rdes.elecid.path )
+    normalizer2 = moogli.utilities.normalizer(0.0, 0.0004,
+        clipleft=True, clipright=True)
+    mapper2 = moogli.utilities.mapper(colormap, normalizer2)
+    def callback2( viewer2 ):
+        Ca = [moose.element(x).Ca for x in caElements]
+        morphology2.set( "color", Ca, mapper2 )
+        viewer2.yaw( 0.01 )
+        currTime = moose.element( '/clock' ).currentTime
+        if ( currTime >= runtime ):
+            viewer2.stop()
+    viewer2 = moogli.Viewer( "ca-viewer" )
+    viewer2.attach_shapes(morphology2.shapes.values())
+    view2 = moogli.View("ca-view", prelude = prelude, interlude=callback2 )
+    viewer2.attach_view(view2)
+    #viewer2.set_background_color(1.0, 1.0, 1.0, 1.0)
+    #viewer2.set_callback( callback2, idletime = 0 )
+    #viewer2.pitch( PI/2 )
+    viewer2.zoom( 0.4 )
     viewer2.resize( 900, 900 )
     #viewer1.showMaximized()
     viewer2.show()
+    viewer2.start()
     app.exec_()
 
 def deliverStim( currTime ):
