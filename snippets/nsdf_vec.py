@@ -6,9 +6,9 @@
 # Maintainer: 
 # Created: Sat Dec 19 22:27:27 2015 (-0500)
 # Version: 
-# Last-Updated: Sun Dec 20 00:03:29 2015 (-0500)
+# Last-Updated: Sun Dec 20 23:19:00 2015 (-0500)
 #           By: subha
-#     Update #: 121
+#     Update #: 126
 # URL: 
 # Keywords: 
 # Compatibility: 
@@ -118,23 +118,25 @@ crossing times as Event data. '''
     nsdf.stringAttr['rights'] = ''
     nsdf.stringAttr['license'] = 'CC-BY-NC'
     ####################################################
-    ## !! Work in progress: concurrent write via h5py !!
+    ## !! Work in progress: concurrent write via h5py does not work !!
     ####################################################    
     ## Now write some custom stuff via h5py
-    # nsdf.close() #explicitly close the file so we do not interfere with h5py
-    # with h5.File(nsdf.filename, 'a') as fd:
-    #     static = fd.create_group('/data/static')
-    #     static_pg = static.create_group(pulsegen.className)
-    #     pulse_info = static_pg.create_dataset('pulse_0', (elements,), dtype=np.dtype([('delay', 'float64'), ('level', 'float64'), ('width','float64')]))
-    #     map_ = fd.create_group('/map/static')
-    #     map_pg = map_.create_group(pulsegen.className)
-    #     map_pulse = map_pg.create_dataset('pulse_0', (elements,), dtype=h5.special_dtype(vlen=str))
-    #     for ii in range(elements):
-    #         pulse_info['delay', ii] = pulsegen.vec[ii].delay[0]
-    #         pulse_info['width', ii] = pulsegen.vec[ii].width[0]
-    #         pulse_info['level', ii] = pulsegen.vec[ii].level[0]
-    #         map_pulse[ii] = pulsegen.vec[ii].path
-    #     #TODO: connect this as a dimension scale on pulse_info
+    print('Closing nsdf handle')
+    nsdf.close() #explicitly close the file so we do not interfere with h5py
+    print('Closed nsdf handle')
+    with h5.File(nsdf.filename, 'a') as fd:
+        static = fd.create_group('/data/static')
+        static_pg = static.create_group(pulsegen.className)
+        pulse_info = static_pg.create_dataset('pulse_0', (elements,), dtype=np.dtype([('delay', 'float64'), ('level', 'float64'), ('width','float64')]))
+        map_ = fd.create_group('/map/static')
+        map_pg = map_.create_group(pulsegen.className)
+        map_pulse = map_pg.create_dataset('pulse_0', (elements,), dtype=h5.special_dtype(vlen=str))
+        for ii in range(elements):
+            pulse_info['delay', ii] = pulsegen.vec[ii].delay[0]
+            pulse_info['width', ii] = pulsegen.vec[ii].width[0]
+            pulse_info['level', ii] = pulsegen.vec[ii].level[0]
+            map_pulse[ii] = pulsegen.vec[ii].path
+        #TODO: connect this as a dimension scale on pulse_info
         
     return nsdf.filename
 
