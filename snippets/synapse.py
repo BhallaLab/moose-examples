@@ -2,7 +2,7 @@
 # 
 # Filename: synapse.py
 # Description: 
-# Author: 
+# Author:Upi Bhalla 
 # Maintainer: 
 # Created: Sat Jun 29 11:32:29 2013 (+0530)
 # Version: 

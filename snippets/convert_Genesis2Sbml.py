@@ -1,14 +1,14 @@
-# savemodel.py --- 
+# convert_Genesis2Sbml.py --- 
 # 
-# Filename: savemodel.py
+# Filename: convert_Genesis2Sbml.py
 # Description: 
-# Author: Subhasis Ray
+# Author:Harsha Rani  
 # Maintainer: 
-# Created: Wed Oct 29 00:08:50 2014 (+0530)
+# Created: Mon Jan 19 09:16:58 2015 (+0530)
 # Version: 
-# Last-Updated:Thr Dec 23 16:31:00 2015 (+0530) 
-#           By: 
-#     Update #: 0
+# Last-Updated: Thr Dec 24 15:155:38 2012 (+0530)
+#           By: Harsha Rani
+#     Update #: 
 # URL: 
 # Keywords: 
 # Compatibility: 
@@ -17,7 +17,7 @@
 
 # Commentary: 
 # 
-# 
+# The script demonstates to convert Chemical (Genesis) file to SBML file using moose
 # 
 # 
 
@@ -44,16 +44,12 @@
 # 
 
 # Code:
-
-import sys
-sys.path.append('../../python')
+"""This script demonstrates way to convert chemical (Genesis) file to SBML file 
+#Moose needs to be compiled with libsbml: USE_SBML=1
+"""
 import moose
 
 if __name__ == '__main__':
-    """ The script demonstates to convert Chemical (Genesis) file back to Genesis file using moose """
-    model = moose.loadModel('../genesis/reaction.g', '/model')
-    moose.saveModel('/model', 'testsave.g')
-
-
-# 
-# savemodel.py ends here
+	moose.loadModel('../genesis/Kholodenko.g','/Kholodenko')
+	moose.le('/Kholodenko')
+	moose.writeSBML('Kholodenko.xml','/Kholodenko')

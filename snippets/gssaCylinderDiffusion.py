@@ -152,7 +152,7 @@ def updatePlots( plotlist, time ):
     plotlist[4].set_ydata( b.conc )
     plotlist[5].set_ydata( c.conc )
     plotlist[6].set_ydata( d.conc )
-    #plotlist[0].canvas.draw()
+    plotlist[0].canvas.draw()
     
 
 def main():

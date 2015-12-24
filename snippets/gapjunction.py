@@ -2,7 +2,7 @@
 # 
 # Filename: gapjunction.py
 # Description: 
-# Author: 
+# Author:Subhasis Ray 
 # Maintainer: 
 # Created: Tue Jul  2 14:28:35 2013 (+0530)
 # Version: 

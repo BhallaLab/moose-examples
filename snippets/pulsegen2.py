@@ -2,7 +2,7 @@
 # 
 # Filename: pulsegen2.py
 # Description: 
-# Author: subha
+# Author: Subhasis Ray
 # Maintainer: 
 # Created: Wed Jul  8 17:06:23 2015 (+0530)
 # Version: 
@@ -123,13 +123,9 @@ pulse2.width[1] = 5.0
 pulse2.delay[1] = 8.0
 pulse2.baseLevel = 10.0
 pulse2.trigMode = 2
-gate.connec
+gate.connect("output", pulse2, "input")
 
-t("output", pulse2, "input")
-
-plot0 = moose.Tabl
-
-e("/plot0")
+plot0 = moose.Table("/plot0")
 plot0.connect("requestOut", pulse0, "getOutputValue")
 
 plot1 = moose.Table("/plot1")
