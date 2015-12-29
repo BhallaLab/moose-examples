@@ -1,7 +1,7 @@
-## Aditya Gilra, NCBS, Bangalore, 2012
+## Aditya Gilra, NCBS, Bangalore, 201
 
 """
-Inside the .../Demos/CA1PyramidalCell/ directory supplied with MOOSE, run
+Inside the .../moose-examples/CA1PyramidalCell/ directory supplied with MOOSE, run
 python testNeuroML_CA1.py
 (other channels and morph xml files are already present in this same directory).
 The soma name below is hard coded for CA1, else any other file can be used by modifying this script.

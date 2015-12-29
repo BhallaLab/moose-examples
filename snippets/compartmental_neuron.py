@@ -2,13 +2,13 @@
 # 
 # Filename: compartmental_neuron.py
 # Description: 
-# Author: 
+# Author:Subhasis Ray 
 # Maintainer: 
 # Created: Tue Aug  7 10:27:26 2012 (+0530)
 # Version: 
-# Last-Updated: Tue Dec 29 12:38:44 2015 (-0500)
+# Last-Updated: Tue Dec 29 12:40:48 2015 (-0500)
 #           By: Subhasis Ray
-#     Update #: 85
+#     Update #: 86
 # URL: 
 # Keywords: 
 # Compatibility: 
@@ -120,6 +120,7 @@ moose.start(500e-3)
 clock = moose.Clock('/clock') # Get a handle to the global clock
 time = np.linspace(0, clock.currentTime, len(axon_Vm.vector))
 data = np.vstack((time, axon_Vm.vector, axon_Vm2.vector))
+
 np.savetxt('compartmental_neuron.csv', data.T, delimiter=',', header='time,Vm1,Vm2')
 print('Saved data in compartmental_neuron.csv')
 

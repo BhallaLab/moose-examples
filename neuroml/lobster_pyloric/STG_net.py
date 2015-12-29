@@ -146,7 +146,7 @@ def loadRunSTGNeuroML_L123(filename):
 filename = "Generated.net.xml"
 if __name__ == "__main__":
     '''
-    Inside the Demos/neuroml/lobster_ploric/ directory supplied with MOOSE, run
+    Inside the moose-examples/neuroml/lobster_ploric/ directory supplied with MOOSE, run
     ``python STG_net.py``
     (other channels and morph xml files are already present in this same directory).
     read the pdf documentation for a tutorial by Aditya Gilra.

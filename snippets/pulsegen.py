@@ -3,7 +3,7 @@
 # 
 # Filename: pulsegen.py
 # Description: 
-# Author: 
+# Author:Subhasis Ray 
 # Maintainer: 
 # Created: Sat Jun 23 10:26:25 2012 (+0530)
 # Version: 

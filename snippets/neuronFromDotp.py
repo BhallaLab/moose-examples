@@ -1,5 +1,5 @@
 # neuronFromDotp.py --- 
-# Upi Bhalla NCBS Bangalore 2014.
+# Author: Upi Bhalla NCBS Bangalore 2014.
 # Commentary: 
 
 # Demonstrates how to load a simple neuronal model in GENESIS dotp format.

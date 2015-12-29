@@ -2,7 +2,7 @@
 # 
 # Filename: interpol2d.py
 # Description: 
-# Author: 
+# Author:Subhasis Ray 
 # Maintainer: 
 # Created: Thu Jun 28 15:19:46 2012 (+0530)
 # Version: 

@@ -110,7 +110,7 @@ d = 10 # V/s            # d is added to u at every spike
 
 def main():
     '''
-    On the command-line, in Demos/snippets directory, run ``python IntegrateFireZoo.py``.  
+    On the command-line, in moose-examples/snippets directory, run ``python IntegrateFireZoo.py``.  
     The script will ask you which neuron you want to simulate and you can choose and run what you want.  
     Play with the parameters of the IF neurons in the source code.
     '''

@@ -2,7 +2,7 @@
 # 
 # Filename: lif.py
 # Description: 
-# Author: 
+# Author:Subhasis Ray 
 # Maintainer: 
 # Created: Sun Jul  8 14:00:31 2012 (+0530)
 # Version: 

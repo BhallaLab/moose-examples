@@ -6,9 +6,9 @@
 # Maintainer: 
 # Created: Tue Sep  9 17:59:50 2014 (+0530)
 # Version: 
-# Last-Updated: 
-#           By: 
-#     Update #: 0
+# Last-Updated: Sun Dec 20 00:02:50 2015 (-0500)
+#           By: subha
+#     Update #: 4
 # URL: 
 # Keywords: 
 # Compatibility: 
@@ -103,7 +103,8 @@ def example():
     messages.
 
     """
-    function = moose.Function('/function')
+    demo = moose.Neutral('/model')
+    function = moose.Function('/model/function')
     function.c['c0'] = 1.0
     function.c['c1'] = 2.0
     function.x.num = 1

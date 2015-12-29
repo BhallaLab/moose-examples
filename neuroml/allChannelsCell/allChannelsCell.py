@@ -1,7 +1,7 @@
 ## Aditya Gilra, NCBS, Bangalore, 2012
 
 """
-Inside the .../Demos/GranuleCell/ directory supplied with MOOSE, run
+Inside the .../moose-examples/GranuleCell/ directory supplied with MOOSE, run
 python testNeuroML_Gran98.py
 (other channels and morph xml files are already present in this same directory).
 The soma name below is hard coded for gran98, else any other file can be used by modifying this script.
