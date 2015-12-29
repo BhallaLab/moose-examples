@@ -6,9 +6,9 @@
 # Maintainer: 
 # Created: Sat Dec 19 22:27:27 2015 (-0500)
 # Version: 
-# Last-Updated: Sun Dec 20 23:19:00 2015 (-0500)
-#           By: subha
-#     Update #: 126
+# Last-Updated: Tue Dec 29 12:50:02 2015 (-0500)
+#           By: Subhasis Ray
+#     Update #: 134
 # URL: 
 # Keywords: 
 # Compatibility: 
@@ -46,6 +46,13 @@
 # Code:
 """Example code to dump data from multiple elements in a vector.
 
+In this demo we create a PulseGen vector where each element has a
+different set of pulse parameters. After saving the output vector
+directly using MOOSE NSDFWriter we open the NSDF file using h5py and
+plot the saved data.
+
+You need h5py module installed to run this simulation.
+
 References: 
 
 Ray, Chintaluri, Bhalla and Wojcik. NSDF: Neuroscience Simulation Data
@@ -53,9 +60,13 @@ Format, Neuroinformatics, 2015.
 
 http://nsdf.readthedocs.org/en/latest/
 
+See also:
+
+nsdf.py
+
 """
 
-
+from __future__ import print_function
 import numpy as np
 from datetime import datetime
 import getpass
@@ -99,10 +110,10 @@ def write_nsdf():
     clock = moose.element('/clock')
     for ii in range(32):
         moose.setClock(ii, dt)
-    print 'Starting simulation at:', datetime.now().isoformat()
+    print('Starting simulation at:', datetime.now().isoformat())
     moose.reinit()
     moose.start(simtime)
-    print 'Finished simulation at:', datetime.now().isoformat()
+    print('Finished simulation at:', datetime.now().isoformat())
     ###################################
     # Set the environment attributes
     ###################################

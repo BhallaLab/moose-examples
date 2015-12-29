@@ -6,9 +6,9 @@
 # Maintainer: 
 # Created: Fri Jun 26 12:23:07 2015 (-0400)
 # Version: 
-# Last-Updated: Sun Dec 20 00:03:07 2015 (-0500)
-#           By: subha
-#     Update #: 5
+# Last-Updated: Tue Dec 29 12:50:27 2015 (-0500)
+#           By: Subhasis Ray
+#     Update #: 6
 # URL: 
 # Keywords: 
 # Compatibility: 
@@ -92,6 +92,8 @@ Format, Neuroinformatics, 2015.
 
 http://nsdf.readthedocs.org/en/latest/
 
+See also:
+nsdf_vec.py
 """
 
 import numpy as np
