@@ -1,20 +1,57 @@
-#########################################################################
-## This program is part of 'MOOSE', the
-## Messaging Object Oriented Simulation Environment.
-##           Copyright (C) 2014 Upinder S. Bhalla. and NCBS
-## It is made available under the terms of the
-## GNU Lesser General Public License version 2.1
-## See the file COPYING.LIB for the full notice.
-#########################################################################
-# This example illustrates loading, running, and saving a kinetic model 
-# defined in kkit format. It uses a default kkit model but you can
-# specify another using the command line 
-#     python filename runtime solver
-# We use the gsl solver here. The model already
-# defines a couple of plots and sets the runtime to 100 seconds. The
-# script dumps the output into an xplot file called data.plot and the
-# saved version into saveReaction.g
+# loadKineticModel.py --- 
+# 
+# Filename: loadKineticModel.py
+# Description: 
+# Author: Upi Bhalla 
+# Maintainer: 
+# Created: Sat Oct 04 12:14:15 2014 (+0530)
+# Version: 
+# Last-Updated: 
+#           By: 
+#     Update #: 0
+# URL: 
+# Keywords: 
+# Compatibility: 
+# 
+# 
 
+# Commentary: 
+# 
+# 
+# 
+# 
+
+# Change log:
+# 
+# 
+# 
+# 
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License as
+# published by the Free Software Foundation; either version 3, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program; see the file COPYING.  If not, write to
+# the Free Software Foundation, Inc., 51 Franklin Street, Fifth
+# Floor, Boston, MA 02110-1301, USA.
+# 
+# 
+# Code:
+""" This example illustrates loading, running, and saving a kinetic model 
+defined in kkit format. It uses a default kkit model but you can
+ specify another using the command line 
+     python filename runtime solver
+ We use the gsl solver here. The model already
+ defines a couple of plots and sets the runtime to 100 seconds. The
+ script dumps the output into an xplot file called data.plot and the
+ saved version into saveReaction.g
+"""
 
 import moose
 import pylab

@@ -44,12 +44,17 @@
 # 
 
 # Code:
-"""This script demonstrates way to convert chemical (Genesis) file to SBML file 
-#Moose needs to be compiled with libsbml: USE_SBML=1
+"""This example illustrates loading a kinetic model defined in Genesis format
+into Moose using loadModel function
+and using writeSBML function one can save the model into SBML format
+Moose needs to be compiled with libsbml: USE_SBML=1
 """
 import moose
+def main():
+	#This command loads the file into the path '/Kholodenko'
+	moose.loadModel('../genesis/Kholodenko.g','/Kholodenko')
+	#Writes model to xml file
+	moose.writeSBML('/Kholodenko','Kholodenko.xml')
 
 if __name__ == '__main__':
-	moose.loadModel('../genesis/Kholodenko.g','/Kholodenko')
-	moose.le('/Kholodenko')
-	moose.writeSBML('Kholodenko.xml','/Kholodenko')
+	main()

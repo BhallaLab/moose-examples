@@ -44,16 +44,16 @@
 # 
 
 # Code:
+"""This example illustrates loading a kinetic model defined in Genesis format 
+into Moose using "loadModel" function and using "saveModel" function one can 
+save the model back to Genesis format
+"""
 
 import sys
-sys.path.append('../../python')
+#sys.path.append('../../python')
 import moose
 
 if __name__ == '__main__':
     """ The script demonstates to convert Chemical (Genesis) file back to Genesis file using moose """
     model = moose.loadModel('../genesis/reaction.g', '/model')
     moose.saveModel('/model', 'testsave.g')
-
-
-# 
-# savemodel.py ends here
