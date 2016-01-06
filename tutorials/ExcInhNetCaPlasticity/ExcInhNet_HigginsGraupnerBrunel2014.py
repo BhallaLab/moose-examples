@@ -202,7 +202,7 @@ class ExcInhNetBase:
         self.T = np.ceil(simtime/dt)
         self.trange = np.arange(0,self.simtime,dt)   
 
-        print "Noise injections being set ..."
+        print("Noise injections being set ...")
         for i in range(self.N):
             if noiseInj:
                 ## Gaussian white noise SD added every dt interval should be
@@ -218,9 +218,9 @@ class ExcInhNetBase:
                                                         # as x value for interpolation
                 self.noiseTables.vec[i].stopTime = self.simtime
         
-        print "init membrane potentials being set ... "
+        print("init membrane potentials being set ... ")
         self._init_network(**kwargs)
-        print "initializing plots ... "
+        print("initializing plots ... ")
         if plotif:
             self._init_plots()
         
@@ -239,13 +239,13 @@ class ExcInhNetBase:
             moose.setClock( i, dt )
 
         t1 = time.time()
-        print 'reinit MOOSE -- takes a while ~20s.'
+        print('reinit MOOSE -- takes a while ~20s.')
         moose.reinit()
-        print 'reinit time t = ', time.time() - t1
+        print('reinit time t = ', time.time() - t1)
         t1 = time.time()
-        print 'starting run ...'
+        print('starting run ...')
         moose.start(self.simtime)
-        print 'runtime, t = ', time.time() - t1
+        print('runtime, t = ', time.time() - t1)
 
         if plotif:
             self._plot()
@@ -255,7 +255,7 @@ class ExcInhNetBase:
         numVms = 10
         self.plots = moose.Table( '/plotVms', numVms )
         ## draw numVms out of N neurons
-        nrnIdxs = random.sample(range(self.N),numVms)
+        nrnIdxs = random.sample(list(range(self.N)),numVms)
         for i in range( numVms ):
             moose.connect( self.network.vec[nrnIdxs[i]], 'VmOut', \
                 self.plots.vec[i], 'input')
@@ -401,7 +401,7 @@ class ExcInhNet(ExcInhNetBase):
 
             ## Connections from some Exc neurons to each Exc neuron
             ## draw excC number of neuron indices out of NmaxExc neurons
-            prelist = range(self.NmaxExc)
+            prelist = list(range(self.NmaxExc))
             prelist.remove(i)       # disallow autapse
             preIdxs = random.sample(prelist,self.excC)
             ## connect these presynaptically to i-th post-synaptic neuron
@@ -458,7 +458,7 @@ class ExcInhNet(ExcInhNetBase):
 
             ## Connections from some Inh neurons to each Exc neuron
             ## draw inhC=incC-excC number of neuron indices out of inhibitory neurons
-            preIdxs = random.sample(range(self.NmaxExc,self.N),self.incC-self.excC)
+            preIdxs = random.sample(list(range(self.NmaxExc,self.N)),self.incC-self.excC)
             ## connect these presynaptically to i-th post-synaptic neuron
             for synnum,preIdx in enumerate(preIdxs):
                 synij = self.synsIE.vec[i].synapse[synnum]
@@ -473,7 +473,7 @@ class ExcInhNet(ExcInhNetBase):
             self.synsI.vec[i].numSynapses = self.incC
 
             ## draw excC number of neuron indices out of NmaxExc neurons
-            preIdxs = random.sample(range(self.NmaxExc),self.excC)
+            preIdxs = random.sample(list(range(self.NmaxExc)),self.excC)
             ## connect these presynaptically to i-th post-synaptic neuron
             for synnum,preIdx in enumerate(preIdxs):
                 synij = self.synsI.vec[i].synapse[synnum]
@@ -483,7 +483,7 @@ class ExcInhNet(ExcInhNetBase):
                 synij.weight = self.J   # activation = weight
 
             ## draw inhC=incC-excC number of neuron indices out of inhibitory neurons
-            prelist = range(self.NmaxExc,self.N)
+            prelist = list(range(self.NmaxExc,self.N))
             prelist.remove(i+self.NmaxExc)      # disallow autapse
             preIdxs = random.sample(prelist,self.incC-self.excC)
             ## connect these presynaptically to i-th post-synaptic neuron
@@ -607,8 +607,8 @@ def load_plot_Fig5():
     if os.path.isfile("fig5_data.pickle"):
         f = open("fig5_data.pickle", "rb")
     else:
-        print "You need to simulate first before loading data file."
-        print "re-run with sim as a command line argument."
+        print("You need to simulate first before loading data file.")
+        print("re-run with sim as a command line argument.")
         sys.exit()
     fig = plt.figure(facecolor="w",\
             figsize=(columnwidth,linfig_height),dpi=fig_dpi)
@@ -767,17 +767,17 @@ if __name__=='__main__':
         ## Instantiate either ExcInhNetBase or ExcInhNet below
         #net = ExcInhNetBase(N=N)
         net = ExcInhNet(N=N)
-        print net
+        print(net)
         ## Important to distribute the initial Vm-s
         ## else weak coupling gives periodic synchronous firing
-        print "Preparing to simulate ... "
+        print("Preparing to simulate ... ")
         net.simulate(simtime,plotif=True,\
             v0=np.random.uniform(el-10e-3,vt+1e-3,size=N))
 
         save_data(net)
         #extra_plots(net)
     else:
-        print "just plotting old results for Fig 5."
-        print "To simulate and save, give sim as commandline argument."
+        print("just plotting old results for Fig 5.")
+        print("To simulate and save, give sim as commandline argument.")
         load_plot_Fig5()
         plt.show()
