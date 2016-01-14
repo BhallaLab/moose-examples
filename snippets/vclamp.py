@@ -2,7 +2,7 @@
 # 
 # Filename: vclamp.py
 # Description: 
-# Author: 
+# Author:Subhasis Ray 
 # Maintainer: 
 # Created: Sat Feb  2 19:16:54 2013 (+0530)
 # Version: 

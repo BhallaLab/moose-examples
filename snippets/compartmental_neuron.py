@@ -2,13 +2,13 @@
 # 
 # Filename: compartmental_neuron.py
 # Description: 
-# Author: 
+# Author:Subhasis Ray 
 # Maintainer: 
 # Created: Tue Aug  7 10:27:26 2012 (+0530)
 # Version: 
-# Last-Updated: Tue Aug  7 11:57:44 2012 (+0530)
-#           By: subha
-#     Update #: 73
+# Last-Updated: Tue Dec 29 12:40:48 2015 (-0500)
+#           By: Subhasis Ray
+#     Update #: 86
 # URL: 
 # Keywords: 
 # Compatibility: 
@@ -44,9 +44,17 @@
 # 
 
 # Code:
+"""Setting up a compartmental neuron from scratch using MOOSE classes.
+
+A simple electrophysiological simulation of a neuron composed of two
+passive compartments. A current pulse is injected into the `soma`
+compartment and the membrane voltage in both compartments are recorded
+and saved into a csv file.
+
+"""
+from __future__ import print_function
 import sys
 import numpy as np
-sys.path.append('../../python') # in case we do not have moose/python in PYTHONPATH
 import moose
 # Create the somatic compartment
 model = moose.Neutral('/model') # This is a container for the model
@@ -112,7 +120,9 @@ moose.start(500e-3)
 clock = moose.Clock('/clock') # Get a handle to the global clock
 time = np.linspace(0, clock.currentTime, len(axon_Vm.vector))
 data = np.vstack((time, axon_Vm.vector, axon_Vm2.vector))
-np.savetxt('compartmental_neuron.csv', data.T, header='time, Vm')
+
+np.savetxt('compartmental_neuron.csv', data.T, delimiter=',', header='time,Vm1,Vm2')
+print('Saved data in compartmental_neuron.csv')
 
 # 
 # compartmental_neuron.py ends here

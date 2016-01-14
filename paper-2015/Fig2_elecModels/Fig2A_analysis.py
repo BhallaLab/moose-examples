@@ -1,6 +1,12 @@
+import os
 import numpy as np
 from pylab import *
 from itertools import islice
+
+if not os.path.isfile('wx.xplot'):
+    print("Please run ./Fig2A.py to generate the data")
+    quit()
+
 fh = open('wt.xplot',mode='r')
 
 fulltime = 1200         #s

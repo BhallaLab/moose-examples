@@ -56,6 +56,7 @@ def make_neuron(path):
     """Create a neuron with parameters set for tonic_bursting."""
     nrn = moose.IzhikevichNrn(path)
     # "tonic_bursting":   ['C', 0.02  ,    0.2  ,   -50.0,     2.0  ,      15.0,      -70.0,  220.0], # Fig. 1.C
+    print path,dir(nrn)
     nrn.alpha = 0.04
     nrn.beta = 5.0
     nrn.gamma = 140.0

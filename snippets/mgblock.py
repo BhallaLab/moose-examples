@@ -2,7 +2,7 @@
 # 
 # Filename: mgblock.py
 # Description: 
-# Author: 
+# Author:Upi Bhalla 
 # Maintainer: 
 # Created: Wed Jul  3 09:36:06 2013 (+0530)
 # Version: 

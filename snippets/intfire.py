@@ -2,7 +2,7 @@
 # 
 # Filename: intfire.py
 # Description: 
-# Author: 
+# Author:Subhasis Ray 
 # Maintainer: 
 # Created: Thu Jun 21 16:40:25 2012 (+0530)
 # Version: 

@@ -2,7 +2,7 @@
 # 
 # Filename: symcompartment.py
 # Description: 
-# Author: 
+# Author:Subhasis Ray 
 # Maintainer: 
 # Created: Thu Jun 20 17:47:10 2013 (+0530)
 # Version: 

@@ -2,7 +2,7 @@
 # 
 # Filename: multicomp_lif.py
 # Description: Leaky Integrate and Fire using regular neuronal compartment
-# Author: subha
+# Author: Subhasis Ray
 # Maintainer: 
 # Created: Fri Feb  7 16:26:05 2014 (+0530)
 # Version: 
