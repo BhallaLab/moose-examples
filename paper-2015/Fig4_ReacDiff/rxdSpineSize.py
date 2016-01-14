@@ -97,7 +97,7 @@ def makeModel():
     rdes = rd.rdesigneur( useGssa = False, \
             combineSegments = False, \
             stealCellFromLibrary = True, \
-            meshLambda = 1e-6, \
+            diffusionLength = 1e-6, \
             cellProto = [['cellProto', 'elec' ]] ,\
             spineProto = [['spineProto', 'spine' ]] ,\
             chemProto = [['cProto', 'chem' ]] ,\
