@@ -43,15 +43,6 @@
 # 
 # 
 # Code:
-""" This example illustrates loading, running, and saving a kinetic model 
-defined in kkit format. It uses a default kkit model but you can
- specify another using the command line 
-     python filename runtime solver
- We use the gsl solver here. The model already
- defines a couple of plots and sets the runtime to 100 seconds. The
- script dumps the output into an xplot file called data.plot and the
- saved version into saveReaction.g
-"""
 
 import moose
 import pylab
@@ -59,7 +50,10 @@ import numpy
 import sys
 
 def main():
-        solver = "gsl"  # Pick any of gsl, gssa, ee..
+        """ This example illustrates loading, running, and saving a kinetic model 
+	defined in kkit format. It uses a default kkit model but you can specify another using the command line ``python filename runtime solver``. We use the gsl solver here. The model already defines a couple of plots and sets the runtime to 20 seconds.
+	"""
+	solver = "gsl"  # Pick any of gsl, gssa, ee..
 	mfile = '../genesis/kkit_objects_example.g'
 	runtime = 20.0
 	if ( len( sys.argv ) >= 3 ):
