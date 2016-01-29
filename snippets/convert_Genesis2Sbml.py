@@ -48,14 +48,15 @@
 import moose
 def main():
 	"""This example illustrates loading a kinetic model defined in Genesis format
-into Moose using loadModel function
-and using writeSBML function one can save the model into SBML format
-Moose needs to be compiled with libsbml: USE_SBML=1
+	into Moose using loadModel function and using writeSBML function
+	one can save the model into SBML format, \n
+	Moose needs to be compiled with libsbml: USE_SBML=1
 """
 	#This command loads the file into the path '/Kholodenko'
 	moose.loadModel('../genesis/Kholodenko.g','/Kholodenko')
+	
 	#Writes model to xml file
-	moose.writeSBML('/Kholodenko','Kholodenko.xml')
+	moose.writeSBML('/Kholodenko','Kholodenko_tosbml.xml')
 
 if __name__ == '__main__':
 	main()
