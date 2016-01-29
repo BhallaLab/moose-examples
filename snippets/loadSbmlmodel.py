@@ -43,13 +43,14 @@ import matplotlib.pyplot as plt
 import sys
 import pylab
 
-def loadSbmlmodel():
-    """ This example illustrates loading, running of an SBML model defined in XML format.
-	The model 00001-sbml-l3v1.xml is taken from l3v1 SBML testcase
-	Plots are setup
-	Model is run for 20sec
-	As a general rule we created model under '/path/model' and plots under '/path/graphs'
+def main():
+    """ This example illustrates loading, running of an SBML model defined in XML format.\n
+	The model 00001-sbml-l3v1.xml is taken from l3v1 SBML testcase.\n
+	Plots are setup.\n
+	Model is run for 20sec.\n
+	As a general rule we created model under '/path/model' and plots under '/path/graphs'.\n
     """
+
     mfile = '../genesis/00001-sbml-l3v1.xml'
     runtime = 20.0
 
@@ -94,5 +95,5 @@ def displayPlots():
     quit()
 if __name__=='__main__':
     
-    loadSbmlmodel()
+    main()
     displayPlots()
