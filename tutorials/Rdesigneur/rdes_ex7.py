@@ -12,4 +12,3 @@ rdes.buildModel()
 
 moose.reinit()
 rdes.displayMoogli( 0.0002, 0.1 )
-
