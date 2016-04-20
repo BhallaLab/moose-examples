@@ -12,7 +12,10 @@ import math
 import pylab
 import numpy
 import matplotlib.pyplot as plt
+import sys
 import moose
+
+print( '[INFO] Using moose from %s' % moose.__file__ )
 
 def makeCompt( name, parent, dx, dy, dia ):
     RM = 1.0
@@ -232,9 +235,12 @@ def display():
         line4, = timeseries.plot( t, x.vector, label=x.name )
     plt.legend()
     fig.canvas.draw()
+    outfile = '%s.png' % sys.argv[0] 
+    # print( "Hit 'enter' to exit" )
+    # raw_input()
+    plt.savefig( outfile )
+    print('[INFO] Results are saved to %s' % outfile )
 
-    print( "Hit 'enter' to exit" )
-    raw_input()
 
 # Run the 'main' if this script is executed standalone.
 if __name__ == '__main__':
