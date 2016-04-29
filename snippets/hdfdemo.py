@@ -32,9 +32,12 @@ def example():
 
     6. We close the file by calling close() method of `hdfwriter`.
 
-    Running this snippet creates the file ``output_defdemo.h5`` which
+    Running this snippet creates the file ``output_hdfdemo.h5`` which
     reflects the structure of the model::
-
+    
+      model
+        |
+        |
         c[0]
         |
         |___im
@@ -46,7 +49,8 @@ def example():
     recorded from `comp`.
 
     """
-    comp = moose.Compartment('c')
+    model = moose.Neutral('/model')
+    comp = moose.Compartment('/model/c')
     hdfwriter = moose.HDF5DataWriter('h')
     hdfwriter.mode = 2 # Truncate existing file
     moose.connect(hdfwriter, 'requestOut', comp, 'getVm')
@@ -65,21 +69,21 @@ def example():
     
     # All paths are taken relative to the root. The last token is the name
     # of the attribute.
-    hdfwriter.doubleAttr['/c[0]/vm/a_double_attribute'] = 3.141592
+    hdfwriter.doubleAttr['{}/vm/a_double_attribute'.format(comp.path)] = 3.141592
     hdfwriter.longAttr['an_int_attribute'] = 8640
     
     # In addition, vectors of string, long and double can also be stored
     # as attributes.
     hdfwriter.stringVecAttr['stringvec'] = ['I wonder', 'why', 'I wonder']
-    hdfwriter.doubleVecAttr['c[0]/dvec'] = [3.141592, 2.71828]
-    hdfwriter.longVecAttr['c[0]/lvec'] = [3, 14, 1592, 271828]
+    hdfwriter.doubleVecAttr['{}/dvec'.format(comp.path)] = [3.141592, 2.71828]
+    hdfwriter.longVecAttr['{}/lvec'.format(comp.path)] = [3, 14, 1592, 271828]
     
     vm_tab = moose.Table('Vm')
     moose.connect(vm_tab, 'requestOut', comp, 'getVm')
     moose.setClock(0, 1e-3)
     moose.setClock(1, 1e-3)
     moose.setClock(2, 1e-3)
-    moose.useClock(0, '/c', 'init')
+    moose.useClock(0, '/model/c', 'init')
     moose.useClock(1, '/##[TYPE!=HDF5DataWriter]', 'process')
     moose.useClock(2, '/##[TYPE=HDF5DataWriter]', 'process')
     
