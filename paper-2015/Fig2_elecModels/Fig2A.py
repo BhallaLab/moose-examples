@@ -221,17 +221,17 @@ class ExcInhNetBase:
             moose.setClock( i, dt )
         moose.setClock( 18, plotDt )
         t1 = time.time()
-        print 'reinit MOOSE -- takes a while ~20s.'
+        print('reinit MOOSE -- takes a while ~20s.')
         moose.reinit()
-        print 'reinit time t = ', time.time() - t1
+        print('reinit time t = ', time.time() - t1)
         t1 = time.time()
-        print 'starting'
+        print('starting')
         simadvance = self.simtime / 50.0
         for i in range( 50 ):
             moose.start( simadvance )
-            print 'at t = ', i * simadvance, 'realtime = ', time.time() - t1
+            print('at t = ', i * simadvance, 'realtime = ', time.time() - t1)
         #moose.start(self.simtime)
-        print 'runtime for ', self.simtime, 'sec, is t = ', time.time() - t1
+        print('runtime for ', self.simtime, 'sec, is t = ', time.time() - t1)
 
         if plotif:
             self._plot()
@@ -241,7 +241,7 @@ class ExcInhNetBase:
         numVms = 10
         self.plots = moose.Table2( '/plotVms', numVms )
         ## draw numVms out of N neurons
-        nrnIdxs = random.sample(range(self.N),numVms)
+        nrnIdxs = random.sample(list(range(self.N)),numVms)
         for i in range( numVms ):
             moose.connect( self.network.vec[nrnIdxs[i]], 'VmOut', \
                 self.plots.vec[i], 'input')
@@ -353,7 +353,7 @@ class ExcInhNet(ExcInhNetBase):
 
             ## Connections from some Exc neurons to each Exc neuron
             ## draw excC number of neuron indices out of NmaxExc neurons
-            preIdxs = random.sample(range(self.NmaxExc),self.excC)
+            preIdxs = random.sample(list(range(self.NmaxExc)),self.excC)
             ## connect these presynaptically to i-th post-synaptic neuron
             for synnum,preIdx in enumerate(preIdxs):
                 synidx = i*self.excC+synnum
@@ -406,7 +406,7 @@ class ExcInhNet(ExcInhNetBase):
 
             ## Connections from some Inh neurons to each Exc neuron
             ## draw inhC=incC-excC number of neuron indices out of inhibitory neurons
-            preIdxs = random.sample(range(self.NmaxExc,self.N),self.incC-self.excC)
+            preIdxs = random.sample(list(range(self.NmaxExc,self.N)),self.incC-self.excC)
             ## connect these presynaptically to i-th post-synaptic neuron
             for synnum,preIdx in enumerate(preIdxs):
                 synij = self.synsIE.vec[i].synapse[synnum]
@@ -421,7 +421,7 @@ class ExcInhNet(ExcInhNetBase):
             self.synsI.vec[i].numSynapses = self.incC
 
             ## draw excC number of neuron indices out of NmaxExc neurons
-            preIdxs = random.sample(range(self.NmaxExc),self.excC)
+            preIdxs = random.sample(list(range(self.NmaxExc)),self.excC)
             ## connect these presynaptically to i-th post-synaptic neuron
             for synnum,preIdx in enumerate(preIdxs):
                 synij = self.synsI.vec[i].synapse[synnum]
@@ -431,7 +431,7 @@ class ExcInhNet(ExcInhNetBase):
                 synij.weight = self.J   # activation = weight
 
             ## draw inhC=incC-excC number of neuron indices out of inhibitory neurons
-            preIdxs = random.sample(range(self.NmaxExc,self.N),self.incC-self.excC)
+            preIdxs = random.sample(list(range(self.NmaxExc,self.N)),self.incC-self.excC)
             ## connect these presynaptically to i-th post-synaptic neuron
             for synnum,preIdx in enumerate(preIdxs):
                 synij = self.synsI.vec[i].synapse[ self.excC + synnum ]
@@ -498,11 +498,11 @@ def extra_plots(net):
         weights = [ net.synsEE.vec[i*net.excC+j].synapse[0].weight \
                     for i in range(net.NmaxExc) for j in range(net.excC) ]
         histo, edges = np.histogram( weights, bins=100 )
-        print
-        print histo
-        print 
-        print edges
-        print 
+        print()
+        print(histo)
+        print() 
+        print(edges)
+        print() 
 
         plt.figure()
         plt.hist(weights, bins=100)
@@ -516,7 +516,7 @@ if __name__=='__main__':
     ## Instantiate either ExcInhNetBase or ExcInhNet below
     #net = ExcInhNetBase(N=N)
     net = ExcInhNet(N=N)
-    print net
+    print(net)
     ## Important to distribute the initial Vm-s
     ## else weak coupling gives periodic synchronous firing
     net.simulate(simtime,plotif=True,\
