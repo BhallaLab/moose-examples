@@ -1,3 +1,4 @@
+# __BROKEN__
 # Izhikevich_with_synapse.py --- 
 # 
 # Filename: Izhikevich_with_synapse.py
@@ -56,11 +57,11 @@ def make_neuron(path):
     """Create a neuron with parameters set for tonic_bursting."""
     nrn = moose.IzhikevichNrn(path)
     # "tonic_bursting":   ['C', 0.02  ,    0.2  ,   -50.0,     2.0  ,      15.0,      -70.0,  220.0], # Fig. 1.C
-    print path,dir(nrn)
+    print((path,dir(nrn)))
     nrn.alpha = 0.04
     nrn.beta = 5.0
     nrn.gamma = 140.0
-    nrn.Rm = 1.0
+    #nrn.Rm = 1.0           # FIXME: IzhikevichNrn does not have this field. 
     nrn.a = 0.02
     nrn.b = 0.2
     nrn.c = -50.0
@@ -88,7 +89,7 @@ def make_synapse(path):
     # syn.bufferTime = 1.0 # ms
     syn.synapse.delay = 1.0
     syn.synapse.weight = 1.0    
-    print 'Synapses:', len(syn.synapse), 'w=', syn.synapse[0].weight
+    print(('Synapses:', len(syn.synapse), 'w=', syn.synapse[0].weight))
     spikegen = moose.SpikeGen('%s/spike' % (syn.parent.path))
     spikegen.edgeTriggered = False # Make it fire continuously when input is high
     spikegen.refractT = 10.0 # With this setting it will fire at 1 s / 10 ms = 100 Hz
