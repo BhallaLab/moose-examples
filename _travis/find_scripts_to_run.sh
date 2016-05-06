@@ -43,6 +43,9 @@ function check_file
     then
         coloredPrint "INFO" "Script with main() or __main__"
         echo $filepath >> $TORUN
+    elif grep -q "__BROKEN__" $filepath 
+    then 
+        coloredPrint "INFO" "This script is marked as broken by developer"
     fi
 }
 

@@ -33,13 +33,17 @@ for f in `cat ./TORUN`; do
         elif [ $? -eq 124 ]; then               # timeout
             # If there is timeout then add to BLACKLISTED
             echo "- [ ] $f" >> $BLACKLISTED
-            sed -i 's/^/\t/' $TEMP
+            sed -i 's/^/\ \ /' $TEMP
+            printf "\n\`i\`\`\n" >> $BLACKLISTED 
             cat $TEMP >> $BLACKLISTED 
+            printf "\`\`\`\n" >> $BLACKLISTED 
             echo "|| Took too much time. Blacklisted";
         else                                    # Failed
             echo "- [ ] $f" >> $FAILED
-            sed -i 's/^/\t/' $TEMP
+            sed -i 's/^/\ \ /' $TEMP
+            printf "\n\`\`\`\n" >> $FAILED 
             cat $TEMP >> $FAILED 
+            printf "\`\`\`\n" >> $FAILED 
             echo "|| Failed. Error written to $FAILED"
         fi
     )
@@ -48,8 +52,16 @@ done
 echo "Following scripts were successful"
 cat $SUCCEEDED
 
-echo "Following scripts failed"
-cat $FAILED
+if [ -f $BLACKLISTED ]; 
+    echo "Following scripts were blacklisted due to timeout"
+    cat $BLACKLISTED 
+fi
 
-echo "Following scripts were blacklisted due to timeout"
-cat $BLACKLISTED 
+if [ -f $FAILED ]; then 
+    echo "=========================================="
+    echo "Following scripts failed."
+    cat $FAILED
+    exit 1
+fi
+
+## If less than 84 files passed, raise and error.
