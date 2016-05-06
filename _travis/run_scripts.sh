@@ -17,8 +17,7 @@ if [ ! -f $MATPLOTRC ]; then
     exit
 fi
 
-
-TIMEOUT=2m
+TIMEOUT=5m
 for f in `cat ./TORUN`; do
     d=`dirname $f`
     fn=`basename $f`
@@ -27,11 +26,12 @@ for f in `cat ./TORUN`; do
         cd $d
         echo "++ Executing script $f"
         # Do not run more than 2 minutes. 
-        status=`timeout $TIMEOUT $PYC $fn &> $TEMP`
-        if [ $status -eq 0 ]; then                   # success
+        timeout $TIMEOUT $PYC $fn &> $TEMP
+        status=$?
+        if [ "$status" -eq "0" ]; then                   # success
             echo "|| Success. Written to $SUCCEEDED"
             echo "- [x] $f" >> $SUCCEEDED
-        elif [ $status -eq 124 ]; then               # timeout
+        elif [ "$status" -eq "124" ]; then               # timeout
             # If there is timeout then add to BLACKLISTED
             echo "|| Timed out, limit $TIMEOUT minutes"
             echo "- [ ] $f" >> $BLACKLISTED
@@ -41,7 +41,7 @@ for f in `cat ./TORUN`; do
             printf "\`\`\`\n" >> $BLACKLISTED 
             echo "|| Took too much time. Blacklisted";
         else                                    # Failed
-            echo "|| Failed with status $status"
+            echo "|| Failed with status "$status" "
             echo "- [ ] $f" >> $FAILED
             sed -i 's/^/\ \ /' $TEMP
             printf "\n\`\`\`\n" >> $FAILED 
