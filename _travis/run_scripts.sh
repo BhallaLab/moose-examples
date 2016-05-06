@@ -1,11 +1,14 @@
 #!/usr/bin/env bash
-# Run scripts in ./TORUN file
-set -e
+
 PWD=$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)
 
-if [ ! -f ./TORUN ]; then
-    $PWD/find_scripts_to_run.sh 
-fi
+BLACKLISTED=$PWD/BLACKLISTED
+SUCCEEDED=$PWD/SUCCEEDED
+FAILED=$PWD/FAILED
+TEMP=$PWD/__temp__
+
+rm -f $BLACKLISTED $SUCCEEDED $FAILED $TEMP TORUN
+$PWD/find_scripts_to_run.sh 
 
 PYC=`which python`
 MATPLOTRC=$PWD/matplotlibrc
@@ -14,10 +17,6 @@ if [ ! -f $MATPLOTRC ]; then
     exit
 fi
 
-BLACKLISTED=$PWD/BLACKLISTED
-SUCCEEDED=$PWD/SUCCEEDED
-FAILED=$PWD/FAILED
-TEMP=$PWD/__temp__
 
 for f in `cat ./TORUN`; do
     d=`dirname $f`
