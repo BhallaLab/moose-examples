@@ -30,9 +30,9 @@ PI = 3.14159265359
 useGssa = True
 combineSegments = False
 #### Choose your favourite model here. #################
-elecFileNames = ( "ca1_minimal.p", )
+#elecFileNames = ( "ca1_minimal.p", )
 #elecFileNames = ( "ca1_minimal.p", "h10.CNG.swc" )
-#elecFileNames = ( "CA1.morph.xml", "ca1_minimal.p", "VHC-neuron.CNG.swc", "h10.CNG.swc" )
+elecFileNames = ( "CA1.morph.xml", "ca1_minimal.p", "VHC-neuron.CNG.swc", "h10.CNG.swc" )
 synSpineList = []
 synDendList = []
 probeInterval = 0.1

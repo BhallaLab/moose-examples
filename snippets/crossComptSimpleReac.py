@@ -10,7 +10,7 @@
 
 
 import math
-import pylab
+import matplotlib.pyplot as plt
 import numpy
 import moose
 
@@ -143,9 +143,9 @@ def main():
     # Iterate through all plots, dump their contents to data.plot.
     for x in moose.wildcardFind( '/model/graphs/conc#' ):
         t = numpy.linspace( 0, runtime, x.vector.size ) # sec
-        pylab.plot( t, x.vector, label=x.name )
-    pylab.legend()
-    pylab.show()
+        plt.plot( t, x.vector, label=x.name )
+    plt.legend()
+    plt.show()
     quit()
 
 # Run the 'main' if this script is executed standalone.

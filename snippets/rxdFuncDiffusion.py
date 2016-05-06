@@ -2,6 +2,7 @@ import numpy
 import pylab
 import moose
 import time
+import sys
 
 '''
 This example implements a reaction-diffusion like system which is
@@ -39,12 +40,10 @@ moose.connect( func, 'valueOut', c, 'increment' )
 ksolve = moose.Ksolve( '/cylinder/ksolve' )
 dsolve = moose.Dsolve( '/cylinder/dsolve' )
 stoich = moose.Stoich( '/cylinder/stoich' )
-stoich.compartment = compt
 stoich.ksolve = ksolve
 stoich.dsolve = dsolve
+stoich.compartment = compt
 stoich.path = '/cylinder/##'
-for i in range( 10, 18 ):
-    moose.setClock( i, dt )
 
 #initialize
 x = numpy.arange( 0, compt.x1, compt.diffLength )
@@ -59,9 +58,11 @@ t1 = time.time()
 for t in range( 0, runtime-1, updateDt ):
     moose.start( updateDt )
     plt = pylab.plot( x, c.vec.n, label='t = '+str(t + updateDt) )
-print "Time = ", time.time() - t1
 
+print("Time = %s " % ( time.time() - t1) )
 pylab.ylim( 0, 1.05 )
 pylab.legend()
-pylab.show()
+outfile = '%s.png' % sys.argv[0]
+pylab.savefig( outfile )
+print( '[INFO] Wrote results to %s' % outfile )
 
