@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Run scripts in ./TORUN file
-set -x
+set -e
 PWD=$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)
 
 if [ ! -f ./TORUN ]; then
