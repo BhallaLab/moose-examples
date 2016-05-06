@@ -172,7 +172,13 @@ if __name__ == '__main__':
     for tab in tables:
         data.append(tab.vector)
     data = np.vstack(data)
-    np.savetxt('lifcomp.csv', data.transpose(), delimiter='\t', header=' '.join([tab.name for tab in tables]))
+
+    # Travis fix for Ubuntu-12.04
+    try:
+        np.savetxt('lifcomp.csv', data.transpose(), delimiter='\t', header=' '.join([tab.name for tab in tables]))
+    except TypeError as e:  # old numpy may not have header.
+        np.savetxt('lifcomp.csv', data.transpose(), delimiter='\t' )
+
     #     subplot(len(tables), 1, ii+1)
     #     t = np.linspace(0, simtime, len(tab.vector))*1e3
     #     plot(t, tab.vector*1e3, label=tab.name)

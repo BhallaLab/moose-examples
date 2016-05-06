@@ -12,6 +12,7 @@ install:
     - sudo apt-key add - < Release.key  
     - sudo sh -c "echo 'deb http://download.opensuse.org/repositories/home:/moose/xUbuntu_12.04/ /' >> /etc/apt/sources.list.d/moose.list"
     - sudo apt-get -y update
+    - sudo apt-get install python-h5py
     - sudo apt-get -y install moose
     - sudo apt-get -y install moogli
 

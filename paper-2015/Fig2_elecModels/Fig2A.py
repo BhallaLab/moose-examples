@@ -200,7 +200,8 @@ class ExcInhNetBase:
                 self.noiseTables.vec[i].vector = self.Iinject + \
                     np.random.normal( \
                         scale=self.noiseInjSD*np.sqrt(self.Rm*self.Cm/self.dt), \
-                        size=self.T ) # scale = SD
+                        size=int(self.T)
+                        ) # scale = SD
                 self.noiseTables.vec[i].stepSize = 0    # use current time 
                                                         # as x value for interpolation
                 self.noiseTables.vec[i].stopTime = self.simtime
