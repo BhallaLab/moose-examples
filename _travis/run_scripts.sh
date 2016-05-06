@@ -13,7 +13,9 @@ if [ ! -f $MATPLOTRC ]; then
     echo "$MATPLOTRC not found"
     exit
 fi
+
 BLACKLISTED=$PWD/BLACKLISTED
+
 
 for f in `cat ./TORUN`; do
     d=`dirname $f`
@@ -22,7 +24,10 @@ for f in `cat ./TORUN`; do
         cp $MATPLOTRC $d/
         cd $d
         # Do not run more than a minute. 
-        timeout 1m $PYC $fn || echo "$1" >> $BLACKLISTED
+        echo "===== Executing script $f"
+        timeout 2m $PYC $fn || echo "$1" >> $BLACKLISTED
     )
 done
 
+echo "Following scripts were blacklisted by travis"
+cat $BLACKLISTED 
