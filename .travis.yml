@@ -15,4 +15,4 @@ install:
 script:
     - python -c 'import moose'
     - python -c 'import moogli'
-    - ( cd _travis && ./run_scripts.sh )
+    - cd _travis && ./run_scripts.sh 
