@@ -2,6 +2,9 @@ notifications:
     email:
         recipients:
             - dilawar.s.rajput@gmail.com
+            - upi.bhalla@gmail.com
+            - ray.shubhasis@gmail.com
+            - hrani@ncbs.res.in
 
 
 install:
@@ -15,4 +18,4 @@ install:
 script:
     - python -c 'import moose'
     - python -c 'import moogli'
-    - cd _travis && ./run_scripts.sh 
+    - cd _travis && ./find_scripts_to_run.sh && ./run_scripts.sh 
