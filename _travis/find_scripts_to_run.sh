@@ -31,6 +31,16 @@ PYC=`which python`
 function check_file
 {
     filepath="$1"
+
+    # These files were not tested on travis. Check issue #2
+    if [[ $filepath == *"Fig2A.py" ]]; then
+        echo "$filepath is disabled by developer"
+        return
+    elif [[ $filepath == *"nsdf_vec.py" ]]; then
+        echo "$filepath is disabled by developer"
+        return
+    fi
+
     if grep -q "__BROKEN__" $filepath 
     then 
         coloredPrint "INFO" "This script is marked as broken by developer"

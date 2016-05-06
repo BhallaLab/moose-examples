@@ -520,9 +520,8 @@ if __name__=='__main__':
     print(net)
     ## Important to distribute the initial Vm-s
     ## else weak coupling gives periodic synchronous firing
-    net.simulate(simtime,plotif=True,\
-        v0=np.random.uniform(el-20e-3,vt,size=N))
-
+    net.simulate(simtime,plotif=True, v0=np.random.uniform(el-20e-3,vt,size=N))
+    plt.figure()
     extra_plots(net)
     plt.show()
     
