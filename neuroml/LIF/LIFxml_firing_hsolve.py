@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+## __BROKEN__
 ## all SI units
 ########################################################################################
 ## Plot the membrane potential for a leaky integrate and fire neuron with current injection
@@ -8,11 +8,7 @@
 ########################################################################################
 
 import os
-os.environ['NUMPTHREADS'] = '1'
-import sys
-sys.path.append('../../../python')
 
-## simulation parameters
 SIMDT = 5e-5 # seconds
 PLOTDT = 5e-5 # seconds
 RUNTIME = 2.0 # seconds
@@ -20,6 +16,8 @@ injectI = 2.5e-12 # Amperes
 
 ## moose imports
 import moose
+print( '[DBEUG] Using moose from %s' % moose.__file__ )
+
 from moose.neuroml import *
 from moose.utils import * # has setupTable(), resetSim() etc
 import math
@@ -32,6 +30,7 @@ def create_LIF():
     neuromlR.readNeuroMLFromFile('cells_channels/LIF.morph.xml')
     libcell = moose.Neuron('/library/LIF')
     LIFCellid = moose.copy(libcell,moose.Neutral('/cells'),'IF1')
+    # FIXME: No LeakyIaF is found in MOOSE.
     LIFCell = moose.LeakyIaF(LIFCellid)
     return LIFCell
 
@@ -39,10 +38,10 @@ def run_LIF():
     cells_path = '/cells'
 
     ## reset and run the simulation
-    print "Reinit MOOSE."
+    print("Reinit MOOSE.")
     ## from moose_utils.py sets clocks and resets
     resetSim(['/cells'], SIMDT, PLOTDT, simmethod='hsolve')
-    print "Running now..."
+    print("Running now...")
     moose.start(RUNTIME)
 
 if __name__ == '__main__':
@@ -60,7 +59,7 @@ if __name__ == '__main__':
     moose.connect(spikeGen,'event',IF1spikesTable,'input')
 
     run_LIF()
-    print "Spiketimes :",IF1spikesTable.vector
+    print("Spiketimes :",IF1spikesTable.vector)
     ## plot the membrane potential of the neuron
     timevec = arange(0.0,RUNTIME+PLOTDT/2.0,PLOTDT)
     figure(facecolor='w')

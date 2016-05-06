@@ -1,4 +1,5 @@
-#PARTIAL DEMO
+# __BROKEN__
+# PARTIAL DEMO
 # demo of a simple hopfield network using leaky integrate and fire neurons
 # memory.csv has the memory being saved, the synaptic weights are set at start according to this memory
 # memory must be a square matrix of 0's and 1's only
@@ -23,9 +24,10 @@ vmtable = []
 intable = {}
 
 def updateWeights(old_weights, training_data):
-    training_data = training_data.ravel()
-    new_weights = np.array([x * y for x in training_data 
-                            for y in training_data]).reshape(old_weights.shape)
+    new_weights = np.array(
+            [x * y for x in training_data[:,0] for y in training_data[:,1] ]
+            )
+    new_weights = new_weights.reshape(old_weights.shape)
     old_weights += new_weights
     return old_weights
 
