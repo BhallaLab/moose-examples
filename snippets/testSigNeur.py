@@ -1,3 +1,5 @@
+# __DEPRECATED__ __BROKEN__
+
 # testSigNeur.py --- 
 # Upi Bhalla, NCBS Bangalore 2013.
 #

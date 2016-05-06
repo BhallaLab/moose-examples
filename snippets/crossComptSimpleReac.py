@@ -31,7 +31,7 @@ def makeModel():
                 compt0.y0 += side
                 compt2.x1 += side
                 compt2.x0 += side
-                print 'Volumes = ', compt0.volume, compt1.volume, compt2.volume
+                print('Volumes = ', compt0.volume, compt1.volume, compt2.volume)
 
 		# create molecules and reactions
 		a = moose.Pool( '/model/compt0/a' )
@@ -136,17 +136,18 @@ def main():
     # MOOSE autoschedules everything.
     moose.reinit()
     moose.start( runtime ) # Run the model for 100 seconds.
-    print "All concs should converge to 2.0 even though vols differ:"
+    print("All concs should converge to 2.0 even though vols differ:")
     for x in moose.wildcardFind( '/model/compt#/#[ISA=PoolBase]' ):
-        print x.name, x.conc
+        print(x.name, x.conc)
 
-    # Iterate through all plots, dump their contents to data.plot.
-    for x in moose.wildcardFind( '/model/graphs/conc#' ):
-        t = numpy.linspace( 0, runtime, x.vector.size ) # sec
-        plt.plot( t, x.vector, label=x.name )
-    plt.legend()
-    plt.show()
-    quit()
+    # FIXME: Plotting causes seg-fault.
+    ## Iterate through all plots, dump their contents to data.plot.
+    #for x in moose.wildcardFind( '/model/graphs/conc#' ):
+    #    t = numpy.linspace( 0, runtime, x.vector.size ) # sec
+    #    plt.plot( t, x.vector, label=x.name )
+    #plt.legend()
+    #plt.show()
+    #quit()
 
 # Run the 'main' if this script is executed standalone.
 if __name__ == '__main__':

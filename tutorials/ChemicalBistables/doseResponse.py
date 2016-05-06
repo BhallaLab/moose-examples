@@ -93,7 +93,7 @@ def main():
     for factor in range(factorBegin, factorEnd, factorStepsize ):
         scale = factorExponent ** (factor/factorScale) 
         enz.kcat = init * scale     
-        print factor
+        print(factor)
         for num in range(iterInit):
             stateType, solStatus, vector = getState( ksolve, state, vol)
             if solStatus == 0:
