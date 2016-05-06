@@ -16,6 +16,7 @@ BLACKLISTED=$PWD/BLACKLISTED
 GUI=$PWD/GUISCRIPTS
 INTERACTIVE=$PWD/INTERACTIVE
 TORUN=$PWD/TORUN
+BROKEN=$PWD/BROKEN
 
 for f in $MAINLESS $BLACKLISTED $GUI $INTERACTIVE $TORUN; do
     # Remove already existing files
@@ -30,10 +31,14 @@ PYC=`which python`
 function check_file
 {
     filepath="$1"
-    if grep -q "input(" $filepath
+    if grep -q "__BROKEN__" $filepath 
+    then 
+        coloredPrint "INFO" "This script is marked as broken by developer"
+        echo $filepath >> $BROKEN
+    elif grep -q "input(" $filepath
     then
-        coloredPrint WARN "File contains input() call. Interactive script. WONT
-        RUN"
+        coloredPrint WARN "File contains input() call. Interactive script. \
+            WONT RUN"
         echo $filepath >> $INTERACTIVE
     elif grep -q "QtGui" $filepath
     then
@@ -43,9 +48,6 @@ function check_file
     then
         coloredPrint "INFO" "Script with main() or __main__"
         echo $filepath >> $TORUN
-    elif grep -q "__BROKEN__" $filepath 
-    then 
-        coloredPrint "INFO" "This script is marked as broken by developer"
     fi
 }
 
