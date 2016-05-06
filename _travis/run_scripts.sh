@@ -25,7 +25,7 @@ for f in `cat ./TORUN`; do
         cp $MATPLOTRC $d/
         cd $d
         echo "++ Executing script $f"
-        # Do not run more than 2 minute. 
+        # Do not run more than 2 minutes. 
         timeout 2m $PYC $fn &> $TEMP
         if [ $? -eq 0 ]; then                   # success
             echo "|| Success. Written to $SUCCEEDED"
@@ -52,7 +52,7 @@ done
 echo "Following scripts were successful"
 cat $SUCCEEDED
 
-if [ -f $BLACKLISTED ]; 
+if [ -f $BLACKLISTED ]; then
     echo "Following scripts were blacklisted due to timeout"
     cat $BLACKLISTED 
 fi
