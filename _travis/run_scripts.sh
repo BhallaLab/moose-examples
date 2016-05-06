@@ -31,15 +31,14 @@ for f in `cat ./TORUN`; do
         if [ "$status" -eq "0" ]; then                   # success
             echo "|| Success. Written to $SUCCEEDED"
             echo "- [x] $f" >> $SUCCEEDED
-        elif [ "$status" -eq "124" ]; then               # timeout
+        elif [ "$status" -gt "128" ]; then               # timeout
             # If there is timeout then add to BLACKLISTED
-            echo "|| Timed out, limit $TIMEOUT minutes"
+            echo "|| Killed by signal status: $status" 
             echo "- [ ] $f" >> $BLACKLISTED
             sed -i 's/^/\ \ /' $TEMP
             printf "\n\`i\`\`\n" >> $BLACKLISTED 
             cat $TEMP >> $BLACKLISTED 
             printf "\`\`\`\n" >> $BLACKLISTED 
-            echo "|| Took too much time. Blacklisted";
         else                                    # Failed
             echo "|| Failed with status "$status" "
             echo "- [ ] $f" >> $FAILED
@@ -57,7 +56,7 @@ echo "Following scripts were successful"
 cat $SUCCEEDED
 
 if [ -f $BLACKLISTED ]; then
-    echo "Following scripts were blacklisted due to timeout"
+    echo "Following scripts were blacklisted due to timeout or singal interrupt"
     cat $BLACKLISTED 
 fi
 
