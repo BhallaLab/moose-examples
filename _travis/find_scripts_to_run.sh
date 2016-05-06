@@ -9,7 +9,7 @@ MATPLOTRC=./matplotlibrc
 PWD=$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)
 
 # All scripts are here.
-SRCDIR=$PWD/..
+SRCDIR=./..
 
 MAINLESS=$PWD/MAINLESS
 BLACKLISTED=$PWD/BLACKLISTED
@@ -72,18 +72,3 @@ while read -r dir; do
         find_files $dir
     fi
 done < <(find $SRCDIR -mindepth 1 -maxdepth 1 -type d)
-
-exit
-
-
-# Run those files which are stored in $TORUN script.
-for f in `cat $TORUN`; do
-    basedir=`dirname $f`
-    filename=`basename $f`
-    cp $MATPLOTRC $basedir
-    (
-        coloredPrint INFO "Running file $f"
-        cd $basedir 
-        #$PYC $filename | tee  __run__.log || echo "$f" >> FAILED
-    )
-done

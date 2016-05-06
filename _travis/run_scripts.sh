@@ -15,7 +15,9 @@ if [ ! -f $MATPLOTRC ]; then
 fi
 
 BLACKLISTED=$PWD/BLACKLISTED
-
+SUCCEEDED=$PWD/SUCCEEDED
+FAILED=$PWD/FAILED
+TEMP=$PWD/__temp__
 
 for f in `cat ./TORUN`; do
     d=`dirname $f`
@@ -23,11 +25,32 @@ for f in `cat ./TORUN`; do
     (
         cp $MATPLOTRC $d/
         cd $d
-        # Do not run more than a minute. 
-        echo "===== Executing script $f"
-        timeout 2m $PYC $fn || echo "$1" >> $BLACKLISTED
+        echo "++ Executing script $f"
+        # Do not run more than 2 minute. 
+        timeout 2m $PYC $fn &> $TEMP
+        if [ $? -eq 0 ]; then                   # success
+            echo "|| Success. Written to $SUCCEEDED"
+            echo "- [x] $f" >> $SUCCEEDED
+        elif [ $? -eq 124 ]; then               # timeout
+            # If there is timeout then add to BLACKLISTED
+            echo "- [ ] $f" >> $BLACKLISTED
+            sed -i 's/^/\t/' $TEMP
+            cat $TEMP >> $BLACKLISTED 
+            echo "|| Took too much time. Blacklisted";
+        else                                    # Failed
+            echo "- [ ] $f" >> $FAILED
+            sed -i 's/^/\t/' $TEMP
+            cat $TEMP >> $FAILED 
+            echo "|| Failed. Error written to $FAILED"
+        fi
     )
 done
 
-echo "Following scripts were blacklisted by travis"
+echo "Following scripts were successful"
+cat $SUCCEEDED
+
+echo "Following scripts failed"
+cat $FAILED
+
+echo "Following scripts were blacklisted due to timeout"
 cat $BLACKLISTED 
