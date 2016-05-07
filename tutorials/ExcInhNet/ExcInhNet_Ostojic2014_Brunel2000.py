@@ -157,13 +157,13 @@ class ExcInhNetBase:
             moose.setClock( i, dt )
 
         t1 = time.time()
-        print 'reinit MOOSE'
+        print('reinit MOOSE')
         moose.reinit()
-        print 'reinit time t = ', time.time() - t1
+        print('reinit time t = ', time.time() - t1)
         t1 = time.time()
-        print 'starting'
+        print('starting')
         moose.start(self.simtime)
-        print 'runtime, t = ', time.time() - t1
+        print('runtime, t = ', time.time() - t1)
 
         if plotif:
             self._plot()
@@ -175,7 +175,7 @@ class ExcInhNetBase:
         ## draw numVms out of N neurons
         # not using random.sample() here since Brian version isn't
         #nrnIdxs = random.sample(range(self.N),numVms)
-        nrnIdxs = range(self.N)
+        nrnIdxs = list(range(self.N))
         for i in range( numVms ):
             moose.connect( self.network.vec[nrnIdxs[i]], 'VmOut', \
                 self.plots.vec[i], 'input')
@@ -268,7 +268,7 @@ class ExcInhNet(ExcInhNetBase):
             self.syns.vec[i].numSynapses = self.incC
 
             ## draw excC number of neuron indices out of NmaxExc neurons
-            preIdxs = random.sample(range(self.NmaxExc),self.excC)
+            preIdxs = random.sample(list(range(self.NmaxExc)),self.excC)
             ## connect these presynaptically to i-th post-synaptic neuron
             for synnum,preIdx in enumerate(preIdxs):
                 synij = self.syns.vec[i].synapse[synnum]
@@ -278,7 +278,7 @@ class ExcInhNet(ExcInhNetBase):
                 synij.weight = self.J
 
             ## draw inhC=incC-excC number of neuron indices out of inhibitory neurons
-            preIdxs = random.sample(range(self.NmaxExc,self.N),self.incC-self.excC)
+            preIdxs = random.sample(list(range(self.NmaxExc,self.N)),self.incC-self.excC)
             ## connect these presynaptically to i-th post-synaptic neuron
             for synnum,preIdx in enumerate(preIdxs):
                 synij = self.syns.vec[i].synapse[self.excC+synnum]
@@ -381,7 +381,7 @@ if __name__=='__main__':
     ## Instantiate either ExcInhNetBase or ExcInhNet below
     #net = ExcInhNetBase(N=N)
     net = ExcInhNet(N=N)
-    print net
+    print(net)
     ## Important to distribute the initial Vm-s
     ## else weak coupling gives periodic synchronous firing
     ## not distributing Vm-s randomly to ensure match with Brian data

@@ -37,15 +37,16 @@ def create_LIF():
 
 def run_LIF():
 	## reset and run the simulation
-	print "Reinit MOOSE."
+	print("Reinit MOOSE.")
 	## from moose_utils.py sets clocks and resets
 	resetSim(['/cells[0]'], SIMDT, PLOTDT, simmethod='ee')
-	print "Running now..."
+	print("Running now...")
 	moose.start(RUNTIME)
 
 if __name__ == '__main__':
     IF1 = create_LIF()
-    printCellTree(IF1)
+    # FIXME: Following call does not work anymore.
+    #printCellTree(IF1)
     IF1Soma = moose.element(IF1.path+'/soma_0') # moose.LIF instance
     IF1Soma.inject = injectI
     IF1vmTable = setupTable("vmTableIF1",IF1Soma,'Vm')
@@ -55,11 +56,11 @@ if __name__ == '__main__':
     moose.connect(IF1Soma,'spikeOut',IF1spikesTable,'input') ## spikeGen gives spiketimes
 
     run_LIF()
-    print "Spiketimes :",IF1spikesTable.vector
+    print(("Spiketimes :",IF1spikesTable.vector))
     ## plot the membrane potential of the neuron
     timevec = arange(0.0,RUNTIME+PLOTDT/2.0,PLOTDT)
     ## Something is crazy! Why twice the number of table entries compared to time!!??
     figure(facecolor='w')
-    print IF1vmTable
+    print(IF1vmTable)
     plot(timevec, IF1vmTable.vector)
     show()

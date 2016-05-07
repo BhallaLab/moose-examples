@@ -1,3 +1,4 @@
+# __DEPRECATED__ __BROKEN__
 # x_compt.py --- 
 # Upi Bhalla, NCBS Bangalore 2013.
 #

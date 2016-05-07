@@ -1,9 +1,10 @@
+# __BROKEN__
+#
 # A demo of a simple hopfield network using leaky integrate and fire neurons
-# memory1.csv and memory2.csv have the memory being saved, the synaptic weights are set at start according to this memory
-# memory must be a square matrix of 0's and 1's only
-# input.csv has partial input given as input to the cells.
-# - By C.H.Chaitanya
-# This code is available under GPL3 or greater GNU license 
+# memory1.csv and memory2.csv have the memory being saved, the synaptic weights
+# are set at start according to this memory memory must be a square matrix of
+# 0's and 1's only input.csv has partial input given as input to the cells.  -
+# By C.H.Chaitanya This code is available under GPL3 or greater GNU license 
 
 import moose
 import math

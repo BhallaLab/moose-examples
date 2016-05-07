@@ -8,9 +8,9 @@
 # Maintainer: 
 # Created: Mon Jul  9 18:23:55 2012 (+0530)
 # Version: 
-# Last-Updated: Tue Jun 18 17:55:49 2013 (+0530)
+# Last-Updated: Tue May  3 00:18:47 2016 (-0400)
 #           By: subha
-#     Update #: 1037
+#     Update #: 1078
 # URL: 
 # Keywords: 
 # Compatibility: 
@@ -59,7 +59,7 @@ from PyQt4 import QtGui
 from PyQt4 import QtCore
 import numpy
 from matplotlib.figure import Figure
-from matplotlib.backends.backend_qt4agg import FigureCanvasQTAgg as FigureCanvas, NavigationToolbar2QTAgg as NavigationToolbar
+from matplotlib.backends.backend_qt4agg import FigureCanvasQTAgg as FigureCanvas, NavigationToolbar2QT as NavigationToolbar
 
 import moose
 
@@ -163,6 +163,7 @@ def set_default_line_edit_size(widget):
     widget.setMinimumSize(default_line_edit_size)
     widget.setMaximumSize(default_line_edit_size)
 
+
 class SquidGui(QtGui.QMainWindow):
     defaults = {}
     defaults.update(SquidAxon.defaults)
@@ -212,6 +213,14 @@ class SquidGui(QtGui.QMainWindow):
         self._initActions()
         self._createRunToolBar()
         self._createPlotToolBar()
+
+    def getFloatInput(self, widget, name):
+        try:
+            return float(str(widget.text()))
+        except ValueError:
+            QtGui.QMessageBox.critical(self, 'Invalid input', 'Please enter a valid number for {}'.format(name))
+            raise
+
         
     def _createPlotWidget(self):
         self._plotWidget = QtGui.QWidget()
@@ -336,11 +345,11 @@ class SquidGui(QtGui.QMainWindow):
         self._naOutEdit.setToolTip('<html>%s</html>' % (tooltip_Nernst))
         set_default_line_edit_size(self._naOutEdit)
         self._kInLabel = QtGui.QLabel('[K+]in (mM)', self._channelCtrlBox)
-        self._kInEdit = QtGui.QLabel('%g' % (self.squid_setup.squid_axon.K_in), 
+        self._kInEdit = QtGui.QLineEdit('%g' % (self.squid_setup.squid_axon.K_in), 
                                          self._channelCtrlBox)
         self._kInEdit.setToolTip(tooltip_Nernst)
         self._naInLabel = QtGui.QLabel('[Na+]in (mM)', self._channelCtrlBox)
-        self._naInEdit = QtGui.QLabel('%g' % (self.squid_setup.squid_axon.Na_in), 
+        self._naInEdit = QtGui.QLineEdit('%g' % (self.squid_setup.squid_axon.Na_in), 
                                          self._channelCtrlBox)
         self._naInEdit.setToolTip('<html>%s</html>' % (tooltip_Nernst))
         self._temperatureLabel = QtGui.QLabel('Temperature (C)', self._channelCtrlBox)
@@ -627,31 +636,31 @@ class SquidGui(QtGui.QMainWindow):
         if moose.isRunning():
             print 'Stopping simulation in progress ...'
             moose.stop()
-        self._runtime = float(str(self._runTimeEdit.text()))
+        self._runtime = self.getFloatInput(self._runTimeEdit, self._runTimeLabel.text())
         self._overlayPlots(self._overlayAction.isChecked())
-        self._simdt = float(str(self._simTimeStepEdit.text()))
+        self._simdt = self.getFloatInput(self._simTimeStepEdit, self._simTimeStepLabel.text())
         clampMode = None
         singlePulse = True
         if self._electronicsTab.currentWidget() == self._vClampCtrlBox:
             clampMode = 'vclamp'
-            baseLevel = float(str(self._holdingVEdit.text()))
-            firstDelay = float(str(self._holdingTimeEdit.text()))
-            firstWidth = float(str(self._prePulseTimeEdit.text()))
-            firstLevel = float(str(self._prePulseVEdit.text()))
+            baseLevel = self.getFloatInput(self._holdingVEdit, self._holdingVLabel.text())
+            firstDelay = self.getFloatInput(self._holdingTimeEdit, self._holdingTimeLabel.text())
+            firstWidth = self.getFloatInput(self._prePulseTimeEdit, self._prePulseTimeLabel.text())
+            firstLevel = self.getFloatInput(self._prePulseVEdit, self._prePulseVLabel.text())
             secondDelay = firstWidth
-            secondWidth = float(str(self._clampTimeEdit.text()))
-            secondLevel = float(str(self._clampVEdit.text()))
+            secondWidth = self.getFloatInput(self._clampTimeEdit, self._clampTimeLabel.text())
+            secondLevel = self.getFloatInput(self._clampVEdit, self._clampVLabel.text())
             if not self._autoscaleAction.isChecked():
                 self._im_axes.set_ylim(-10.0, 10.0)
         else:
             clampMode = 'iclamp'
-            baseLevel = float(str(self._baseCurrentEdit.text()))
-            firstDelay = float(str(self._firstDelayEdit.text()))
-            firstWidth = float(str(self._firstPulseWidthEdit.text()))
-            firstLevel = float(str(self._firstPulseEdit.text()))
-            secondDelay = float(str(self._secondDelayEdit.text()))
-            secondLevel = float(str(self._secondPulseEdit.text()))
-            secondWidth = float(str(self._secondPulseWidthEdit.text()))
+            baseLevel = self.getFloatInput(self._baseCurrentEdit, self._baseCurrentLabel.text())
+            firstDelay = self.getFloatInput(self._firstDelayEdit, self._firstDelayLabel.text())
+            firstWidth = self.getFloatInput(self._firstPulseWidthEdit, self._firstPulseWidthLabel.text())
+            firstLevel = self.getFloatInput(self._firstPulseEdit, self._firstPulseLabel.text())
+            secondDelay = self.getFloatInput(self._secondDelayEdit, self._secondDelayLabel.text())
+            secondLevel = self.getFloatInput(self._secondPulseEdit, self._secondPulseLabel.text())
+            secondWidth = self.getFloatInput(self._secondPulseWidthEdit, self._secondPulseWidthLabel.text())
             singlePulse = (self._pulseMode.currentIndex() == 0)
             if not self._autoscaleAction.isChecked():
                 self._im_axes.set_ylim(-0.4, 0.4)
@@ -671,9 +680,11 @@ class SquidGui(QtGui.QMainWindow):
             self.squid_setup.squid_axon.specific_gNa = 0.0
         else:
             self.squid_setup.squid_axon.specific_gNa = SquidAxon.defaults['specific_gNa']
-        self.squid_setup.squid_axon.celsius = float(str(self._temperatureEdit.text()))
-        self.squid_setup.squid_axon.K_out = float(str(self._kOutEdit.text()))
-        self.squid_setup.squid_axon.Na_out = float(str(self._naOutEdit.text()))
+        self.squid_setup.squid_axon.celsius = self.getFloatInput(self._temperatureEdit, self._temperatureLabel.text())
+        self.squid_setup.squid_axon.K_out = self.getFloatInput(self._kOutEdit, self._kOutLabel.text())
+        self.squid_setup.squid_axon.Na_out = self.getFloatInput(self._naOutEdit, self._naOutLabel.text())
+        self.squid_setup.squid_axon.K_in = self.getFloatInput(self._kInEdit, self._kInLabel.text())
+        self.squid_setup.squid_axon.Na_in = self.getFloatInput(self._naInEdit, self._naInLabel.text())
         self.squid_setup.squid_axon.updateEk()
         self.squid_setup.schedule(self._simdt, self._plotdt, clampMode)
         # The following line is for use with Qthread
@@ -775,6 +786,8 @@ class SquidGui(QtGui.QMainWindow):
         self._kConductanceToggle.setChecked(False)
         self._kOutEdit.setText('%g' % (SquidGui.defaults['K_out']))
         self._naOutEdit.setText('%g' % (SquidGui.defaults['Na_out']))
+        self._kInEdit.setText('%g' % (SquidGui.defaults['K_in']))
+        self._naInEdit.setText('%g' % (SquidGui.defaults['Na_in']))
         self._temperatureEdit.setText('%g' % (SquidGui.defaults['temperature'] - CELSIUS_TO_KELVIN))
         self._holdingVEdit.setText('%g' % (SquidGui.defaults['vclamp.holdingV']))
         self._holdingTimeEdit.setText('%g' % (SquidGui.defaults['vclamp.holdingT']))

@@ -3,6 +3,7 @@ import numpy
 import pylab
 import moose
 import time
+import sys
 
 print('[DEBUG] Using moose from %s' % moose.__file__)
 
@@ -42,12 +43,10 @@ moose.connect( func, 'valueOut', c, 'increment' )
 ksolve = moose.Ksolve( '/cylinder/ksolve' )
 dsolve = moose.Dsolve( '/cylinder/dsolve' )
 stoich = moose.Stoich( '/cylinder/stoich' )
-stoich.compartment = compt
 stoich.ksolve = ksolve
 stoich.dsolve = dsolve
+stoich.compartment = compt
 stoich.path = '/cylinder/##'
-for i in range( 10, 18 ):
-    moose.setClock( i, dt )
 
 #initialize
 x = numpy.arange( 0, compt.x1, compt.diffLength )
@@ -64,9 +63,16 @@ for t in range( 0, runtime-1, updateDt ):
     plt = pylab.plot( x, c.vec.n, label='t = '+str(t + updateDt) )
 print("Time = %f " % (time.time() - t1))
 
+print("Time = %s " % ( time.time() - t1) )
 pylab.ylim( 0, 1.05 )
 pylab.legend()
 # pylab.show()
 outfile = '%s.png' % sys.argv[0]
 pylab.savefig( outfile )
 print(( '[INFO] Results are saved to %s' % outfile ))
+=======
+outfile = '%s.png' % sys.argv[0]
+pylab.savefig( outfile )
+print( '[INFO] Wrote results to %s' % outfile )
+
+>>>>>>> 8d9bc1ba01b980e33d6bccebe924fbe0f5d72ea5

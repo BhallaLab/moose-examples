@@ -1,3 +1,4 @@
+# __DEPRECATED__ __BROKEN__
 #########################################################################
 ## This program is part of 'MOOSE', the
 ## Messaging Object Oriented Simulation Environment.
@@ -48,6 +49,7 @@ def makeChemModel( cellId ):
 
 		model = moose.element( '/model' )
 		compartment = moose.NeuroMesh( '/model/compartment' )
+                # FIXME: No attribute cell
                 compartment.cell =  cellId
 		compartment.diffLength = diffLength
                 print "cell NeuroMesh parameters: numSeg and numDiffCompt: ", compartment.numSegments, compartment.numDiffCompts

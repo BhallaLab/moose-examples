@@ -35,10 +35,8 @@
 # Code:
 
 import sys
-sys.path.append('../../python')
 
 import os
-os.environ['NUMPTHREADS'] = '1'
 import math
 
 import moose
@@ -235,7 +233,7 @@ def dumpPlots( fname ):
     if ( os.path.exists( fname ) ):
         os.remove( fname )
     for x in moose.wildcardFind( '/graphs/##[ISA=Table]' ):
-        moose.element( x[0] ).xplot( fname, x[0].name )
+        x.xplot( fname, x.name )
 
 def makeSpinyCompt():
     comptLength = 30e-6
@@ -339,7 +337,7 @@ def createChemModel( neuroCompt, spineCompt, psdCompt ):
 
 # Just for printf debugging
 def printMolVecs( title ):
-    print title
+    print(title)
     """    
     nCa = moose.vec( '/model/chem/neuroMesh/Ca' )
     sCa = moose.vec( '/model/chem/spineMesh/Ca' )
