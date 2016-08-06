@@ -6,9 +6,9 @@
 # Maintainer: 
 # Created: Fri Jul 12 11:53:50 2013 (+0530)
 # Version: 
-# Last-Updated: Sat Jul 11 18:59:17 2015 (+0530)
+# Last-Updated: Sat Aug  6 14:30:41 2016 (-0400)
 #           By: subha
-#     Update #: 730
+#     Update #: 743
 # URL: 
 # Keywords: 
 # Compatibility: 
@@ -48,7 +48,7 @@
 """
 Display channel properties graphically
 """
-
+from __future__ import print_function
 from datetime import datetime
 from PyQt4 import QtCore, QtGui
 from matplotlib import mlab
@@ -59,8 +59,9 @@ from matplotlib import mlab
 from matplotlib.figure import Figure
 from matplotlib import patches
 from pylab import cm
+
 from matplotlib.backends.backend_qt4agg import FigureCanvasQTAgg as FigureCanvas
-from matplotlib.backends.backend_qt4agg import NavigationToolbar2QTAgg as NavigationToolbar
+from matplotlib.backends.backend_qt4agg import NavigationToolbar2QT as NavigationToolbar
 
 import networkx as nx
 import numpy as np
@@ -134,7 +135,7 @@ class HHChanView(QtGui.QWidget):
         v = np.linspace(gate.min, gate.max, len(m))
         self.mhaxes.plot(v, m, label='%s %s' % (gate.path, mlabel))
         self.tauaxes.plot(v, tau, label='%s %s' % (gate.path, taulabel))
-        print 'Plotted', gate.path, 'vmin=', gate.min, 'vmax=', gate.max, 'm[0]=', m[0], 'm[last]=', m[-1], 'tau[0]=', tau[0], 'tau[last]=', tau[-1]
+        print('Plotted', gate.path, 'vmin=', gate.min, 'vmax=', gate.max, 'm[0]=', m[0], 'm[last]=', m[-1], 'tau[0]=', tau[0], 'tau[last]=', tau[-1])
         
     def plotActInact(self):
         """Plot the activation and inactivation variables of the selected channels"""
@@ -153,9 +154,7 @@ class HHChanView(QtGui.QWidget):
         self.mhaxes.set_title('Activation/Inactivation')
         self.tauaxes = self.figure.add_subplot(2, 1, 2)
         self.tauaxes.set_title('Tau')
-        print self.channels
         for item in self.getChannelListWidget().selectedItems():
-            print item.text()
             chan = self.channels[str(item.text())]
             if chan.Xpower > 0:
                 path = '{}/gateX'.format(chan.path)
@@ -193,7 +192,7 @@ class NetworkXWidget(QtGui.QWidget):
         axon, sd = axon_dendrites(g)
         sizes = node_sizes(g) * 50
         if len(sizes) == 0:
-            print 'Empty graph for cell. Make sure proto file has `*asymmetric` on top. I cannot handle symmetric compartmental connections'
+            print('Empty graph for cell. Make sure proto file has `*asymmetric` on top. I cannot handle symmetric compartmental connections')
             return
         weights = np.array([g.edge[e[0]][e[1]]['weight'] for e in g.edges()])
         pos = nx.graphviz_layout(g, prog='twopi')
@@ -275,7 +274,6 @@ class CellView(QtGui.QWidget):
             self.cellListWidget.itemSelectionChanged.connect(self.displaySelected)
             # self.cellListWidget.setSelectionMode( QtGui.QAbstractItemView.ExtendedSelection)
         # root = str(self.rootEdit.text())
-        # print 'root = ', root
         for cell in self.getCells():
             self.cellListWidget.addItem(cell)     
         self.cellListWidget.setCurrentItem(self.cellListWidget.item(0))
@@ -328,7 +326,6 @@ class CellView(QtGui.QWidget):
 
     def displayCellMorphology(self, cellpath):
         cell = moose.element(cellpath)
-        print 'HERE'
         graph = cell_to_graph(cell)
         self.getCellMorphologyWidget().displayGraph(graph)
 
@@ -348,11 +345,8 @@ class CellView(QtGui.QWidget):
                                            [1e9, 0, 0]])
         # moose.le(model_container)
         # moose.le(data_container)
-        print '11111'
-        print model_container.path, data_container.path
         params['modelRoot'] = model_container.path
         params['dataRoot'] = data_container.path
-        print 'here'
         return params
 
     def displaySelected(self):
@@ -369,7 +363,6 @@ class CellView(QtGui.QWidget):
         assert(len(cellnames) == 1)        
         name = cellnames[0]
         params = self.createCell(name)
-        # print 'Here ......'
         # hsolve = moose.HSolve('%s/solver' % (params['cell'].path))
         # hsolve.dt = simdt
         # hsolve.target = params['cell'].path
@@ -419,7 +412,7 @@ class CellView(QtGui.QWidget):
         self.vmAxes.legend()
         self.plotCanvas.draw()
         td = np.mean(tdlist)
-        print 'Simulating %g s took %g s of computer time' % (simtime, td)
+        print('Simulating %g s took %g s of computer time' % (simtime, td))
         # self.plotFigure.tight_layout()
 
     def getPlotWidget(self):
