@@ -6,9 +6,9 @@
 # Maintainer: 
 # Created: Fri Jul 12 11:53:50 2013 (+0530)
 # Version: 
-# Last-Updated: Sat Aug  6 14:30:41 2016 (-0400)
-#           By: subha
-#     Update #: 743
+# Last-Updated: Thu Aug 11 11:59:17 2016 (-0400)
+#           By: Subhasis Ray
+#     Update #: 746
 # URL: 
 # Keywords: 
 # Compatibility: 
@@ -195,9 +195,10 @@ class NetworkXWidget(QtGui.QWidget):
             print('Empty graph for cell. Make sure proto file has `*asymmetric` on top. I cannot handle symmetric compartmental connections')
             return
         weights = np.array([g.edge[e[0]][e[1]]['weight'] for e in g.edges()])
-        #pos = nx.graphviz_layout(g, prog='twopi')
-        from networkx.drawing.nx_agraph import graphviz_layout
-        pos = graphviz_layout(g, prog='twopi')
+        try:
+            pos = nx.graphviz_layout(g, prog='twopi')
+        except (NameError, AttributeError) as e:
+            pos = nx.spectral_layout(g)
         xmin, ymin, xmax, ymax = 1e9, 1e9, -1e9, -1e9
         for p in pos.values():
             if xmin > p[0]:
@@ -211,6 +212,7 @@ class NetworkXWidget(QtGui.QWidget):
         edge_widths = 10.0 * weights / max(weights)
         node_colors = ['k' if x in axon else 'gray' for x in g.nodes()]
         lw = [1 if n.endswith('comp_1') else 0 for n in g.nodes()]
+        print('Edge widths:', edge_widths)
         self.axes.clear()
         self.axes.set_xlim((xmin-10, xmax+10))
         self.axes.set_ylim((ymin-10, ymax+10))

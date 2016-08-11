@@ -6,9 +6,9 @@
 # Maintainer: 
 # Created: Fri Mar  8 11:26:13 2013 (+0530)
 # Version: 
-# Last-Updated: Sat Aug  6 15:47:37 2016 (-0400)
-#           By: subha
-#     Update #: 377
+# Last-Updated: Thu Aug 11 11:29:36 2016 (-0400)
+#           By: Subhasis Ray
+#     Update #: 389
 # URL: 
 # Keywords: 
 # Compatibility: 
@@ -76,8 +76,8 @@ def cell_to_graph(cell, label=False):
         msg = 'distalOut'
     else:
         raise Exception('No neighbors on raxial or distal')
-    es = [(c1.path, c2[0].path, {'weight': 2/ (moose.Compartment(c1).Ra + moose.Compartment(c2).Ra)}) \
-              for c1 in moose.wildcardFind('%s/##[ISA=Compartment]' % (cell.path)) \
+    es = [(c1.path, c2[0].path, {'weight': 2/ (c1.Ra + c2[0].Ra)}) \
+              for c1 in moose.wildcardFind('%s/##[ISA=CompartmentBase]' % (cell.path)) \
               for c2 in moose.Compartment(c1).neighbors[msg]]
     g = nx.Graph()
     g.add_edges_from(es)
@@ -109,7 +109,7 @@ def plot_cell_topology(cell, label=False):
     weights = np.array([g.edge[e[0]][e[1]]['weight'] for e in g.edges()])
     try:
         pos = nx.graphviz_layout(g,prog='twopi',root=cell.path + '/comp_1')
-    except NameError, AttributeError:
+    except (NameError, AttributeError) as e:
         # this is the best networkx can do by itself. Its Furchtman
         # Reingold layout ends up with overlapping edges even for a
         # tree. igraph does much better.
@@ -151,7 +151,6 @@ if __name__ == '__main__':
             print('-p  filename (optional) save outputin a pdf file named "filename".')
             print('-h,--help print this help')
             sys.exit(0)
-    print( 'args', optlist, args)
     figures = []
     if len(celltype) > 0:
         try:
