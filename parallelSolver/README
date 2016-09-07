@@ -1,0 +1,7 @@
+Parallel solvers are implemented for Ksolve, Dsolve and Gsolve.
+
+Instructions to run the solvers in parallel. 
+
+1) Set the environment variable NUM_THREADS to the number of threads with which you want to execute your script. 
+2) The environment variable has to be set (mandatory). 
+3) Run your python script regularly. The framwork will pick up the number of threads set by you and parallelize the solvers using them.
