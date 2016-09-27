@@ -1,4 +1,6 @@
 import moose
+import sys
+
 compt = moose.CubeMesh('/compt')
 compt.volume = 1e-20
 
@@ -20,8 +22,9 @@ func = moose.Function('/compt/a/function')
 # This does not.
 #func = moose.Function('/func')
 
-func.expr = '100*(1 + sin(0.1*t))'
+func.expr = '100*(1 + sin(0.1*t) + cos(x0) )'
 func.mode = 1
+moose.connect( a, 'nOut', func.x[0], 'input' )
 moose.connect(func, 'valueOut', a, 'setN')
 
 reac = moose.Reac('/compt/reac')
@@ -43,6 +46,8 @@ print("Done simulation")
 
 # plots
 import pylab
-pylab.plot(atab.vector)
-pylab.plot(btab.vector)
+pylab.plot(atab.vector, label = 'a')
+pylab.plot(btab.vector, label = 'b' )
+pylab.legend( framealpha=0.4)
+pylab.savefig( '%s.png' % sys.argv[0] )
 pylab.show()
