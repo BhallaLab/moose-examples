@@ -6,7 +6,7 @@
 # Maintainer: 
 # Created: Mon Jan 19 09:16:58 2015 (+0530)
 # Version: 
-# Last-Updated: Thr Dec 24 15:155:38 2012 (+0530)
+# Last-Updated: Mon Nov 7 15:155:38 2012 (+0530)
 #           By: Harsha Rani
 #     Update #: 
 # URL: 
@@ -46,17 +46,19 @@
 # Code:
 
 import moose
+from moose.SBML import *
 def main():
 	"""This example illustrates loading a kinetic model defined in Genesis format
 	into Moose using loadModel function and using writeSBML function
 	one can save the model into SBML format. \n
-	Moose needs to be compiled with libsbml
+	libsbml should be installed 
 """
 	#This command loads the file into the path '/Kholodenko'
 	moose.loadModel('../genesis/Kholodenko.g','/Kholodenko')
 	
 	#Writes model to xml file
-	moose.writeSBML('/Kholodenko','Kholodenko_tosbml.xml')
+	written = mooseWriteSBML('/Kholodenko','../genesis/Kholodenko_tosbml.xml')
+	print written
 
 if __name__ == '__main__':
 	main()
