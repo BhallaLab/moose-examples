@@ -239,7 +239,7 @@ def makeNeuroMeshModel():
     moose.connect( adaptCa, 'outputSrc', chemCa, 'setConc', 'OneToOne' )
     adaptCa.inputOffset = 0.0    # 
     adaptCa.outputOffset = 0.000    # 100 nM offset in chem.
-       adaptCa.scale = 1e-5    # 520 to 0.0052 mM
+    adaptCa.scale = 1e-5    # 520 to 0.0052 mM
     #print adaptCa.outputOffset
     #print adaptCa.scale
 
