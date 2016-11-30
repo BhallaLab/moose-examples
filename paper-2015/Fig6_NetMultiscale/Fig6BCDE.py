@@ -1,4 +1,4 @@
-from __future__ import print_function
+
 
 #/**********************************************************************
 #** This program is part of 'MOOSE', the
@@ -936,4 +936,4 @@ if __name__=='__main__':
     plt.show()
     plt.savefig( fname + '.svg', bbox_inches='tight')
     print( "Hit 'enter' to exit" )
-    input()
+    eval(input())

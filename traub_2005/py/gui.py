@@ -48,7 +48,7 @@
 """
 Display channel properties graphically
 """
-from __future__ import print_function
+
 from datetime import datetime
 from PyQt4 import QtCore, QtGui
 from matplotlib import mlab

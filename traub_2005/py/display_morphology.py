@@ -28,7 +28,7 @@
 # 
 
 # Code:
-from __future__ import print_function
+
 
 """
 Display/save the topology of one or all cells in traub_2005 demo.

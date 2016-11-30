@@ -7,7 +7,7 @@
 ## See the file COPYING.LIB for the full notice.
 #########################################################################
 
-from __future__ import print_function
+
 
 import moose
 import pylab

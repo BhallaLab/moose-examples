@@ -28,7 +28,7 @@
 # 
 
 # Code:
-from __future__ import print_function
+
 import unittest
 from cell_test_util import setup_current_step_model, SingleCellCurrentStepTest
 import testutils

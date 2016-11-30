@@ -58,7 +58,7 @@ def main():
 	
 	#Writes model to xml file
 	written = mooseWriteSBML('/Kholodenko','../genesis/Kholodenko_tosbml.xml')
-	print written
+	print(written)
 
 if __name__ == '__main__':
 	main()
