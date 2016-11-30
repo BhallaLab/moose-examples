@@ -44,6 +44,9 @@
 # 
 
 # Code:
+
+from __future__ import print_function
+
 """Implementation of Rall 1964 model of dendritic branching. All units
 SI."""
 
