@@ -42,6 +42,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import sys
 import pylab
+import moose.SBML
 
 def main():
     """ This example illustrates loading, running of an SBML model defined in XML format.\n
@@ -63,7 +64,7 @@ def main():
         runtime = float(sys.argv[2])
         
     # Loading the sbml file into MOOSE, models are loaded in path/model
-    sbmlId = moose.readSBML(mfile,'sbml')
+    sbmlId = moose.SBML.readSBML.mooseReadSBML(mfile,'sbml')
     
 
     s1 = moose.element('/sbml/model/compartment/S1')

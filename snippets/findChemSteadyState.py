@@ -7,6 +7,8 @@
 ## See the file COPYING.LIB for the full notice.
 #########################################################################
 
+from __future__ import print_function
+
 import math
 import pylab
 import numpy
@@ -187,4 +189,4 @@ def getState( ksolve, state ):
 
 # Run the 'main' if this script is executed standalone.
 if __name__ == '__main__':
-	main()
+    main()
