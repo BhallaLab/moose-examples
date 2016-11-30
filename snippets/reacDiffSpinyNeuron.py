@@ -135,20 +135,20 @@ def makeDisplay():
         plt.xlabel( 'time (seconds)' )
         plt.legend()
 
-	a = moose.vec( '/model/chem/compt0/a' )
-	b = moose.vec( '/model/chem/compt0/b' )
+        a = moose.vec( '/model/chem/compt0/a' )
+        b = moose.vec( '/model/chem/compt0/b' )
         line1, = dend.plot( list(range( len( a ))), a.conc, label='a' )
         line2, = dend.plot( list(range( len( b ))), b.conc, label='b' )
         dend.set_ylim( 0, 0.6 )
 
-	a = moose.vec( '/model/chem/compt1/a' )
-	b = moose.vec( '/model/chem/compt1/b' )
+        a = moose.vec( '/model/chem/compt1/a' )
+        b = moose.vec( '/model/chem/compt1/b' )
         line3, = spine.plot( list(range( len( a ))), a.conc, label='a' )
         line4, = spine.plot( list(range( len( b ))), b.conc, label='b' )
         spine.set_ylim( 0, 0.6 )
 
-	a = moose.vec( '/model/chem/compt2/a' )
-	b = moose.vec( '/model/chem/compt2/b' )
+        a = moose.vec( '/model/chem/compt2/a' )
+        b = moose.vec( '/model/chem/compt2/b' )
         line5, = psd.plot( list(range( len( a ))), a.conc, label='a' )
         line6, = psd.plot( list(range( len( b ))), b.conc, label='b' )
         psd.set_ylim( 0, 0.6 )
@@ -157,18 +157,18 @@ def makeDisplay():
         return ( timeSeries, dend, spine, psd, fig, line1, line2, line3, line4, line5, line6, timeLabel )
 
 def updateDisplay( plotlist ):
-	a = moose.vec( '/model/chem/compt0/a' )
-	b = moose.vec( '/model/chem/compt0/b' )
+        a = moose.vec( '/model/chem/compt0/a' )
+        b = moose.vec( '/model/chem/compt0/b' )
         plotlist[5].set_ydata( a.conc )
         plotlist[6].set_ydata( b.conc )
 
-	a = moose.vec( '/model/chem/compt1/a' )
-	b = moose.vec( '/model/chem/compt1/b' )
+        a = moose.vec( '/model/chem/compt1/a' )
+        b = moose.vec( '/model/chem/compt1/b' )
         plotlist[7].set_ydata( a.conc )
         plotlist[8].set_ydata( b.conc )
 
-	a = moose.vec( '/model/chem/compt2/a' )
-	b = moose.vec( '/model/chem/compt2/b' )
+        a = moose.vec( '/model/chem/compt2/a' )
+        b = moose.vec( '/model/chem/compt2/b' )
         plotlist[9].set_ydata( a.conc )
         plotlist[10].set_ydata( b.conc )
         plotlist[4].canvas.draw()
@@ -294,4 +294,4 @@ def main():
 
 # Run the 'main' if this script is executed standalone.
 if __name__ == '__main__':
-	main()
+        main()

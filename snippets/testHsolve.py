@@ -103,7 +103,7 @@ def create_squid():
     nachan.Xpower = 3
     xGate = moose.HHGate(nachan.path + '/gateX')    
     xGate.setupAlpha(Na_m_params + [VDIVS, VMIN, VMAX])
-	#This is important: one can run without it but the output will diverge.
+        #This is important: one can run without it but the output will diverge.
     xGate.useInterpolation = 1
     nachan.Ypower = 1
     yGate = moose.HHGate(nachan.path + '/gateY')

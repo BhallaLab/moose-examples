@@ -126,8 +126,8 @@ def makeDisplay():
         return ( timeSeries, fig, aline, bline, timeLabel, yp )
 
 def updateDisplay( plotlist ):
-	a = moose.vec( '/model/chem/compt0/a' )
-	b = moose.vec( '/model/chem/compt0/b' )
+        a = moose.vec( '/model/chem/compt0/a' )
+        b = moose.vec( '/model/chem/compt0/b' )
         plotlist[2].set_ydata( a.conc * plotScale + plotlist[5]  )
         plotlist[3].set_ydata( b.conc * plotScale + plotlist[5]  )
         plotlist[1].canvas.draw()
@@ -214,4 +214,4 @@ def main():
 
 # Run the 'main' if this script is executed standalone.
 if __name__ == '__main__':
-	main()
+        main()

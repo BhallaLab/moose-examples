@@ -57,11 +57,11 @@ def makeModel():
     The concentrations of all molecules are displayed in an animation.
     """
     # create container for model
-    r0 = 2e-6	# m
-    r1 = 1e-6	# m
+    r0 = 2e-6        # m
+    r1 = 1e-6        # m
     num = 100
     diffLength = 1e-6 # m
-    len = num * diffLength	# m
+    len = num * diffLength        # m
     diffConst = 10e-12 # m^2/sec
     motorRate = 10e-6 # m/sec
     concA = 1 # millimolar
@@ -191,4 +191,4 @@ def main():
 
 # Run the 'main' if this script is executed standalone.
 if __name__ == '__main__':
-	main()
+        main()

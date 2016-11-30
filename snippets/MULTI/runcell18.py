@@ -6,10 +6,10 @@ import moose
 import proto18
 
 def dumpPlots( fname ):
-	if ( os.path.exists( fname ) ):
-		os.remove( fname )
-	tab.xplot( fname, 'soma.Vm' )
-	catab.xplot( fname, 'soma.Ca' )
+    if ( os.path.exists( fname ) ):
+        os.remove( fname )
+    tab.xplot( fname, 'soma.Vm' )
+    catab.xplot( fname, 'soma.Ca' )
 
 library = moose.Neutral( '/library' )
 moose.setCwe( '/library' )

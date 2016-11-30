@@ -157,18 +157,18 @@ def makeDisplay():
         plt.xlabel( 'time (seconds)' )
         plt.legend()
 
-	Ca = moose.vec( '/model/chem/compt0/Ca' )
-	Ca_input = moose.vec( '/model/chem/compt0/Ca_input' )
+        Ca = moose.vec( '/model/chem/compt0/Ca' )
+        Ca_input = moose.vec( '/model/chem/compt0/Ca_input' )
         line1, = dend.plot( list(range( len( Ca ))), Ca.conc, label='Ca' )
         line2, = dend.plot( list(range( len( Ca_input ))), Ca_input.conc, label='Ca_input' )
         dend.set_ylim( 0, 2 )
 
-	Ca = moose.vec( '/model/chem/compt1/Ca' )
+        Ca = moose.vec( '/model/chem/compt1/Ca' )
         line3, = spine.plot( list(range( len( Ca ))), Ca.conc, label='Ca' )
         spine.set_ylim( 0, 1 )
 
-	Ca = moose.vec( '/model/chem/compt2/Ca' )
-	Ca_input = moose.vec( '/model/chem/compt2/Ca_input' )
+        Ca = moose.vec( '/model/chem/compt2/Ca' )
+        Ca_input = moose.vec( '/model/chem/compt2/Ca_input' )
         line4, = psd.plot( list(range( len( Ca ))), Ca.conc, label='Ca' )
         line5, = psd.plot( list(range( len( Ca_input ))), Ca_input.conc, label='Ca_input' )
         psd.set_ylim( 0, 1 )
@@ -177,16 +177,16 @@ def makeDisplay():
         return ( timeSeries, dend, spine, psd, fig, line1, line2, line3, line4, line5, timeLabel )
 
 def updateDisplay( plotlist ):
-	Ca = moose.vec( '/model/chem/compt0/Ca' )
-	Ca_input = moose.vec( '/model/chem/compt0/Ca_input' )
+        Ca = moose.vec( '/model/chem/compt0/Ca' )
+        Ca_input = moose.vec( '/model/chem/compt0/Ca_input' )
         plotlist[5].set_ydata( Ca.conc )
         plotlist[6].set_ydata( Ca_input.conc )
 
-	Ca = moose.vec( '/model/chem/compt1/Ca' )
+        Ca = moose.vec( '/model/chem/compt1/Ca' )
         plotlist[7].set_ydata( Ca.conc )
 
-	Ca = moose.vec( '/model/chem/compt2/Ca' )
-	Ca_input = moose.vec( '/model/chem/compt2/Ca_input' )
+        Ca = moose.vec( '/model/chem/compt2/Ca' )
+        Ca_input = moose.vec( '/model/chem/compt2/Ca_input' )
         plotlist[8].set_ydata( Ca.conc )
         plotlist[9].set_ydata( Ca_input.conc )
         plotlist[4].canvas.draw()
@@ -279,4 +279,4 @@ def main():
 
 # Run the 'main' if this script is executed standalone.
 if __name__ == '__main__':
-	main()
+        main()
