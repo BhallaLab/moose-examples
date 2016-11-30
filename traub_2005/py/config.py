@@ -121,7 +121,7 @@ if not os.access(data_dir_prefix, os.F_OK):
 data_dir = os.path.join(data_dir_prefix, timestamp.strftime('%Y_%m_%d'))
 if not os.access(data_dir, os.F_OK):
     os.mkdir(data_dir)
-print 'data_dir =', data_dir
+print('data_dir =', data_dir)
 filename_suffix = '_%s_%d' % (timestamp.strftime('%Y%m%d_%H%M%S'), mypid)
 
 def handleError(self, record):

@@ -63,8 +63,8 @@ for currenti in currentvec:
         spikesList = spikesList[where(spikesList>0.0)[0]]
         spikesNow = len(spikesList)
     else: spikesNow = 0.0
-    print "For injected current =",currenti,\
-        "number of spikes in",RUNTIME,"seconds =",spikesNow
+    print("For injected current =",currenti,\
+        "number of spikes in",RUNTIME,"seconds =",spikesNow)
     freqList.append( spikesNow/float(RUNTIME) )
 
 ## plot the F vs I curve of the neuron

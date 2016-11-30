@@ -56,7 +56,7 @@ def read_keyvals(filename):
                 if not tokens:
                     continue
                 if len(tokens) != 2:
-                    print filename, ' - Tokens: ', tokens, len(tokens)
+                    print(filename, ' - Tokens: ', tokens, len(tokens))
                     return None
                 ret[tokens[1]].add(tokens[0])
     except IOError:
@@ -67,7 +67,7 @@ def adjust_chanlib(cdict):
     """Update the revarsal potentials for channels. Set the initial X
     value for AR channel. Set the tau for Ca pool."""
     channel_dict = init_chanlib()
-    for ch in channel_dict.values():
+    for ch in list(channel_dict.values()):
         if isinstance(ch, kchans.KChannel):
             ch.Ek = cdict['EK']
         elif isinstance(ch, nachans.NaChannel):
@@ -105,7 +105,7 @@ def read_prototype(celltype, cdict):
     leveldict = read_keyvals('%s/%s.levels' % (config.modelSettings.protodir, celltype))
     depths = read_keyvals('%s/%s.depths' % (config.modelSettings.protodir, celltype))
     depthdict = {}
-    for level, depthset in depths.items():
+    for level, depthset in list(depths.items()):
         if len(depthset) != 1:
             raise Exception('Depth set must have only one entry.')
         depthdict[level] = depthset.pop()
@@ -127,7 +127,7 @@ def assign_depths(cell, depthdict, leveldict):
     """
     if not depthdict:
         return
-    for level, depth in depthdict.items():
+    for level, depth in list(depthdict.items()):
         z = float(depth)
         complist = leveldict[level]
         for comp_number in complist:
@@ -145,8 +145,7 @@ class CellMeta(type):
         return type.__new__(cls, name, bases, cdict)
 
     
-class CellBase(moose.Neutral):
-    __metaclass__ = CellMeta
+class CellBase(moose.Neutral, metaclass=CellMeta):
     def __init__(self, path):
         if not moose.exists(path):
             path_tokens = path.rpartition('/')
@@ -191,7 +190,7 @@ import uuid
 import moose
 
 def setupClocks(dt):
-    print 'Setting up clocks'
+    print('Setting up clocks')
     for ii in range(10):
         moose.setClock(ii, dt)
 
@@ -234,7 +233,7 @@ def runsim(simtime, steplength=0.01):
     clock = moose.element('/clock')
     while clock.currentTime < simtime:
         moose.start(steplength)
-        print 'Current simulation time:', clock.currentTime
+        print('Current simulation time:', clock.currentTime)
         time.sleep(0.05)
 
 pulsearray = [[.05, 100e-3, 0.9e-9],
@@ -250,7 +249,7 @@ class TestTCR(unittest.TestCase):
     def setUp(self):
         self.testId = uuid.uuid4().int
         params = setupCurrentStepModel(self.testId, 'TCR', pulsearray, simdt)
-        print 'Starting simulation'
+        print('Starting simulation')
         runsim(simtime)
         
     def testDefault(self):

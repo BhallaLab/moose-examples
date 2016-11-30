@@ -113,7 +113,7 @@ def finalizeDisplay( plotlist, cPlotDt ):
     plt.legend()
     plotlist[1].canvas.draw()
     print( "Hit 'enter' to exit" )
-    raw_input()
+    input()
 
 def makeChemModel( compt ):
     """

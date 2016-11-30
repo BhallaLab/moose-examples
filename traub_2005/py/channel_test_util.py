@@ -49,24 +49,24 @@ def run_single_channel(channelname, Gbar, simtime, simdt=testutils.SIMDT, plotdt
     testutils.setup_clocks(simdt, plotdt)
     testutils.assign_clocks(model_container, data_container)
     moose.reinit()
-    print 'Starting simulation', testId, 'for', simtime, 's'
+    print('Starting simulation', testId, 'for', simtime, 's')
     moose.start(simtime)
-    print 'Finished simulation'
+    print('Finished simulation')
     vm_file = 'data/%s_Vm.dat' % (channelname)
     gk_file = 'data/%s_Gk.dat' % (channelname)
     ik_file = 'data/%s_Ik.dat' % (channelname)
-    tseries = np.array(range(len(vm_data.vector))) * simdt
-    print 'Vm:', len(vm_data.vector), 'Gk', len(gk_data.vector), 'Ik', len(ik_data.vector)
+    tseries = np.array(list(range(len(vm_data.vector)))) * simdt
+    print('Vm:', len(vm_data.vector), 'Gk', len(gk_data.vector), 'Ik', len(ik_data.vector))
     data = np.c_[tseries, vm_data.vector]
     np.savetxt(vm_file, data)
-    print 'Saved Vm in', vm_file
-    print len(gk_data.vector), len(vm_data.vector)
+    print('Saved Vm in', vm_file)
+    print(len(gk_data.vector), len(vm_data.vector))
     data = np.c_[tseries, gk_data.vector]
     np.savetxt(gk_file, data)
-    print 'Saved Gk in', gk_file
+    print('Saved Gk in', gk_file)
     data = np.c_[tseries, ik_data.vector]
     np.savetxt(ik_file, data)
-    print 'Saved Gk in', ik_file
+    print('Saved Gk in', ik_file)
     return params
 
 def compare_channel_data(series, channelname, param, simulator, x_range=None, plot=False):
@@ -78,8 +78,8 @@ def compare_channel_data(series, channelname, param, simulator, x_range=None, pl
         raise ValueError('Unrecognised simulator: %s' % (simulator))
     try:
         ref_series = np.loadtxt(ref_file)
-    except IOError, e:
-        print e
+    except IOError as e:
+        print(e)
         return -1.0
     if plot:
         plt.figure()

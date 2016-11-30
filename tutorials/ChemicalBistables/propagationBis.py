@@ -100,7 +100,7 @@ def makeModel():
 		stoich.ksolve = ksolve
 		stoich.dsolve = dsolve
 		stoich.path = "/model/kinetics/##"
-                print 'dsolve.numPools, num = ', dsolve.numPools, num
+                print('dsolve.numPools, num = ', dsolve.numPools, num)
                 b.vec[num-1].concInit *= 1.01 # Break symmetry.
 
 def main():
@@ -143,7 +143,7 @@ def main():
                     timeLabel.set_text( "time = %d" % t )
                     fig.canvas.draw()
 
-                print 'Swapping concs of b and c in half the cylinder'
+                print('Swapping concs of b and c in half the cylinder')
                 for i in range( b.numData/2 ):
                     temp = b.vec[i].conc
                     b.vec[i].conc = c.vec[i].conc
@@ -159,7 +159,7 @@ def main():
                     fig.canvas.draw()
 
                 print( "Hit 'enter' to exit" )
-                raw_input()
+                input()
 
 
 

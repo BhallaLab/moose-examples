@@ -74,7 +74,7 @@ def makeNeuroMeshModel():
 	# Put in dend solvers
 	ns = neuroCompt.numSegments
 	ndc = neuroCompt.numDiffCompts
-        print 'ns = ', ns, ', ndc = ', ndc
+        print('ns = ', ns, ', ndc = ', ndc)
         assert( neuroCompt.numDiffCompts == neuroCompt.mesh.num )
 	assert( ns == 1 ) # dend, 5x (shaft+head)
 	assert( ndc == 1 )
@@ -85,7 +85,7 @@ def makeNeuroMeshModel():
         nmstoich.ksolve = nmksolve
         nmstoich.dsolve = nmdsolve
         nmstoich.path = "/model/chem/dend/##"
-        print 'done setting path, numPools = ', nmdsolve.numPools
+        print('done setting path, numPools = ', nmdsolve.numPools)
         assert( nmdsolve.numPools == 1 )
         assert( nmdsolve.numAllVoxels == 1 )
         assert( nmstoich.numAllPools == 1 )
@@ -96,7 +96,7 @@ def makeNeuroMeshModel():
         # Put in spine solvers. Note that these get info from the neuroCompt
         spineCompt = moose.element( '/model/chem/spine' )
 	sdc = spineCompt.mesh.num
-        print 'sdc = ', sdc
+        print('sdc = ', sdc)
 	assert( sdc == 1 )
 	smksolve = moose.Ksolve( '/model/chem/spine/ksolve' )
 	smdsolve = moose.Dsolve( '/model/chem/spine/dsolve' )
@@ -124,8 +124,8 @@ def makeNeuroMeshModel():
         assert( pmdsolve.numPools == 3 )
         assert( pmdsolve.numAllVoxels == 1 )
         foo = moose.element( '/model/chem/psd/Ca' )
-        print 'PSD: numfoo = ', foo.numData
-        print 'PSD: numAllVoxels = ', pmksolve.numAllVoxels
+        print('PSD: numfoo = ', foo.numData)
+        print('PSD: numAllVoxels = ', pmksolve.numAllVoxels)
 
 	"""
 	CaNpsd = moose.vec( '/model/chem/psdMesh/PSD/PP1_PSD/CaN' )
@@ -139,7 +139,7 @@ def makeNeuroMeshModel():
 
 	adaptCa = moose.vec( '/model/chem/psd/adaptCa' )
 	chemCa = moose.vec( '/model/chem/psd/Ca' )
-	print 'aCa = ', aCa, ' foo = ', foo, "len( ChemCa ) = ", len( chemCa ), ", numData = ", chemCa.numData
+	print('aCa = ', aCa, ' foo = ', foo, "len( ChemCa ) = ", len( chemCa ), ", numData = ", chemCa.numData)
 	assert( len( adaptCa ) == pdc )
 	assert( len( chemCa ) == pdc )
 	path = '/model/elec/spine_head'
@@ -159,14 +159,14 @@ def addPlot( objpath, field, plot ):
 		tab = moose.Table( '/graphs/' + plot )
 		obj = moose.element( objpath )
 		if obj.className == 'Neutral':
-			print "addPlot failed: object is a Neutral: ", objpath
+			print("addPlot failed: object is a Neutral: ", objpath)
 			return moose.element( '/' )
 		else:
 			#print "object was found: ", objpath, obj.className
 			moose.connect( tab, 'requestOut', obj, field )
 			return tab
 	else:
-		print "addPlot failed: object not found: ", objpath
+		print("addPlot failed: object not found: ", objpath)
 		return moose.element( '/' )
 
 def makeElecPlots():
@@ -191,9 +191,9 @@ def testNeuroMeshMultiscale():
 	plotName = 'nm.plot'
 
 	makeNeuroMeshModel()
-	print "after model is completely done"
+	print("after model is completely done")
 	for i in moose.wildcardFind( '/model/chem/#/#/#/transloc#' ):
-		print i[0].name, i[0].Kf, i[0].Kb, i[0].kf, i[0].kb
+		print(i[0].name, i[0].Kf, i[0].Kb, i[0].kf, i[0].kb)
 
 	"""
 	for i in moose.wildcardFind( '/model/chem/##[ISA=PoolBase]' ):
@@ -287,7 +287,7 @@ def testNeuroMeshMultiscale():
         plt.legend()
 
         fig.canvas.draw()
-        raw_input()
+        input()
                 
         '''
         for x in moose.wildcardFind( '/graphs/##[ISA=Table]' ):
@@ -297,7 +297,7 @@ def testNeuroMeshMultiscale():
         pylab.show()
         '''
 
-	print 'All done'
+	print('All done')
 
 
 def main():

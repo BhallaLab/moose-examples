@@ -136,7 +136,7 @@ def main():
                 ctot = sum( c.vec.conc )
                 dtot = sum( d.vec.conc )
 
-                print 'tot = ', atot, btot, ctot, dtot, ' (b+c)=', btot+ctot
+                print('tot = ', atot, btot, ctot, dtot, ' (b+c)=', btot+ctot)
                 displayPlots()
 		moose.start( runtime ) # Run the model
                 atot = sum( a.vec.conc )
@@ -144,7 +144,7 @@ def main():
                 ctot = sum( c.vec.conc )
                 dtot = sum( d.vec.conc )
 
-                print 'tot = ', atot, btot, ctot, dtot, ' (b+c)=', btot+ctot
+                print('tot = ', atot, btot, ctot, dtot, ' (b+c)=', btot+ctot)
 
 		quit()
 

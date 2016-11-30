@@ -52,9 +52,9 @@ def makeChemModel( cellId ):
                 # FIXME: No attribute cell
                 compartment.cell =  cellId
 		compartment.diffLength = diffLength
-                print "cell NeuroMesh parameters: numSeg and numDiffCompt: ", compartment.numSegments, compartment.numDiffCompts
+                print("cell NeuroMesh parameters: numSeg and numDiffCompt: ", compartment.numSegments, compartment.numDiffCompts)
 		
-                print "compartment.numDiffCompts == num: ", compartment.numDiffCompts, num
+                print("compartment.numDiffCompts == num: ", compartment.numDiffCompts, num)
 		assert( compartment.numDiffCompts == num )
 
 		# create molecules and reactions
@@ -119,12 +119,12 @@ def makeChemModel( cellId ):
 def displayPlots( num ):
 		a = moose.element( '/model/compartment/a' )
 		b = moose.element( '/model/compartment/b' )
-                print '/newplot\n/plotname a' + str(num)
+                print('/newplot\n/plotname a' + str(num))
                 for x in a.vec.conc:
-                    print x
-                print '/newplot\n/plotname b' + str(num)
+                    print(x)
+                print('/newplot\n/plotname b' + str(num))
                 for y in b.vec.conc:
-                    print y
+                    print(y)
                 """
                 print '/newplot\n/plotname bvol'
                 for z in a.vec.volume:
@@ -160,13 +160,13 @@ def main():
 		moose.useClock( 4, '/model/compartment/dsolve', 'process' )
                 # Ksolve must be scheduled after dsolve.
 		moose.useClock( 5, '/model/compartment/ksolve', 'process' )
-                print "finished loading"
+                print("finished loading")
 		moose.reinit()
                 for i in range( 10 ):
 		    moose.start( runtime / 10 ) # Run the model for 10 seconds.
                     # print 'done', i
                     displayPlots( i )
-                print "finished running"
+                print("finished running")
 
                 """
 		a = moose.element( '/model/compartment/a' )

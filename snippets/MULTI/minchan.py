@@ -87,7 +87,7 @@ def makeNeuroMeshModel():
 	# Put in dend solvers
 	ns = neuroCompt.numSegments
 	ndc = neuroCompt.numDiffCompts
-        print 'ns = ', ns, ', ndc = ', ndc
+        print('ns = ', ns, ', ndc = ', ndc)
         assert( neuroCompt.numDiffCompts == neuroCompt.mesh.num )
 	assert( ns == 1 ) # soma/dend only
 	assert( ndc == 2 ) # split into 2.
@@ -98,7 +98,7 @@ def makeNeuroMeshModel():
         nmstoich.ksolve = nmksolve
         nmstoich.dsolve = nmdsolve
         nmstoich.path = "/model/chem/dend/##"
-        print 'done setting path, numPools = ', nmdsolve.numPools
+        print('done setting path, numPools = ', nmdsolve.numPools)
         assert( nmdsolve.numPools == 1 )
         assert( nmdsolve.numAllVoxels == 2 )
         assert( nmstoich.numAllPools == 1 )
@@ -109,7 +109,7 @@ def makeNeuroMeshModel():
         # Put in spine solvers. Note that these get info from the neuroCompt
         spineCompt = moose.element( '/model/chem/spine' )
 	sdc = spineCompt.mesh.num
-        print 'sdc = ', sdc
+        print('sdc = ', sdc)
 	assert( sdc == 1 )
 	smksolve = moose.Ksolve( '/model/chem/spine/ksolve' )
 	smdsolve = moose.Dsolve( '/model/chem/spine/dsolve' )
@@ -137,8 +137,8 @@ def makeNeuroMeshModel():
         assert( pmdsolve.numPools == 3 )
         assert( pmdsolve.numAllVoxels == 1 )
         foo = moose.element( '/model/chem/psd/Ca' )
-        print 'PSD: numfoo = ', foo.numData
-        print 'PSD: numAllVoxels = ', pmksolve.numAllVoxels
+        print('PSD: numfoo = ', foo.numData)
+        print('PSD: numAllVoxels = ', pmksolve.numAllVoxels)
 
         # Put in junctions between the diffusion solvers
         nmdsolve.buildNeuroMeshJunctions( smdsolve, pmdsolve )
@@ -154,15 +154,15 @@ def makeNeuroMeshModel():
 	aCa = moose.Adaptor( '/model/chem/dend/DEND/adaptCa', ndc )
 	adaptCa = moose.vec( '/model/chem/dend/DEND/adaptCa' )
 	chemCa = moose.vec( '/model/chem/dend/DEND/Ca' )
-	print 'aCa = ', aCa, ' foo = ', foo, "len( ChemCa ) = ", len( chemCa ), ", numData = ", chemCa.numData, "len( adaptCa ) = ", len( adaptCa )
+	print('aCa = ', aCa, ' foo = ', foo, "len( ChemCa ) = ", len( chemCa ), ", numData = ", chemCa.numData, "len( adaptCa ) = ", len( adaptCa ))
 	assert( len( adaptCa ) == ndc )
 	assert( len( chemCa ) == ndc )
 	path = '/model/elec/soma/Ca_conc'
 	elecCa = moose.element( path )
-        print "=========="
-        print elecCa
-        print adaptCa
-        print chemCa
+        print("==========")
+        print(elecCa)
+        print(adaptCa)
+        print(chemCa)
 	moose.connect( elecCa, 'concOut', adaptCa[0], 'input', 'Single' )
 	moose.connect( adaptCa, 'output', chemCa, 'setConc', 'OneToOne' )
 	adaptCa.inputOffset = 0.0	# 
@@ -178,14 +178,14 @@ def addPlot( objpath, field, plot ):
 		tab = moose.Table( '/graphs/' + plot )
 		obj = moose.element( objpath )
 		if obj.className == 'Neutral':
-			print "addPlot failed: object is a Neutral: ", objpath
+			print("addPlot failed: object is a Neutral: ", objpath)
 			return moose.element( '/' )
 		else:
 			#print "object was found: ", objpath, obj.className
 			moose.connect( tab, 'requestOut', obj, field )
 			return tab
 	else:
-		print "addPlot failed: object not found: ", objpath
+		print("addPlot failed: object not found: ", objpath)
 		return moose.element( '/' )
 
 def makeElecPlots():
@@ -212,9 +212,9 @@ def testNeuroMeshMultiscale():
 	plotName = 'nm.plot'
 
 	makeNeuroMeshModel()
-	print "after model is completely done"
+	print("after model is completely done")
 	for i in moose.wildcardFind( '/model/chem/#/#/#/transloc#' ):
-		print i[0].name, i[0].Kf, i[0].Kb, i[0].kf, i[0].kb
+		print(i[0].name, i[0].Kf, i[0].Kb, i[0].kf, i[0].kb)
 
 	"""
 	for i in moose.wildcardFind( '/model/chem/##[ISA=PoolBase]' ):
@@ -309,7 +309,7 @@ def testNeuroMeshMultiscale():
         plt.legend()
 
         fig.canvas.draw()
-        raw_input()
+        input()
                 
         '''
         for x in moose.wildcardFind( '/graphs/##[ISA=Table]' ):
@@ -320,7 +320,7 @@ def testNeuroMeshMultiscale():
         '''
 
         pylab.show()
-	print 'All done'
+	print('All done')
 
 
 def main():

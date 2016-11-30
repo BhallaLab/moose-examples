@@ -227,7 +227,7 @@ def display_plots( name ):
     pylab.figure()
     for x in moose.wildcardFind( '/graphs/#' ):
         pos = numpy.arange( 0, x.vector.size ) * x.dt
-        print len( pos ), len( x.vector )
+        print(len( pos ), len( x.vector ))
         pylab.plot( pos, x.vector, label=x.name )
     pylab.legend()
     pylab.title( name )

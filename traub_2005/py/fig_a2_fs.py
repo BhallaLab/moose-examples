@@ -105,7 +105,7 @@ def main():
                np.vstack((t, inject, vm)).transpose())
     msg = 'Saved data for %g A current pulse in %s' % (amp, fname)
     config.logger.info(msg)
-    print msg
+    print(msg)
     pylab.title('%g nA' % (amp*1e9))
     pylab.plot(t, vm, label='soma-Vm (mV)')
     stim_boundary = np.flatnonzero(np.diff(inject))
