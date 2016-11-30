@@ -52,9 +52,9 @@ def makeChemModel( cellId ):
                 # FIXME: No attribute cell
                 compartment.cell =  cellId
 		compartment.diffLength = diffLength
-                print("cell NeuroMesh parameters: numSeg and numDiffCompt: ", compartment.numSegments, compartment.numDiffCompts)
+                print(("cell NeuroMesh parameters: numSeg and numDiffCompt: ", compartment.numSegments, compartment.numDiffCompts))
 		
-                print("compartment.numDiffCompts == num: ", compartment.numDiffCompts, num)
+                print(("compartment.numDiffCompts == num: ", compartment.numDiffCompts, num))
 		assert( compartment.numDiffCompts == num )
 
 		# create molecules and reactions
@@ -119,10 +119,10 @@ def makeChemModel( cellId ):
 def displayPlots( num ):
 		a = moose.element( '/model/compartment/a' )
 		b = moose.element( '/model/compartment/b' )
-                print('/newplot\n/plotname a' + str(num))
+                print(('/newplot\n/plotname a' + str(num)))
                 for x in a.vec.conc:
                     print(x)
-                print('/newplot\n/plotname b' + str(num))
+                print(('/newplot\n/plotname b' + str(num)))
                 for y in b.vec.conc:
                     print(y)
                 """

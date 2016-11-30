@@ -90,7 +90,7 @@ def read_keyvals(filename):
                 if not tokens:
                     continue
                 if len(tokens) != 2:
-                    print(filename, ' - Tokens: ', tokens, len(tokens))
+                    print((filename, ' - Tokens: ', tokens, len(tokens)))
                     return None
                 ret[tokens[1]].add(tokens[0])
     except IOError:

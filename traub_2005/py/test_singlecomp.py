@@ -118,7 +118,7 @@ def insert_ca(compartment, phi, tau):
     ca = moose.copy(CaPool.prototype, compartment)[0]
     ca.B = phi / (np.pi * compartment.length * compartment.diameter)
     ca.tau = tau
-    print(ca.path, ca.B, ca.tau)
+    print((ca.path, ca.B, ca.tau))
     for chan in moose.wildcardFind('%s/#[TYPE=HHChannel]' % (compartment.path)):
         if chan.name.startswith('KC') or chan.name.startswith('KAHP'):
             moose.connect(ca, 'concOut', chan, 'concen')
@@ -178,7 +178,7 @@ class TestSingleComp(unittest.TestCase):
         moose.start(simtime)
         end = datetime.now()
         delta = end - start
-        print('Simulation of %g s finished in %g s' % (simtime, delta.seconds + delta.microseconds*1e-6))
+        print(('Simulation of %g s finished in %g s' % (simtime, delta.seconds + delta.microseconds*1e-6)))
 
 
     def testDefault(self):

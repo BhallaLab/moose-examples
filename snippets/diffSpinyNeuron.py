@@ -102,12 +102,12 @@ def makeModel():
     stoich2.filterXreacs()
     
     Ca_input_dend = moose.vec( '/model/chem/compt0/Ca_input' )
-    print(len( Ca_input_dend ))
+    print((len( Ca_input_dend )))
     for i in range( 60 ):
         Ca_input_dend[ 3 + i * 3 ].conc = 2.0
 
     Ca_input_PSD = moose.vec( '/model/chem/compt2/Ca_input' )
-    print(len( Ca_input_PSD ))
+    print((len( Ca_input_PSD )))
     for i in range( 5 ):
         Ca_input_PSD[ 2 + i * 2].conc = 1.0
     
@@ -198,7 +198,7 @@ def finalizeDisplay( plotlist, cPlotDt ):
         line1, = plotlist[0].plot( pos, x.vector, label=x.name )
     plotlist[4].canvas.draw()
     print( "Hit 'enter' to exit" )
-    input()
+    eval(input())
 
 def makeChemModel( compt, doInput ):
     """

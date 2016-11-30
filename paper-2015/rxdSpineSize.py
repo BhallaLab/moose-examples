@@ -54,7 +54,7 @@ def makeChemProto( name ):
     chem = moose.Neutral( '/library/' + name )
     comptVol = diffLen * dendDia * dendDia * PI / 4.0
     for i in ( ['dend', comptVol], ['spine', 1e-19], ['psd', 1e-20] ):
-        print('making ', i)
+        print(('making ', i))
         compt = moose.CubeMesh( chem.path + '/' + i[0] )
         compt.volume = i[1]
         #x = moose.Pool( compt.path + '/x' )
@@ -72,7 +72,7 @@ def makeChemProto( name ):
     x.diffConst = diffConst
     func = moose.Function( x.path + '/func' )
     func.expr = "-x0 * (0.3 - " + nstr + " * x0) * ( 1 - " + nstr + " * x0)"
-    print(func.expr)
+    print((func.expr))
     func.x.num = 1
     moose.connect( x, 'nOut', func.x[0], 'input' )
     moose.connect( func, 'valueOut', x, 'increment' )

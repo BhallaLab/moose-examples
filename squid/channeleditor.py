@@ -59,17 +59,17 @@ class GateEditor(QtGui.QWidget):
         self.maxVEdit = QtGui.QLineEdit(self)
         self.divsVEdit = QtGui.QLineEdit(self)
         self.equation = '(A + B * V) / (C + exp((V + D)/F))'
-        self.alphaText = 'Equation for forward rate  \u03B1 '
-        self.betaText = 'Equation for backward rate \u03B2 '
-        self.minfText = 'Equation for m\u221E '
-        self.taumText = 'Equation for \u03C4m '
+        self.alphaText = 'Equation for forward rate  \\u03B1 '
+        self.betaText = 'Equation for backward rate \\u03B2 '
+        self.minfText = 'Equation for m\\u221E '
+        self.taumText = 'Equation for \\u03C4m '
         self.alphaLabel = QtGui.QLabel(self.minfText, self)
         self.betaLabel = QtGui.QLabel(self.taumText, self)
         self.alphaEdit = QtGui.QLineEdit(self)
         self.betaEdit =  QtGui.QLineEdit(self)
         self.formCombo = QtGui.QComboBox(self)
-        self.formCombo.addItem('m\u221E - \u03C4m')
-        self.formCombo.addItem('\u03B1 - \u03B2')
+        self.formCombo.addItem('m\\u221E - \\u03C4m')
+        self.formCombo.addItem('\\u03B1 - \\u03B2')
         self.okButton = QtGui.QPushButton('OK', self)
         layout = QtGui.QGridLayout(self.inputPanel)
         layout.addWidget(self.minVLabel, 0, 0)
@@ -128,7 +128,7 @@ class GateEditor(QtGui.QWidget):
         print(code)
         tree = compile(code, '<string>', 'exec')
         exec(tree)
-        print(a, b)
+        print((a, b))
         return {'min': vmin,
                 'max': vmax,
                 'divs': vdivs,

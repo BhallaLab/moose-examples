@@ -892,7 +892,7 @@ if __name__ == '__main__':
     QtGui.qApp = app
     squid_gui = SquidGui()
     squid_gui.show()
-    print(squid_gui.size())
+    print((squid_gui.size()))
     sys.exit(app.exec_())
 
 # 

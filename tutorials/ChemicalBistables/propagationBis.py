@@ -100,7 +100,7 @@ def makeModel():
 		stoich.ksolve = ksolve
 		stoich.dsolve = dsolve
 		stoich.path = "/model/kinetics/##"
-                print('dsolve.numPools, num = ', dsolve.numPools, num)
+                print(('dsolve.numPools, num = ', dsolve.numPools, num))
                 b.vec[num-1].concInit *= 1.01 # Break symmetry.
 
 def main():
@@ -159,7 +159,7 @@ def main():
                     fig.canvas.draw()
 
                 print( "Hit 'enter' to exit" )
-                input()
+                eval(input())
 
 
 

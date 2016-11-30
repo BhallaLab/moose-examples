@@ -220,7 +220,7 @@ for deltat in arange(t_extent,0.0,-ddt):
         moose.start(t_between_pairs)  # weight changes after pre-spike+delayD
                                       # must run for at least delayD after pre-spike
     dw = ( syn.synapse[0].weight - weight ) / weight
-    print('post before pre, dt = %1.3f s, dw/w = %1.3f'%(-deltat,dw))
+    print(('post before pre, dt = %1.3f s, dw/w = %1.3f'%(-deltat,dw)))
     dwlist_neg.append(dw)
 print('-----------------------------------------------')
 # positive dt corresponds to pre before post
@@ -235,11 +235,11 @@ for deltat in arange(ddt,t_extent+ddt,ddt):
         make_neuron_spike(1)
         moose.start(t_between_pairs)
     dw = ( syn.synapse[0].weight - weight ) / weight
-    print('pre before post, dt = %1.3f s, dw/w = %1.3f'%(deltat,dw))
+    print(('pre before post, dt = %1.3f s, dw/w = %1.3f'%(deltat,dw)))
     dwlist_pos.append(dw)
 print('-----------------------------------------------')
-print('Each of the above pre-post pairs was repeated',\
-        numpairs,'times, with',t_between_pairs,'s between pairs.')
+print(('Each of the above pre-post pairs was repeated',\
+        numpairs,'times, with',t_between_pairs,'s between pairs.'))
 print() 
 print('Due to event based updates, Ca decays suddenly at events:')
 print('pre-spike, pre-spike + delayD, and post-spike;')

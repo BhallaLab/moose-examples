@@ -95,7 +95,7 @@ def makeNeuroMeshModel():
 	# Put in dend solvers
 	ns = neuroCompt.numSegments
 	ndc = neuroCompt.numDiffCompts
-        print('ns = ', ns, ', ndc = ', ndc)
+        print(('ns = ', ns, ', ndc = ', ndc))
         assert( neuroCompt.numDiffCompts == neuroCompt.mesh.num )
 	assert( ns == 36 ) # 
 	assert( ndc == 278 ) # 
@@ -106,7 +106,7 @@ def makeNeuroMeshModel():
         nmstoich.ksolve = nmksolve
         nmstoich.dsolve = nmdsolve
         nmstoich.path = "/model/chem/dend/##"
-        print('done setting path, numPools = ', nmdsolve.numPools)
+        print(('done setting path, numPools = ', nmdsolve.numPools))
         assert( nmdsolve.numPools == 1 )
         assert( nmdsolve.numAllVoxels == ndc )
         assert( nmstoich.numAllPools == 1 )
@@ -117,7 +117,7 @@ def makeNeuroMeshModel():
         # Put in spine solvers. Note that these get info from the neuroCompt
         spineCompt = moose.element( '/model/chem/spine' )
 	sdc = spineCompt.mesh.num
-        print('sdc = ', sdc)
+        print(('sdc = ', sdc))
 	assert( sdc == 13 )
 	smksolve = moose.Ksolve( '/model/chem/spine/ksolve' )
 	smdsolve = moose.Dsolve( '/model/chem/spine/dsolve' )
@@ -126,7 +126,7 @@ def makeNeuroMeshModel():
         smstoich.ksolve = smksolve
         smstoich.dsolve = smdsolve
         smstoich.path = "/model/chem/spine/##"
-        print('spine num Pools = ', smstoich.numAllPools, 'dsolve n = ', smdsolve.numPools)
+        print(('spine num Pools = ', smstoich.numAllPools, 'dsolve n = ', smdsolve.numPools))
         assert( smstoich.numAllPools == 36 )
         assert( smdsolve.numPools == 31 )
         assert( smdsolve.numAllVoxels == sdc )
@@ -142,13 +142,13 @@ def makeNeuroMeshModel():
         pmstoich.ksolve = pmksolve
         pmstoich.dsolve = pmdsolve
         pmstoich.path = "/model/chem/psd/##"
-        print('psd num Pools = ', pmstoich.numAllPools)
+        print(('psd num Pools = ', pmstoich.numAllPools))
         assert( pmstoich.numAllPools == 56 )
         assert( pmdsolve.numPools == 49 )
         assert( pmdsolve.numAllVoxels == pdc )
         foo = moose.element( '/model/chem/psd/Ca' )
-        print('PSD: numfoo = ', foo.numData)
-        print('PSD: numAllVoxels = ', pmksolve.numAllVoxels)
+        print(('PSD: numfoo = ', foo.numData))
+        print(('PSD: numAllVoxels = ', pmksolve.numAllVoxels))
 
         # Put in junctions between the diffusion solvers
         nmdsolve.buildNeuroMeshJunctions( smdsolve, pmdsolve )
@@ -213,14 +213,14 @@ def addPlot( objpath, field, plot ):
 		tab = moose.Table( '/graphs/' + plot )
 		obj = moose.element( objpath )
 		if obj.className == 'Neutral':
-			print("addPlot failed: object is a Neutral: ", objpath)
+			print(("addPlot failed: object is a Neutral: ", objpath))
 			return moose.element( '/' )
 		else:
 			#print "object was found: ", objpath, obj.className
 			moose.connect( tab, 'requestOut', obj, field )
 			return tab
 	else:
-		print("addPlot failed: object not found: ", objpath)
+		print(("addPlot failed: object not found: ", objpath))
 		return moose.element( '/' )
 
 def makeCaPlots():
@@ -301,7 +301,7 @@ def makeGraphics( cPlotDt, ePlotDt ):
 
 
         fig.canvas.draw()
-        input()
+        eval(input())
                 
         '''
         for x in moose.wildcardFind( '/graphs/##[ISA=Table]' ):
@@ -328,7 +328,7 @@ def testNeuroMeshMultiscale():
 	makeNeuroMeshModel()
 	print("after model is completely done")
 	for i in moose.wildcardFind( '/model/chem/#/#/#/transloc#' ):
-		print(i[0].name, i[0].Kf, i[0].Kb, i[0].kf, i[0].kb)
+		print((i[0].name, i[0].Kf, i[0].Kb, i[0].kf, i[0].kb))
 
 	makeChemPlots()
 	makeElecPlots()

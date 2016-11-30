@@ -167,7 +167,7 @@ def main():
     if do3D:
         app = QtGui.QApplication(sys.argv)
         compts = moose.wildcardFind( "/model/elec/#[ISA=CompartmentBase]" )
-        print("LEN = ", len( compts ))
+        print(("LEN = ", len( compts )))
         for i in compts:
             n = i.name[:4]
             if ( n == 'head' or n == 'shaf' ):

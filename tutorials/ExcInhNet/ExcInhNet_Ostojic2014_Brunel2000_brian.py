@@ -141,15 +141,15 @@ sm_e_vm = StateMonitor(Pe,'v',record=list(range(10)),clock=clocknrn)
 # Simulate
 # ###########################################
 
-print("Setup complete, running for",simtime,"at dt =",dt,"s.")
+print(("Setup complete, running for",simtime,"at dt =",dt,"s."))
 t1 = time.time()
 run(simtime,report='text')
-print('inittime + runtime, t = ', time.time() - t1)
+print(('inittime + runtime, t = ', time.time() - t1))
 
-print("For g,J =",g,J,"mean exc rate =",\
-    sm_e.nspikes/float(Nmon_exc)/(simtime/second),'Hz.')
-print("For g,J =",g,J,"mean inh rate =",\
-    sm_i.nspikes/float(Nmon-Nmon_exc)/(simtime/second),'Hz.')
+print(("For g,J =",g,J,"mean exc rate =",\
+    sm_e.nspikes/float(Nmon_exc)/(simtime/second),'Hz.'))
+print(("For g,J =",g,J,"mean inh rate =",\
+    sm_i.nspikes/float(Nmon-Nmon_exc)/(simtime/second),'Hz.'))
 
 # ###########################################
 # Analysis functions

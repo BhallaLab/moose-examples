@@ -175,7 +175,7 @@ def displayPlots():
         for k in i[0].vec:
             plt.plot( timePts, k.vector * i[4] )
         #plt.title( i.name )
-        print(i[0].name)
+        print((i[0].name))
 
     plt.xlabel( 'Time (s)', fontsize = 16 )
     plt.show()
@@ -218,7 +218,7 @@ def main():
     caPsd.concInit = basalCa
     caDend.concInit = basalCa
     moose.start( postLtdTime )
-    print('real time = ', time.time() - t1)
+    print(('real time = ', time.time() - t1))
 
     if do3D:
         app = QtGui.QApplication(sys.argv)

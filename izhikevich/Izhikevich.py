@@ -197,7 +197,7 @@ These neurons show bursting in response to inhibitory input."""
         neuron = self._get_neuron(key)
         pulsegen = self._make_pulse_input(key)
         if pulsegen is None:
-            print(key, 'Not implemented.')
+            print((key, 'Not implemented.'))
             
     def simulate(self, key):
         self.setup(key)
@@ -237,7 +237,7 @@ These neurons show bursting in response to inhibitory input."""
         time = linspace(0, IzhikevichDemo.parameters[key][7], len(Vm.vector))
         # DEBUG
         nrn = self._get_neuron(key)
-        print('a = %g, b = %g, c = %g, d = %g, initVm = %g, initU = %g' % (nrn.a,nrn.b, nrn.c, nrn.d, nrn.initVm, nrn.initU))
+        print(('a = %g, b = %g, c = %g, d = %g, initVm = %g, initU = %g' % (nrn.a,nrn.b, nrn.c, nrn.d, nrn.initVm, nrn.initU)))
         #! DEBUG
         return (time, Vm, Im)
 
@@ -246,7 +246,7 @@ These neurons show bursting in response to inhibitory input."""
         try:
             params = IzhikevichDemo.parameters[key]
         except KeyError as e:
-            print(' %s : Invalid neuron type. The valid types are:' % (key))
+            print((' %s : Invalid neuron type. The valid types are:' % (key)))
             for key in IzhikevichDemo.parameters:
                 print(key)
             raise e
@@ -354,7 +354,7 @@ These neurons show bursting in response to inhibitory input."""
             self.inputs[key] = input_table
             return input_table                        
         else:
-            print(key, ': Stimulus is not based on pulse generator.')
+            print((key, ': Stimulus is not based on pulse generator.'))
             raise
         pulsegen = self._make_pulsegen(key, 
                                       firstLevel,

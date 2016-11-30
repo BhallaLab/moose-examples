@@ -188,7 +188,7 @@ def run_cadep_channel(channelname, Gbar, simtime):
     ik_data = params['Ik']
     ca_data = params['Ca']
     moose.reinit()
-    print('Starting simulation', testId, 'for', simtime, 's')
+    print(('Starting simulation', testId, 'for', simtime, 's'))
     moose.start(simtime)
     print('Finished simulation')
     vm_file = 'data/%s_Vm.dat' % (channelname)
@@ -196,18 +196,18 @@ def run_cadep_channel(channelname, Gbar, simtime):
     ik_file = 'data/%s_Ik.dat' % (channelname)
     ca_file = 'data/%s_Ca.dat' % (channelname)
     tseries = np.array(list(range(len(vm_data.vector)))) * simdt
-    print('Vm:', len(vm_data.vector), 'Gk', len(gk_data.vector), 'Ik', len(ik_data.vector))
+    print(('Vm:', len(vm_data.vector), 'Gk', len(gk_data.vector), 'Ik', len(ik_data.vector)))
     data = np.c_[tseries, vm_data.vector]
     np.savetxt(vm_file, data)
-    print('Saved Vm in', vm_file)
+    print(('Saved Vm in', vm_file))
     data = np.c_[tseries, gk_data.vector]
     np.savetxt(gk_file, data)
-    print('Saved Gk in', gk_file)
+    print(('Saved Gk in', gk_file))
     data = np.c_[tseries, ik_data.vector]
     np.savetxt(ik_file, data)
-    print('Saved Ik in', ik_file)
+    print(('Saved Ik in', ik_file))
     np.savetxt(ca_file, data)
-    print('Saved [Ca2+] in', ca_file)
+    print(('Saved [Ca2+] in', ca_file))
     return params
 
         

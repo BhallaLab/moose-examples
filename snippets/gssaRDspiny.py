@@ -159,20 +159,20 @@ def updateDisplay( plotlist ):
 	b = moose.vec( '/model/chem/compt0/b' )
         plotlist[5].set_ydata( a.conc )
         plotlist[6].set_ydata( b.conc )
-        print('compt0:', min(a.n), max(a.n), min(b.n), max(b.n))
+        print(('compt0:', min(a.n), max(a.n), min(b.n), max(b.n)))
 
 	a = moose.vec( '/model/chem/compt1/a' )
 	b = moose.vec( '/model/chem/compt1/b' )
         plotlist[7].set_ydata( a.conc )
         plotlist[8].set_ydata( b.conc )
-        print('compt1:', min(a.n), max(a.n), min(b.n), max(b.n))
+        print(('compt1:', min(a.n), max(a.n), min(b.n), max(b.n)))
 
 	a = moose.vec( '/model/chem/compt2/a' )
 	b = moose.vec( '/model/chem/compt2/b' )
         plotlist[9].set_ydata( a.conc )
         plotlist[10].set_ydata( b.conc )
         plotlist[4].canvas.draw()
-        print('compt2:', min(a.n), max(a.n), min(b.n), max(b.n))
+        print(('compt2:', min(a.n), max(a.n), min(b.n), max(b.n)))
 
 
 def finalizeDisplay( plotlist, cPlotDt ):
@@ -181,7 +181,7 @@ def finalizeDisplay( plotlist, cPlotDt ):
         line1, = plotlist[0].plot( pos, x.vector, label=x.name )
     plotlist[4].canvas.draw()
     print( "Hit 'enter' to exit" )
-    input()
+    eval(input())
 
 def makeChemModel( compt ):
     """

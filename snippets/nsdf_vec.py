@@ -110,10 +110,10 @@ def write_nsdf():
     clock = moose.element('/clock')
     for ii in range(32):
         moose.setClock(ii, dt)
-    print('Starting simulation at:', datetime.now().isoformat())
+    print(('Starting simulation at:', datetime.now().isoformat()))
     moose.reinit()
     moose.start(simtime)
-    print('Finished simulation at:', datetime.now().isoformat())
+    print(('Finished simulation at:', datetime.now().isoformat()))
     ###################################
     # Set the environment attributes
     ###################################

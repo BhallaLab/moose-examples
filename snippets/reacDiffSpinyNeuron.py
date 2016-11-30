@@ -93,7 +93,7 @@ def makeModel():
     graphs = moose.Neutral( '/model/graphs' )
     moose.le( '/model/chem/compt1' )
     a = moose.element( '/model/chem/compt1' )
-    print(a.voxelVolume)
+    print((a.voxelVolume))
     makeTab( 'a_soma', '/model/chem/compt0/a[0]' )
     makeTab( 'b_soma', '/model/chem/compt0/b[0]' )
     makeTab( 'a_apical', '/model/chem/compt0/a[' + str( num ) + ']' )
@@ -180,7 +180,7 @@ def finalizeDisplay( plotlist, cPlotDt ):
         line1, = plotlist[0].plot( pos, x.vector, label=x.name )
     plotlist[4].canvas.draw()
     print( "Hit 'enter' to exit" )
-    input()
+    eval(input())
 
 def makeChemModel( compt ):
     """

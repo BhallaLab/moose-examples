@@ -117,8 +117,8 @@ def main():
 		moose.start( 100.0 ) # Run the model for 100 seconds.
                 #moose.showfields( '/model/compartment/d' )
                 #moose.showfields( '/model/compartment/d/func' )
-                print(func.x.value)
-                print(moose.element( '/model/compartment/b' ).n)
+                print((func.x.value))
+                print((moose.element( '/model/compartment/b' ).n))
 
 		# Iterate through all plots, dump their contents to data.plot.
 		displayPlots()

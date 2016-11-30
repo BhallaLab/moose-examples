@@ -110,7 +110,7 @@ con_ii = Synapses(Pi,Pi,'',pre='v_post+=-g*J')
 random.seed(100) # set seed for reproducibility of simulations
 print("Creating connections (very slow, use the optimized script)")
 for i in range(0,N):
-    if i%100==0: print("Connecting post syn nrn",i)
+    if i%100==0: print(("Connecting post syn nrn",i))
     ## draw excC number of neuron indices out of NmaxExc neurons
     preIdxsE = random.sample(list(range(NE)),excC)
     ## draw inhC=C-excC number of neuron indices out of inhibitory neurons
@@ -147,15 +147,15 @@ sm_e_vm = StateMonitor(Pe,'v',record=list(range(10)))
 # Simulate
 # ###########################################
 
-print("Setup complete, running for",simtime,"at dt =",dt,"s.")
+print(("Setup complete, running for",simtime,"at dt =",dt,"s."))
 t1 = time.time()
 run(simtime,report='text')
-print('inittime + runtime, t = ', time.time() - t1)
+print(('inittime + runtime, t = ', time.time() - t1))
 
-print("For g,J =",g,J,"mean exc rate =",\
-    sm_e.num_spikes/float(NE)/(simtime/second),'Hz.')
-print("For g,J =",g,J,"mean inh rate =",\
-    sm_i.num_spikes/float(NI)/(simtime/second),'Hz.')
+print(("For g,J =",g,J,"mean exc rate =",\
+    sm_e.num_spikes/float(NE)/(simtime/second),'Hz.'))
+print(("For g,J =",g,J,"mean inh rate =",\
+    sm_i.num_spikes/float(NI)/(simtime/second),'Hz.'))
 
 # ###########################################
 # Analysis functions

@@ -71,7 +71,7 @@ def setup_current_step_model(model_container,
     solver: str - numerical method to use, can be `hsolve` or `ee`
     """
     classname = 'cells.%s' % (celltype)
-    print('mc=', model_container, 'dc=', data_container, 'ct=', celltype, 'pa=', pulsearray, 'classname=', classname)
+    print(('mc=', model_container, 'dc=', data_container, 'ct=', celltype, 'pa=', pulsearray, 'classname=', classname))
     cell_class = eval(classname)
     cell = cell_class('%s/%s' % (model_container.path, celltype))
     pulsegen = moose.PulseGen('%s/pulse' % (model_container.path))

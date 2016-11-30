@@ -109,7 +109,7 @@ def interlude( view ):
 	view.yaw( 0.01 )
 
 def create_viewer(rdes):
-    print(' doing viewer for ', rdes.soma.path)
+    print((' doing viewer for ', rdes.soma.path))
     network = moogli.extensions.moose.read(rdes.elecid.path)
     normalizer = moogli.utilities.normalizer(-0.08,
                                              0.02,

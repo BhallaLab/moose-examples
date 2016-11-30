@@ -23,8 +23,8 @@ def loadGran98NeuroML_L123(filename,params):
     neuromlR = NeuroML()
     populationDict, projectionDict = \
         neuromlR.readNeuroMLFromFile(filename,params=params)
-    print("Number of compartments =",\
-        len(moose.Neuron(populationDict['CA1group'][1][0].path).children))
+    print(("Number of compartments =",\
+        len(moose.Neuron(populationDict['CA1group'][1][0].path).children)))
     soma_path = populationDict['CA1group'][1][0].path+'/Seg0_soma_0_0'
     somaVm = setupTable('somaVm',moose.Compartment(soma_path),'Vm')
     #somaCa = setupTable('somaCa',moose.CaConc(soma_path+'/Gran_CaPool_98'),'Ca')

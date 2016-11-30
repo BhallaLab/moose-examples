@@ -171,7 +171,7 @@ def main():
         network.vec.vPeak = vPeak           # reset at vPeak, not at thresh
         network.vec.inject = 5e-9  # Amp    # injected current I
 
-    print("Injecting current =",network.vec[0].inject,"in",choiceKey,"neuron.")
+    print(("Injecting current =",network.vec[0].inject,"in",choiceKey,"neuron."))
 
     # ###########################################
     # Setting up table

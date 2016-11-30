@@ -76,15 +76,15 @@ def test_crossing_single():
     moose.connect(tab.vec[1], 'requestOut', pg.vec[0], 'getOutputValue', 'Single')
     print('Neighbors:')
     for t in tab.vec:
-        print(t.path)
+        print((t.path))
         for n in moose.element(t).neighbors['requestOut']:
-            print('requestOut <-', n.path)
+            print(('requestOut <-', n.path))
     moose.setClock(0, 0.1)
     moose.useClock(0, '/##', 'process')
     moose.start(5)
     for ii in tab.vec:
         t = moose.Table(ii).vector
-        print(len(t))
+        print((len(t)))
         pylab.plot(t)
     pylab.show()
 

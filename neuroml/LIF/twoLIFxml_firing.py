@@ -64,7 +64,7 @@ if __name__ == '__main__':
     moose.connect(IF2SynChanTable,'requestOut',IF2Soma.path+'/exc_syn','getIk')
 
     run_twoLIFs()
-    print("Spiketimes :",IF1spikesTable.vector)
+    print(("Spiketimes :",IF1spikesTable.vector))
     ## plot the membrane potential of the neuron
     timevec = arange(0.0,RUNTIME+PLOTDT/2.0,PLOTDT)
     figure(facecolor='w')

@@ -146,11 +146,11 @@ def makeModel():
                 stoich2.filterXreacs()
 
 
-                print(a.vec.volume, b.vec.volume, c.vec.volume)
+                print((a.vec.volume, b.vec.volume, c.vec.volume))
 		a.vec.concInit = list(range( numSeg + 1, 0, -1))
 		b.vec.concInit = [5.0 * ( 1 + x ) for x in range( numSeg )]
 		c.vec.concInit = list(range( 1, numSeg + 1))
-                print(a.vec.concInit, b.vec.concInit, c.vec.concInit)
+                print((a.vec.concInit, b.vec.concInit, c.vec.concInit))
 
 		# Create the output tables
 		graphs = moose.Neutral( '/model/graphs' )

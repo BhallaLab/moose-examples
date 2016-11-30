@@ -167,7 +167,7 @@ def main():
         make_neuron_spike(0)
         moose.start(1e-3)
         dw = ( syn.synapse[0].weight - weight ) / weight
-        print('post before pre, dt = %1.3f s, dw/w = %1.3f'%(-deltat,dw))
+        print(('post before pre, dt = %1.3f s, dw/w = %1.3f'%(-deltat,dw)))
         dwlist_neg.append(dw)
     print('-----------------------------------------------')
     # positive dt corresponds to pre before post
@@ -181,7 +181,7 @@ def main():
         make_neuron_spike(1)
         moose.start(1e-3)
         dw = ( syn.synapse[0].weight - weight ) / weight
-        print('pre before post, dt = %1.3f s, dw/w = %1.3f'%(deltat,dw))
+        print(('pre before post, dt = %1.3f s, dw/w = %1.3f'%(deltat,dw)))
         dwlist_pos.append(dw)
     print('-----------------------------------------------')
 

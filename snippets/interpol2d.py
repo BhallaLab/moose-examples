@@ -68,11 +68,11 @@ def interpolation_demo():
     # value should be 
     pos = (0.8, 0.3)
     
-    print('Interpolated value at', pos)
-    print(interpol.z[pos[0], pos[1]])
+    print(('Interpolated value at', pos))
+    print((interpol.z[pos[0], pos[1]]))
     
-    print('Point going out of bound on both x and y', interpol.z[1.1, 1.1])
-    print('Point going out of bound on both x and y', interpol.z[0.5, 1.1])
+    print(('Point going out of bound on both x and y', interpol.z[1.1, 1.1]))
+    print(('Point going out of bound on both x and y', interpol.z[0.5, 1.1]))
 
 if __name__ == '__main__':
     interpolation_demo()

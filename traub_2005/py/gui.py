@@ -134,7 +134,7 @@ class HHChanView(QtGui.QWidget):
         v = np.linspace(gate.min, gate.max, len(m))
         self.mhaxes.plot(v, m, label='%s %s' % (gate.path, mlabel))
         self.tauaxes.plot(v, tau, label='%s %s' % (gate.path, taulabel))
-        print('Plotted', gate.path, 'vmin=', gate.min, 'vmax=', gate.max, 'm[0]=', m[0], 'm[last]=', m[-1], 'tau[0]=', tau[0], 'tau[last]=', tau[-1])
+        print(('Plotted', gate.path, 'vmin=', gate.min, 'vmax=', gate.max, 'm[0]=', m[0], 'm[last]=', m[-1], 'tau[0]=', tau[0], 'tau[last]=', tau[-1]))
         
     def plotActInact(self):
         """Plot the activation and inactivation variables of the selected channels"""
@@ -153,9 +153,9 @@ class HHChanView(QtGui.QWidget):
         self.mhaxes.set_title('Activation/Inactivation')
         self.tauaxes = self.figure.add_subplot(2, 1, 2)
         self.tauaxes.set_title('Tau')
-        print(self.channels)
+        print((self.channels))
         for item in self.getChannelListWidget().selectedItems():
-            print(item.text())
+            print((item.text()))
             chan = self.channels[str(item.text())]
             if chan.Xpower > 0:
                 path = '{}/gateX'.format(chan.path)
@@ -349,7 +349,7 @@ class CellView(QtGui.QWidget):
         # moose.le(model_container)
         # moose.le(data_container)
         print('11111')
-        print(model_container.path, data_container.path)
+        print((model_container.path, data_container.path))
         params['modelRoot'] = model_container.path
         params['dataRoot'] = data_container.path
         print('here')
@@ -419,7 +419,7 @@ class CellView(QtGui.QWidget):
         self.vmAxes.legend()
         self.plotCanvas.draw()
         td = np.mean(tdlist)
-        print('Simulating %g s took %g s of computer time' % (simtime, td))
+        print(('Simulating %g s took %g s of computer time' % (simtime, td)))
         # self.plotFigure.tight_layout()
 
     def getPlotWidget(self):

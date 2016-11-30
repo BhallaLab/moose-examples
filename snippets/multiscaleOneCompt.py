@@ -87,7 +87,7 @@ def addPlot( objpath, field, plot, tick ):
         tab.tick = tick
         return tab
     else:
-        print("failed in addPlot(", objpath, field, plot, tick, ")")
+        print(("failed in addPlot(", objpath, field, plot, tick, ")"))
         return 0
 
 def main():

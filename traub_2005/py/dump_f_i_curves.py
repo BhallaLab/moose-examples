@@ -96,13 +96,13 @@ def run_current_pulse(amps, delay=100e-3, dur=100e-3, trail=100e-3, outfile='f_i
     fd = h5.File(outfile, 'w')    
     for ii, tabs in list(ddict.items()):
         for tab in tabs:
-            print('Table', tab.name)
+            print(('Table', tab.name))
             node = fd.create_dataset(tab.name, data=tab.vector)
             node.attrs['current'] = amps[ii]
             node.attrs['delay'] = delay
             node.attrs['width'] = dur
     fd.close()
-    print('Finished saving data in file', outfile)
+    print(('Finished saving data in file', outfile))
 
 
 if __name__ == '__main__':

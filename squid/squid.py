@@ -311,13 +311,13 @@ class SquidModel(moose.Neutral):
     def __init__(self, path):
         moose.Neutral.__init__(self, path)
         self.squid_axon = SquidAxon(path+'/squid_axon')
-        print(self.squid_axon.Na_channel.Gbar, self.squid_axon.K_channel.Gbar)
+        print((self.squid_axon.Na_channel.Gbar, self.squid_axon.K_channel.Gbar))
         self.current_clamp = moose.PulseGen(path+'/pulsegen')
         self.current_clamp.firstDelay = 5.0 # ms
         self.current_clamp.firstWidth = 40 # ms
         self.current_clamp.firstLevel = 0.1 # uA
         self.current_clamp.secondDelay = 1e9
-        print('Current clamp connected:', moose.connect(self.current_clamp, 'output', self.squid_axon, 'injectMsg'))
+        print(('Current clamp connected:', moose.connect(self.current_clamp, 'output', self.squid_axon, 'injectMsg')))
 
         self.Vm_table = moose.Table('%s/Vm' % (self.path))
         moose.connect(self.Vm_table, 'requestOut', self.squid_axon, 'getVm')

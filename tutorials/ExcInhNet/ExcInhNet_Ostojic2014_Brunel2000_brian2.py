@@ -138,11 +138,11 @@ sm_vm = StateMonitor(P,'v',record=list(range(10))+list(range(NE,NE+10)))
 # Simulate
 # ###########################################
 
-print("Setup complete, running for",simtime,"at dt =",dt,"s.")
+print(("Setup complete, running for",simtime,"at dt =",dt,"s."))
 t1 = time.time()
 run(simtime,report='text')
 device.build(directory='output', compile=True, run=True, debug=False)
-print('inittime + runtime, t = ', time.time() - t1)
+print(('inittime + runtime, t = ', time.time() - t1))
 
 #print "For g,J =",g,J,"mean exc rate =",\
 #    sm_e.num_spikes/float(NE)/(simtime/second),'Hz.'
