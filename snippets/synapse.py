@@ -43,6 +43,9 @@
 # 
 
 # Code:
+
+from __future__ import print_function 
+
 import moose
 
 def many_ematrix_to_one_element():
