@@ -93,7 +93,7 @@ def makeModel():
     graphs = moose.Neutral( '/model/graphs' )
     moose.le( '/model/chem/compt1' )
     a = moose.element( '/model/chem/compt1' )
-    print a.voxelVolume
+    print((a.voxelVolume))
     makeTab( 'a_soma', '/model/chem/compt0/a[0]' )
     makeTab( 'b_soma', '/model/chem/compt0/b[0]' )
     makeTab( 'a_apical', '/model/chem/compt0/a[' + str( num ) + ']' )
@@ -137,20 +137,20 @@ def makeDisplay():
 
 	a = moose.vec( '/model/chem/compt0/a' )
 	b = moose.vec( '/model/chem/compt0/b' )
-        line1, = dend.plot( range( len( a ) ), a.conc, label='a' )
-        line2, = dend.plot( range( len( b ) ), b.conc, label='b' )
+        line1, = dend.plot( list(range( len( a ))), a.conc, label='a' )
+        line2, = dend.plot( list(range( len( b ))), b.conc, label='b' )
         dend.set_ylim( 0, 0.6 )
 
 	a = moose.vec( '/model/chem/compt1/a' )
 	b = moose.vec( '/model/chem/compt1/b' )
-        line3, = spine.plot( range( len( a ) ), a.conc, label='a' )
-        line4, = spine.plot( range( len( b ) ), b.conc, label='b' )
+        line3, = spine.plot( list(range( len( a ))), a.conc, label='a' )
+        line4, = spine.plot( list(range( len( b ))), b.conc, label='b' )
         spine.set_ylim( 0, 0.6 )
 
 	a = moose.vec( '/model/chem/compt2/a' )
 	b = moose.vec( '/model/chem/compt2/b' )
-        line5, = psd.plot( range( len( a ) ), a.conc, label='a' )
-        line6, = psd.plot( range( len( b ) ), b.conc, label='b' )
+        line5, = psd.plot( list(range( len( a ))), a.conc, label='a' )
+        line6, = psd.plot( list(range( len( b ))), b.conc, label='b' )
         psd.set_ylim( 0, 0.6 )
 
         fig.canvas.draw()
@@ -180,7 +180,7 @@ def finalizeDisplay( plotlist, cPlotDt ):
         line1, = plotlist[0].plot( pos, x.vector, label=x.name )
     plotlist[4].canvas.draw()
     print( "Hit 'enter' to exit" )
-    raw_input()
+    eval(input())
 
 def makeChemModel( compt ):
     """

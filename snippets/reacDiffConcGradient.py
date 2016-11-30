@@ -50,7 +50,7 @@ def makeModel():
                 a1, b1, compt1 = makeCyl( '1', 2, radius, 0, len1 )
                 a2, b2, compt2 = makeCyl( '2', 6, radius, len1, len1 + len2 )
 
-                print('Volumes = ', compt0.volume, compt1.volume, compt2.volume)
+                print(('Volumes = ', compt0.volume, compt1.volume, compt2.volume))
 
 		# create molecules and reactions
 		reac0 = moose.Reac( '/model/compt1/reac0' )
@@ -143,10 +143,10 @@ def main():
     initTot = 0
     tot = 0
     for x in moose.wildcardFind( '/model/compt#/#[ISA=PoolBase]' ):
-        print(x.name, x.conc)
+        print((x.name, x.conc))
         tot += x.n
         initTot += x.nInit
-    print("Totals: expected = ", initTot, ", got: ", tot)
+    print(("Totals: expected = ", initTot, ", got: ", tot))
 
     # Iterate through all plots, dump their contents to data.plot.
     for x in moose.wildcardFind( '/model/graphs/conc#' ):

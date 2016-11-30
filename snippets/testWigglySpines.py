@@ -46,7 +46,7 @@ def makeCellProto( name ):
 def makeChemProto( name ):
     chem = moose.Neutral( '/library/' + name )
     for i in ( ['dend', 1e-18], ['spine', 1e-19], ['psd', 1e-20] ):
-        print 'making ', i
+        print('making ', i)
         compt = moose.CubeMesh( chem.path + '/' + i[0] )
         compt.volume = i[1]
         Ca = moose.Pool( compt.path + '/Ca' )
@@ -93,12 +93,12 @@ def p2(x):
     '''
     Print to 2 sig fig
     '''
-    print round(x, 1-int(numpy.floor(numpy.log10(x)))),
+    print(round(x, 1-int(numpy.floor(numpy.log10(x)))), end=' ')
 
 def assertEq( a, b ):
-    print '.',
+    print('.', end=' ')
     if not( numpy.fabs( a-b) / (a+b) < 1e-10 ):
-        print 'a!=b:', a, b
+        print('a!=b:', a, b)
         assert(False)
 
 def main():
@@ -151,8 +151,8 @@ def main():
     head2 = moose.element( '/model/elec/head2' )
 
     # Here we scale the spine head length while keeping all vols constt.
-    print "Spine 0: longer head, same vol\nSpine 1: longer shaft"
-    print "Spine 2: Bigger head, same diffScale\n"
+    print("Spine 0: longer head, same vol\nSpine 1: longer shaft")
+    print("Spine 2: Bigger head, same diffScale\n")
     elecParms = [ (i.Rm, i.Cm, i.Ra) for i in ( head0, shaft1, head2) ]
     chemParms = [ i.volume for i in ( caHead[0], caPsd[0], caHead[1], caPsd[1], caHead[2], caPsd[2] ) ]
 
@@ -170,7 +170,7 @@ def main():
     elec.spine[2].headDiameter *= numpy.sqrt(2) # sqrt(2) x dia
     hdia = elec.spine[2].headDiameter
 
-    print "Checking scaling assertions: "
+    print("Checking scaling assertions: ")
     assertEq( elecParms[0][0] * 0.5 , head0.Rm )
     assertEq( elecParms[0][1] * 2 , head0.Cm )
     assertEq( elecParms[0][2] * 16 , head0.Ra )
@@ -189,7 +189,7 @@ def main():
     assertEq( elecParms[2][2] , head2.Ra )
     assertEq( chemParms[4] * 4 , caHead[2].volume )
     assertEq( chemParms[5] * 2 , caPsd[2].volume )
-    print "\nAll assertions cleared"
+    print("\nAll assertions cleared")
 
     moose.start( 2 )
     for i in range( len( psdTab ) ):

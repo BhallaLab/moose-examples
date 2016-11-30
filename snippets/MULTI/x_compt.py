@@ -363,7 +363,7 @@ def testNeuroMeshMultiscale():
 
 	moose.start( 0.5 )
 	dumpPlots( plotName )
-	print 'All done'
+	print('All done')
 
 
 def main():

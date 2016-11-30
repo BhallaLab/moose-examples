@@ -108,7 +108,7 @@ def makeModel():
     os.kill( PID, signal.SIGUSR1 )
     stoich.path = "/model/compartment/##"
 
-    print(dsolve.numPools)
+    print((dsolve.numPools))
     assert( dsolve.numPools == 4 )
     a.vec.concInit = concA
     b.vec.concInit = concA / 5.0
@@ -182,7 +182,7 @@ def main():
     # save the final result to a file.
     outfile = '%s.png' % sys.argv[0]
     plt.savefig( outfile )
-    print( '[INFO] Saved results to %s' % outfile )
+    print(( '[INFO] Saved results to %s' % outfile ))
 
     atot2 = sum( a.vec.n )
     btot2 = sum( b.vec.n )
@@ -192,7 +192,7 @@ def main():
     msg = 'Ratio of initial to final total numbers of '
     msg += 'a=%f b=%f, c=%f, d=%f'% (atot2/atot, btot2/btot, ctot2/ctot, dtot2/dtot)
     print(msg)
-    print('Initial to final (b+c)=%f' % (float(btot2 + ctot2) / (btot + ctot )))
+    print(('Initial to final (b+c)=%f' % (float(btot2 + ctot2) / (btot + ctot ))))
     quit()
 
 

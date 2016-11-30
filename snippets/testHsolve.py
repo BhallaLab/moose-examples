@@ -295,7 +295,7 @@ def test_elec_alone():
     hsolve.target = '/n/compt'
     moose.le( '/n' )
     for dt in ( 20e-6, 50e-6, 100e-6 ):
-        print 'running at dt =', dt
+        print(('running at dt =', dt))
         moose.setClock( 0, dt )
         moose.setClock( 1, dt )
         moose.setClock( 2, dt )

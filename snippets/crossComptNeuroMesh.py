@@ -15,7 +15,7 @@ import matplotlib.pyplot as plt
 import sys
 import moose
 
-print( '[INFO] Using moose from %s' % moose.__file__ )
+print(( '[INFO] Using moose from %s' % moose.__file__ ))
 
 def makeCompt( name, parent, dx, dy, dia ):
     RM = 1.0
@@ -146,11 +146,11 @@ def makeModel():
                 stoich2.filterXreacs()
 
 
-                print a.vec.volume, b.vec.volume, c.vec.volume
-		a.vec.concInit = range( numSeg + 1, 0, -1 )
+                print((a.vec.volume, b.vec.volume, c.vec.volume))
+		a.vec.concInit = list(range( numSeg + 1, 0, -1))
 		b.vec.concInit = [5.0 * ( 1 + x ) for x in range( numSeg )]
-		c.vec.concInit = range( 1, numSeg + 1 )
-                print a.vec.concInit, b.vec.concInit, c.vec.concInit
+		c.vec.concInit = list(range( 1, numSeg + 1))
+                print((a.vec.concInit, b.vec.concInit, c.vec.concInit))
 
 		# Create the output tables
 		graphs = moose.Neutral( '/model/graphs' )
@@ -239,7 +239,7 @@ def display():
     # print( "Hit 'enter' to exit" )
     # raw_input()
     plt.savefig( outfile )
-    print('[INFO] Results are saved to %s' % outfile )
+    print(('[INFO] Results are saved to %s' % outfile ))
 
 
 # Run the 'main' if this script is executed standalone.

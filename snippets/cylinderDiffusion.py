@@ -106,7 +106,7 @@ def makeModel():
     os.kill( PID, signal.SIGUSR1 )
     stoich.path = "/model/compartment/##"
 
-    print dsolve.numPools
+    print((dsolve.numPools))
     assert( dsolve.numPools == 3 )
     a.vec[0].concInit = concA
     b.vec[0].concInit = concA
@@ -180,11 +180,11 @@ def main():
     ctot2 = sum( c.vec.n )
     dtot2 = sum( d.vec.n )
 
-    print 'Ratio of initial to final total numbers of of a, b, c, d = '
-    print atot2/atot, btot2/btot, ctot2/ctot, dtot2/dtot
-    print 'Initial to final (b+c)=', (btot2 + ctot2) / (btot + ctot )
-    print "\nHit 'enter' to exit"
-    raw_input()
+    print('Ratio of initial to final total numbers of of a, b, c, d = ')
+    print((atot2/atot, btot2/btot, ctot2/ctot, dtot2/dtot))
+    print(('Initial to final (b+c)=', (btot2 + ctot2) / (btot + ctot )))
+    print("\nHit 'enter' to exit")
+    eval(input())
 
     quit()
 

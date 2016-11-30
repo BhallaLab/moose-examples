@@ -31,7 +31,7 @@ def makeModel():
                 compt0.y0 += side
                 compt2.x1 += side
                 compt2.x0 += side
-                print('Volumes = ', compt0.volume, compt1.volume, compt2.volume)
+                print(('Volumes = ', compt0.volume, compt1.volume, compt2.volume))
 
 		# create molecules and reactions
 		a = moose.Pool( '/model/compt0/a' )
@@ -138,7 +138,7 @@ def main():
     moose.start( runtime ) # Run the model for 100 seconds.
     print("All concs should converge to 2.0 even though vols differ:")
     for x in moose.wildcardFind( '/model/compt#/#[ISA=PoolBase]' ):
-        print(x.name, x.conc)
+        print((x.name, x.conc))
 
     # FIXME: Plotting causes seg-fault.
     ## Iterate through all plots, dump their contents to data.plot.

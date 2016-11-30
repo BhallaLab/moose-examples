@@ -43,13 +43,13 @@ def make_network():
 	moose.le( '/network' )
 	syns.vec.numSynapses = [1] * size
 	sv = moose.vec( '/network/syns/synapse' )
-	print 'before connect t = ', time.time() - t0
+	print(('before connect t = ', time.time() - t0))
 	mid = moose.connect( network, 'spikeOut', sv, 'addSpike', 'Sparse')
-	print 'after connect t = ', time.time() - t0
+	print(('after connect t = ', time.time() - t0))
 	#print mid.destFields
 	m2 = moose.element( mid )
 	m2.setRandomConnectivity( connectionProbability, 5489 )
-	print 'after setting connectivity, t = ', time.time() - t0
+	print(('after setting connectivity, t = ', time.time() - t0))
 	#network.vec.Vm = [(Vmax*random.random()) for r in range(size)]
 	network.vec.Vm = nprand.rand( size ) * Vmax
 	network.vec.thresh = thresh
@@ -57,15 +57,15 @@ def make_network():
 	network.vec.Rm = 1e10
 	network.vec.Cm = 5e-9
 	numSynVec = syns.vec.numSynapses
-	print 'Middle of setup, t = ', time.time() - t0
+	print(('Middle of setup, t = ', time.time() - t0))
 	numTotSyn = sum( numSynVec )
-        print numSynVec.size, ', tot = ', numTotSyn,  ', numSynVec = ', numSynVec
+        print((numSynVec.size, ', tot = ', numTotSyn,  ', numSynVec = ', numSynVec))
 	for item in syns.vec:
 		sh = moose.element( item )
                 sh.synapse.delay = delayMin +  (delayMax - delayMin ) * nprand.rand( len( sh.synapse ) )
 		#sh.synapse.delay = [ (delayMin + random.random() * (delayMax - delayMin ) for r in range( len( sh.synapse ) ) ] 
 		sh.synapse.weight = nprand.rand( len( sh.synapse ) ) * weightMax
-	print 'after setup, t = ', time.time() - t0
+	print(('after setup, t = ', time.time() - t0))
 
         numStats = 100
         stats = moose.SpikeStats( '/stats', numStats )
@@ -90,14 +90,14 @@ def make_network():
 	moose.setClock( 9, dt )
 	t1 = time.time()
 	moose.reinit()
-	print 'reinit time t = ', time.time() - t1
+	print(('reinit time t = ', time.time() - t1))
 	network.vec.Vm = nprand.rand( size ) * Vmax
-	print 'setting Vm , t = ', time.time() - t1
+	print(('setting Vm , t = ', time.time() - t1))
 	t1 = time.time()
-	print 'starting'
+	print('starting')
 	moose.start(runsteps * dt)
-	print 'runtime, t = ', time.time() - t1
-	print network.vec.Vm[99:103], network.vec.Vm[900:903]
+	print(('runtime, t = ', time.time() - t1))
+	print((network.vec.Vm[99:103], network.vec.Vm[900:903]))
         t = [i * dt for i in range( plots.vec[0].vector.size )]
         i = 0
         for p in plots.vec:

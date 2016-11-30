@@ -102,12 +102,12 @@ def makeModel():
     stoich2.filterXreacs()
     
     Ca_input_dend = moose.vec( '/model/chem/compt0/Ca_input' )
-    print len( Ca_input_dend )
+    print((len( Ca_input_dend )))
     for i in range( 60 ):
         Ca_input_dend[ 3 + i * 3 ].conc = 2.0
 
     Ca_input_PSD = moose.vec( '/model/chem/compt2/Ca_input' )
-    print len( Ca_input_PSD )
+    print((len( Ca_input_PSD )))
     for i in range( 5 ):
         Ca_input_PSD[ 2 + i * 2].conc = 1.0
     
@@ -159,18 +159,18 @@ def makeDisplay():
 
 	Ca = moose.vec( '/model/chem/compt0/Ca' )
 	Ca_input = moose.vec( '/model/chem/compt0/Ca_input' )
-        line1, = dend.plot( range( len( Ca ) ), Ca.conc, label='Ca' )
-        line2, = dend.plot( range( len( Ca_input ) ), Ca_input.conc, label='Ca_input' )
+        line1, = dend.plot( list(range( len( Ca ))), Ca.conc, label='Ca' )
+        line2, = dend.plot( list(range( len( Ca_input ))), Ca_input.conc, label='Ca_input' )
         dend.set_ylim( 0, 2 )
 
 	Ca = moose.vec( '/model/chem/compt1/Ca' )
-        line3, = spine.plot( range( len( Ca ) ), Ca.conc, label='Ca' )
+        line3, = spine.plot( list(range( len( Ca ))), Ca.conc, label='Ca' )
         spine.set_ylim( 0, 1 )
 
 	Ca = moose.vec( '/model/chem/compt2/Ca' )
 	Ca_input = moose.vec( '/model/chem/compt2/Ca_input' )
-        line4, = psd.plot( range( len( Ca ) ), Ca.conc, label='Ca' )
-        line5, = psd.plot( range( len( Ca_input ) ), Ca_input.conc, label='Ca_input' )
+        line4, = psd.plot( list(range( len( Ca ))), Ca.conc, label='Ca' )
+        line5, = psd.plot( list(range( len( Ca_input ))), Ca_input.conc, label='Ca_input' )
         psd.set_ylim( 0, 1 )
 
         fig.canvas.draw()
@@ -198,7 +198,7 @@ def finalizeDisplay( plotlist, cPlotDt ):
         line1, = plotlist[0].plot( pos, x.vector, label=x.name )
     plotlist[4].canvas.draw()
     print( "Hit 'enter' to exit" )
-    raw_input()
+    eval(input())
 
 def makeChemModel( compt, doInput ):
     """

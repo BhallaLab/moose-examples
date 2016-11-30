@@ -67,6 +67,9 @@ def main():
         runtime = 20.0
     else:
         runtime = float(sys.argv[2])
+        
+    # Loading the sbml file into MOOSE, models are loaded in path/model
+    sbmlId = moose.SBML.readSBML.mooseReadSBML(mfile,'sbml')
     
     # Loading the sbml file into MOOSE, models are loaded in path/model
     sbmlId = mooseReadSBML(mfile,'/sbml')

@@ -96,7 +96,7 @@ def loadChem( neuroCompt, spineCompt, psdCompt ):
 	assert( spineCompt.volume == 1.0 )
 	assert( psdCompt.volume == 1.0 )
 	assert( neuroCompt.mesh.num == 1 )
-	print('volume = ', neuroCompt.mesh[0].volume)
+	print(('volume = ', neuroCompt.mesh[0].volume))
 	#assert( neuroCompt.mesh[0].volume == 1.0 ) 
 	#an unfortunate mismatch
 	# So we'll have to resize the volumes of the current compartments to the
@@ -115,7 +115,7 @@ def loadChem( neuroCompt, spineCompt, psdCompt ):
 	pCaCaM.concInit = 0.001
 	dCaCaM = moose.element( '/model/model/kinetics/PSD/Ca_CaM' )
 	sCaCaM = moose.element( '/model/model/kinetics/SPINE/Ca_CaM' )
-	print("CaCaM.concInit[p,s,d] = ", pCaCaM.concInit, sCaCaM.concInit, dCaCaM.concInit)
+	print(("CaCaM.concInit[p,s,d] = ", pCaCaM.concInit, sCaCaM.concInit, dCaCaM.concInit))
 	#moose.delete( moose.vec( '/model/model/kinetics/SPINE/Ca_CaM' ) )
 	#CaCaM2 = moose.element( '/model/model/kinetics/SPINE/Ca_CaM' )
 	#CaCaM2.concInit = 0.001
@@ -124,20 +124,20 @@ def loadChem( neuroCompt, spineCompt, psdCompt ):
 	oldS = moose.element( '/model/chem/compartment_1' )
 	oldP = moose.element( '/model/chem/compartment_2' )
 	oldN = moose.element( '/model/chem/kinetics' )
-	print('oldvols[p,s,d] = ', oldP.volume, oldS.volume, oldN.volume)
-	print('newvols[p,s,d] = ', psdCompt.mesh[0].volume, spineCompt.mesh[0].volume, neuroCompt.mesh[0].volume)
+	print(('oldvols[p,s,d] = ', oldP.volume, oldS.volume, oldN.volume))
+	print(('newvols[p,s,d] = ', psdCompt.mesh[0].volume, spineCompt.mesh[0].volume, neuroCompt.mesh[0].volume))
 	oldN.volume = neuroCompt.mesh[0].volume
 	oldS.volume = spineCompt.mesh[0].volume
 	oldP.volume = psdCompt.mesh[0].volume
 	print('after redoing vols')
-	print("CaCaM.concInit[p,s,d] = ", pCaCaM.concInit, sCaCaM.concInit, dCaCaM.concInit)
+	print(("CaCaM.concInit[p,s,d] = ", pCaCaM.concInit, sCaCaM.concInit, dCaCaM.concInit))
 	moveCompt( '/model/chem/kinetics/SPINE', oldS, spineCompt )
 	moveCompt( '/model/chem/kinetics/PSD', oldP, psdCompt )
 	# Need to do the DEND last because the oldN is /kinetics, 
 	# and it will be deleted.
 	moveCompt( '/model/chem/kinetics/DEND', oldN, neuroCompt )
 	print('after moving to new compts')
-	print("CaCaM.concInit[p,s,d] = ", pCaCaM.concInit, sCaCaM.concInit, dCaCaM.concInit)
+	print(("CaCaM.concInit[p,s,d] = ", pCaCaM.concInit, sCaCaM.concInit, dCaCaM.concInit))
 
 def makeNeuroMeshModel():
 	diffLength = 20e-6 # But we only want diffusion over part of the model.
@@ -199,7 +199,7 @@ def makeNeuroMeshModel():
 	moose.connect( pm, 'remesh', pmksolve, 'remesh' )
 	#print "psd: nv=", pmksolve.numLocalVoxels, ", nav=", pmksolve.numAllVoxels, pmksolve.numVarPools, pmksolve.numAllPools
 	#
-	print('neuroMeshvolume = ', neuroCompt.mesh[0].volume)
+	print(('neuroMeshvolume = ', neuroCompt.mesh[0].volume))
 
 	#print 'Assigning the cell model'
 	# Now to set up the model.
