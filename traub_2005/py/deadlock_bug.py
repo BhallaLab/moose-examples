@@ -146,7 +146,7 @@ class CellMeta(type):
         return type.__new__(cls, name, bases, cdict)
 
     
-class CellBase(moose.Neutral, metaclass=CellMeta):
+class CellBase(moose.Neutral, CellMeta):
     def __init__(self, path):
         if not moose.exists(path):
             path_tokens = path.rpartition('/')

@@ -31,16 +31,21 @@
 
 
 """
+
 Display/save the topology of one or all cells in traub_2005 demo.
 
 command line options (all are optional):
--c celltype    : display topology of cell type 'celltype'. If unspecified, all cell types are displayed
--p filename    : save output to fiel specified by 'filename'
--l             : show labels of the compartments
--h,--help      : show this help
+
+    -c celltype    : display topology of cell type 'celltype'. If unspecified, 
+                    all cell types are displayed
+    -p filename    : save output to fiel specified by 'filename'
+    -l             : show labels of the compartments
+    -h,--help      : show this help
+
 """
+from __future__ import print_function
+
 import sys
-sys.path.append('../../../python')
 import os
 import numpy as np
 import matplotlib.pyplot as plt

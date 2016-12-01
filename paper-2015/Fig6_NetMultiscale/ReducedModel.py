@@ -1,4 +1,3 @@
-
 #/**********************************************************************
 #** This program is part of 'MOOSE', the
 #** Messaging Object Oriented Simulation Environment.
@@ -7,6 +6,8 @@
 #** GNU Lesser General Public License version 2.1
 #** See the file COPYING.LIB for the full notice.
 #**********************************************************************/
+
+from __future__ import print_function
 
 '''
 This LIF network with Ca plasticity is based on:

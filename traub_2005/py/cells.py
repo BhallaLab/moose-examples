@@ -194,7 +194,7 @@ class CellMeta(type):
         return type.__new__(cls, name, bases, cdict)
 
     
-class CellBase(moose.Neuron, metaclass=CellMeta):
+class CellBase(moose.Neuron, CellMeta):
     annotation = {'cno': 'cno_0000020'}
     def __init__(self, path):
         if not moose.exists(path):

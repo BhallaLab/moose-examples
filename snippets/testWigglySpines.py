@@ -10,16 +10,21 @@
 ## a molecule that diffuses.
 ##################################################################
 
+from __future__ import print_function
+
 import math
 import pylab
 import numpy
 import matplotlib.pyplot as plt
 import moose
 import sys
-sys.path.append( '../util' )
 import rdesigneur as rd
 from PyQt4 import QtGui
 import moogli
+
+import os
+scriptDir = os.path.dirname( os.path.realpath( __file__ ) )
+sys.path.append( os.path.join( scriptDir, '../util' ) )
 
 PI = 3.141592653
 ScalingForTesting = 10

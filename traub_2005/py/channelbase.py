@@ -162,7 +162,7 @@ class ChannelMeta(type):
         return type.__new__(cls, name, bases, cdict)
 
 
-class ChannelBase(moose.HHChannel, metaclass=ChannelMeta):
+class ChannelBase(moose.HHChannel, ChannelMeta):
     annotation = {'cno': 'cno_0000047'}
     abstract = True
     def __init__(self, path, xpower=1, ypower=0, Ek=0.0):
