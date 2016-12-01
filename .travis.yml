@@ -18,5 +18,6 @@ install:
 script:
     - # Making sure no python3 incompatible file.
     - python3 -m compileall -q .
+    - python2 -m compileall -q .
     - python -c 'import moose'
     - cd _travis && ./find_scripts_to_run.sh && ./run_scripts.sh 
