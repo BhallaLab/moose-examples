@@ -8,8 +8,12 @@
 ## See the file COPYING.LIB for the full notice.
 #########################################################################
 
+try:
+    from __future__ import print_function
+except Exception as e:
+    pass
+
 import sys
-sys.path.append('../../python')
 import os
 os.environ['NUMPTHREADS'] = '1'
 import math

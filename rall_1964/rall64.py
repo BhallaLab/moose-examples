@@ -47,11 +47,18 @@
 
 
 
-"""Implementation of Rall 1964 model of dendritic branching. All units
-SI."""
+"""
+Implementation of Rall 1964 model of dendritic branching. All units
+SI.
+
+"""
+
+try:
+    from __future__ import print_function
+except Exception, e:
+    pass
 
 import sys
-
 import math
 import pylab
 import moose

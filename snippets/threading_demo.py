@@ -36,7 +36,7 @@ import threading
 try:
     import queue
 except ImportError as e:
-    import queue as queue 
+    import Queue as queue 
 
 import time
 from datetime import datetime

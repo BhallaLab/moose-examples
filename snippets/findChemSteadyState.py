@@ -7,7 +7,10 @@
 ## See the file COPYING.LIB for the full notice.
 #########################################################################
 
-
+try:
+    from __future__ import print_function
+except Exception as e:
+    pass
 
 import math
 import pylab
@@ -183,6 +186,7 @@ def getState( ksolve, state ):
     state.settle() # This function finds the steady states.
     for x in ksolve.nVec[0]:
         print(x * scale, end=' ')
+
     print(state.nIter, state.status, state.stateType, state.nNegEigenvalues, state.nPosEigenvalues, state.solutionStatus)
     moose.start( 10.0 ) # Run model for 10 seconds, just for display
 
