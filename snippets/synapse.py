@@ -44,10 +44,7 @@
 
 # Code:
 
-try:
-    from __future__ import print_function
-except Exception as e:
-    pass
+from __future__ import print_function
 
 
 import moose

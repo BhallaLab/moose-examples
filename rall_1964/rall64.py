@@ -52,11 +52,7 @@ Implementation of Rall 1964 model of dendritic branching. All units
 SI.
 
 """
-
-try:
-    from __future__ import print_function
-except Exception, e:
-    pass
+from __future__ import print_function
 
 import sys
 import math
