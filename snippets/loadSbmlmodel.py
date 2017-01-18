@@ -35,15 +35,15 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 # General Public License for more details.
 # 
+import sys
+import os.path
+
+import numpy as np
+import pylab
 
 import moose
-import matplotlib
-import numpy as np
-import matplotlib.pyplot as plt
-import sys
-import pylab
 from moose.SBML import *
-import os.path
+from moose.chemUtil.add_Delete_ChemicalSolver import *
 
 def main():
     """ This example illustrates loading, running of an SBML model defined in XML format.\n
@@ -86,7 +86,9 @@ def main():
         moose.connect( outputs1,'requestOut', s1, 'getConc' );
         moose.connect( outputs2,'requestOut', s2, 'getConc' );
 
-            
+        # gsl solver is added, default is ee
+        mooseaddChemSolver(sbmlId.path,"ee")
+        
         # Reset and Run
         moose.reinit()
         moose.start(runtime)
@@ -97,7 +99,7 @@ def displayPlots():
     # Display all plots.
     for x in moose.wildcardFind( '/sbml/graphs/#[TYPE=Table2]' ):
         t = np.arange( 0, x.vector.size, 1 ) #sec
-        plt.plot( t, x.vector, label=x.name )
+        pylab.plot( t, x.vector, label=x.name )
     
     pylab.legend()
     pylab.show()
