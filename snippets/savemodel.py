@@ -64,5 +64,5 @@ if __name__ == '__main__':
     model = moose.loadModel( 
             os.path.join( cwd, '../genesis/reaction.g' ), '/model'
             )
-    written = write('/model', 'testsave.g')
+    written = mooseWriteKkit('/model', 'testsave.g')
     print( written )
