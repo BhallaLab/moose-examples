@@ -198,7 +198,7 @@ def finalizeDisplay( plotlist, cPlotDt ):
         line1, = plotlist[0].plot( pos, x.vector, label=x.name )
     plotlist[4].canvas.draw()
     print( "Hit '0' to exit" )
-    eval(str(input())
+    eval(str(input()))
 
 def makeChemModel( compt, doInput ):
     """
