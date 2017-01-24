@@ -183,8 +183,8 @@ def main():
     print('Ratio of initial to final total numbers of of a, b, c, d = ')
     print((atot2/atot, btot2/btot, ctot2/ctot, dtot2/dtot))
     print(('Initial to final (b+c)=', (btot2 + ctot2) / (btot + ctot )))
-    print("\nHit 'enter' to exit")
-    eval(input())
+    print("\nHit '0' to exit")
+    eval(str(input()))
 
     quit()
 

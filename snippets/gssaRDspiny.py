@@ -180,8 +180,8 @@ def finalizeDisplay( plotlist, cPlotDt ):
         pos = numpy.arange( 0, x.vector.size, 1 ) * cPlotDt
         line1, = plotlist[0].plot( pos, x.vector, label=x.name )
     plotlist[4].canvas.draw()
-    print( "Hit 'enter' to exit" )
-    eval(input())
+    print( "Hit '0' to exit" )
+    eval(str(input()))
 
 def makeChemModel( compt ):
     """
