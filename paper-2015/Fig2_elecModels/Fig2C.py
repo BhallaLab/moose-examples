@@ -121,6 +121,7 @@ def buildRdesigneur():
             ["glu", "#dend#,#apical#", "Gbar", "200*H(p-200e-6)" ], \
             ["NMDA", "#dend#,#apical#", "Gbar", "2*H(p-200e-6)" ] \
         ]
+    '''
     spineDistrib = [ \
             ["spine", '#apical#', "spineSpacing", "20e-6", \
                 "spineSpacingDistrib", "2e-6", \
@@ -129,7 +130,15 @@ def buildRdesigneur():
                 "size", "1", \
                 "sizeDistrib", "0.5" ] \
         ]
+    '''
+    spineDistrib = [
+            ["spine", '#apical#', 
+                "20e-6", "2e-6",
+                "1", "0.5",
+                "0", str( 2*PI ) ]
+        ]
     chemDistrib = []
+    spineProto = [['makeActiveSpine()', 'spine']]
 
     ######################################################################
     # Here we define the mappings across scales. Format:
@@ -145,19 +154,20 @@ def buildRdesigneur():
     # with creating the model.
     ######################################################################
     
-    rd.addSpineProto() # This adds a version with an LCa channel by default.
+    #rd.addSpineProto() # This adds a version with an LCa channel by default.
 
     rdes = rd.rdesigneur(
-        useGssa = useGssa, \
-        combineSegments = combineSegments, \
-        stealCellFromLibrary = True, \
-        passiveDistrib = passiveDistrib, \
-        spineDistrib = spineDistrib, \
-        chanDistrib = chanDistrib, \
-        chemDistrib = chemDistrib, \
-        cellProto = cellProto, \
-        chanProto = chanProto, \
-        chemProto = chemProto, \
+        useGssa = useGssa,
+        combineSegments = combineSegments,
+        stealCellFromLibrary = True,
+        passiveDistrib = passiveDistrib,
+        spineDistrib = spineDistrib,
+        chanDistrib = chanDistrib,
+        chemDistrib = chemDistrib,
+        cellProto = cellProto,
+        chanProto = chanProto,
+        chemProto = chemProto,
+        spineProto = spineProto,
         adaptorList = adaptorList
     )
     #spineProto = spineProto, \
