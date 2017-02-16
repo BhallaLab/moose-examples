@@ -1,14 +1,3 @@
-##################################################################
-## This program is part of 'MOOSE', the
-## Messaging Object Oriented Simulation Environment.
-##           Copyright (C) 2015 Upinder S. Bhalla. and NCBS
-## It is made available under the terms of the
-## GNU Lesser General Public License version 2.1
-## See the file COPYING.LIB for the full notice.
-##
-## rxdSpineSize.py: Builds a cell with spines and a propagating reaction
-## wave. Products diffuse into the spine and cause it to get bigger.
-##################################################################
 import math
 import pylab
 import numpy
@@ -54,7 +43,7 @@ def makeChemProto( name ):
     chem = moose.Neutral( '/library/' + name )
     comptVol = diffLen * dendDia * dendDia * PI / 4.0
     for i in ( ['dend', comptVol], ['spine', 1e-19], ['psd', 1e-20] ):
-        print 'making ', i
+        print(('making ', i))
         compt = moose.CubeMesh( chem.path + '/' + i[0] )
         compt.volume = i[1]
         #x = moose.Pool( compt.path + '/x' )
@@ -72,7 +61,7 @@ def makeChemProto( name ):
     x.diffConst = diffConst
     func = moose.Function( x.path + '/func' )
     func.expr = "-x0 * (0.3 - " + nstr + " * x0) * ( 1 - " + nstr + " * x0)"
-    print func.expr
+    print((func.expr))
     func.x.num = 1
     moose.connect( x, 'nOut', func.x[0], 'input' )
     moose.connect( func, 'valueOut', x, 'increment' )
@@ -140,54 +129,16 @@ def displayPlots():
 
 def main():
     """
-    This illustrates the use of rdesigneur to build a simple dendrite with
-    spines, and then to resize them using spine fields. These are the
-    fields that would be changed dynamically in a simulation with reactions
-    that affect spine geometry.
-    In this simulation there is a propagating reaction wave using a
-    highly abstracted equation, whose product diffuses into the spines and
-    makes them bigger.
+This illustrates the use of rdesigneur to build a simple dendrite with
+spines, and then to resize them using spine fields. These are the
+fields that would be changed dynamically in a simulation with reactions
+that affect spine geometry.
+In this simulation there is a propagating reaction wave using a
+highly abstracted equation, whose product diffuses into the spines and
+makes them bigger.
+
     """
-    makeModel()
-    elec = moose.element( '/model/elec' )
-    elec.setSpineAndPsdMesh( moose.element('/model/chem/spine'), moose.element('/model/chem/psd') )
 
-    eHead = moose.wildcardFind( '/model/elec/#head#' )
-    oldDia = [ i.diameter for i in eHead ]
-    graphs = moose.Neutral( '/graphs' )
-    #makePlot( 'psd_x', moose.vec( '/model/chem/psd/x' ), 'getN' )
-    #makePlot( 'head_x', moose.vec( '/model/chem/spine/x' ), 'getN' )
-    makePlot( 'dend_x', moose.vec( '/model/chem/dend/x' ), 'getN' )
-    makePlot( 'dend_z', moose.vec( '/model/chem/dend/z' ), 'getN' )
-    makePlot( 'head_z', moose.vec( '/model/chem/spine/z' ), 'getN' )
-    makePlot( 'psd_z', moose.vec( '/model/chem/psd/z' ), 'getN' )
-    makePlot( 'headDia', eHead, 'getDiameter' )
-
-    '''
-    debug = moose.PyRun( '/pyrun' )
-    debug.tick = 10
-    debug.runString = """print "RUNNING: ", moose.element( '/model/chem/psd/z' ).n, moose.element( '/model/elec/head0' ).diameter"""
-    '''
-    moose.reinit()
-    moose.start( runtime )
-
-    displayPlots()
-    pylab.plot( oldDia, label = 'old Diameter' )
-    pylab.plot( [ i.diameter for i in eHead ], label = 'new Diameter' )
-    pylab.legend()
-    pylab.show()
-
-    app = QtGui.QApplication(sys.argv)
-    #widget = mv.MoogliViewer( '/model' )
-    morphology = moogli.read_morphology_from_moose( name="", path = '/model/elec' )
-    widget = moogli.MorphologyViewerWidget( morphology )
-    widget.show()
-    return app.exec_()
-    quit()
-
-# Run the 'main' if this script is executed standalone.
-
-def showVisualization():
     makeModel()
     elec = moose.element( '/model/elec' )
     elec.setSpineAndPsdMesh( moose.element('/model/chem/spine'), moose.element('/model/chem/psd') )
@@ -264,9 +215,9 @@ def create_viewer(path, moose_dendrite, dendZ, diaTab, psdZ):
             view.stop()
 
     viewer = moogli.Viewer("Viewer")
-    viewer.attach_shapes(network.shapes.values())
+    viewer.attach_shapes(list(network.shapes.values()))
     viewer.detach_shape(dendrite)
-    viewer.attach_shapes(chem_compt_group.shapes.values())
+    viewer.attach_shapes(list(chem_compt_group.shapes.values()))
 
     view = moogli.View("main-view",
                        prelude=prelude,
@@ -290,4 +241,4 @@ def create_viewer(path, moose_dendrite, dendZ, diaTab, psdZ):
 
 
 if __name__ == '__main__':
-    showVisualization()
+    main()

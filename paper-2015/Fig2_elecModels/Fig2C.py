@@ -192,10 +192,10 @@ def displayPlots():
     pylab.figure(2, figsize= (8,10))
     ax = pylab.subplot( 1,1,1 )
     neuron = moose.element( '/model/elec' )
-    comptDistance = dict( zip( neuron.compartments, neuron.pathDistanceFromSoma ) )
+    comptDistance = dict( list(zip( neuron.compartments, neuron.pathDistanceFromSoma )) )
     for i in moose.wildcardFind( '/library/#[ISA=ChanBase]' ):
         chans = moose.wildcardFind( '/model/elec/#/' + i.name )
-        print i.name, len( chans )
+        print((i.name, len( chans )))
         p = [ 1e6*comptDistance.get( j.parent, 0) for j in chans ]
         Gbar = [ j.Gbar/(j.parent.length * j.parent.diameter * PI) for j in chans ]
         if len( p ) > 2:
@@ -223,7 +223,7 @@ def create_vm_viewer(rdes):
                                                                   0.0,
                                                                   0.1)])
     mapper = moogli.utilities.mapper(colormap, normalizer)
-    vms = [moose.element(x).Vm for x in network.shapes.keys()]
+    vms = [moose.element(x).Vm for x in list(network.shapes.keys())]
     network.set("color", vms, mapper)
 
     def prelude(view):
@@ -232,7 +232,7 @@ def create_vm_viewer(rdes):
 
     def interlude(view):
         moose.start(frameRunTime)
-        vms = [moose.element(x).Vm for x in network.shapes.keys()]
+        vms = [moose.element(x).Vm for x in list(network.shapes.keys())]
         network.set("color", vms, mapper)
         view.yaw(0.01)
         currTime = moose.element('/clock').currentTime
@@ -245,7 +245,7 @@ def create_vm_viewer(rdes):
         displayPlots()
 
     viewer = moogli.Viewer("vm-viewer")
-    viewer.attach_shapes(network.shapes.values())
+    viewer.attach_shapes(list(network.shapes.values()))
     view = moogli.View("vm-view",
                        prelude=prelude,
                        interlude=interlude,
@@ -257,7 +257,7 @@ def create_vm_viewer(rdes):
 def create_ca_viewer(rdes):
     network = moogli.extensions.moose.read(rdes.elecid.path)
     ca_elements = []
-    for compartment_path in network.shapes.keys():
+    for compartment_path in list(network.shapes.keys()):
         if moose.exists(compartment_path + '/Ca_conc'):
             ca_elements.append(moose.element(compartment_path + '/Ca_conc'))
         else:
@@ -296,7 +296,7 @@ def create_ca_viewer(rdes):
             view.stop()
 
     viewer = moogli.Viewer("ca-viewer")
-    viewer.attach_shapes(network.shapes.values())
+    viewer.attach_shapes(list(network.shapes.values()))
     view = moogli.View("ca-view",
                        prelude=prelude,
                        interlude=interlude)
@@ -304,7 +304,7 @@ def create_ca_viewer(rdes):
     return viewer
 
 def build3dDisplay(rdes):
-    print "building 3d Display"
+    print("building 3d Display")
     app = QtGui.QApplication(sys.argv)
 
     vm_viewer = create_vm_viewer(rdes)
@@ -335,7 +335,7 @@ def deliverStim( currTime ):
         step = int (currTime / frameRunTime )
         probeStep = int( probeInterval / frameRunTime )
         if step % probeStep == 0:
-            print "Doing probe Stim at ", currTime
+            print(("Doing probe Stim at ", currTime))
             for i in synSpineList:
                 i.activation( probeAmplitude )
 
@@ -351,7 +351,7 @@ def main():
     temp = set( moose.wildcardFind( "/model/elec/#/glu,/model/elec/#/NMDA" ) )
 
     synDendList = list( temp - set( synSpineList ) )
-    print "num spine, dend syns = ", len( synSpineList ), len( synDendList )
+    print(("num spine, dend syns = ", len( synSpineList ), len( synDendList )))
     moose.reinit()
     #for i in moose.wildcardFind( '/model/elec/#apical#/#[ISA=CaConcBase]' ):
         #print i.path, i.length, i.diameter, i.parent.length, i.parent.diameter
@@ -360,7 +360,7 @@ def main():
     # Run for baseline, tetanus, and post-tetanic settling time 
     t1 = time.time()
     build3dDisplay(rdes)
-    print 'real time = ', time.time() - t1
+    print(('real time = ', time.time() - t1))
 
 if __name__ == '__main__':
     main()

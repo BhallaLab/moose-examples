@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+
 #/**********************************************************************
 #** This program is part of 'MOOSE', the
 #** Messaging Object Oriented Simulation Environment.
@@ -241,11 +241,11 @@ class ExcInhNetBase:
         t1 = time.time()
         print('reinit MOOSE -- takes a while ~20s.')
         moose.reinit()
-        print('reinit time t = ', time.time() - t1)
+        print(('reinit time t = ', time.time() - t1))
         t1 = time.time()
         print('starting run ...')
         moose.start(self.simtime)
-        print('runtime, t = ', time.time() - t1)
+        print(('runtime, t = ', time.time() - t1))
 
         if plotif:
             self._plot()
@@ -672,8 +672,9 @@ def load_plot_Fig5():
         #plt.ylabel("# per bin")
 
     fig.tight_layout()
-    f.close()
-    fig.savefig("HGB2014_Fig5ab_MOOSE.tif",dpi=fig_dpi)
+    # plt.show( )
+    # f.close()
+    # fig.savefig("HGB2014_Fig5ab_MOOSE.tif",dpi=fig_dpi)
 
 def extra_plots(net):
     ## extra plots apart from the spike rasters

@@ -100,17 +100,17 @@ def makeModel():
     stoich0.filterXreacs()
     stoich1.filterXreacs()
     stoich2.filterXreacs()
-    
+
     Ca_input_dend = moose.vec( '/model/chem/compt0/Ca_input' )
-    print len( Ca_input_dend )
+    print((len( Ca_input_dend )))
     for i in range( 60 ):
         Ca_input_dend[ 3 + i * 3 ].conc = 2.0
 
     Ca_input_PSD = moose.vec( '/model/chem/compt2/Ca_input' )
-    print len( Ca_input_PSD )
+    print((len( Ca_input_PSD )))
     for i in range( 5 ):
         Ca_input_PSD[ 2 + i * 2].conc = 1.0
-    
+
     # Create the output tables
     num = compt0.numDiffCompts - 1
     graphs = moose.Neutral( '/model/graphs' )
@@ -157,36 +157,36 @@ def makeDisplay():
         plt.xlabel( 'time (seconds)' )
         plt.legend()
 
-	Ca = moose.vec( '/model/chem/compt0/Ca' )
-	Ca_input = moose.vec( '/model/chem/compt0/Ca_input' )
-        line1, = dend.plot( range( len( Ca ) ), Ca.conc, label='Ca' )
-        line2, = dend.plot( range( len( Ca_input ) ), Ca_input.conc, label='Ca_input' )
+        Ca = moose.vec( '/model/chem/compt0/Ca' )
+        Ca_input = moose.vec( '/model/chem/compt0/Ca_input' )
+        line1, = dend.plot( list(range( len( Ca ))), Ca.conc, label='Ca' )
+        line2, = dend.plot( list(range( len( Ca_input ))), Ca_input.conc, label='Ca_input' )
         dend.set_ylim( 0, 2 )
 
-	Ca = moose.vec( '/model/chem/compt1/Ca' )
-        line3, = spine.plot( range( len( Ca ) ), Ca.conc, label='Ca' )
+        Ca = moose.vec( '/model/chem/compt1/Ca' )
+        line3, = spine.plot( list(range( len( Ca ))), Ca.conc, label='Ca' )
         spine.set_ylim( 0, 1 )
 
-	Ca = moose.vec( '/model/chem/compt2/Ca' )
-	Ca_input = moose.vec( '/model/chem/compt2/Ca_input' )
-        line4, = psd.plot( range( len( Ca ) ), Ca.conc, label='Ca' )
-        line5, = psd.plot( range( len( Ca_input ) ), Ca_input.conc, label='Ca_input' )
+        Ca = moose.vec( '/model/chem/compt2/Ca' )
+        Ca_input = moose.vec( '/model/chem/compt2/Ca_input' )
+        line4, = psd.plot( list(range( len( Ca ))), Ca.conc, label='Ca' )
+        line5, = psd.plot( list(range( len( Ca_input ))), Ca_input.conc, label='Ca_input' )
         psd.set_ylim( 0, 1 )
 
         fig.canvas.draw()
         return ( timeSeries, dend, spine, psd, fig, line1, line2, line3, line4, line5, timeLabel )
 
 def updateDisplay( plotlist ):
-	Ca = moose.vec( '/model/chem/compt0/Ca' )
-	Ca_input = moose.vec( '/model/chem/compt0/Ca_input' )
+        Ca = moose.vec( '/model/chem/compt0/Ca' )
+        Ca_input = moose.vec( '/model/chem/compt0/Ca_input' )
         plotlist[5].set_ydata( Ca.conc )
         plotlist[6].set_ydata( Ca_input.conc )
 
-	Ca = moose.vec( '/model/chem/compt1/Ca' )
+        Ca = moose.vec( '/model/chem/compt1/Ca' )
         plotlist[7].set_ydata( Ca.conc )
 
-	Ca = moose.vec( '/model/chem/compt2/Ca' )
-	Ca_input = moose.vec( '/model/chem/compt2/Ca_input' )
+        Ca = moose.vec( '/model/chem/compt2/Ca' )
+        Ca_input = moose.vec( '/model/chem/compt2/Ca_input' )
         plotlist[8].set_ydata( Ca.conc )
         plotlist[9].set_ydata( Ca_input.conc )
         plotlist[4].canvas.draw()
@@ -197,16 +197,16 @@ def finalizeDisplay( plotlist, cPlotDt ):
         pos = numpy.arange( 0, x.vector.size, 1 ) * cPlotDt
         line1, = plotlist[0].plot( pos, x.vector, label=x.name )
     plotlist[4].canvas.draw()
-    print( "Hit 'enter' to exit" )
-    raw_input()
+    print( "Hit '0' to exit" )
+    eval(str(input()))
 
 def makeChemModel( compt, doInput ):
     """
-    This function setus up a simple chemical system in which Ca input 
+    This function setus up a simple chemical system in which Ca input
     comes to the dend and to selected PSDs. There is diffusion between
     PSD and spine head, and between dend and spine head.
-    
-        Ca_input ------> Ca  // in dend and spine head only.
+
+    :: Ca_input ------> Ca  // in dend and spine head only.
     """
     # create molecules and reactions
     Ca = moose.Pool( compt.path + '/Ca' )
@@ -233,29 +233,29 @@ def makeChemModel( compt, doInput ):
 def main():
     """
     This example illustrates and tests diffusion embedded in
-    the branching pseudo-1-dimensional geometry of a neuron. 
-    An input pattern of Ca stimulus is applied in a periodic manner both 
+    the branching pseudo-1-dimensional geometry of a neuron.
+    An input pattern of Ca stimulus is applied in a periodic manner both
     on the dendrite and on the PSDs of the 13 spines. The Ca levels in
     each of the dend, the spine head, and the spine PSD are monitored.
     Since the same molecule name is used for Ca in the three compartments,
     these are automagially connected up for diffusion. The simulation
     shows the outcome of this diffusion.
-    This example uses an external electrical model file with basal 
+    This example uses an external electrical model file with basal
     dendrite and three branches on
     the apical dendrite. One of those branches has the 13 spines.
     The model is set up to run using the Ksolve for integration and the
     Dsolve for handling diffusion.
-    The timesteps here are not the defaults. It turns out that the 
+    The timesteps here are not the defaults. It turns out that the
     chem reactions and diffusion in this example are sufficiently fast
     that the chemDt has to be smaller than default. Note that this example
     uses rates quite close to those used in production models.
     The display has four parts:
 
-        a. animated line plot of concentration against main compartment#. 
-        b. animated line plot of concentration against spine compartment#. 
-        c. animated line plot of concentration against psd compartment#. 
-        d. time-series plot that appears after the simulation has 
-           ended. 
+        a. animated line plot of concentration against main compartment#.
+        b. animated line plot of concentration against spine compartment#.
+        c. animated line plot of concentration against psd compartment#.
+        d. time-series plot that appears after the simulation has
+           ended.
 
     """
 
@@ -279,4 +279,4 @@ def main():
 
 # Run the 'main' if this script is executed standalone.
 if __name__ == '__main__':
-	main()
+        main()
