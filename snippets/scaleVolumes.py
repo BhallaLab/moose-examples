@@ -15,8 +15,8 @@ import moose
 # Ugly python hack to make input behave the same on python2 and python3.
 try:
     input = raw_input
-except NameError as e:\
-        passk
+except NameError as e:
+        pass
 
 def makeModel():
                 # create container for model
@@ -24,7 +24,7 @@ def makeModel():
                 compartment = moose.CubeMesh( '/model/compartment' )
                 compartment.volume = 1e-20
                 # the mesh is created automatically by the compartment
-                mesh = moose.element( '/model/compartment/mesh' ) 
+                mesh = moose.element( '/model/compartment/mesh' )
 
                 # create molecules and reactions
                 a = moose.Pool( '/model/compartment/a' )
@@ -100,14 +100,14 @@ def main():
     else is set up correctly, then this change propagates through to all
     reactions molecules.
 
-    For a deterministic reaction one would not see any change in output 
+    For a deterministic reaction one would not see any change in output
     concentrations.
-    For a stochastic reaction illustrated here, one sees the level of 
-    'noise' 
+    For a stochastic reaction illustrated here, one sees the level of
+    'noise'
     changing, even though the concentrations are similar up to a point.
     This example creates a bistable model having two enzymes and a reaction.
     One of the enzymes is autocatalytic.
-    This model is set up within the script rather than using an external 
+    This model is set up within the script rather than using an external
     file.
     The model is set up to run using the GSSA (Gillespie Stocahstic systems
     algorithim) method in MOOSE.
@@ -157,7 +157,6 @@ def main():
         pylab.show( block=False )
         print( 'vol = %f ' % vol )
         response = input( "Press enter to go to next plot... " ) 
-
     quit()
 
 # Run the 'main' if this script is executed standalone.
