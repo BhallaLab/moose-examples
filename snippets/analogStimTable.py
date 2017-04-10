@@ -89,7 +89,7 @@ for plotting.
     analogStimTable()
 
 if __name__ == '__main__':
-    main
+    main()
 
 #
 # stimtable.py ends here
