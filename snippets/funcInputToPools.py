@@ -115,8 +115,8 @@ To run in deterministic mode::
     	#x.xplot( 'scriptKineticModel.plot', x.name )
         t = numpy.arange( 0, x.vector.size, 1 ) * x.dt # sec
         pylab.plot( t, x.vector, label=x.name )
-	pylab.legend()
-	pylab.show()
+    pylab.legend()
+    pylab.show()
     quit()
 
 # Run the 'main' if this script is executed standalone.
