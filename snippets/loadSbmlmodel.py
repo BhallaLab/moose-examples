@@ -76,7 +76,7 @@ If someone wants to load anyother file then
         runtime = druntime
     else:
         runtime = float(sys.argv[2])
-
+    sbmlId = moose.element('/')
     # Loading the sbml file into MOOSE, models are loaded in path/model
     sbmlId = mooseReadSBML(filepath,'/sbml')
     if isinstance(sbmlId, (list, tuple)):
@@ -103,7 +103,7 @@ If someone wants to load anyother file then
         moose.reinit()
         moose.start(runtime)
         return sbmlId,True,msg
-#return sbmlId,False
+    return sbmlId,False,msg 
 
 def displayPlots():
     # Display all plots.
@@ -117,6 +117,9 @@ def displayPlots():
     quit()
 
 if __name__=='__main__':
+    modelPath = moose.element('/')
+    modelpathexist = False
+    msg = "" 
     modelPath, modelpathexist,msg = main()
     if msg:
         print (msg)
