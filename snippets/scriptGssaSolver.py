@@ -85,38 +85,47 @@ def displayPlots():
                 pylab.show()
 
 def main():
-                makeModel()
-                gsolve = moose.Gsolve( '/model/compartment/gsolve' )
-                stoich = moose.Stoich( '/model/compartment/stoich' )
-                stoich.compartment = moose.element( '/model/compartment' )
-                stoich.ksolve = gsolve
-                stoich.path = "/model/compartment/##"
-                #solver.method = "rk5"
-                #mesh = moose.element( "/model/compartment/mesh" )
-                #moose.connect( mesh, "remesh", solver, "remesh" )
-                moose.setClock( 5, 1.0 ) # clock for the solver
-                moose.useClock( 5, '/model/compartment/gsolve', 'process' )
+    """
+    This example illustrates how to set up a kinetic solver and kinetic model
+    using the scripting interface. Normally this would be done using the
+    Shell::doLoadModel command, and normally would be coordinated by the
+    SimManager as the base of the entire model.
+    This example creates a bistable model having two enzymes and a reaction.
+    One of the enzymes is autocatalytic.
+    The model is set up to run using Exponential Euler integration.
+    """
+    makeModel()
+    gsolve = moose.Gsolve( '/model/compartment/gsolve' )
+    stoich = moose.Stoich( '/model/compartment/stoich' )
+    stoich.compartment = moose.element( '/model/compartment' )
+    stoich.ksolve = gsolve
+    stoich.path = "/model/compartment/##"
+    #solver.method = "rk5"
+    #mesh = moose.element( "/model/compartment/mesh" )
+    #moose.connect( mesh, "remesh", solver, "remesh" )
+    moose.setClock( 5, 1.0 ) # clock for the solver
+    moose.useClock( 5, '/model/compartment/gsolve', 'process' )
 
-                moose.reinit()
-                moose.start( 100.0 ) # Run the model for 100 seconds.
+    moose.reinit()
+    moose.start( 100.0 ) # Run the model for 100 seconds.
 
-                a = moose.element( '/model/compartment/a' )
-                b = moose.element( '/model/compartment/b' )
+    a = moose.element( '/model/compartment/a' )
+    b = moose.element( '/model/compartment/b' )
 
-                # move most molecules over to bgsolve
-                b.conc = b.conc + a.conc * 0.9
-                a.conc = a.conc * 0.1
-                moose.start( 100.0 ) # Run the model for 100 seconds.
+    # move most molecules over to bgsolve
+    b.conc = b.conc + a.conc * 0.9
+    a.conc = a.conc * 0.1
+    moose.start( 100.0 ) # Run the model for 100 seconds.
 
-                # move most molecules back to a
-                a.conc = a.conc + b.conc * 0.99
-                b.conc = b.conc * 0.01
-                moose.start( 100.0 ) # Run the model for 100 seconds.
+    # move most molecules back to a
+    a.conc = a.conc + b.conc * 0.99
+    b.conc = b.conc * 0.01
+    moose.start( 100.0 ) # Run the model for 100 seconds.
 
-                # Iterate through all plots, dump their contents to data.plot.
-                displayPlots()
+    # Iterate through all plots, dump their contents to data.plot.
+    displayPlots()
 
-                quit()
+    quit()
 
 # Run the 'main' if this script is executed standalone.
 if __name__ == '__main__':
