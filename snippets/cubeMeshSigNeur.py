@@ -299,6 +299,7 @@ def testCubeMultiscale( useSolver ):
     displayPlots()
 
 def main():
+    """ A toy compartmental neuronal + chemical model in just a cubic volume """
     testCubeMultiscale( 1 ) # change argument to 0 to run without solver.
 
 if __name__ == '__main__':
