@@ -11,14 +11,6 @@
 ##### Author: Aditya Gilra, NCBS, Bangalore, October, 2014.  
 ##### Fixed numpy imports and global variables: Subhasis Ray, Fri Jul 10 19:34:53 IST 2015
 
-
-'''
-Connect two cells via a plastic synapse (STDPSynHandler).  
-Induce spikes spearated by varying intervals, in the pre and post synaptic cells.  
-Plot the synaptic weight change for different intervals between the spike-pairs.  
-This ia a pseudo-STDP protocol and we get the STDP rule.  
-'''
-
 import moose
 import matplotlib.pyplot as plt
 from numpy import arange, array
@@ -148,9 +140,14 @@ def make_neuron_spike(nrnidx,I=1e-7,duration=1e-3):
     network.vec[nrnidx].inject = 0.
 
 def main():
-    '''
+    """
+    Connect two cells via a plastic synapse (STDPSynHandler).  
+    Induce spikes spearated by varying intervals, in the pre and post synaptic cells.  
+    Plot the synaptic weight change for different intervals between the spike-pairs.  
+    This ia a pseudo-STDP protocol and we get the STDP rule.  
+
     On the command-line, in moose-examples/snippets directory, run ``python STDP.py``
-    '''
+    """
     setupModel()
     dwlist_neg = []
     ddt = 2e-3 # s

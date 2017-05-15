@@ -261,6 +261,12 @@ def make_spiny_compt():
         syn.delay = i * 1.0e-4
 
 def main():
+    """
+    A toy compartmental neuronal + chemical model that causes bad things
+    to happen to the hsolver, as of 28 May 2013. Hopefully this will
+    become irrelevant soon
+    
+    """
     fineDt = 1e-5
     coarseDt = 5e-5
     make_spiny_compt()

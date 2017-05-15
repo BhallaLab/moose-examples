@@ -44,7 +44,7 @@
 # 
 
 # Code:
-"""Demo for gap junction"""
+
 
 import moose
 from moose import utils
@@ -62,6 +62,11 @@ def make_compartment(path):
     return comp
 
 def gapjunction_demo():
+    
+    """
+    Demo for gap junction
+    """
+
     model = moose.Neutral('model')
     data = moose.Neutral('data')
     comps = []

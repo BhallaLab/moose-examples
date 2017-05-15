@@ -56,13 +56,13 @@ from moose.genesis import *
 
 cwd = os.path.dirname( os.path.realpath( __file__ ) )
 
-if __name__ == '__main__':
+def main():
     """ 
     The script demonstates to convert Chemical (Genesis) file back to Genesis 
     file using moose 
     """
-    model = moose.loadModel( 
-            os.path.join( cwd, '../genesis/reaction.g' ), '/model'
-            )
+    model = moose.loadModel(os.path.join( cwd, '../genesis/reaction.g'), '/model')
     written = mooseWriteKkit('/model', 'testsave.g')
     print( written )
+if __name__ == '__main__':
+    main()
