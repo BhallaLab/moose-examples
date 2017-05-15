@@ -149,13 +149,14 @@ def main():
     print(("Totals: expected = ", initTot, ", got: ", tot))
 
     # Iterate through all plots, dump their contents to data.plot.
+    '''
     for x in moose.wildcardFind( '/model/graphs/conc#' ):
         t = numpy.linspace( 0, runtime, x.vector.size ) # sec
         pylab.plot( t, x.vector, label=x.name )
     pylab.legend()
     pylab.show()
     quit()
-
+    '''
 # Run the 'main' if this script is executed standalone.
 if __name__ == '__main__':
         main()

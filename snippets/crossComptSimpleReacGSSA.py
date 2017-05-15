@@ -141,12 +141,13 @@ def main():
         print((x.name, x.conc))
 
     # Iterate through all plots, dump their contents to data.plot.
-    for x in moose.wildcardFind( '/model/graphs/conc#' ):
-        t = numpy.linspace( 0, runtime, x.vector.size ) # sec
-        pylab.plot( t, x.vector, label=x.name )
-    pylab.legend()
-    pylab.show()
-    quit()
+    #Reasons are unknow we are try to fix this, plotting or rather print vector from the table causes seg fault with some system
+    #for x in moose.wildcardFind( '/model/graphs/conc#' ):
+    #    t = numpy.linspace( 0, runtime, x.vector.size ) # sec
+    #    pylab.plot( t, x.vector, label=x.name )
+    #pylab.legend()
+    #pylab.show()
+    #quit()
 
 # Run the 'main' if this script is executed standalone.
 if __name__ == '__main__':
