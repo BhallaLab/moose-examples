@@ -1,4 +1,4 @@
-"""
+'''
 FieldElements.
 
 >>> import moose
@@ -30,13 +30,12 @@ IndexError: moose.ElementField.getItem: index out of bounds.
 <moose.Synapse: id=124, dataId=0, path=/a/synapse[0]>
 >>> a.synapse[1]
 <moose.Synapse: id=124, dataId=1, path=/a/synapse[0]>
->>> 
+>>>
 
 ----------------------
 Subha, Tue Jan  7 11:58:10 IST 2014
 
 Documentation/discussion on accessing synapses (ElementField):
-
 A `synapse` is an ElementField of an IntFire element. The following
 example is taken from Upi and modified to reflect the current API::
 
@@ -48,7 +47,7 @@ IntFire elements have an ElementField called `synapse`. You can access
 the first `synapse` element on the first IntFire element with the
 following::
 
-   synapse = moose.element('/network/synapse') 
+   synapse = moose.element('/network/synapse')
 
 This is equivalent to::
 
@@ -83,7 +82,7 @@ network.vec.Vm = [(Vmax*random.random()) for r in range(size)]
 moose.start(runtime)
 print network.vec[100].Vm, network.vec[900].Vm
 
-"""
+'''
 
 import os
 import moose
@@ -101,7 +100,7 @@ moose.connect( syn, 'activationOut', a, 'activation', 'OneToOne' )
 # FieldElement identity
 ###############################
 x = syn.synapse # x is an ElementField alpha[0].synapse
-print('x=',x) 
+print('x=',x)
 print('x.num=', x.num) # Initially there are no synapses, so this will be 0
 syn.synapse.num = 3 # We set number of field elements to 3
 print('x.num=', x.num)  # x refers to a.synapse, so this should be 3
@@ -128,19 +127,22 @@ print('alpha[0].synapse.delay=', x.delay)
 #####################################################
 # Play a little more with ObjId, FieldElement, Id
 #####################################################
-print('Length of alpha[1]/synapse=', len(moose.element('/alpha[1]/sh').synapse))
-c = moose.element('alpha[1]/sh/synapse[2]') # This should throw an error - alpha[1] does not have 3 synapses. 
+print('Length of alpha[1]/synapse=', len(moose.element('/alpha[1]/sh').synapse.vec))
+print('Length of alpha[1]/synapse=', moose.element('/alpha[1]/sh').numSynapses)
+c = moose.element('alpha[1]/sh/synapse[2]') # This should throw an error - alpha[1] does not have 3 synapses.
 print('b=', b, 'numData=', b.numData)
 print('c=', c, 'numData=', c.numData)
 try:
-    print('len(c)=', len(c))
+    print('len(c)=', len(c.vec))
 except TypeError as e:
     print(e)
+    print("Got type error, as expected")
 d = moose.element('/alpha[1]/sh')
 try:
     print(d.synapse[1])
 except IndexError as e:
     print(e)
+    print("Got IndexError, as expected")
 else:
     print('Expected an IndexError. Length of synapse=', len(d.synapse))
 # The fieldIndex should change, not dataId
