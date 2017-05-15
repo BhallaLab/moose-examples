@@ -38,7 +38,7 @@ import sys
 
 import os
 import math
-
+import pylab,numpy
 import moose
 
 EREST_ACT = -70e-3
@@ -233,7 +233,11 @@ def dumpPlots( fname ):
     if ( os.path.exists( fname ) ):
         os.remove( fname )
     for x in moose.wildcardFind( '/graphs/##[ISA=Table]' ):
-        x.xplot( fname, x.name )
+        #x.xplot( fname, x.name )
+        t = numpy.arange( 0, x.vector.size, 1 ) * x.dt
+        pylab.plot( t, x.vector, label=x.name )
+    pylab.legend()
+    pylab.show()
 
 def makeSpinyCompt():
     comptLength = 30e-6
