@@ -70,33 +70,33 @@ def makeTab( plotname, molpath ):
 
 
 def makeDisplay():
-        plt.ion()
-        fig = plt.figure( figsize=(10,12) )
+    plt.ion()
+    fig = plt.figure( figsize=(10,12) )
 
-        layout = fig.add_subplot( 211 )
-        plt.ylabel( 'x position + 10*conc' )
-        plt.xlabel( 'y position (microns)' )
-        timeLabel = plt.text(0, 20, 'time = 0')
-        layout.set_xlim( -5, 75 )
-        layout.set_ylim( -20, 25 )
-        compt = moose.element( '/model/chem/compt0' )
-        pos = compt.voxelMidpoint
-        i = len( pos ) / 3
-        r2 = numpy.sqrt( 0.5 )
-        yp = [ -r2 * pos[j] * 1e6 for j in range( i ) ]
-        xp = pos[i:2*i] * 1e6 - yp
-        #xp = [ pos[i + j] for j in range( i ) ]
-        #yp = [ -r2 * pos[j] for j in range( i ) ]
-        #line0, = layout.plot( pos[:i], pos[i:2*i] , 'bo' )
-        line, = layout.plot( xp, yp, 'bo' )
+    layout = fig.add_subplot( 211 )
+    plt.ylabel( 'x position + 10*conc' )
+    plt.xlabel( 'y position (microns)' )
+    timeLabel = plt.text(0, 20, 'time = 0')
+    layout.set_xlim( -5, 75 )
+    layout.set_ylim( -20, 25 )
+    compt = moose.element( '/model/chem/compt0' )
+    pos = compt.voxelMidpoint
+    i = len( pos ) / 3
+    r2 = numpy.sqrt( 0.5 )
+    yp = [ -r2 * pos[j] * 1e6 for j in range( i ) ]
+    xp = pos[i:2*i] * 1e6 - yp
+    #xp = [ pos[i + j] for j in range( i ) ]
+    #yp = [ -r2 * pos[j] for j in range( i ) ]
+    #line0, = layout.plot( pos[:i], pos[i:2*i] , 'bo' )
+    line, = layout.plot( xp, yp, 'bo' )
 
-        timeSeries = fig.add_subplot( 212 )
-        timeSeries.set_ylim( 0, 0.6 )
-        plt.ylabel( 'Conc (mM)' )
-        plt.xlabel( 'time (seconds)' )
+    timeSeries = fig.add_subplot( 212 )
+    timeSeries.set_ylim( 0, 0.6 )
+    plt.ylabel( 'Conc (mM)' )
+    plt.xlabel( 'time (seconds)' )
 
-        fig.canvas.draw()
-        return ( timeSeries, fig, line, timeLabel, yp )
+    fig.canvas.draw()
+    return ( timeSeries, fig, line, timeLabel, yp )
 
 def updateDisplay( plotlist ):
         a = moose.vec( '/model/chem/compt0/a' )
@@ -112,8 +112,8 @@ def finalizeDisplay( plotlist, cPlotDt ):
         line1, = plotlist[0].plot( pos, x.vector, label=x.name )
     plt.legend()
     plotlist[1].canvas.draw()
-    print( "Hit 'enter' to exit" )
-    eval(input())
+    print( "Hit '0' to exit" )
+    eval(str(input()))
 
 def makeChemModel( compt ):
     """

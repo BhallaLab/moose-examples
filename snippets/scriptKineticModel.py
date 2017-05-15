@@ -104,9 +104,9 @@ def main():
 
     # Iterate through all plots, dump their contents to data.plot.
     for x in moose.wildcardFind( '/model/graphs/conc#' ):
-                    #x.xplot( 'scriptKineticModel.plot', x.name )
-                    t = numpy.arange( 0, x.vector.size, 1 ) # sec
-                    pylab.plot( t, x.vector, label=x.name )
+        #x.xplot( 'scriptKineticModel.plot', x.name )
+        t = numpy.arange( 0, x.vector.size, 1 ) # sec
+        pylab.plot( t, x.vector, label=x.name )
     pylab.legend()
     pylab.show()
 
@@ -114,4 +114,4 @@ def main():
 
 # Run the 'main' if this script is executed standalone.
 if __name__ == '__main__':
-        main()
+    main()

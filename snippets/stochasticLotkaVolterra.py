@@ -15,58 +15,58 @@ import moose
 
 runtime = 138.0
 def makeModel():
-                # create container for model
-                model = moose.Neutral( 'model' )
-                harmonic = moose.CubeMesh( '/model/harmonic' )
-                harmonic.volume = 1e-15
-                lotka = moose.CubeMesh( '/model/lotka' )
-                lotka.volume = 1e-15
+    # create container for model
+    model = moose.Neutral( 'model' )
+    harmonic = moose.CubeMesh( '/model/harmonic' )
+    harmonic.volume = 1e-15
+    lotka = moose.CubeMesh( '/model/lotka' )
+    lotka.volume = 1e-15
 
-                # create molecules and reactions
-                x = moose.Pool( '/model/lotka/x' )
-                y = moose.Pool( '/model/lotka/y' )
-                z = moose.BufPool( '/model/lotka/z' ) # Dummy molecule.
-                xreac = moose.Reac( '/model/lotka/xreac' )
-                yreac = moose.Reac( '/model/lotka/yreac' )
-                xrate = moose.Function( '/model/lotka/xreac/func' )
-                yrate = moose.Function( '/model/lotka/yreac/func' )
+    # create molecules and reactions
+    x = moose.Pool( '/model/lotka/x' )
+    y = moose.Pool( '/model/lotka/y' )
+    z = moose.BufPool( '/model/lotka/z' ) # Dummy molecule.
+    xreac = moose.Reac( '/model/lotka/xreac' )
+    yreac = moose.Reac( '/model/lotka/yreac' )
+    xrate = moose.Function( '/model/lotka/xreac/func' )
+    yrate = moose.Function( '/model/lotka/yreac/func' )
 
-                # Parameters
-                alpha = 1.0
-                beta = 1.0
-                gamma = 1.0
-                delta = 1.0
-                k = 1.0
-                x.nInit = 200.0
-                y.nInit = 100.0
-                z.nInit = 0.0
-                xrate.x.num = 1
-                yrate.x.num = 1
-                xrate.expr = "0.01 * x0 * " + str( beta ) + " - " + str( alpha )
-                yrate.expr = str( gamma ) + " - 0.01 * x0 * " + str( delta )
-                xreac.Kf = k
-                yreac.Kf = k
-                xreac.Kb = 0
-                yreac.Kb = 0
+    # Parameters
+    alpha = 1.0
+    beta = 1.0
+    gamma = 1.0
+    delta = 1.0
+    k = 1.0
+    x.nInit = 200.0
+    y.nInit = 100.0
+    z.nInit = 0.0
+    xrate.x.num = 1
+    yrate.x.num = 1
+    xrate.expr = "0.01 * x0 * " + str( beta ) + " - " + str( alpha )
+    yrate.expr = str( gamma ) + " - 0.01 * x0 * " + str( delta )
+    xreac.Kf = k
+    yreac.Kf = k
+    xreac.Kb = 0
+    yreac.Kb = 0
 
-                # connect them up for reactions
-                moose.connect( y, 'nOut', xrate.x[0], 'input' )
-                moose.connect( x, 'nOut', yrate.x[0], 'input' )
-                moose.connect( xrate, 'valueOut', xreac, 'setNumKf' )
-                moose.connect( yrate, 'valueOut', yreac, 'setNumKf' )
-                moose.connect( xreac, 'sub', x, 'reac' )
-                moose.connect( xreac, 'prd', z, 'reac' )
-                moose.connect( yreac, 'sub', y, 'reac' )
-                moose.connect( yreac, 'prd', z, 'reac' )
+    # connect them up for reactions
+    moose.connect( y, 'nOut', xrate.x[0], 'input' )
+    moose.connect( x, 'nOut', yrate.x[0], 'input' )
+    moose.connect( xrate, 'valueOut', xreac, 'setNumKf' )
+    moose.connect( yrate, 'valueOut', yreac, 'setNumKf' )
+    moose.connect( xreac, 'sub', x, 'reac' )
+    moose.connect( xreac, 'prd', z, 'reac' )
+    moose.connect( yreac, 'sub', y, 'reac' )
+    moose.connect( yreac, 'prd', z, 'reac' )
 
-                # Create the output tables
-                graphs = moose.Neutral( '/model/graphs' )
-                xplot = moose.Table2 ( '/model/graphs/x' )
-                yplot = moose.Table2 ( '/model/graphs/y' )
+    # Create the output tables
+    graphs = moose.Neutral( '/model/graphs' )
+    xplot = moose.Table2 ( '/model/graphs/x' )
+    yplot = moose.Table2 ( '/model/graphs/y' )
 
-                # connect up the tables
-                moose.connect( xplot, 'requestOut', x, 'getN' );
-                moose.connect( yplot, 'requestOut', y, 'getN' );
+    # connect up the tables
+    moose.connect( xplot, 'requestOut', x, 'getN' );
+    moose.connect( yplot, 'requestOut', y, 'getN' );
 
 def main():
     """
