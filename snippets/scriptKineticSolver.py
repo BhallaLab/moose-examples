@@ -95,6 +95,11 @@ def main():
     """
     makeModel()
     ksolve = moose.Ksolve( '/model/compartment/ksolve' )
+    try:
+        ksolve.numThreads = 10
+    except Exception as e:
+        print( 'No parallel ksolve' )
+
     stoich = moose.Stoich( '/model/compartment/stoich' )
     stoich.compartment = moose.element( '/model/compartment' )
     stoich.ksolve = ksolve
