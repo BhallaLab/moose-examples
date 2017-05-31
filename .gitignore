@@ -12,6 +12,9 @@ __pycache__/
 *.g
 *.dat
 *.xml
+*.swc
+*.p
+*.ipynb
 
 # Distribution / packaging
 .Python
