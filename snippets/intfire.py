@@ -1,49 +1,53 @@
-# intfire.py --- 
-# 
+# intfire.py ---
+#
 # Filename: intfire.py
-# Description: 
-# Author:Subhasis Ray 
-# Maintainer: 
+# Description:
+# Author:Subhasis Ray
+# Maintainer:
 # Created: Thu Jun 21 16:40:25 2012 (+0530)
-# Version: 
+# Version:
 # Last-Updated: Sat Jun 23 13:44:10 2012 (+0530)
 #           By: subha
 #     Update #: 35
-# URL: 
-# Keywords: 
-# Compatibility: 
-# 
-# 
+# URL:
+# Keywords:
+# Compatibility:
+#
+#
 
-# Commentary: 
-# 
+# Commentary:
+#
 # Code snippet to show some operations on IntFire.
-# 
-# 
+#
+#
 
 # Change log:
-# 
-# 
-# 
-# 
+#
+#
+#
+#
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License as
 # published by the Free Software Foundation; either version 3, or
 # (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 # General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with this program; see the file COPYING.  If not, write to
 # the Free Software Foundation, Inc., 51 Franklin Street, Fifth
 # Floor, Boston, MA 02110-1301, USA.
-# 
-# 
+#
+#
 
 # Code:
+
+"""
+    Demonstrates connection between 2 IntFire neurons to observe spike generation.
+"""
 
 import moose
 
@@ -54,7 +58,7 @@ def connect_two_intfires():
     if2 = moose.IntFire('if2')
     sf1 = moose.SimpleSynHandler( 'if1/sh' )
     moose.connect( sf1, 'activationOut', if1, 'activation' )
-    sf1.synapse.num = 1    
+    sf1.synapse.num = 1
     syn1 = moose.element(sf1.synapse)
     # Connect the spike message of if2 to the first synapse on if1
     moose.connect(if2, 'spikeOut', syn1, 'addSpike')
@@ -89,6 +93,6 @@ if __name__ == '__main__':
     connect_two_intfires()
     connect_spikegen()
     setup_synapse()
-    
-# 
+
+#
 # intfire.py ends here

@@ -8,8 +8,8 @@
 #########################################################################
 
 import moose
-import matplotlib.pyplot as plt
-import matplotlib.image as mpimg
+from matplotlib import pyplot as plt
+from matplotlib import image as mpimg
 import pylab
 import numpy
 import sys
