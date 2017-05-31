@@ -52,7 +52,7 @@ def makeModel():
     assert( stoich0.numVarPools == 3 )
     assert( stoich0.numProxyPools == 0 )
     assert( stoich0.numRates == 4 )
-    
+
     num = compt0.numDiffCompts - 1
     moose.element( '/model/chem/compt0/a[' + str(num) + ']' ).concInit *= 1.5
 
@@ -133,7 +133,7 @@ def makeChemModel( compt ):
     diffConst = 10e-12 # m^2/sec
     motorRate = 1e-6 # m/sec
     concA = 1 # millimolar
-    
+
     # create molecules and reactions
     a = moose.Pool( compt.path + '/a' )
     b = moose.Pool( compt.path + '/b' )
@@ -177,19 +177,18 @@ def makeChemModel( compt ):
 
 def main():
     """
-    reacDiffBranchingNeuron:
     This example illustrates how to define a kinetic model embedded in
     the branching pseudo 1-dimensional geometry of a neuron. This means
     that diffusion only happens along the axis of dendritic segments, not
     radially from inside to outside a dendrite, nor tangentially around
-    the dendrite circumference. The model 
+    the dendrite circumference. The model
     oscillates in space and time due to a Turing-like reaction-diffusion
     mechanism present in all compartments. For the sake of this demo,
     the initial conditions are set to be slightly different on one of the
-    terminal dendrites, so as to break the symmetry and initiate 
+    terminal dendrites, so as to break the symmetry and initiate
     oscillations.
-    This example uses an external model file to specify a binary branching 
-    neuron. This model does not have any spines. The electrical model is 
+    This example uses an external model file to specify a binary branching
+    neuron. This model does not have any spines. The electrical model is
     used here purely for the geometry and is not part of the computations.
     In this example we build an identical chemical model throughout the
     neuronal geometry, using the makeChemModel function.
@@ -201,7 +200,7 @@ def main():
         a. Animated pseudo-3D plot of neuronal geometry, where each point
            represents a diffusive voxel and moves in the y-axis to show
            changes in concentration.
-        b. Time-series plot that appears after the simulation has 
+        b. Time-series plot that appears after the simulation has
            ended. The plots are for the first and last diffusive voxel,
            that is, the soma and the tip of one of the apical dendrites.
 
@@ -210,7 +209,7 @@ def main():
     diffdt = 0.01
     plotdt = 1
     animationdt = 5
-    runtime = 750 
+    runtime = 750
 
     makeModel()
     plotlist = makeDisplay()

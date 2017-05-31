@@ -21,6 +21,7 @@ from PyQt4 import QtGui
 import rdesigneur as rd
 import moogli
 
+PI = numpy.pi
 RM = 1.0
 RA = 1.0
 CM = 0.01
@@ -33,9 +34,6 @@ spineSpacing = 2.0e-6
 spineSpacingDistrib = 0.0
 spineSize = 1.0
 spineSizeDistrib = 0.2
-spineAngle= 0.0
-spineAngleDistrib = 2*numpy.pi
-
 
 # Here we define a function that is used to make a cell prototype. Normally
 # it would load in a model from a file.
@@ -59,7 +57,7 @@ def makeCellProto( name ):
 # This line is used so that rdesigneur knows about the cell proto function
 rd.makeCellProto = makeCellProto
 
-# This function is used to make the chem prototype. 
+# This function is used to make the chem prototype.
 def makeChemProto( name ):
     chem = moose.Neutral( '/library/' + name )
     for i in ( 'dend', 'spine', 'psd' ):
@@ -72,9 +70,12 @@ def makeChemProto( name ):
 
 
 def makeModel():
+    spineAngle = 0.0
+    spineAngleDistrib = 2.0 * PI
+    
     moose.Neutral( '/library' )
     # Here we illustrate building the chem proto directly. This is not
-    # good practice as it takes the model definition away from the 
+    # good practice as it takes the model definition away from the
     # declaration of prototypes.
     makeChemProto( 'cProto' )
     rdes = rd.rdesigneur( useGssa = False, \
@@ -107,9 +108,9 @@ def addPlot( objpath, field, plot, tick ):
         obj = moose.element( objpath )
         moose.connect( tab, 'requestOut', obj, field )
         tab.tick = tick
-        return tab 
+        return tab
     else:
-        print(("failed in addPlot(", objpath, field, plot, tick, ")")) 
+        print(("failed in addPlot(", objpath, field, plot, tick, ")"))
         return 0
 
 def plotVm( plot, name ):
@@ -121,7 +122,7 @@ def plotVm( plot, name ):
         xpos.append( i.z0 )
     if len( wc ) > 0:
         plot.plot( xpos, Vm, label = name + 'Vm' )
-    
+
 
 def main():
     """

@@ -5,6 +5,17 @@ __pycache__/
 # C extensions
 *.so
 
+# generated output files
+*.csv
+*.png
+*.txt
+*.g
+*.dat
+*.xml
+*.swc
+*.p
+*.ipynb
+
 # Distribution / packaging
 .Python
 env/
