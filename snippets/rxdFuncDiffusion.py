@@ -7,17 +7,13 @@ import sys
 
 def main():
     """
-This example implements a reaction-diffusion like system which is
-bistable and propagates losslessly. It is based on the NEURON example
-rxdrun.py, but incorporates more compartments and runs for a longer time.
-The system is implemented in a function rather than as a proper system
-of chemical reactions. Please see rxdReacDiffusion.py for a variant that
-uses a reaction plus a function object to control its rates.
-
+    This example implements a reaction-diffusion like system which is
+    bistable and propagates losslessly. It is based on the NEURON example
+    rxdrun.py, but incorporates more compartments and runs for a longer time.
+    The system is implemented in a function rather than as a proper system
+    of chemical reactions. Please see rxdReacDiffusion.py for a variant that
+    uses a reaction plus a function object to control its rates.
     """
-
-    print(('[DEBUG] Using moose from %s' % moose.__file__))
-
     dt = 0.1
 
     # define the geometry
@@ -74,4 +70,4 @@ uses a reaction plus a function object to control its rates.
     # print( '[INFO] Wrote results to %s' % outfile )
 
 if __name__ == '__main__':
-        main()
+    main()

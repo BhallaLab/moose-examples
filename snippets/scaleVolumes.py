@@ -24,7 +24,7 @@ def makeModel():
     compartment = moose.CubeMesh( '/model/compartment' )
     compartment.volume = 1e-20
     # the mesh is created automatically by the compartment
-    mesh = moose.element( '/model/compartment/mesh' )
+    mesh = moose.element( '/model/compartment/mesh' ) 
 
     # create molecules and reactions
     a = moose.Pool( '/model/compartment/a' )
@@ -155,11 +155,9 @@ def main():
         # Iterate through all plots, dump their contents to data.plot.
         displayPlots()
         pylab.show( block=False )
-        print( 'vol = %f ' % vol )
-        response = input( "Press enter to go to next plot... " ) 
-
-    quit()
-
+        #quit()
+        print(('vol = ', vol), 'hit 0 to go to next plot')
+        eval(str(input()))
 # Run the 'main' if this script is executed standalone.
 if __name__ == '__main__':
         main( )

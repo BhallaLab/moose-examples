@@ -44,6 +44,13 @@ import moose
 from moose import utils
 
 def stimulus_table_demo():
+    """
+    Example of StimulusTable using Poisson random numbers.
+    Creates a StimulusTable and assigns it signal representing events in a
+    Poisson process. The output of the StimTable is sent to a DiffAmp
+    object for buffering and then recorded in a regular table.
+    """
+
     model = moose.Neutral('/model')
     data = moose.Neutral('/data')
     # This is the stimulus generator

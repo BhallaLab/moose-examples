@@ -97,6 +97,15 @@ def main():
     moose.reinit()
     moose.start( runtime )
 
+    # Report parameters
+    '''
+    for x in moose.wildcardFind( '/model/kinetics/##[ISA=PoolBase]' ):
+            print x.name, x.nInit, x.concInit
+    for x in moose.wildcardFind( '/model/kinetics/##[ISA=ReacBase]' ):
+            print x.name, 'num: (', x.numKf, ', ',  x.numKb, '), conc: (', x.Kf, ', ', x.Kb, ')'
+    for x in moose.wildcardFind('/model/kinetics/##[ISA=EnzBase]'):
+            print x.name, '(', x.Km, ', ',  x.numKm, ', ', x.kcat, ')'
+            '''
 
     # Display all plots.
     for x in moose.wildcardFind( '/model/#graphs/conc#/#' ):

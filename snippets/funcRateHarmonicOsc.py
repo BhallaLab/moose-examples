@@ -45,25 +45,25 @@ def makeModel():
     moose.connect( vplot, 'requestOut', v, 'getN' );
 
 def main():
+
     """
-funcRateHarmonicOsc illustrates the use of function objects to
-directly define the rates of change of pool concentration. This
-example shows how to set up a simple harmonic oscillator system
-of differential equations using the script. In normal use one would
-prefer to use SBML.
+    funcRateHarmonicOsc illustrates the use of function objects to
+    directly define the rates of change of pool concentration. This
+    example shows how to set up a simple harmonic oscillator system
+    of differential equations using the script. In normal use one would
+    prefer to use SBML.
 
-The equations are ::
+    The equations are ::
 
-        p' = v - offset1
-        v' = -k(p - offset2)
+            p' = v - offset1
+            v' = -k(p - offset2)
 
-where the rates for Pools p and v are computed using Functions.
-Note the use of offsets. This is because MOOSE chemical
-systems cannot have negative concentrations.
-
-The model is set up to run using default Exponential Euler
-integration, and then using the GSL deterministic solver.
-
+    where the rates for Pools p and v are computed using Functions.
+    Note the use of offsets. This is because MOOSE chemical
+    systems cannot have negative concentrations.
+    
+    The model is set up to run using default Exponential Euler 
+    integration, and then using the GSL deterministic solver.
     """
     makeModel()
 
@@ -81,6 +81,7 @@ integration, and then using the GSL deterministic solver.
     pylab.suptitle( "Integration using ee" )
     pylab.legend()
     pylab.figure()
+
     compt = moose.element( '/model/harmonic' )
     ksolve = moose.Ksolve( '/model/harmonic/ksolve' )
     stoich = moose.Stoich( '/model/harmonic/stoich' )
@@ -93,8 +94,8 @@ integration, and then using the GSL deterministic solver.
     moose.start( runtime ) # Run the model
 
     for x in moose.wildcardFind( '/model/graphs/#' ):
-        t = numpy.arange( 0, x.vector.size, 1 ) * x.dt # sec
-        pylab.plot( t, x.vector, label=x.name )
+            t = numpy.arange( 0, x.vector.size, 1 ) * x.dt # sec
+            pylab.plot( t, x.vector, label=x.name )
     pylab.suptitle( "Integration using gsl" )
     pylab.legend()
     pylab.show()

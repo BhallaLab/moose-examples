@@ -1,4 +1,23 @@
 #########################################################################
+# crossComptSimpleReac.py
+# 
+# Filename:crossComptSimpleReac.py
+# Author: Upinder S. Bhalla
+# Maintainer: 
+# Created: Oct  12 16:26:05 2014 (+0530)
+# Version: 
+# Last-Updated: May 16 2017
+#           By: Upinder S. Bhalla
+#     Update #: 
+# URL: 
+# Keywords: 
+# Compatibility: 
+# 
+# 
+# Commentary: 
+# 
+# 
+# Change log: 
 ## This program is part of 'MOOSE', the
 ## Messaging Object Oriented Simulation Environment.
 ##           Copyright (C) 2013 Upinder S. Bhalla. and NCBS
@@ -140,19 +159,14 @@ def main():
     for x in moose.wildcardFind( '/model/compt#/#[ISA=PoolBase]' ):
         print((x.name, x.conc))
 
-    # FIXME: Plotting causes seg-fault.
     ## Iterate through all plots, dump their contents to data.plot.
-    ### Temp fix, if try to save and plot the graph doesn't give seg fault
     for x in moose.wildcardFind( '/model/graphs/conc#' ):
-        t = np.arange( 0, x.vector.size, 1) # sec
-        graphpath = x.name+".csv"
-        #t = np.linspace( 0, runtime,x.vector.size) # sec
-        f = open(graphpath, "w")
-        np.savetxt(graphpath, np.vstack((t*plotdt,x.vector)))
-        plt.plot( t, x.vector, label=x.name )
+       t = numpy.linspace( 0, runtime, x.vector.size ) # sec
+       plt.plot( t, x.vector, label=x.name )
     plt.legend()
     plt.show()
     quit()
+
 # Run the 'main' if this script is executed standalone.
 if __name__ == '__main__':
-        main()
+    main()
