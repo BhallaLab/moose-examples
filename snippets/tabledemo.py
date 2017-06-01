@@ -1,47 +1,47 @@
-# tabledemo.py --- 
-# 
+# tabledemo.py ---
+#
 # Filename: tabledemo.py
-# Description: 
+# Description:
 # Author: Subhasis Ray
-# Maintainer: 
+# Maintainer:
 # Created: Fri Aug 29 18:26:20 2014 (+0530)
-# Version: 
-# Last-Updated: 
-#           By: 
+# Version:
+# Last-Updated:
+#           By:
 #     Update #: 0
-# URL: 
-# Keywords: 
-# Compatibility: 
-# 
-# 
+# URL:
+# Keywords:
+# Compatibility:
+#
+#
 
-# Commentary: 
-# 
-# 
-# 
-# 
+# Commentary:
+#
+#
+#
+#
 
 # Change log:
-# 
-# 
-# 
-# 
+#
+#
+#
+#
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License as
 # published by the Free Software Foundation; either version 3, or
 # (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 # General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with this program; see the file COPYING.  If not, write to
 # the Free Software Foundation, Inc., 51 Franklin Street, Fifth
 # Floor, Boston, MA 02110-1301, USA.
-# 
-# 
+#
+#
 
 # Code:
 """:class:`Table` can be used for recording and saving data in ascii text formats."""
@@ -68,7 +68,7 @@ def example():
     5. We set tick-interval of ticks 0 and 1 to 0.01 and schedule
        `pulse` on tick 0 and `tab` on tick 1.
 
-    5. Run the simulation for 5 s and save data to the ascii file
+    6. Run the simulation for 5 s and save data to the ascii file
        `output_tabledemo.csv`.
 
     """
@@ -88,7 +88,7 @@ def example():
 
 if __name__ == '__main__':
     example()
-    
 
-# 
+
+#
 # tabledemo.py ends here

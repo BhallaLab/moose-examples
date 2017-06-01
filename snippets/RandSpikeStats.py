@@ -8,7 +8,7 @@
 #**********************************************************************/
 # This snippet shows the use of several objects.
 # This snippet sets up a StimulusTable to control a RandSpike which
-# sends its outputs to two places: to a SimpleSynHandler on an IntFire, 
+# sends its outputs to two places: to a SimpleSynHandler on an IntFire,
 # which is used to monitor spike arrival, and to various Stats objects.
 # I record and plot each of these.
 # The StimulusTable has a sine-wave waveform
@@ -40,8 +40,8 @@ def make_model():
     plotf = moose.Table( 'plotf' )
 
     ############### Set up parameters ###############
-    stim.vector = [ maxFiringRate * 
-            numpy.sin(x * 2 * numpy.pi / sinePeriod) 
+    stim.vector = [ maxFiringRate *
+            numpy.sin(x * 2 * numpy.pi / sinePeriod)
             for x in range( sinePeriod )]
     stim.startTime = 0
     stim.stopTime = sinePeriod
@@ -76,8 +76,11 @@ def main():
     """
     This snippet shows the use of several objects.
     This snippet sets up a StimulusTable to control a RandSpike which
-    sends its outputs to two places: to a SimpleSynHandler on an IntFire, 
-    which is used to monitor spike arrival, and to various Stats objects.
+    sends its outputs to two places:
+
+    to a SimpleSynHandler on an IntFire, which is used to monitor spike arrival,
+    and to various Stats objects.
+
     I record and plot each of these.
     The StimulusTable has a sine-wave waveform
     """

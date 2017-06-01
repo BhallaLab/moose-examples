@@ -1,25 +1,25 @@
 #########################################################################
-# crossComptNeuroMesh.py --- 
-# 
+# crossComptNeuroMesh.py ---
+#
 # Filename:  crossComptNeuroMesh.py
 # Author: Upinder S. Bhalla
-# Maintainer: 
+# Maintainer:
 # Created: Oct  12 16:26:05 2014 (+0530)
-# Version: 
+# Version:
 # Last-Updated: May 15 2017
-#           By: 
-#     Update #: 
-# URL: 
-# Keywords: 
-# Compatibility: 
-# 
-# 
+#           By:
+#     Update #:
+# URL:
+# Keywords:
+# Compatibility:
+#
+#
 
-# Commentary: 
-# 
-# 
-# 
-# 
+# Commentary:
+#
+#
+#
+#
 # Change log: Indentation clean up
 #
 ## This program is part of 'MOOSE', the
@@ -74,10 +74,10 @@ def makeNeuron( numSeg ):
     shaftDia = 0.2e-6
     headLength = 0.5e-6
     headDia = 0.5e-6
-    
+
     cell = moose.Neutral( '/model/cell' )
     model = moose.element( '/model' )
-    prev = makeCompt( '/model/cell/soma', 
+    prev = makeCompt( '/model/cell/soma',
             model, 0.0, segmentLength, segmentDia )
     dend = prev
     for i in range( 0, numSeg ):
@@ -192,22 +192,21 @@ def makeModel():
 def main():
     """
     This example illustrates how to define a kinetic model embedded in
-    a NeuroMesh, and undergoing cross-compartment reactions. It is 
+    a NeuroMesh, and undergoing cross-compartment reactions. It is
     completely self-contained and does not use any external model definition
     files.  Normally one uses standard model formats like
     SBML or kkit to concisely define kinetic and neuronal models.
     This example creates a simple reaction::
-        a <==> b <==> c 
-    in which 
-    **a, b**, and **c** are in the dendrite, spine head, and PSD 
+        a <==> b <==> c
+    in which **a, b**, and **c** are in the dendrite, spine head, and PSD
     respectively.
     The model is set up to run using the Ksolve for integration. Although
     a diffusion solver is set up, the diff consts here are set to zero.
-    The display has two parts: 
-    Above is a line plot of concentration against compartment#. 
-    Below is a time-series plot that appears after # the simulation has 
+    The display has two parts:
+    Above is a line plot of concentration against compartment#.
+    Below is a time-series plot that appears after # the simulation has
     ended. The plot is for the last (rightmost) compartment.
-    Concs of **a**, **b**, **c** are plotted for both graphs.
+    Concentrations of **a**, **b**, **c** are plotted for both graphs.
     """
     simdt = 0.01
     plotdt = 0.01
@@ -257,7 +256,7 @@ def display():
         line4, = timeseries.plot( t, x.vector, label=x.name )
     plt.legend()
     fig.canvas.draw()
-    outfile = '%s.png' % sys.argv[0] 
+    outfile = '%s.png' % sys.argv[0]
     # print( "Hit 'enter' to exit" )
     # raw_input()
     plt.savefig( outfile )
