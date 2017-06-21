@@ -253,11 +253,11 @@ def main():
     global synSpineList 
     global synDendList 
     numpy.random.seed( 1234 )
-    rdes = buildRdesigneur()
+    rdes = buildRdesigneur( )
     for i in elecFileNames:
         print(i)
         rdes.cellProtoList = [ ['./cells/' + i, 'elec'] ]
-        rdes.buildModel( '/model' )
+        rdes.buildModel( )
         assert( moose.exists( '/model' ) )
         synSpineList = moose.wildcardFind( "/model/elec/#head#/glu,/model/elec/#head#/NMDA" )
         temp = set( moose.wildcardFind( "/model/elec/#/glu,/model/elec/#/NMDA" ) )
