@@ -63,4 +63,4 @@ def main():
 
 # Run the 'main' if this script is executed standalone.
 if __name__ == '__main__':
-        main()
+    main()

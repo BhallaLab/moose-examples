@@ -53,17 +53,12 @@ from moose.genesis import *
 cwd = os.path.dirname( os.path.realpath( __file__ ) )
 
 def main():
+    """ 
+    The script demonstates to convert Chemical (Genesis) file back to Genesis 
+    file using moose 
     """
-This example illustrates loading a kinetic model defined in Genesis format
-into Moose using "loadModel" function and using "saveModel" function one can
-save the model back to Genesis format
-
-    """
-    model = moose.loadModel(
-            os.path.join( cwd, '../genesis/reaction.g' ), '/model'
-            )
+    model = moose.loadModel(os.path.join( cwd, '../genesis/reaction.g'), '/model')
     written = mooseWriteKkit('/model', 'testsave.g')
     print( written )
-
 if __name__ == '__main__':
     main()

@@ -1,3 +1,16 @@
+
+#/**********************************************************************
+#** This program is part of 'MOOSE', the
+#** Messaging Object Oriented Simulation Environment.
+#**           Copyright (C) 2003-2014 Upinder S. Bhalla. and NCBS
+#** It is made available under the terms of the
+#** GNU Lesser General Public License version 2.1
+#** See the file COPYING.LIB for the full notice.
+#**********************************************************************/
+
+##### Author: Aditya Gilra, NCBS, Bangalore, October, 2014.  
+##### Fixed numpy imports and global variables: Subhasis Ray, Fri Jul 10 19:34:53 IST 2015
+
 import moose
 import matplotlib.pyplot as plt
 from numpy import arange, array
@@ -136,11 +149,12 @@ make a neuron spike
 
 def main():
     """
-Connect two cells via a plastic synapse (STDPSynHandler).
-Induce spikes spearated by varying intervals, in the pre and post synaptic cells.
-Plot the synaptic weight change for different intervals between the spike-pairs.
-This ia a pseudo-STDP protocol and we get the STDP rule.
+    Connect two cells via a plastic synapse (STDPSynHandler).  
+    Induce spikes spearated by varying intervals, in the pre and post synaptic cells.  
+    Plot the synaptic weight change for different intervals between the spike-pairs.  
+    This ia a pseudo-STDP protocol and we get the STDP rule.  
 
+    On the command-line, in moose-examples/snippets directory, run ``python STDP.py``
     """
     setupModel()
     dwlist_neg = []

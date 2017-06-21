@@ -105,7 +105,7 @@ def makeModel():
         )
     moose.seed(1234)
     rdes.buildModel( '/model' )
-    print (('built model'))
+    print (('built model')) 
     x = moose.vec( '/model/chem/dend/x' )
     x.concInit = 0.0
     for i in range( 0,20 ):

@@ -298,12 +298,7 @@ def testCubeMultiscale( useSolver ):
     displayPlots()
 
 def main():
-    """
-This snippet demonstrates how to model a neuronal compartment, with
-chemical model in just a cubic volume.
-The neuron is a squid neuron.
-
-    """
+    """ A toy compartmental neuronal + chemical model in just a cubic volume """
     testCubeMultiscale( 1 ) # change argument to 0 to run without solver.
 
 if __name__ == '__main__':

@@ -1,34 +1,12 @@
-# HsolveInstability.py ---
-
-# Commentary:
-#
-# This program is free software; you can redistribute it and/or
-# modify it under the terms of the GNU General Public License as
-# published by the Free Software Foundation; either version 3, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-# General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program; see the file COPYING.  If not, write to
-# the Free Software Foundation, Inc., 51 Franklin Street, Fifth
-# Floor, Boston, MA 02110-1301, USA.
-#
-
-# Code:
-
-#import sys
-#sys.path.append('../../python')
-#import os
-#os.environ['NUMPTHREADS'] = '1'
-import math
-import numpy
-
+import sys
+sys.path.append('../../python')
+import os
+os.environ['NUMPTHREADS'] = '1'
 import pylab
+import numpy
+import math
 import moose
+import moose.utils
 
 EREST_ACT = -70e-3
 
@@ -76,47 +54,26 @@ VMIN = -30e-3 + EREST_ACT
 VMAX = 120e-3 + EREST_ACT
 VDIVS = 3000
 
-def create_na_proto():
-    lib = moose.Neutral('/library')
-    na = moose.HHChannel('/library/na')
-    na.Xpower = 3
-    xGate = moose.HHGate(na.path + '/gateX')
-    xGate.setupAlpha(Na_m_params +
-                      [VDIVS, VMIN, VMAX])
-    na.Ypower = 1
-    yGate = moose.HHGate(na.path + '/gateY')
-    yGate.setupAlpha(Na_h_params +
-                      [VDIVS, VMIN, VMAX])
-    return na
-
-def create_k_proto():
-    lib = moose.Neutral('/library')
-    k = moose.HHChannel('/library/k')
-    k.Xpower = 4.0
-    xGate = moose.HHGate(k.path + '/gateX')
-    xGate.setupAlpha(K_n_params +
-                      [VDIVS, VMIN, VMAX])
-    return k
-
 def create_squid():
     """Create a single compartment squid model."""
     parent = moose.Neutral ('/n' )
-    compt = moose.Compartment( '/n/compt' )
+    compt = moose.SymCompartment( '/n/compt' )
     Em = EREST_ACT + 10.613e-3
     compt.Em = Em
     compt.initVm = EREST_ACT
-    compt.Cm = 7.85e-9
-    compt.Rm = 4.2e5
+    compt.Cm = 7.85e-9 * 0.5
+    compt.Rm = 4.2e5 * 5.0
     compt.Ra = 7639.44e3
     nachan = moose.HHChannel( '/n/compt/Na' )
     nachan.Xpower = 3
     xGate = moose.HHGate(nachan.path + '/gateX')
-    xGate.setupAlpha(Na_m_params +
-                      [VDIVS, VMIN, VMAX])
+    xGate.setupAlpha(Na_m_params + [VDIVS, VMIN, VMAX])
+        #This is important: one can run without it but the output will diverge.
+    xGate.useInterpolation = 1
     nachan.Ypower = 1
     yGate = moose.HHGate(nachan.path + '/gateY')
-    yGate.setupAlpha(Na_h_params +
-                      [VDIVS, VMIN, VMAX])
+    yGate.setupAlpha(Na_h_params + [VDIVS, VMIN, VMAX])
+    yGate.useInterpolation = 1
     nachan.Gbar = 0.942e-3
     nachan.Ek = 115e-3+EREST_ACT
     moose.connect(nachan, 'channel', compt, 'channel', 'OneToOne')
@@ -124,8 +81,8 @@ def create_squid():
     kchan = moose.HHChannel( '/n/compt/K' )
     kchan.Xpower = 4.0
     xGate = moose.HHGate(kchan.path + '/gateX')
-    xGate.setupAlpha(K_n_params +
-                      [VDIVS, VMIN, VMAX])
+    xGate.setupAlpha(K_n_params + [VDIVS, VMIN, VMAX])
+    xGate.useInterpolation = 1
     kchan.Gbar = 0.2836e-3
     kchan.Ek = -12e-3+EREST_ACT
     moose.connect(kchan, 'channel', compt, 'channel', 'OneToOne')
@@ -138,8 +95,10 @@ def create_spine( parentCompt, parentObj, index, frac, length, dia, theta ):
     CM = 0.01
     sname = 'shaft' + str(index)
     hname = 'head' + str(index)
-    shaft = moose.Compartment( parentObj.path + '/' + sname )
-    moose.connect( parentCompt, 'raxial', shaft, 'axial', 'single' )
+    shaft = moose.SymCompartment( parentObj.path + '/' + sname )
+    #moose.connect( parentCompt, 'cylinder', shaft, 'proximalOnly','Single')
+    #moose.connect( parentCompt, 'distal', shaft, 'proximal','Single' )
+    moose.connect( parentCompt, 'sphere', shaft, 'proximalOnly','Single' )
     x = parentCompt.x0 + frac * ( parentCompt.x - parentCompt.x0 )
     y = parentCompt.y0 + frac * ( parentCompt.y - parentCompt.y0 )
     z = parentCompt.z0 + frac * ( parentCompt.z - parentCompt.z0 )
@@ -151,7 +110,7 @@ def create_spine( parentCompt, parentObj, index, frac, length, dia, theta ):
     shaft.x = x
     shaft.y = sy
     shaft.z = sz
-    shaft.diameter = dia / 10.0
+    shaft.diameter = dia / 2.0
     shaft.length = length
     xa = math.pi * dia * dia / 400.0
     circumference = math.pi * dia / 10.0
@@ -161,8 +120,8 @@ def create_spine( parentCompt, parentObj, index, frac, length, dia, theta ):
     shaft.Em = EREST_ACT
     shaft.initVm = EREST_ACT
 
-    head = moose.Compartment( parentObj.path + '/' + hname )
-    moose.connect( shaft, 'raxial', head, 'axial', 'single' )
+    head = moose.SymCompartment( parentObj.path + '/' + hname )
+    moose.connect( shaft, 'distal', head, 'proximal', 'Single' )
     head.x0 = x
     head.y0 = sy
     head.z0 = sz
@@ -183,57 +142,62 @@ def create_spine( parentCompt, parentObj, index, frac, length, dia, theta ):
     return head
 
 def create_spine_with_receptor( compt, cell, index, frac ):
-    FaradayConst = 96485.3415                        # s A / mol
+    FaradayConst = 96485.3415    # s A / mol
     spineLength = 5.0e-6
     spineDia = 4.0e-6
     head = create_spine( compt, cell, index, frac, spineLength, spineDia, 0.0 )
     gluR = moose.SynChan( head.path + '/gluR' )
-    gluR.tau1 = 1e-3
-    gluR.tau2 = 1e-3
-    gluR.Gbar = 1e-5
+    gluR.tau1 = 4e-3
+    gluR.tau2 = 4e-3
+    gluR.Gbar = 1e-6
     gluR.Ek= 10.0e-3
-    moose.connect( head, 'channel', gluR, 'channel', 'single' )
+    moose.connect( head, 'channel', gluR, 'channel', 'Single' )
 
     caPool = moose.CaConc( head.path + '/ca' )
-    caPool.CaBasal = 1e-4                 # 0.1 micromolar
+    caPool.CaBasal = 1e-4       # 0.1 micromolar
     caPool.tau = 0.01
     B = 1.0 / ( FaradayConst * spineLength * spineDia * spineDia *math.pi/4)
-    B = B / 20.0                                 # scaling factor for Ca buffering
+    B = B / 20.0                # scaling factor for Ca buffering
     caPool.B = B
-    moose.connect( gluR, 'IkOut', caPool, 'current', 'single' )
+    moose.connect( gluR, 'IkOut', caPool, 'current', 'Single' )
 
-    synh = moose.SimpleSynHandler( gluR.path + '/synh' )
-    moose.connect( synh, "activationOut", gluR, "activation" )
-    return synh
+    synHandler = moose.SimpleSynHandler( head.path + '/gluR/handler' )
+    synHandler.synapse.num = 1
+    moose.connect( synHandler, 'activationOut', gluR, 'activation', 'Single' )
+
+    return gluR
 
 def add_plot( objpath, field, plot ):
-    if moose.exists( objpath ):
-        tab = moose.Table( '/graphs/' + plot )
-        obj = moose.element( objpath )
-        moose.connect( tab, 'requestOut', obj, field )
-        return tab
+    assert moose.exists( objpath )
+    tab = moose.Table( '/graphs/' + plot )
+    obj = moose.element( objpath )
+    moose.connect( tab, 'requestOut', obj, field )
+    return tab
 
-def make_plots():
+def make_elec_plots():
     graphs = moose.Neutral( '/graphs' )
-    add_plot( '/n/compt', 'getVm', 'dendVm' )
-    add_plot( '/n/head2', 'getVm', 'head2Vm' )
-    add_plot( '/n/head2/ca', 'getCa', 'head2Ca' )
+    elec = moose.Neutral( '/graphs/elec' )
+    add_plot( '/n/compt', 'getVm', 'elec/dendVm' )
+    add_plot( '/n/head0', 'getVm', 'elec/head0Vm' )
+    add_plot( '/n/head2', 'getVm', 'elec/head2Vm' )
+    add_plot( '/n/head2/ca', 'getCa', 'elec/head2Ca' )
 
-def display_plots( name ):
-    pylab.figure()
-    for x in moose.wildcardFind( '/graphs/#' ):
-        pos = numpy.arange( 0, x.vector.size ) * x.dt
-        print((len( pos ), len( x.vector )))
-        pylab.plot( pos, x.vector, label=x.name )
+def dump_plots( fname ):
+    if ( os.path.exists( fname ) ):
+        os.remove( fname )
+    for x in moose.wildcardFind( '/graphs/##[ISA=Table]' ):
+        t = numpy.arange( 0, x.vector.size, 1 )
+        pylab.plot( t, x.vector, label=x.name )
     pylab.legend()
-    pylab.title( name )
+    pylab.show()
+    #moose.utils.plotAscii(x.vector, file=fname)
 
 def make_spiny_compt():
     comptLength = 100e-6
     comptDia = 4e-6
     numSpines = 5
     compt = create_squid()
-    compt.inject = 0
+    compt.inject = 1e-7
     compt.x0 = 0
     compt.y0 = 0
     compt.z0 = 0
@@ -250,42 +214,73 @@ def make_spiny_compt():
     cell = moose.element( '/n' )
     for i in range( numSpines ):
         r = create_spine_with_receptor( compt, cell, i, i/float(numSpines) )
-        r.synapse.num = 1
-        syn = moose.element( r.path + '/synapse' )
-        moose.connect( synInput, 'spikeOut', syn, 'addSpike', 'single' )
+        #r.synapse.num = 1
+        syn = moose.element( r.path + '/handler/synapse' )
+        moose.connect( synInput, 'spikeOut', syn, 'addSpike', 'Single' )
         syn.weight = 0.2
         syn.delay = i * 1.0e-4
+        """
+path = '/n/head' + str(i)
+sib1 = moose.element( path )
+for j in range( i - 1 ):
+     sib2 = moose.element( '/n/head' + str(j) )
+     moose.connect( sib1, 'sibling', sib2, 'sibling', 'Single' )
+        """
+
+def create_pool( compt, name, concInit ):
+    meshEntries = moose.element( compt.path + '/mesh' )
+    pool = moose.Pool( compt.path + '/' + name )
+    moose.connect( pool, 'mesh', meshEntries, 'mesh', 'Single' )
+    pool.concInit = concInit
+    return pool
+
+def test_elec_alone():
+    eeDt = 2e-6
+    hSolveDt = 2e-5
+    runTime = 0.02
+
+    make_spiny_compt()
+    make_elec_plots()
+    head2 = moose.element( '/n/head2' )
+    moose.setClock( 0, 2e-6 )
+    moose.setClock( 1, 2e-6 )
+    moose.setClock( 2, 2e-6 )
+    moose.setClock( 8, 0.1e-3 )
+    moose.useClock( 0, '/n/##[ISA=Compartment]', 'init' )
+    moose.useClock( 1, '/n/##[ISA=Compartment]', 'process' )
+    moose.useClock( 2, '/n/##[ISA=ChanBase],/n/##[ISA=SynBase],/n/##[ISA=CaConc],/n/##[ISA=SpikeGen]','process')
+    moose.useClock( 8, '/graphs/elec/#', 'process' )
+    moose.reinit()
+    moose.start( runTime )
+    dump_plots( 'instab.plot' )
+    # make Hsolver and rerun
+    hsolve = moose.HSolve( '/n/hsolve' )
+    moose.useClock( 1, '/n/hsolve', 'process' )
+    hsolve.dt = 20e-6
+    hsolve.target = '/n/compt'
+    moose.le( '/n' )
+    for dt in ( 20e-6, 50e-6, 100e-6 ):
+        print(('running at dt =', dt))
+        moose.setClock( 0, dt )
+        moose.setClock( 1, dt )
+        moose.setClock( 2, dt )
+        hsolve.dt = dt
+        moose.reinit()
+        moose.start( runTime )
+        dump_plots( 'h_instab' + str( dt ) + '.plot' )
 
 def main():
     """
-    A toy compartmental neuronal + chemical model that causes bad things
-    to happen to the hsolver, as of 28 May 2013. Hopefully this will
-    become irrelevant soon
-    
+A small compartmental model that demonstrates ::
+    a) how to set up a multicompartmental model using SymCompartments
+    b) Solving this with the default Exponential Euler (EE) method
+    c) Solving this with the Hsolver.
+    d) What happens at different timesteps.
     """
-    fineDt = 1e-5
-    coarseDt = 5e-5
-    make_spiny_compt()
-    make_plots()
-    for i in range( 8 ):
-        moose.setClock( i, fineDt )
-    moose.setClock( 8, coarseDt )
-    moose.reinit()
-    moose.start( 0.1 )
-    display_plots( 'instab.plot' )
-    # make Hsolver and rerun
-    hsolve = moose.HSolve( '/n/hsolve' )
-    for i in range( 8 ):
-        moose.setClock( i, coarseDt )
-    hsolve.dt = coarseDt
-    hsolve.target = '/n/compt'
-    moose.reinit()
-    moose.start( 0.1 )
-    display_plots( 'h_instab.plot' )
-    pylab.show()
+    test_elec_alone()
 
 if __name__ == '__main__':
     main()
 
 #
-# HsolveInstability.py ends here
+# testHsolve.py ends here

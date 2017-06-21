@@ -2,15 +2,14 @@ import numpy
 import pylab
 import moose
 import time
-
 def main():
     """
-This example implements a reaction-diffusion like system which is
-bistable and propagates losslessly. It is based on the NEURON example
-rxdrun.py, but incorporates more compartments and runs for a longer time.
-The system is implemented as a hybrid of a reaction and a function which
-sets its rates. Please see rxdFuncDiffusion.py for a variant that uses
-just a function object to set up the system.
+    This example implements a reaction-diffusion like system which is
+    bistable and propagates losslessly. It is based on the NEURON example 
+    rxdrun.py, but incorporates more compartments and runs for a longer time.
+    The system is implemented as a hybrid of a reaction and a function which
+    sets its rates. Please see rxdFuncDiffusion.py for a variant that uses
+    just a function object to set up the system.
     """
 
     dt = 0.1
@@ -79,4 +78,4 @@ just a function object to set up the system.
     pylab.show()
 
 if __name__ == '__main__':
-        main()
+    main()

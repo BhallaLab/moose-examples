@@ -127,19 +127,22 @@ print('alpha[0].synapse.delay=', x.delay)
 #####################################################
 # Play a little more with ObjId, FieldElement, Id
 #####################################################
-print('Length of alpha[1]/synapse=', len(moose.element('/alpha[1]/sh').synapse))
+print('Length of alpha[1]/synapse=', len(moose.element('/alpha[1]/sh').synapse.vec))
+print('Length of alpha[1]/synapse=', moose.element('/alpha[1]/sh').numSynapses)
 c = moose.element('alpha[1]/sh/synapse[2]') # This should throw an error - alpha[1] does not have 3 synapses.
 print('b=', b, 'numData=', b.numData)
 print('c=', c, 'numData=', c.numData)
 try:
-    print('len(c)=', len(c))
+    print('len(c)=', len(c.vec))
 except TypeError as e:
     print(e)
+    print("Got type error, as expected")
 d = moose.element('/alpha[1]/sh')
 try:
     print(d.synapse[1])
 except IndexError as e:
     print(e)
+    print("Got IndexError, as expected")
 else:
     print('Expected an IndexError. Length of synapse=', len(d.synapse))
 # The fieldIndex should change, not dataId

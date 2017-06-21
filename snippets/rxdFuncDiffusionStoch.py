@@ -5,12 +5,12 @@ import time
 
 def main():
     """
-This example implements a reaction-diffusion like system which is
-bistable and propagates losslessly. It is based on the NEURON example
-rxdrun.py, but incorporates more compartments and runs for a longer time.
-The system is implemented in a function rather than as a proper system
-of chemical reactions. Please see rxdReacDiffusion.py for a variant that
-uses a reaction plus a function object to control its rates.
+    This example implements a reaction-diffusion like system which is
+    bistable and propagates losslessly. It is based on the NEURON example 
+    rxdrun.py, but incorporates more compartments and runs for a longer time.
+    The system is implemented in a function rather than as a proper system
+    of chemical reactions. Please see rxdReacDiffusion.py for a variant that 
+    uses a reaction plus a function object to control its rates.
     """
 
     dt = 0.1
@@ -56,7 +56,7 @@ uses a reaction plus a function object to control its rates.
 
     # Run and plot it.
     moose.reinit()
-    print((dir(compt)))
+    #print((dir(compt)))
     updateDt = 50
     runtime = updateDt * 4
     plt = pylab.plot( x, c.vec.n, label='t = 0 ')
@@ -69,6 +69,9 @@ uses a reaction plus a function object to control its rates.
     pylab.ylim( 0, 105 )
     pylab.legend()
     pylab.show()
+
+if __name__ == '__main__':
+    main()
 
 if __name__ == '__main__':
         main()

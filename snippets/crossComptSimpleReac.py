@@ -1,4 +1,23 @@
 #########################################################################
+# crossComptSimpleReac.py
+# 
+# Filename:crossComptSimpleReac.py
+# Author: Upinder S. Bhalla
+# Maintainer: 
+# Created: Oct  12 16:26:05 2014 (+0530)
+# Version: 
+# Last-Updated: May 16 2017
+#           By: Upinder S. Bhalla
+#     Update #: 
+# URL: 
+# Keywords: 
+# Compatibility: 
+# 
+# 
+# Commentary: 
+# 
+# 
+# Change log: 
 ## This program is part of 'MOOSE', the
 ## Messaging Object Oriented Simulation Environment.
 ##           Copyright (C) 2013 Upinder S. Bhalla. and NCBS
@@ -15,80 +34,80 @@ import numpy
 import moose
 
 def makeModel():
-                # create container for model
-                model = moose.Neutral( 'model' )
-                compt0 = moose.CubeMesh( '/model/compt0' )
-                compt0.volume = 1e-15
-                compt1 = moose.CubeMesh( '/model/compt1' )
-                compt1.volume = 1e-16
-                compt2 = moose.CubeMesh( '/model/compt2' )
-                compt2.volume = 1e-17
+    # create container for model
+    model = moose.Neutral( 'model' )
+    compt0 = moose.CubeMesh( '/model/compt0' )
+    compt0.volume = 1e-15
+    compt1 = moose.CubeMesh( '/model/compt1' )
+    compt1.volume = 1e-16
+    compt2 = moose.CubeMesh( '/model/compt2' )
+    compt2.volume = 1e-17
 
-                # Position containers so that they abut each other, with
-                # compt1 in the middle.
-                side = compt1.dy
-                compt0.y1 += side
-                compt0.y0 += side
-                compt2.x1 += side
-                compt2.x0 += side
-                print(('Volumes = ', compt0.volume, compt1.volume, compt2.volume))
+    # Position containers so that they abut each other, with
+    # compt1 in the middle.
+    side = compt1.dy
+    compt0.y1 += side
+    compt0.y0 += side
+    compt2.x1 += side
+    compt2.x0 += side
+    print(('Volumes = ', compt0.volume, compt1.volume, compt2.volume))
 
-                # create molecules and reactions
-                a = moose.Pool( '/model/compt0/a' )
-                b = moose.Pool( '/model/compt1/b' )
-                c = moose.Pool( '/model/compt2/c' )
-                reac0 = moose.Reac( '/model/compt1/reac0' )
-                reac1 = moose.Reac( '/model/compt1/reac1' )
+    # create molecules and reactions
+    a = moose.Pool( '/model/compt0/a' )
+    b = moose.Pool( '/model/compt1/b' )
+    c = moose.Pool( '/model/compt2/c' )
+    reac0 = moose.Reac( '/model/compt1/reac0' )
+    reac1 = moose.Reac( '/model/compt1/reac1' )
 
-                # connect them up for reactions
-                moose.connect( reac0, 'sub', a, 'reac' )
-                moose.connect( reac0, 'prd', b, 'reac' )
-                moose.connect( reac1, 'sub', b, 'reac' )
-                moose.connect( reac1, 'prd', c, 'reac' )
+    # connect them up for reactions
+    moose.connect( reac0, 'sub', a, 'reac' )
+    moose.connect( reac0, 'prd', b, 'reac' )
+    moose.connect( reac1, 'sub', b, 'reac' )
+    moose.connect( reac1, 'prd', c, 'reac' )
 
-                # Assign parameters
-                a.concInit = 1
-                b.concInit = 12.1
-                c.concInit = 1
-                reac0.Kf = 0.1
-                reac0.Kb = 0.1
-                reac1.Kf = 0.1
-                reac1.Kb = 0.1
+    # Assign parameters
+    a.concInit = 1
+    b.concInit = 12.1
+    c.concInit = 1
+    reac0.Kf = 0.1
+    reac0.Kb = 0.1
+    reac1.Kf = 0.1
+    reac1.Kb = 0.1
 
-                # Create the output tables
-                graphs = moose.Neutral( '/model/graphs' )
-                outputA = moose.Table2 ( '/model/graphs/concA' )
-                outputB = moose.Table2 ( '/model/graphs/concB' )
-                outputC = moose.Table2 ( '/model/graphs/concC' )
+    # Create the output tables
+    graphs = moose.Neutral( '/model/graphs' )
+    outputA = moose.Table2 ( '/model/graphs/concA' )
+    outputB = moose.Table2 ( '/model/graphs/concB' )
+    outputC = moose.Table2 ( '/model/graphs/concC' )
 
-                # connect up the tables
-                moose.connect( outputA, 'requestOut', a, 'getConc' );
-                moose.connect( outputB, 'requestOut', b, 'getConc' );
-                moose.connect( outputC, 'requestOut', c, 'getConc' );
+    # connect up the tables
+    moose.connect( outputA, 'requestOut', a, 'getConc' );
+    moose.connect( outputB, 'requestOut', b, 'getConc' );
+    moose.connect( outputC, 'requestOut', c, 'getConc' );
 
-                # Build the solvers. No need for diffusion in this version.
-                ksolve0 = moose.Ksolve( '/model/compt0/ksolve0' )
-                ksolve1 = moose.Ksolve( '/model/compt1/ksolve1' )
-                ksolve2 = moose.Ksolve( '/model/compt2/ksolve2' )
-                stoich0 = moose.Stoich( '/model/compt0/stoich0' )
-                stoich1 = moose.Stoich( '/model/compt1/stoich1' )
-                stoich2 = moose.Stoich( '/model/compt2/stoich2' )
+    # Build the solvers. No need for diffusion in this version.
+    ksolve0 = moose.Ksolve( '/model/compt0/ksolve0' )
+    ksolve1 = moose.Ksolve( '/model/compt1/ksolve1' )
+    ksolve2 = moose.Ksolve( '/model/compt2/ksolve2' )
+    stoich0 = moose.Stoich( '/model/compt0/stoich0' )
+    stoich1 = moose.Stoich( '/model/compt1/stoich1' )
+    stoich2 = moose.Stoich( '/model/compt2/stoich2' )
 
-                # Configure solvers
-                stoich0.compartment = compt0
-                stoich1.compartment = compt1
-                stoich2.compartment = compt2
-                stoich0.ksolve = ksolve0
-                stoich1.ksolve = ksolve1
-                stoich2.ksolve = ksolve2
-                stoich0.path = '/model/compt0/#'
-                stoich1.path = '/model/compt1/#'
-                stoich2.path = '/model/compt2/#'
-                stoich1.buildXreacs( stoich0 )
-                stoich1.buildXreacs( stoich2 )
-                stoich0.filterXreacs()
-                stoich1.filterXreacs()
-                stoich2.filterXreacs()
+    # Configure solvers
+    stoich0.compartment = compt0
+    stoich1.compartment = compt1
+    stoich2.compartment = compt2
+    stoich0.ksolve = ksolve0
+    stoich1.ksolve = ksolve1
+    stoich2.ksolve = ksolve2
+    stoich0.path = '/model/compt0/#'
+    stoich1.path = '/model/compt1/#'
+    stoich2.path = '/model/compt2/#'
+    stoich1.buildXreacs( stoich0 )
+    stoich1.buildXreacs( stoich2 )
+    stoich0.filterXreacs()
+    stoich1.filterXreacs()
+    stoich2.filterXreacs()
 
 
 
@@ -140,15 +159,14 @@ def main():
     for x in moose.wildcardFind( '/model/compt#/#[ISA=PoolBase]' ):
         print((x.name, x.conc))
 
-    # FIXME: Plotting causes seg-fault.
     ## Iterate through all plots, dump their contents to data.plot.
-    #for x in moose.wildcardFind( '/model/graphs/conc#' ):
-    #    t = numpy.linspace( 0, runtime, x.vector.size ) # sec
-    #    plt.plot( t, x.vector, label=x.name )
-    #plt.legend()
-    #plt.show()
-    #quit()
+    for x in moose.wildcardFind( '/model/graphs/conc#' ):
+       t = numpy.linspace( 0, runtime, x.vector.size ) # sec
+       plt.plot( t, x.vector, label=x.name )
+    plt.legend()
+    plt.show()
+    quit()
 
 # Run the 'main' if this script is executed standalone.
 if __name__ == '__main__':
-        main()
+    main()
