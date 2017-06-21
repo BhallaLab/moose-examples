@@ -124,6 +124,7 @@ that affect spine geometry.
 In this simulation there is a propagating reaction wave using a
 highly abstracted equation, whose product diffuses into the spines and
 makes them bigger.
+    """
 
     eHead = moose.wildcardFind( '/model/elec/#head#' )
     oldDia = [ i.diameter for i in eHead ]
@@ -256,7 +257,7 @@ def create_viewer(path, moose_dendrite, dendZ, diaTab, psdZ):
 
 
 if __name__ == '__main__':
-    if doMoo:
+    if doMoo
         showVisualization()
     else:
         main()
