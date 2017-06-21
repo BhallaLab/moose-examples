@@ -257,7 +257,4 @@ def create_viewer(path, moose_dendrite, dendZ, diaTab, psdZ):
 
 
 if __name__ == '__main__':
-    if doMoo
-        showVisualization()
-    else:
-        main()
+    main()
