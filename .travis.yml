@@ -1,53 +1,27 @@
-sudo : required
 dist : trusty
-language: cpp
-compiler:
-    - gcc
-    - clang
-os:
-    - linux
-
-branches:
-    only:
-        - master
+sudo : required 
+group : edge
 notifications:
     email:
         recipients:
             - dilawar.s.rajput@gmail.com
-            - bhalla@ncbs.res.in
+            - upi.bhalla@gmail.com
+            - ray.shubhasis@gmail.com
             - hrani@ncbs.res.in
-            - ray.subhasis@gmail.com
 
-        on_success: change
-        on_failure: always
-
-env:
-    - CTEST_MODEL=Nightly
-cache: apt
-before_script:
-    - sudo apt-get update -qq
-    - sudo apt-get install libxml2-dev libbz2-dev wget
-    - sudo apt-get install libhdf5-serial-dev
-    - sudo apt-get install python-numpy python-setuptools python-networkx python-pip
-    - sudo apt-get install cmake cdbs
-    - sudo apt-get install python-suds python-matplotlib python-nose python-lxml
-    - sudo apt-get install python-qt4-dev python-qt4-gl python-sip-dev libqt4-dev libopenscenegraph-dev
-    - sudo apt-get install doxygen python-sphinx 
-    - sudo apt-get install git-buildpackage 
 
 install:
-    - wget http://ftp.debian.org/debian/pool/main/g/gsl/libgsl0ldbl_1.16+dfsg-2_amd64.deb -O gsl_1.16.deb
-    - sudo dpkg -i gsl_1.16.deb
-    - wget http://ftp.debian.org/debian/pool/main/g/gsl/libgsl0-dev_1.16+dfsg-2_amd64.deb -O gsl_1.16-dev.deb
-    - sudo dpkg -i gsl_1.16-dev.deb
-    - sudo apt-get install -f
-    - sudo ldconfig /usr/lib64
-
+    - wget http://download.opensuse.org/repositories/home:moose/xUbuntu_14.04/Release.key
+    - sudo apt-key add - < Release.key  
+    - sudo sh -c "echo 'deb http://download.opensuse.org/repositories/home:/moose/xUbuntu_14.04/ /' >> /etc/apt/sources.list.d/moose.list"
+    - sudo apt-get -y update
+    - sudo apt-get -y --force-yes install python-qt4 python-pip 
+    - sudo apt-get -y --force-yes install moose 
+    - sudo pip install python-libsbml
 script:
-    - gbp buildpackage  --git-ignore-branch --git-ignore-new -uc -us
-    - sudo dpkg -i ../moose*.deb
-
-after_success:
-    - python -c 'import moose'
-    - python -c 'import moogli'
-    - cd __moose-core_build && ctest --output-on-failure
+    - # Making sure no python3 incompatible file.
+    - python3 -m compileall -q .
+    - python2 -m compileall -q .
+    - /usr/bin/python -c 'import moose'
+    - /usr/bin/python -c 'import moogli'
+    - cd _travis && ./find_scripts_to_run.sh && ./run_scripts.sh 
