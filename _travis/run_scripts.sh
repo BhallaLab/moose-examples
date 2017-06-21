@@ -11,6 +11,7 @@ rm -f $BLACKLISTED $SUCCEEDED $FAILED $TEMP TORUN
 $PWD/find_scripts_to_run.sh 
 
 PYC=`which python2`
+PYC=/usr/bin/python                 # Force PYTHONPATH.
 MATPLOTRC=$PWD/matplotlibrc
 if [ ! -f $MATPLOTRC ]; then
     echo "$MATPLOTRC not found"
