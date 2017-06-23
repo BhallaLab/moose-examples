@@ -1,5 +1,13 @@
 #!/usr/bin/env bash
 
+trap ctrl_c INT 
+
+function ctrl_c( )
+{
+    echo "CTRL+C pressed. Quitting..."
+    exit;
+}
+
 PWD=$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)
 
 BLACKLISTED=$PWD/BLACKLISTED
