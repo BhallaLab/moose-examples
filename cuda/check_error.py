@@ -13,4 +13,4 @@ avgError = Totalerror/len(val1)
 
 filename = f1.split('/')[-1]
 
-print filename, Totalerror, avgError
+print(filename, Totalerror, avgError)
