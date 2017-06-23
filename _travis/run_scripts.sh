@@ -26,7 +26,7 @@ if [ ! -f $MATPLOTRC ]; then
     exit
 fi
 
-TIMEOUT=5m
+TIMEOUT=1m
 NTHREADS=8
 for f in `cat ./TORUN`; do
     d=`dirname $f`
