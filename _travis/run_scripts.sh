@@ -27,9 +27,12 @@ if [ ! -f $MATPLOTRC ]; then
 fi
 
 TIMEOUT=5m
+NTHREADS=8
 for f in `cat ./TORUN`; do
     d=`dirname $f`
     fn=`basename $f`
+    # Wait of NTHREADS to join
+    ((i=i%NTHREADS)); ((i++==0)) && wait
     (
         cp $MATPLOTRC $d/
         cd $d
@@ -58,7 +61,7 @@ for f in `cat ./TORUN`; do
             cat $TEMP
             echo "|| Failed. Error written to $FAILED"
         fi
-    )
+    ) & 
 done
 
 echo "Following scripts were successful"
