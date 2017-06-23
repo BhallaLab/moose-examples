@@ -1,5 +1,6 @@
 dist : trusty
 sudo : required 
+group : edge
 notifications:
     email:
         recipients:
@@ -21,5 +22,6 @@ script:
     - # Making sure no python3 incompatible file.
     - python3 -m compileall -q .
     - python2 -m compileall -q .
-    - python -c 'import moose'
+    - /usr/bin/python -c 'import moose'
+    - /usr/bin/python -c 'import moogli'
     - cd _travis && ./find_scripts_to_run.sh && ./run_scripts.sh 

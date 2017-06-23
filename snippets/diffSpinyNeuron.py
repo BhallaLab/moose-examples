@@ -9,6 +9,7 @@
 
 
 import math
+import time
 import pylab
 import numpy
 import matplotlib.pyplot as plt
@@ -20,7 +21,7 @@ diffdt = 0.001
 plotdt = 0.01
 animationdt = 0.01
 runtime = 1
-useGssa = False
+useGssa = True
 
 def makeModel():
     model = moose.Neutral( '/model' )
@@ -197,7 +198,7 @@ def finalizeDisplay( plotlist, cPlotDt ):
         line1, = plotlist[0].plot( pos, x.vector, label=x.name )
     plotlist[4].canvas.draw()
     print( "Hit '0' to exit" )
-    eval(str(input()))
+    raw_input()
 
 def makeChemModel( compt, doInput ):
     """
@@ -267,10 +268,13 @@ def main():
     moose.setClock( 10, diffdt ) # for the diffusion
     moose.setClock( 18, plotdt ) # for the output tables.
     moose.reinit()
+
+    t1 = time.time( )
     for i in numpy.arange( 0, runtime, animationdt ):
         moose.start( animationdt )
         plotlist[10].set_text( "time = %d" % i )
         updateDisplay( plotlist )
+    print( 'Total time taken %g' % ( time.time() - t1 ) )
 
     finalizeDisplay( plotlist, plotdt )
 
