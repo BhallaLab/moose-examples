@@ -6,9 +6,9 @@
 # Maintainer: 
 # Created: Fri May  4 14:55:52 2012 (+0530)
 # Version: 
-# Last-Updated: Sat Jun 24 16:20:33 2017 (-0400)
+# Last-Updated: Sat Jun 24 16:26:11 2017 (-0400)
 #           By: subha
-#     Update #: 341
+#     Update #: 342
 # URL: 
 # Keywords: 
 # Compatibility: 
@@ -115,7 +115,6 @@ class ChannelMeta(type):
         if  'abstract' in cdict and cdict['abstract'] == True:
             return type.__new__(cls, name, bases, cdict)
         proto = moose.HHChannel('%s/%s' % (config.library.path, name))
-        print('Created', proto.path)
         xpower = get_class_field(name, cdict, bases, 'Xpower', default=0.0)
         if xpower > 0:
             proto.Xpower = xpower
