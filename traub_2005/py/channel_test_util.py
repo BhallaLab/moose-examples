@@ -6,9 +6,9 @@
 # Maintainer: 
 # Created: Wed May 30 23:51:58 2012 (+0530)
 # Version: 
-# Last-Updated: Sun Jun 25 15:02:24 2017 (-0400)
+# Last-Updated: Sun Jun 25 15:45:33 2017 (-0400)
 #           By: subha
-#     Update #: 129
+#     Update #: 135
 # URL: 
 # Keywords: 
 # Compatibility: 
@@ -28,7 +28,7 @@
 
 # Code:
 
-
+import os
 import uuid
 import unittest
 import numpy as np
@@ -69,14 +69,14 @@ def run_single_channel(channelname, Gbar, simtime, simdt=testutils.SIMDT, plotdt
     print(('Saved Gk in', gk_file))
     data = np.c_[tseries, ik_data.vector]
     np.savetxt(ik_file, data)
-    print('Saved Gk in', ik_file)
+    print('Saved Ik in', ik_file)
     return params
 
 def compare_channel_data(series, channelname, param, simulator, x_range=None, plot=False):
     if simulator == 'moose':
-        ref_file = 'testdata/%s_%s.dat.gz' % (channelname, param)
+        ref_file = os.path.join(config.mydir, 'testdata', '%s_%s.dat.gz' % (channelname, param))
     elif simulator == 'neuron':
-        ref_file = '../nrn/data/%s_%s.dat.gz' % (channelname, param)
+        ref_file = os.path.join(config.mydir, '..', 'nrn', 'data', '%s_%s.dat.gz' % (channelname, param))
     else:
         raise ValueError('Unrecognised simulator: %s' % (simulator))
     try:

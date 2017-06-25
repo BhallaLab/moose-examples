@@ -6,9 +6,9 @@
 # Maintainer: 
 # Created: Wed May 30 23:51:58 2012 (+0530)
 # Version: 
-# Last-Updated: Sat Aug  6 15:30:28 2016 (-0400)
+# Last-Updated: Sun Jun 25 15:28:34 2017 (-0400)
 #           By: subha
-#     Update #: 120
+#     Update #: 125
 # URL: 
 # Keywords: 
 # Compatibility: 
@@ -192,10 +192,10 @@ def run_cadep_channel(channelname, Gbar, simtime):
     print('Starting simulation', testId, 'for', simtime, 's')
     moose.start(simtime)
     print('Finished simulation')
-    vm_file = 'data/%s_Vm.dat' % (channelname)
-    gk_file = 'data/%s_Gk.dat' % (channelname)
-    ik_file = 'data/%s_Ik.dat' % (channelname)
-    ca_file = 'data/%s_Ca.dat' % (channelname)
+    vm_file = os.path.join(config.data_dir, '%s_Vm.dat' % (channelname))
+    gk_file = os.path.join(config.data_dir, '%s_Gk.dat' % (channelname))
+    ik_file = os.path.join(config.data_dir, '%s_Ik.dat' % (channelname))
+    ca_file = os.path.join(config.data_dir, '%s_Ca.dat' % (channelname))
     tseries = np.array(list(range(len(vm_data.vector)))) * simdt
     print(('Vm:', len(vm_data.vector), 'Gk', len(gk_data.vector), 'Ik', len(ik_data.vector)))
     data = np.c_[tseries, vm_data.vector]
