@@ -26,7 +26,7 @@ if [ ! -f $MATPLOTRC ]; then
     exit
 fi
 
-TIMEOUT=3m
+TIMEOUT=1m
 NTHREADS=4
 for f in `cat ./TORUN`; do
     d=`dirname $f`
@@ -43,9 +43,11 @@ for f in `cat ./TORUN`; do
         if [ "$status" -eq "0" ]; then                   # success
             echo "|| Success. Written to $SUCCEEDED"
             echo "- [x] $f" >> $SUCCEEDED
-        elif [ "$status" -gt "128" ]; then               # timeout
             # If there is timeout then add to BLACKLISTED
-            echo "|| Killed by signal status: $status" 
+            # For return status See 
+            # http://git.savannah.gnu.org/cgit/coreutils.git/tree/src/timeout.c
+        elif [ "$status" -eq "124" ]; then               # timeout. 
+            echo "|| Timed-out status: $status" 
             echo "- [ ] $f" >> $BLACKLISTED
             sed -i 's/^/\ \ /' $TEMP
             printf "\n\`i\`\`\n" >> $BLACKLISTED 
