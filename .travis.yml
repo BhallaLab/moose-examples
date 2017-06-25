@@ -5,9 +5,7 @@ notifications:
     email:
         recipients:
             - dilawar.s.rajput@gmail.com
-            - upi.bhalla@gmail.com
-            - malavs@ncbs.res.in
-            - hrani@ncbs.res.in
+            - ray.subhasis@gmail.com
 
 
 install:
