@@ -6,9 +6,9 @@
 # Maintainer: 
 # Created: Wed May 23 11:31:40 2012 (+0530)
 # Version: 
-# Last-Updated: Sun Jun 25 15:01:08 2017 (-0400)
+# Last-Updated: Sun Jun 25 15:17:53 2017 (-0400)
 #           By: subha
-#     Update #: 133
+#     Update #: 134
 # URL: 
 # Keywords: 
 # Compatibility: 
@@ -119,10 +119,10 @@ data_dir_prefix = 'data'
 if not os.access(data_dir_prefix, os.W_OK):
     data_dir_prefix = '/tmp/traub2005_data'
 if not os.access(data_dir_prefix, os.F_OK):
-    os.mkdirs(data_dir_prefix)
+    os.makedirs(data_dir_prefix)
 data_dir = os.path.join(data_dir_prefix, timestamp.strftime('%Y_%m_%d'))
 if not os.access(data_dir, os.F_OK):
-    os.mkdirs(data_dir)
+    os.makedirs(data_dir)
 print('data_dir =', data_dir)
 filename_suffix = '_%s_%d' % (timestamp.strftime('%Y%m%d_%H%M%S'), mypid)
 
