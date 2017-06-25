@@ -26,8 +26,8 @@ if [ ! -f $MATPLOTRC ]; then
     exit
 fi
 
-TIMEOUT=1m
-NTHREADS=8
+TIMEOUT=3m
+NTHREADS=4
 for f in `cat ./TORUN`; do
     d=`dirname $f`
     fn=`basename $f`
@@ -37,7 +37,7 @@ for f in `cat ./TORUN`; do
         cp $MATPLOTRC $d/
         cd $d
         echo "++ Executing script $f"
-        # Do not run more than 2 minutes. 
+        # Do not run more than $TIMEOUT
         timeout $TIMEOUT $PYC $fn &> $TEMP
         status=$?
         if [ "$status" -eq "0" ]; then                   # success
