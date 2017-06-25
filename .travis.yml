@@ -5,9 +5,7 @@ notifications:
     email:
         recipients:
             - dilawar.s.rajput@gmail.com
-            - upi.bhalla@gmail.com
-            - malavs@ncbs.res.in
-            - hrani@ncbs.res.in
+            - ray.subhasis@gmail.com
 
 
 install:
@@ -16,6 +14,7 @@ install:
     - sudo sh -c "echo 'deb http://download.opensuse.org/repositories/home:/moose/xUbuntu_14.04/ /' >> /etc/apt/sources.list.d/moose.list"
     - sudo apt-get -y update
     - sudo apt-get -y --force-yes install python-qt4 python-pip 
+    - sudo apt-get -y --force-yes install python-h5py
     - sudo apt-get -y --force-yes install moose 
     - sudo pip install python-libsbml
 script:
