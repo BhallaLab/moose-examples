@@ -6,9 +6,9 @@
 # Maintainer: 
 # Created: Fri May  4 14:55:52 2012 (+0530)
 # Version: 
-# Last-Updated: Fri May  3 11:45:07 2013 (+0530)
+# Last-Updated: Sat Jun 24 16:26:11 2017 (-0400)
 #           By: subha
-#     Update #: 337
+#     Update #: 342
 # URL: 
 # Keywords: 
 # Compatibility: 
@@ -162,7 +162,8 @@ class ChannelMeta(type):
         return type.__new__(cls, name, bases, cdict)
 
 
-class ChannelBase(moose.HHChannel, ChannelMeta):
+class ChannelBase(moose.HHChannel):
+    __metaclass__ = ChannelMeta
     annotation = {'cno': 'cno_0000047'}
     abstract = True
     def __init__(self, path, xpower=1, ypower=0, Ek=0.0):
