@@ -1,6 +1,7 @@
 dist : trusty
 sudo : required 
 group : edge
+
 notifications:
     email:
         recipients:
@@ -17,6 +18,8 @@ install:
     - sudo apt-get -y --force-yes install python-h5py python-scipy python-pygraphviz
     - sudo apt-get -y --force-yes install moose 
     - sudo pip install python-libsbml
+    - pip install "Nikola[extras]" doctr
+
 script:
     - # Making sure no python3 incompatible file.
     - python3 -m compileall -q .
