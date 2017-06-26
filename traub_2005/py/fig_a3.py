@@ -65,10 +65,12 @@ def setup_model(root='/', hsolve=True):
     data = moose.Neutral('data')
     cell = SpinyStellate('%s/spinystellate' % (model.path))
     soma = moose.element('%s/comp_1' % (cell.path))
+
     if hsolve:
         solver = moose.HSolve('%s/solve' % (cell.path))
         solver.dt = simdt
-        solver.target = cell.path
+        solver.target = model.path
+
     pulse = moose.PulseGen('%s/stimulus' % (model.path))
     moose.connect(pulse, 'output', soma, 'injectMsg')
     tab_vm = moose.Table('%s/spinystellate_soma_Vm' % (data.path))
