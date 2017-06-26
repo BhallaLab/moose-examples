@@ -67,8 +67,7 @@ for f in `cat ./TORUN`; do
 done
 
 # Auto deploy to README.md file
-PAGE=index.md
-cat ../README.md > $PAGE
+cat README.md > ../README.md
 
 echo "Following scripts were successful"
 cat $SUCCEEDED
@@ -76,8 +75,8 @@ cat $SUCCEEDED
 if [ -f $BLACKLISTED ]; then
     echo "Following scripts were blacklisted due to timeout or singal interrupt"
     cat $BLACKLISTED 
-    echo "# Blacklisted " >> $PAGE
-    cat $BLACKLISTED >> $PAGE
+    echo "# Blacklisted " >> ../README.md
+    cat $BLACKLISTED >> ../README.md
 fi
 
 
@@ -85,7 +84,7 @@ if [ -f $FAILED ]; then
     echo "=========================================="
     echo "Following scripts failed."
     cat $FAILED
-    cat $FAILED >> $PAGE
+    cat $FAILED >> ../README.md
     exit 1
 fi
 

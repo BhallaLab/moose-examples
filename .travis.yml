@@ -1,9 +1,6 @@
 dist : trusty
 sudo : required 
 group : edge
-language: ruby
-rvm:
-    - 2.3.3
 
 notifications:
     email:
@@ -23,7 +20,6 @@ install:
     - sudo apt-get -y --force-yes install python-h5py python-scipy python-pygraphviz
     - sudo apt-get -y --force-yes install moose 
     - sudo pip install python-libsbml
-    - gem install jekyll html-proofer
 
 script:
     - # Making sure no python3 incompatible file.
@@ -32,9 +28,6 @@ script:
     - /usr/bin/python -c 'import moose'
     - /usr/bin/python -c 'import moogli'
     - cd _travis && ./find_scripts_to_run.sh && ./run_scripts.sh 
-    - cd _travis && bundle exec jekyll build && bundle exec htmlproofer ./_site
-
-exclude : [vendor]
 
 deploy:
     provider : pages
