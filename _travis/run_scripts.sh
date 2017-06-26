@@ -81,4 +81,6 @@ if [ -f $FAILED ]; then
     exit 1
 fi
 
-## If less than 84 files passed, raise and error.
+# Auto deploy code.
+cat README.md > ../README.md
+cat $FAILED >> ../README.md
