@@ -32,7 +32,6 @@ script:
     - /usr/bin/python -c 'import moose'
     - /usr/bin/python -c 'import moogli'
     - cd _travis && ./find_scripts_to_run.sh && ./run_scripts.sh 
-    - cd _travis && bundle exec jekyll build && bundle exec htmlproofer ./_site
 
 exclude : [vendor]
 

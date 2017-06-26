@@ -89,3 +89,5 @@ if [ -f $FAILED ]; then
     exit 1
 fi
 
+# Run jekyll now 
+jekyll build
