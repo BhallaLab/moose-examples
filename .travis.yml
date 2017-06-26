@@ -6,7 +6,9 @@ notifications:
     email:
         recipients:
             - dilawar.s.rajput@gmail.com
-            - ray.subhasis@gmail.com
+            - bhalla@ncbs.res.in
+            - hrani@ncbs.res.in
+            - malavs@ncbs.res.in
 
 
 install:
@@ -18,7 +20,6 @@ install:
     - sudo apt-get -y --force-yes install python-h5py python-scipy python-pygraphviz
     - sudo apt-get -y --force-yes install moose 
     - sudo pip install python-libsbml
-    - pip install "Nikola[extras]" doctr
 
 script:
     - # Making sure no python3 incompatible file.
