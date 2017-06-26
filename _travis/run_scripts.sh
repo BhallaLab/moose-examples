@@ -65,6 +65,7 @@ for f in `cat ./TORUN`; do
         fi
     ) & 
 done
+wait
 
 # Auto deploy to README.md file
 PAGE=index.md
