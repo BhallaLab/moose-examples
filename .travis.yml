@@ -24,3 +24,11 @@ script:
     - /usr/bin/python -c 'import moose'
     - /usr/bin/python -c 'import moogli'
     - cd _travis && ./find_scripts_to_run.sh && ./run_scripts.sh 
+
+deploy:
+    provider : pages
+    skip_cleanup : true
+    github_token : $GHI_TOKEN
+    on:
+        branch : master
+
