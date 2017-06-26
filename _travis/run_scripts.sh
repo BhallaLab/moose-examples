@@ -26,7 +26,7 @@ if [ ! -f $MATPLOTRC ]; then
     exit
 fi
 
-TIMEOUT=30
+TIMEOUT=10
 NTHREADS=4
 for f in `cat ./TORUN`; do
     d=`dirname $f`
@@ -90,4 +90,8 @@ if [ -f $FAILED ]; then
 fi
 
 # Run jekyll now 
-jekyll build
+if which jekyll > /dev/null; then
+    # jekyll exists.
+    jekyll build
+fi
+
