@@ -29,6 +29,8 @@ script:
     - /usr/bin/python -c 'import moogli'
     - cd _travis && ./find_scripts_to_run.sh && ./run_scripts.sh 
 
+exclude : [vendor]
+
 deploy:
     provider : pages
     skip_cleanup : true

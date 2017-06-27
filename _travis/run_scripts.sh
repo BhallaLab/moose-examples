@@ -26,7 +26,7 @@ if [ ! -f $MATPLOTRC ]; then
     exit
 fi
 
-TIMEOUT=30
+TIMEOUT=10
 NTHREADS=4
 for f in `cat ./TORUN`; do
     d=`dirname $f`
@@ -65,6 +65,7 @@ for f in `cat ./TORUN`; do
         fi
     ) & 
 done
+wait
 
 # Auto deploy to README.md file
 cat README.md > ../README.md
@@ -86,5 +87,11 @@ if [ -f $FAILED ]; then
     cat $FAILED
     cat $FAILED >> ../README.md
     exit 1
+fi
+
+# Run jekyll now 
+if which jekyll > /dev/null; then
+    # jekyll exists.
+    jekyll build
 fi
 
