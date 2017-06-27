@@ -181,7 +181,7 @@ def finalizeDisplay( plotlist, cPlotDt ):
         line1, = plotlist[0].plot( pos, x.vector, label=x.name )
     plotlist[4].canvas.draw()
     print( "Hit '0' to exit" )
-    eval(str(input()))
+    raw_input( )
 
 def makeChemModel( compt ):
     """
@@ -274,6 +274,7 @@ def main():
     runtime = 200
 
     makeModel()
+
     plotlist = makeDisplay()
 
     # Schedule the whole lot - autoscheduling already does this.
@@ -284,6 +285,7 @@ def main():
     moose.setClock( 18, plotdt ) # for the output tables.
     '''
     moose.reinit()
+
     for i in range( 0, runtime, animationdt ):
         moose.start( animationdt )
         plotlist[11].set_text( "time = %d" % i )
@@ -293,4 +295,4 @@ def main():
 
 # Run the 'main' if this script is executed standalone.
 if __name__ == '__main__':
-        main()
+    main()
