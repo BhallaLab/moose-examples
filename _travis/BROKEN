@@ -3,3 +3,8 @@
 ./../hopfield/hopfield.py
 ./../hopfield/hopfield1.py
 ./../neuroml/LIF/LIFxml_firing_hsolve.py
+./../snippets/testSigNeur.py
+./../snippets/Izhikevich_with_synapse.py
+./../hopfield/hopfield.py
+./../hopfield/hopfield1.py
+./../neuroml/LIF/LIFxml_firing_hsolve.py

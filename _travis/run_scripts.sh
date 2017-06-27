@@ -68,6 +68,9 @@ done
 wait
 
 # Auto deploy to README.md file
+python ./deploy_gh_pages.py || echo "failed to generated site"
+
+wait
 echo "Following scripts were successful"
 cat $SUCCEEDED
 
@@ -85,5 +88,4 @@ if [ -f $FAILED ]; then
     exit 1
 fi
 
-python ./deploy_gh_pages.py
 
