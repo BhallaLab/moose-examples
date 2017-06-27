@@ -1,0 +1,26 @@
+  tau = 0.004 lambda = 0.00031gamma[2, 5] = 
+      -1    -1    -2     1     0
+       1     1     2     0     1
+  Nr[3, 4] = 
+      -1     0     0     1
+       0     2    -1    -1
+       0     0  -0.5   0.5
+  LU[5, 9] = 
+      -1     0     0     1     1     0     0     0     0
+       0     2    -1    -1    -1     1     0     0     0
+       0     0  -0.5   0.5   0.5   0.5     1     0     0
+       0     0     0     0    -1    -1    -2     1     0
+       0     0     0     0     1     1     2     0     1
+  -20
+  Warning: SteadyState iteration failed, status = input domain error, nIter = 3
+  e-10 0.0 0.0 0.0 0.0 0.0 0.0 
+  ml: INFO     Creating input under /elec 
+  moose.nml.networkml: INFO     Creating input under /elec 
+  Reinit MOOSE.
+  Solver: ee
+  Using exp euler
+  Running now...
+  ('Spiketimes :', array([ 0.07185,  0.16435,  0.25685,  0.34935,  0.44185,  0.53435,
+          0.62685,  0.71935,  0.81185,  0.90435,  0.9969 ,  1.0894 ,
+          1.1819 ,  1.2744 ,  1.3669 ,  1.4594 ,  1.5519 ,  1.6444 ,
+          1.7369 ,  1.8294 ,  1.9219 ]))
