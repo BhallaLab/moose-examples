@@ -1,3 +1,41 @@
+
+# testHsolve.py ---
+# Upi Bhalla, NCBS Bangalore, 9 June 2013.
+#
+# Commentary:
+#
+#
+#
+# Also have a look at what happens without the useInterpolate flag for
+# the ion channels, even though the voltage range is subdivided into 3000
+# intervals.
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License as
+# published by the Free Software Foundation; either version 3, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; see the file COPYING.  If not, write to
+# the Free Software Foundation, Inc., 51 Franklin Street, Fifth
+# Floor, Boston, MA 02110-1301, USA.
+#
+
+# Code:
+
+"""
+A small compartmental model that demonstrates
+a) how to set up a multicompartmental model using SymCompartments
+b) Solving this with the default Exponential Euler (EE) method
+c) Solving this with the Hsolver.
+d) What happens at different timesteps.
+"""
+
 import sys
 sys.path.append('../../python')
 import os
@@ -192,6 +230,14 @@ def dump_plots( fname ):
     pylab.show()
     #moose.utils.plotAscii(x.vector, file=fname)
 
+import numpy as np
+import sys
+def dump_data(dump_dir, fname_suffix):
+    for x in moose.wildcardFind( '/graphs/##[ISA=Table]' ):
+        # Create file name
+        name = os.path.join(dump_dir, x.name+"_"+fname_suffix+".csv")
+        np.savetxt(name, x.vector)
+
 def make_spiny_compt():
     comptLength = 100e-6
     comptDia = 4e-6
@@ -234,7 +280,7 @@ def create_pool( compt, name, concInit ):
     pool.concInit = concInit
     return pool
 
-def test_elec_alone():
+def test_elec_alone(dump_dir):
     eeDt = 2e-6
     hSolveDt = 2e-5
     runTime = 0.02
@@ -252,7 +298,9 @@ def test_elec_alone():
     moose.useClock( 8, '/graphs/elec/#', 'process' )
     moose.reinit()
     moose.start( runTime )
-    dump_plots( 'instab.plot' )
+    #dump_plots( 'instab.plot' )
+    dump_data(dump_dir, 'instab')
+    
     # make Hsolver and rerun
     hsolve = moose.HSolve( '/n/hsolve' )
     moose.useClock( 1, '/n/hsolve', 'process' )
@@ -267,9 +315,10 @@ def test_elec_alone():
         hsolve.dt = dt
         moose.reinit()
         moose.start( runTime )
-        dump_plots( 'h_instab' + str( dt ) + '.plot' )
-
-def main():
+        #dump_plots( 'h_instab' + str( dt ) + '.plot' )
+        dump_data(dump_dir, 'h_instab' + str( dt ) )
+    
+def main(dump_dir):
     """
 A small compartmental model that demonstrates ::
     a) how to set up a multicompartmental model using SymCompartments
@@ -277,10 +326,12 @@ A small compartmental model that demonstrates ::
     c) Solving this with the Hsolver.
     d) What happens at different timesteps.
     """
-    test_elec_alone()
+    test_elec_alone(dump_dir)
 
 if __name__ == '__main__':
-    main()
+    if len(sys.argv) != 2:
+        exit()
+    main(sys.argv[1])
 
 #
 # testHsolve.py ends here

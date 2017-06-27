@@ -6,13 +6,20 @@
 #** GNU Lesser General Public License version 2.1
 #** See the file COPYING.LIB for the full notice.
 #**********************************************************************/
-
+# This snippet shows the use of several objects.
+# This snippet sets up a StimulusTable to control a RandSpike which
+# sends its outputs to two places: to a SimpleSynHandler on an IntFire,
+# which is used to monitor spike arrival, and to various Stats objects.
+# I record and plot each of these.
+# The StimulusTable has a sine-wave waveform
+#
 import numpy
 import pylab
 import moose
 
 dt = 0.01
 runtime = 100
+
 def make_model():
     sinePeriod = 50
     maxFiringRate = 10
@@ -70,8 +77,11 @@ def main():
     """
     This snippet shows the use of several objects.
     This snippet sets up a StimulusTable to control a RandSpike which
-    sends its outputs to two places: to a SimpleSynHandler on an IntFire, 
-    which is used to monitor spike arrival, and to various Stats objects.
+    sends its outputs to two places:
+
+    to a SimpleSynHandler on an IntFire, which is used to monitor spike arrival,
+    and to various Stats objects.
+
     I record and plot each of these.
     The StimulusTable has a sine-wave waveform
     """
@@ -91,6 +101,7 @@ def main():
     pylab.legend()
     pylab.show()
 
+
     '''
     moose.useClock( 0, '/stim', 'process' )
     moose.useClock( 1, '/spike', 'process' )
@@ -102,8 +113,6 @@ def main():
         moose.setClock( i, dt )
     moose.useClock( 8, '/plot#', 'process' )
     '''
-
-
 # Run the 'main' if this script is executed standalone.
 if __name__ == '__main__':
         main()

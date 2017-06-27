@@ -17,6 +17,9 @@
 
 # Commentary:
 #
+# Demonstrates use of Leaky Integrate and Fire (LeakyIaf class) in
+# moose.
+#
 #
 
 # Change log:
@@ -44,15 +47,14 @@
 # Code:
 
 """
-Demonstrates use of Leaky Integrate and Fire (LeakyIaf class) in moose.
+    Demonstrates use of Leaky Integrate and Fire (LeakyIaf class) in moose.
 """
+
 import sys
-sys.path.append('../../python')
 import os
-os.environ['NUMPTHREADS'] = '1'
 
 import moose
-from matplotlib import pyplot as plt
+import matplotlib.pyplot as plt
 import numpy as np
 
 def setupmodel(modelpath, iaf_Rm, iaf_Cm, pulse_interval):

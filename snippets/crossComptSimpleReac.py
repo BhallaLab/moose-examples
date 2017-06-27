@@ -1,23 +1,23 @@
 #########################################################################
 # crossComptSimpleReac.py
-# 
+#
 # Filename:crossComptSimpleReac.py
 # Author: Upinder S. Bhalla
-# Maintainer: 
+# Maintainer:
 # Created: Oct  12 16:26:05 2014 (+0530)
-# Version: 
+# Version:
 # Last-Updated: May 16 2017
 #           By: Upinder S. Bhalla
-#     Update #: 
-# URL: 
-# Keywords: 
-# Compatibility: 
-# 
-# 
-# Commentary: 
-# 
-# 
-# Change log: 
+#     Update #:
+# URL:
+# Keywords:
+# Compatibility:
+#
+#
+# Commentary:
+#
+#
+# Change log:
 ## This program is part of 'MOOSE', the
 ## Messaging Object Oriented Simulation Environment.
 ##           Copyright (C) 2013 Upinder S. Bhalla. and NCBS
@@ -30,7 +30,7 @@
 
 import math
 import matplotlib.pyplot as plt
-import numpy
+import numpy as np
 import moose
 
 def makeModel():
@@ -118,7 +118,7 @@ def main():
         a <===> b <===> c
 
     Here each molecule is in a different compartment.
-    The initial conditions are such that the end conc on all compartments
+    The initial conditions are such that the end concentrations on all compartments
     should be 2.0.
     The time course depends on which compartment the Reac object is
     embedded in.
@@ -161,7 +161,7 @@ def main():
 
     ## Iterate through all plots, dump their contents to data.plot.
     for x in moose.wildcardFind( '/model/graphs/conc#' ):
-       t = numpy.linspace( 0, runtime, x.vector.size ) # sec
+       t = np.linspace( 0, runtime, x.vector.size ) # sec
        plt.plot( t, x.vector, label=x.name )
     plt.legend()
     plt.show()
