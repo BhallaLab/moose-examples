@@ -31,7 +31,7 @@ def write_to_file( filename, lines ):
         f.write( '\n'.join( lines ) )
 
 def create_static_site( ):
-    subprocess.call( [ 'jekyll', 'build' ], shell = True )
+    subprocess.call( [ 'jekyll', 'b' ], shell = False )
 
 def main( ):
     global failedTxt_
