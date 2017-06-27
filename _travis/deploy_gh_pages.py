@@ -31,7 +31,11 @@ def write_to_file( filename, lines ):
         f.write( '\n'.join( lines ) )
 
 def create_static_site( ):
-    subprocess.call( [ 'jekyll', 'b' ], shell = False )
+    try:
+        subprocess.call( [ 'jekyll', 'b' ], shell = False )
+    except Exception as e:
+        print( 'Failed to generate static pages' )
+        print( '\tError was %s' % e )
 
 def main( ):
     global failedTxt_
