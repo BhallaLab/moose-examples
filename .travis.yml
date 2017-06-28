@@ -35,7 +35,6 @@ deploy:
     provider : pages
     skip_cleanup : true
     github_token : $GHI_TOKEN
-    local_dir : _travis/_site
     on:
         branch : master
 
