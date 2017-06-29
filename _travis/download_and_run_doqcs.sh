@@ -52,6 +52,7 @@ colorPrint "INFO" "Downloading DOQCS database silently"
 wget -q -A"*.g" -r https://doqcs.ncbs.res.in/database/simfile/
 colorPrint "INFO" "Done downloading"
 
+cat '' > __UNCLEAN__DOQCS__
 MODELS=`find . -type f -name "*.g"`
 for _model in ${MODELS}; do
     echo "===================================================================="
@@ -69,8 +70,12 @@ moose.start( 1 )
     colorPrint "INFO" "TOOK $DT seconds to run 1 sec."
     if [[ ! -z $OUTTRIMMED ]]; then 
         colorPrint "WARN" "$_model did not load/run cleanly"
+        cat '[] $_model \n' >> __UNCLEAN__DOQCS__
         echo $OUTTRIMMED
     else
         colorPrint "INFO" "$_model loaded just fine. We did NOT check output results"
     fi
 done
+
+colorPrint "INFO" "Following scripts did not run cleanly"
+cat $__UNCLEAN__DOQCS__
