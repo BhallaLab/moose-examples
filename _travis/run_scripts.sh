@@ -65,12 +65,10 @@ for f in `cat ./TORUN`; do
         fi
     ) & 
 done
-wait
 
 # Auto deploy to README.md file
-python ./deploy_gh_pages.py || echo "failed to generated site"
+python ./deploy_gh_pages.py 
 
-wait
 echo "Following scripts were successful"
 cat $SUCCEEDED
 
