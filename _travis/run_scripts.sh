@@ -88,4 +88,5 @@ if [ -f $FAILED ]; then
     exit 1
 fi
 
-
+echo "Now test DOQCS scripts"
+./download_and_run_doqcs.sh
