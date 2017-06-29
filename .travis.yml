@@ -20,6 +20,8 @@ install:
     - sudo apt-get -y --force-yes install python-h5py python-scipy python-pygraphviz
     - sudo apt-get -y --force-yes install moose 
     - sudo pip install python-libsbml networkx
+    - sudo apt-get -y --force-yes install ruby2.2 ruby2.2-dev
+    - sudo gem2.2 install travis
 
 script:
     - # Making sure no python3 incompatible file.

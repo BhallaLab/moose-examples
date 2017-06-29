@@ -32,7 +32,7 @@ def write_to_file( filename, lines ):
 
 def create_static_site( ):
     try:
-        subprocess.call( [ 'jekyll', 'b' ], shell = False )
+        subprocess.call( [ 'timeout', '240', 'jekyll', 'b' ], shell = False )
     except Exception as e:
         print( 'Failed to generate static pages' )
         print( '\tError was %s' % e )
@@ -41,7 +41,6 @@ def main( ):
     global failedTxt_
     write_to_file( indexMd, [ '# Following scripts failed ', failedTxt_ ] )
     create_static_site( )
-
 
 
 if __name__ == '__main__':

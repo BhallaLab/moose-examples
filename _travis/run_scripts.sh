@@ -50,7 +50,7 @@ for f in `cat ./TORUN`; do
             echo "|| Timed-out status: $status" 
             echo "- [ ] $f" >> $BLACKLISTED
             sed -i 's/^/\ \ /' $TEMP
-            printf "\n\`i\`\`\n" >> $BLACKLISTED 
+            printf "\n\`\`\`\n" >> $BLACKLISTED 
             cat $TEMP >> $BLACKLISTED 
             printf "\`\`\`\n" >> $BLACKLISTED 
         else                                    # Failed

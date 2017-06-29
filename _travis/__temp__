@@ -1,14 +1,1 @@
-    moose.nml.neuroml: INFO     Loading neuroml file CA1soma.net.xml 
-    moose.nml.neuroml: INFO     Loading neuroml file CA1soma.net.xml 
-    moose.nml.neuroml: INFO     Using default temperature of 32.0 degree Celsius
-    moose.nml.neuroml: INFO     Using default temperature of 32.0 degree Celsius
-    moose.nml.networkml: INFO     Creating population CA1group of cell type CA1soma
-    moose.nml.networkml: INFO     Creating population CA1group of cell type CA1soma
-    moose.nml.networkml: INFO     Creating input under /elec 
-    moose.nml.networkml: INFO     Creating input under /elec 
-    Reinit MOOSE ... 
-    Solver: ee
-    Using exp euler
-    Using exp euler
-    Running ... 
-    Showing plots ...
+        .
