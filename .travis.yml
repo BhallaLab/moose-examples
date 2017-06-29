@@ -28,6 +28,7 @@ script:
     - /usr/bin/python -c 'import moose'
     - /usr/bin/python -c 'import moogli'
     - cd _travis && ./find_scripts_to_run.sh && ./run_scripts.sh 
+    - cd _travis && ./download_and_run_doqcs.sh
 
 exclude : [vendor]
 

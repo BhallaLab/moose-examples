@@ -1,4 +1,4 @@
-- [ ] ./../kinetics/test_ksolve.py
+- [ ] ./../cuda/testHsolve.py
 
 `i``
   moose.nml.neuroml: INFO     Loading neuroml file CA1soma.net.xml 
@@ -16,7 +16,7 @@
   Running ... 
   Showing plots ...
 ```
-- [ ] ./../cuda/testHsolve.py
+- [ ] ./../kinetics/test_ksolve.py
 
 `i``
     moose.nml.neuroml: INFO     Loading neuroml file CA1soma.net.xml 
