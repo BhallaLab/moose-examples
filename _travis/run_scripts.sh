@@ -26,7 +26,7 @@ if [ ! -f $MATPLOTRC ]; then
     exit
 fi
 
-TIMEOUT=10
+TIMEOUT=${1:-60}     # default timeout is 60 secs.
 NTHREADS=4
 for f in `cat ./TORUN`; do
     d=`dirname $f`
