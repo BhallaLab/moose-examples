@@ -27,6 +27,7 @@ install:
     - gem install travis
 
 script:
+    - nvm get stable
     - # Making sure no python3 incompatible file.
     - python3 -m compileall -q .
     - python2 -m compileall -q .
