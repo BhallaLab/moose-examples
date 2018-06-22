@@ -75,10 +75,11 @@ def makeModel():
 		moose.useClock( 4, '/model/compartment/##', 'process' )
 		moose.useClock( 8, '/model/graphs/#', 'process' )
 
-def displayPlots():
+def displayPlots( vol ):
 		for x in moose.wildcardFind( '/model/graphs/conc#' ):
 				t = numpy.arange( 0, x.vector.size, 1 ) #sec
 				pylab.plot( t, x.vector, label=x.name )
+                                pylab.title( "vol = {} um^3".format( vol * 1e18) )
 
 def main():
 
@@ -108,7 +109,7 @@ def main():
 
         ``python scaleVolumes.py``
 
-    and hit ``enter`` every cycle to see the outcome of stochastic
+    and close the plots every cycle to see the outcome of stochastic
     calculations at ever smaller volumes, keeping concentrations the same.
     """
     makeModel()
@@ -126,7 +127,8 @@ def main():
     for vol in ( 1e-19, 1e-20, 1e-21, 3e-22, 1e-22, 3e-23, 1e-23 ):
         # Set the volume
         compt.volume = vol
-        print(('vol = ', vol, ', a.concInit = ', a.concInit, ', a.nInit = ', a.nInit))
+        print('vol = {}, a.concInit = {}, a.nInit = {}'.format( vol, a.concInit, a.nInit))
+        print('Close graph to go to next plot\n')
 
         moose.reinit()
         moose.start( 100.0 ) # Run the model for 100 seconds.
@@ -145,10 +147,8 @@ def main():
         moose.start( 100.0 ) # Run the model for 100 seconds.
 
         # Iterate through all plots, dump their contents to data.plot.
-        displayPlots()
-        pylab.show( block=False )
-        print(('vol = ', vol, 'hit enter to go to next plot'))
-        eval(input())
+        displayPlots( vol )
+        pylab.show()
 
     quit()
 

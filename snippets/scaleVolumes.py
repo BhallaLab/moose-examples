@@ -148,9 +148,12 @@ def main():
 
         # Iterate through all plots, dump their contents to data.plot.
         displayPlots()
-        pylab.show( block=False )
-        print(('vol = ', vol, 'hit 0 to go to next plot'))
-        eval(str(input()))
+        #pylab.show( block=False )
+        print(('vol = ', vol, 'Close graph to go to next plot'))
+        pylab.show( )
+        #print(('vol = ', vol, 'hit 0 to go to next plot'))
+        #eval( input() )
+        #eval(str(input()))
 
     quit()
 

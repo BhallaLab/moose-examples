@@ -18,7 +18,7 @@ dendLen = 100e-6
 numDendSegments = 50
 segLen = dendLen / numDendSegments
 spineSpacing = 2.0e-6
-spineSpacingDistrib = 0.0
+spineSpacingDistrib = 1.0e-7
 spineSize = 1.0
 spineSizeDistrib = 0.2
 spineAngle= 0.0
@@ -44,9 +44,6 @@ def makeCellProto( name ):
         i.z = i.x
         i.x = 0
 
-# This line is used so that rdesigneur knows about the cell proto function
-rd.makeCellProto = makeCellProto
-
 # This function is used to make the chem prototype.
 def makeChemProto( name ):
     chem = moose.Neutral( '/library/' + name )
@@ -65,21 +62,18 @@ def makeModel():
     # good practice as it takes the model definition away from the
     # declaration of prototypes.
     makeChemProto( 'cProto' )
+    makeCellProto( 'cellProto' )
     rdes = rd.rdesigneur( useGssa = False, \
                 combineSegments = False, \
-                meshLambda = 1e-6, \
-            cellProto = [['makeCellProto()', 'elec' ]] ,\
+                diffusionLength = 1e-6, \
+            cellProto = [['cellProto', 'elec' ]] ,\
             spineProto = [['makeSpineProto()', 'spine' ]] ,\
             chemProto = [['cProto', 'chem' ]] ,\
-            spineDistrib = [ \
-                ['spine', '#', \
-                'spineSpacing', str( spineSpacing ), \
-                'spineSpacingDistrib', str( spineSpacingDistrib ), \
-                'angle', str( spineAngle ), \
-                'angleDistrib', str( spineAngleDistrib ), \
-                'size', str( spineSize ), \
-                'sizeDistrib', str( spineSizeDistrib ) ] \
-            ], \
+            spineDistrib = [['spine', '#', 
+                str( spineSpacing ), str( spineSpacingDistrib ),
+                str( spineSize ), str( spineSizeDistrib ),
+                str( spineAngle ), str( spineAngleDistrib ) ]
+            ],
             chemDistrib = [ \
                 [ "chem", "#", "install", "1" ] \
             ],

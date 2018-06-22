@@ -54,7 +54,7 @@ def make_neuron(path):
     """Create a neuron with parameters set for tonic_bursting."""
     nrn = moose.IzhikevichNrn(path)
     # "tonic_bursting":   ['C', 0.02  ,    0.2  ,   -50.0,     2.0  ,      15.0,      -70.0,  220.0], # Fig. 1.C
-    print((path,dir(nrn)))
+    #print((path,dir(nrn)))
     nrn.alpha = 0.04
     nrn.beta = 5.0
     nrn.gamma = 140.0
@@ -82,11 +82,12 @@ def make_synapse(path):
     syn.tau2 = 1.0 # ms
     syn.Gbar = 1.0 # mS
     syn.Ek = 0.0
-    syn.synapse.num = 1
+    synsh = moose.SimpleSynHandler( path + '/sh' )
+    synsh.synapse.num = 1
     # syn.bufferTime = 1.0 # ms
-    syn.synapse.delay = 1.0
-    syn.synapse.weight = 1.0
-    print(('Synapses:', len(syn.synapse), 'w=', syn.synapse[0].weight))
+    synsh.synapse.delay = 1.0
+    synsh.synapse.weight = 1.0
+    print(('Synapses:', len(synsh.synapse), 'w=', synsh.synapse[0].weight))
     spikegen = moose.SpikeGen('%s/spike' % (syn.parent.path))
     spikegen.edgeTriggered = False # Make it fire continuously when input is high
     spikegen.refractT = 10.0 # With this setting it will fire at 1 s / 10 ms = 100 Hz
@@ -97,7 +98,7 @@ def make_synapse(path):
     spike_stim.level[0] = 1.0
     spike_stim.width[0] = 100.0
     moose.connect(spike_stim, 'output', spikegen, 'Vm')
-    m = moose.connect(spikegen, 'spikeOut', syn.synapse[0], 'addSpike')
+    m = moose.connect(spikegen, 'spikeOut', synsh.synapse[0], 'addSpike')
     return syn, spikegen
 
 def make_model():

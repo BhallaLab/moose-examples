@@ -23,7 +23,7 @@ runtime = 1.0
 diffConst = 1e-12
 dendLen = 10e-6
 spineSpacing = 1.5e-6
-spineSpacingDistrib = 1e-10
+spineSpacingDistrib = 0
 spineSize = 1.0
 spineSizeDistrib = 0
 spineAngle= numpy.pi / 2.0
@@ -33,7 +33,7 @@ spineAngleDistrib = 0.0
 def makeCellProto( name ):
     elec = moose.Neuron( '/library/' + name )
     ecompt = []
-    ec = rd.buildCompt( elec, 'dend', dendLen, 2.0e-6, 0, RM, RA, CM )
+    ec = rd.buildCompt( elec, 'dend', dx = dendLen, dia = 2.0e-6, x = 0, RM = RM, RA = RA, CM = CM )
     elec.buildSegmentTree()
 
 def makeChemProto( name ):
@@ -48,8 +48,8 @@ def makeChemProto( name ):
 
 def makeSpineProto2( name ):
     spine = moose.Neutral( '/library/' + name )
-    shaft = rd.buildCompt( spine, 'shaft', 1e-6, 0.2e-6, 0, RM, RA, CM )
-    head = rd.buildCompt( spine, 'head', 0.5e-6, 0.5e-6, 1e-6, RM, RA, CM )
+    shaft = rd.buildCompt( spine, 'shaft', dz=1e-6, dx = 0, dia=0.2e-6, z=0, RM=RM, RA=RA, CM=CM )
+    head = rd.buildCompt( spine, 'head', dz=0.5e-6, dx = 0, dia=0.5e-6, z=1e-6, RM=RM, RA=RA, CM=CM )
     moose.connect( shaft, 'axial', head, 'raxial' )
 
 def makeModel():
@@ -57,21 +57,21 @@ def makeModel():
     makeCellProto( 'cellProto' )
     makeChemProto( 'cProto' )
     makeSpineProto2( 'spine' )
-    rdes = rd.rdesigneur( useGssa = False, \
+    rdes = rd.rdesigneur( 
+            elecDt = 50e-6,
+            chemDt = 5e-3,
+            useGssa = False, \
             combineSegments = False, \
             stealCellFromLibrary = True, \
-            meshLambda = 1e-6, \
+            diffusionLength = 1e-6, \
             cellProto = [['cellProto', 'elec' ]] ,\
             spineProto = [['spineProto', 'spine' ]] ,\
             chemProto = [['cProto', 'chem' ]] ,\
             spineDistrib = [ \
-                ['spine', '#', \
-                'spacing', str( spineSpacing ), \
-                'spacingDistrib', str( spineSpacingDistrib ), \
-                'angle', str( spineAngle ), \
-                'angleDistrib', str( spineAngleDistrib ), \
-                'size', str( spineSize ), \
-                'sizeDistrib', str( spineSizeDistrib ) ] \
+                ['spine', '#', 
+                    str( spineSpacing ), str( spineSpacingDistrib ),
+                    str( spineSize ), str( spineSizeDistrib ),
+                    str( spineAngle ), str( spineAngleDistrib ) ]
             ], \
             chemDistrib = [ \
                 [ "chem", "#", "install", "1" ] \
@@ -151,6 +151,7 @@ that affect spine geometry.
     chemParms = [ i.volume for i in ( caHead[0], caPsd[0], caHead[1], caPsd[1], caHead[2], caPsd[2] ) ]
 
     elec.spine[0].headLength *= 4 # 4x length
+    print( "############## {0}   {1}    {2}".format( elecParms[0][0], head0.Rm, elec.spine[0].headLength ) )
     elec.spine[0].headDiameter *= 0.5 #  1/2 x dia
 
     # Here we scale the shaft length. Vols are not touched.
