@@ -127,11 +127,11 @@ def main():
 
     | Molecule **a** diffuses with diffConst of 10e-12 m^2/s.
     | Molecule **b** diffuses with diffConst of 5e-12 m^2/s.
-    | Molecule **b** also undergoes motor transport with a rate of 10e-6 m/s
-    |   Thus it 'piles up' at the end of the cylinder.
+    | Molecule **b** also undergoes motor transport with a rate of 10e-6 m/s,
+    | Thus it 'piles up' at the end of the cylinder.
     | Molecule **c** does not move: diffConst = 0.0
     | Molecule **d** does not move: diffConst = 10.0e-12 but it is buffered.
-    |   Because it is buffered, it is treated as non-diffusing.
+    | Because it is buffered, it is treated as non-diffusing.
 
     All molecules other than **d** start out only in the leftmost (first)
     voxel, with a concentration of 1 mM. **d** is present throughout
@@ -184,10 +184,11 @@ def main():
     print((atot2/atot, btot2/btot, ctot2/ctot, dtot2/dtot))
     print(('Initial to final (b+c)=', (btot2 + ctot2) / (btot + ctot )))
     print("\nHit '0' to exit")
-    eval(str(input()))
-
+    try:
+        raw_input( )
+    except NameError as e: # python3
+        input( )
     quit()
-
 
 # Run the 'main' if this script is executed standalone.
 if __name__ == '__main__':

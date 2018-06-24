@@ -26,6 +26,20 @@ import moose
 from moose import utils
 
 def analogStimTable():
+    """Example of using a StimulusTable as an analog signal source in
+    a reaction system. It could be used similarly to give other 
+    analog inputs to a model, such as a current or voltage clamp signal.
+
+    This demo creates a StimulusTable and assigns it half a sine wave.
+    Then we assign the start time and period over which to emit the wave.
+    The output of the StimTable is sent to a pool **a**, which participates
+    in a trivial reaction::
+
+        table ----> a <===> b
+
+    The output of **a** and **b** are recorded in a regular table 
+    for plotting.
+    """
     simtime = 150
     simdt = 0.1
     model = moose.Neutral('/model')
@@ -70,26 +84,8 @@ def analogStimTable():
     pylab.legend()
     pylab.show()
 
-def main():
-    """
-Example of using a StimulusTable as an analog signal source in
-a reaction system. It could be used similarly to give other
-analog inputs to a model, such as a current or voltage clamp signal.
-
-This demo creates a StimulusTable and assigns it half a sine wave.
-Then we assign the start time and period over which to emit the wave.
-The output of the StimTable is sent to a pool **a**, which participates
-in a trivial reaction::
-
-    table ----> a <===> b
-
-The output of **a** and **b** are recorded in a regular table
-for plotting.
-    """
-    analogStimTable()
-
 if __name__ == '__main__':
-    main
+    analogStimTable()
 
 #
 # stimtable.py ends here

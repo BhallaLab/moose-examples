@@ -12,6 +12,12 @@ import pylab
 import numpy
 import moose
 
+# Hack to make sure input works with both python2 and python3.
+try:
+    input = raw_input
+except Exception as e:
+    pass
+
 def makeModel():
 		# create container for model
 		model = moose.Neutral( 'model' )
@@ -128,7 +134,6 @@ def main():
         # Set the volume
         compt.volume = vol
         print('vol = {}, a.concInit = {}, a.nInit = {}'.format( vol, a.concInit, a.nInit))
-        print('Close graph to go to next plot\n')
 
         moose.reinit()
         moose.start( 100.0 ) # Run the model for 100 seconds.
@@ -148,8 +153,12 @@ def main():
 
         # Iterate through all plots, dump their contents to data.plot.
         displayPlots( vol )
-        pylab.show()
-
+        pylab.show( block=False )
+        print( 'vol = %f . hit enter to go to next plot' % vol )
+        try:
+            raw_input()
+        except NameError as e:
+            input( )
     quit()
 
 # Run the 'main' if this script is executed standalone.

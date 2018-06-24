@@ -9,6 +9,7 @@
 
 
 import math
+import time
 import pylab
 import numpy
 import matplotlib.pyplot as plt
@@ -20,7 +21,7 @@ diffdt = 0.001
 plotdt = 0.01
 animationdt = 0.01
 runtime = 1
-useGssa = False
+useGssa = True
 
 def makeModel():
     model = moose.Neutral( '/model' )
@@ -102,7 +103,7 @@ def makeModel():
     stoich2.filterXreacs()
 
     Ca_input_dend = moose.vec( '/model/chem/compt0/Ca_input' )
-    print((len( Ca_input_dend )))
+    print(len( Ca_input_dend ))
     for i in range( 60 ):
         Ca_input_dend[ 3 + i * 3 ].conc = 2.0
 
@@ -132,73 +133,76 @@ def makeTab( plotname, molpath ):
 
 
 def makeDisplay():
-        plt.ion()
-        fig = plt.figure( figsize=(10,12) )
+    plt.ion()
+    fig = plt.figure( figsize=(10,12) )
 
-        dend = fig.add_subplot( 411 )
-        plt.ylabel( 'Conc (mM)' )
-        plt.xlabel( 'Dend voxel #' )
-        plt.legend()
-        timeLabel = plt.text(200, 0.5, 'time = 0')
+    dend = fig.add_subplot( 411 )
+    plt.ylabel( 'Conc (mM)' )
+    plt.xlabel( 'Dend voxel #' )
+    plt.legend()
+    timeLabel = plt.text(200, 0.5, 'time = 0')
 
-        spine = fig.add_subplot( 412 )
-        plt.ylabel( 'Conc (mM)' )
-        plt.xlabel( 'Spine voxel #' )
-        plt.legend()
+    spine = fig.add_subplot( 412 )
+    plt.ylabel( 'Conc (mM)' )
+    plt.xlabel( 'Spine voxel #' )
+    plt.legend()
 
-        psd = fig.add_subplot( 413 )
-        plt.ylabel( 'Conc (mM)' )
-        plt.xlabel( 'PSD voxel #' )
-        plt.legend()
+    psd = fig.add_subplot( 413 )
+    plt.ylabel( 'Conc (mM)' )
+    plt.xlabel( 'PSD voxel #' )
+    plt.legend()
 
-        timeSeries = fig.add_subplot( 414 )
-        timeSeries.set_ylim( 0, 2 )
-        plt.ylabel( 'Conc (mM)' )
-        plt.xlabel( 'time (seconds)' )
-        plt.legend()
+    timeSeries = fig.add_subplot( 414 )
+    timeSeries.set_ylim( 0, 2 )
+    plt.ylabel( 'Conc (mM)' )
+    plt.xlabel( 'time (seconds)' )
+    plt.legend()
 
-        Ca = moose.vec( '/model/chem/compt0/Ca' )
-        Ca_input = moose.vec( '/model/chem/compt0/Ca_input' )
-        line1, = dend.plot( list(range( len( Ca ))), Ca.conc, label='Ca' )
-        line2, = dend.plot( list(range( len( Ca_input ))), Ca_input.conc, label='Ca_input' )
-        dend.set_ylim( 0, 2 )
+    Ca = moose.vec( '/model/chem/compt0/Ca' )
+    Ca_input = moose.vec( '/model/chem/compt0/Ca_input' )
+    line1, = dend.plot( list(range( len( Ca ))), Ca.conc, label='Ca' )
+    line2, = dend.plot( list(range( len( Ca_input ))), Ca_input.conc, label='Ca_input' )
+    dend.set_ylim( 0, 2 )
 
-        Ca = moose.vec( '/model/chem/compt1/Ca' )
-        line3, = spine.plot( list(range( len( Ca ))), Ca.conc, label='Ca' )
-        spine.set_ylim( 0, 1 )
+    Ca = moose.vec( '/model/chem/compt1/Ca' )
+    line3, = spine.plot( list(range( len( Ca ))), Ca.conc, label='Ca' )
+    spine.set_ylim( 0, 1 )
 
-        Ca = moose.vec( '/model/chem/compt2/Ca' )
-        Ca_input = moose.vec( '/model/chem/compt2/Ca_input' )
-        line4, = psd.plot( list(range( len( Ca ))), Ca.conc, label='Ca' )
-        line5, = psd.plot( list(range( len( Ca_input ))), Ca_input.conc, label='Ca_input' )
-        psd.set_ylim( 0, 1 )
+    Ca = moose.vec( '/model/chem/compt2/Ca' )
+    Ca_input = moose.vec( '/model/chem/compt2/Ca_input' )
+    line4, = psd.plot( list(range( len( Ca ))), Ca.conc, label='Ca' )
+    line5, = psd.plot( list(range( len( Ca_input ))), Ca_input.conc, label='Ca_input' )
+    psd.set_ylim( 0, 1 )
 
-        fig.canvas.draw()
-        return ( timeSeries, dend, spine, psd, fig, line1, line2, line3, line4, line5, timeLabel )
+    fig.canvas.draw()
+    return ( timeSeries, dend, spine, psd, fig, line1, line2, line3, line4, line5, timeLabel )
 
 def updateDisplay( plotlist ):
-        Ca = moose.vec( '/model/chem/compt0/Ca' )
-        Ca_input = moose.vec( '/model/chem/compt0/Ca_input' )
-        plotlist[5].set_ydata( Ca.conc )
-        plotlist[6].set_ydata( Ca_input.conc )
+    Ca = moose.vec( '/model/chem/compt0/Ca' )
+    Ca_input = moose.vec( '/model/chem/compt0/Ca_input' )
+    plotlist[5].set_ydata( Ca.conc )
+    plotlist[6].set_ydata( Ca_input.conc )
 
-        Ca = moose.vec( '/model/chem/compt1/Ca' )
-        plotlist[7].set_ydata( Ca.conc )
+    Ca = moose.vec( '/model/chem/compt1/Ca' )
+    plotlist[7].set_ydata( Ca.conc )
 
-        Ca = moose.vec( '/model/chem/compt2/Ca' )
-        Ca_input = moose.vec( '/model/chem/compt2/Ca_input' )
-        plotlist[8].set_ydata( Ca.conc )
-        plotlist[9].set_ydata( Ca_input.conc )
-        plotlist[4].canvas.draw()
-
+    Ca = moose.vec( '/model/chem/compt2/Ca' )
+    Ca_input = moose.vec( '/model/chem/compt2/Ca_input' )
+    plotlist[8].set_ydata( Ca.conc )
+    plotlist[9].set_ydata( Ca_input.conc )
+    plotlist[4].canvas.draw()
 
 def finalizeDisplay( plotlist, cPlotDt ):
     for x in moose.wildcardFind( '/model/graphs/#[ISA=Table2]' ):
         pos = numpy.arange( 0, x.vector.size, 1 ) * cPlotDt
         line1, = plotlist[0].plot( pos, x.vector, label=x.name )
     plotlist[4].canvas.draw()
+
     print( "Hit '0' to exit" )
-    eval(str(input()))
+    try:
+        raw_input()
+    except NameError as e: #python3
+        input( )
 
 def makeChemModel( compt, doInput ):
     """
@@ -267,13 +271,14 @@ def main():
         moose.setClock( i, chemdt ) # for the chem objects
     moose.setClock( 10, diffdt ) # for the diffusion
     moose.setClock( 18, plotdt ) # for the output tables.
-    '''
-    '''
     moose.reinit()
+
+    t1 = time.time( )
     for i in numpy.arange( 0, runtime, animationdt ):
         moose.start( animationdt )
         plotlist[10].set_text( "time = %d" % i )
         updateDisplay( plotlist )
+    print( 'Total time taken %g' % ( time.time() - t1 ) )
 
     finalizeDisplay( plotlist, plotdt )
 

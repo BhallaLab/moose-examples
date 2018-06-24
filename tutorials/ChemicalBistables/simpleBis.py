@@ -83,12 +83,6 @@ def makeModel():
                 moose.connect( outputA, 'requestOut', a, 'getConc' );
                 moose.connect( outputB, 'requestOut', b, 'getConc' );
 
-                # Schedule the whole lot
-                #moose.setClock( 4, 0.01 ) # for the computational objects
-                #moose.setClock( 8, 1.0 ) # for the plots
-                # The wildcard uses # for single level, and ## for recursive.
-                #moose.useClock( 4, '/model/compartment/##', 'process' )
-                #moose.useClock( 8, '/model/graphs/#', 'process' )
 
 def main():
                 solver = "gsl"
@@ -104,15 +98,10 @@ def main():
                     ksolve = moose.Ksolve( '/model/compartment/ksolve' )
                     stoich.ksolve = ksolve
                 stoich.path = "/model/compartment/##"
-                #solver.method = "rk5"
-                #mesh = moose.element( "/model/compartment/mesh" )
-                #moose.connect( mesh, "remesh", solver, "remesh" )
                 moose.setClock( 5, 1.0 ) # clock for the solver
                 moose.useClock( 5, '/model/compartment/ksolve', 'process' )
                 runSim()
-                #line1, line2, t = makeDisplay()
                 makeDisplay()
-                #displayPlots( fig )
                 print( "Hit 'enter' to exit" )
                 sys.stdin.read(1)
                 quit()
@@ -191,22 +180,22 @@ def makeDisplay():
     axAinit = plt.axes( [0.25,0.1, 0.65,0.03], facecolor=axcolor )
     axBinit = plt.axes( [0.25,0.15, 0.65,0.03], facecolor=axcolor )
     axCinit = plt.axes( [0.25,0.20, 0.65,0.03], facecolor=axcolor )
-    axKcat1 = plt.axes( [0.25,0.25, 0.65,0.03], facecolor=axcolor )
-    axKcat2 = plt.axes( [0.25,0.30, 0.65,0.03], facecolor=axcolor )
+    axKcat2 = plt.axes( [0.25,0.25, 0.65,0.03], facecolor=axcolor )
+    axKcat1 = plt.axes( [0.25,0.30, 0.65,0.03], facecolor=axcolor )
     #aInit = Slider( axAinit, 'A init conc', 0, 10, valinit=1.0, valstep=0.2)
     reset = Button( axReset, 'Reset', color = 'cyan' )
     q = Button( axQuit, 'Quit', color = 'pink' )
     aInit = Slider( axAinit, 'A init conc', 0, 10, valinit=1.0 )
     bInit = Slider( axBinit, 'B init conc', 0, 10, valinit=0.0 )
     cInit = Slider( axCinit, 'C init conc', 0, 0.1, valinit=0.01 )
-    kcat1 = Slider( axKcat1, 'Kcat for enz1', 0, 2, valinit=0.4 )
     kcat2 = Slider( axKcat2, 'Kcat for enz2', 0, 2, valinit=0.6 )
+    kcat1 = Slider( axKcat1, 'Kcat for enz1', 0, 2, valinit=0.4 )
     def resetParms( event ):
         aInit.reset()
         bInit.reset()
         cInit.reset()
-        kcat1.reset()
         kcat2.reset()
+        kcat1.reset()
 
 
     reset.on_clicked( resetParms )
