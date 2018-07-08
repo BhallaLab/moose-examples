@@ -11,4 +11,4 @@ rdes = rd.rdesigneur(
 rdes.buildModel()
 
 moose.reinit()
-rdes.displayMoogli( 0.0002, 0.1 )
+rdes.displayMoogli( 0.001, 0.1, rotation = 0.02 )
