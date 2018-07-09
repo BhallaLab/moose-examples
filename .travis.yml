@@ -23,6 +23,7 @@ install:
     - sudo apt-get -y --force-yes install python-qt4 python-pip graphviz
     - sudo apt-get -y --force-yes install python-h5py python-scipy python-pygraphviz
     - sudo apt-get -y --force-yes install moose 
+    - sudo pip install --upgrade matplotlib
     - sudo pip install python-libsbml networkx
     - gem install travis
 
