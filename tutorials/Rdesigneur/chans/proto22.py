@@ -43,7 +43,7 @@ EK = -0.015 + EREST_ACT #// -0.075
 ECA = 0.140 + EREST_ACT #// 0.080
 SOMA_A = 3.320e-9       #// soma area in square meters
 CA_SCALE = 25000        # Ratio of Traub units to mM. 250::0.01
-                            
+							
 
 #/*
 #For these channels, the maximum channel conductance (Gbar) has been
@@ -115,7 +115,7 @@ def make_Ca( name ):
 # into.
 	addmsg2 = moose.Mstring( Ca.path + '/addmsg2' )
 	addmsg2.value = '.	IkOut	../NMDA_Ca_conc	current'
-        # Here we put in an addmsg command for nernst objects, if any.
+		# Here we put in an addmsg command for nernst objects, if any.
 	addmsg3 = moose.Mstring( Ca.path + '/addmsg3' )
 	addmsg3.value = '../Ca_conc/nernst  Eout    .   setEk'
 # As we typically use the cell reader to create copies of these prototype
@@ -167,7 +167,7 @@ def make_Ca_conc( name ):
 	if moose.exists( '/library/' + name ):
 		return
 	conc = moose.CaConc( '/library/tempName' )
-        conc.name = name
+	conc.name = name
 	conc.tau = 0.013333  # sec
 	conc.B  = 17.402e12 # Curr to conc conversion for soma
 	conc.Ca_base = 0.00000
@@ -182,22 +182,22 @@ def make_Ca_conc( name ):
 #             Calcium channel including Nernst potential and calcium pool
 #========================================================================
 def make_Ca_conc_with_Nernst( name ):
-    if moose.exists( '/library/' + name ):
-        return
-    make_Ca_conc( name )
-    Ca_conc = moose.element( '/library/' + name )
-    Ca_conc.Ca_base = 0.0001
-    nernst = moose.Nernst( '/library/' + name + '/nernst' )
-    nernst.Temperature = 300
-    nernst.valence = 2
-    nernst.Cout = 1.5   # 1.5 mM
-    moose.connect( Ca_conc, "concOut", nernst, 'ci' )
+	if moose.exists( '/library/' + name ):
+		return
+	make_Ca_conc( name )
+	Ca_conc = moose.element( '/library/' + name )
+	Ca_conc.Ca_base = 0.0001
+	nernst = moose.Nernst( '/library/' + name + '/nernst' )
+	nernst.Temperature = 300
+	nernst.valence = 2
+	nernst.Cout = 1.5   # 1.5 mM
+	moose.connect( Ca_conc, "concOut", nernst, 'ci' )
 
-    #addmsg1 = moose.Mstring( Ca_conc.path + '/addmsg1' )
-    #addmsg1.value = '.  concOut nernst  ci'
+	#addmsg1 = moose.Mstring( Ca_conc.path + '/addmsg1' )
+	#addmsg1.value = '.  concOut nernst  ci'
 
-    #moose.connect( nernst, "Eout", VGCC, "setEk" )
-    #moose.connect( Ca_conc, "concOut", nernst, 'ci' )
+	#moose.connect( nernst, "Eout", VGCC, "setEk" )
+	#moose.connect( Ca_conc, "concOut", nernst, 'ci' )
 
 #========================================================================
 #             Tabulated Ca-dependent K AHP Channel
@@ -229,9 +229,9 @@ def make_K_AHP( name ):
 	dx = (zgate.max - zgate.min)/zgate.divs
 	x = zgate.min
 	for i in range( zgate.divs + 1 ):
-            zA[i] = min( 0.02 * CA_SCALE * x, 10 )
-            zB[i] = 1.0
-            x = x + dx
+			zA[i] = min( 0.02 * CA_SCALE * x, 10 )
+			zB[i] = 1.0
+			x = x + dx
 
 	zgate.tableA = zA
 	zgate.tableB = zB
@@ -266,7 +266,7 @@ def make_K_C( name ):
 	K_C.Xpower = 1
 	K_C.Zpower = 1
 	K_C.instant = 4				# Flag: 0x100 means Z gate is instant.
-        K_C.useConcentration = 1
+		K_C.useConcentration = 1
 
 	# Now make a X-table for the voltage-dependent activation parameter.
 	xgate = moose.element( K_C.path + '/gateX' )
@@ -425,10 +425,10 @@ def make_glu( name ):
 	glu.tau1 = 2.0e-3
 	glu.tau2 = 9.0e-3
 	glu.Gbar = 40 * SOMA_A
-        sh = moose.SimpleSynHandler( glu.path + '/sh' )
-        moose.connect( sh, 'activationOut', glu, 'activation' )
-        sh.numSynapses = 1
-        sh.synapse[0].weight = 1
+		sh = moose.SimpleSynHandler( glu.path + '/sh' )
+		moose.connect( sh, 'activationOut', glu, 'activation' )
+		sh.numSynapses = 1
+		sh.synapse[0].weight = 1
 #========================================================================
 #                SynChan: Glu receptor
 #========================================================================
@@ -441,10 +441,10 @@ def make_GABA( name ):
 	GABA.tau1 = 4.0e-3
 	GABA.tau2 = 9.0e-3
 	GABA.Gbar = 40 * SOMA_A
-        sh = moose.SimpleSynHandler( GABA.path + '/sh' )
-        moose.connect( sh, 'activationOut', GABA, 'activation' )
-        sh.numSynapses = 1
-        sh.synapse[0].weight = 1
+		sh = moose.SimpleSynHandler( GABA.path + '/sh' )
+		moose.connect( sh, 'activationOut', GABA, 'activation' )
+		sh.numSynapses = 1
+		sh.synapse[0].weight = 1
 
 
 #========================================================================
@@ -462,12 +462,12 @@ def make_NMDA( name ):
 	NMDA.CMg = 1.2		#	[Mg]ext in mM
 	NMDA.KMg_A = 1.0/0.28
 	NMDA.KMg_B = 1.0/62
-        NMDA.temperature = 300  # Temperature in Kelvin.
-        NMDA.extCa = 1.5        # [Ca]ext in mM
-        NMDA.intCa = 0.00008        # [Ca]int in mM
-        NMDA.intCaScale = 1         # Scale factor from elec Ca units to mM
-        NMDA.intCaOffset = 0.00008  # Basal [Ca]int in mM
-        NMDA.condFraction = 0.02  # Fraction of conductance due to Ca
+		NMDA.temperature = 300  # Temperature in Kelvin.
+		NMDA.extCa = 1.5        # [Ca]ext in mM
+		NMDA.intCa = 0.00008        # [Ca]int in mM
+		NMDA.intCaScale = 1         # Scale factor from elec Ca units to mM
+		NMDA.intCaOffset = 0.00008  # Basal [Ca]int in mM
+		NMDA.condFraction = 0.02  # Fraction of conductance due to Ca
 
 	addmsg1 = moose.Mstring( NMDA.path + '/addmsg1' )
 	addmsg1.value = '.	ICaOut ../Ca_conc current'
@@ -502,12 +502,12 @@ def make_Ca_NMDA( name ):
 	Ca_NMDA.CMg = 1.2		#	[Mg]ext in mM
 	Ca_NMDA.KMg_A = 1.0/0.28
 	Ca_NMDA.KMg_B = 1.0/62
-        Ca_NMDA.temperature = 300  # Temperature in Kelvin.
-        Ca_NMDA.extCa = 1.5        # [Ca]ext in mM
-        Ca_NMDA.intCa = 0.00008        # [Ca]int in mM
-        Ca_NMDA.intCaScale = 1         # Scale factor from elec Ca units to mM
-        Ca_NMDA.intCaOffset = 0.00008  # Basal [Ca]int in mM
-        Ca_NMDA.condFraction = 0.02  # Fraction of conductance due to Ca
+		Ca_NMDA.temperature = 300  # Temperature in Kelvin.
+		Ca_NMDA.extCa = 1.5        # [Ca]ext in mM
+		Ca_NMDA.intCa = 0.00008        # [Ca]int in mM
+		Ca_NMDA.intCaScale = 1         # Scale factor from elec Ca units to mM
+		Ca_NMDA.intCaOffset = 0.00008  # Basal [Ca]int in mM
+		Ca_NMDA.condFraction = 0.02  # Fraction of conductance due to Ca
 
 	addmsg1 = moose.Mstring( Ca_NMDA.path + '/addmsg1' )
 	addmsg1.value = '.	ICaOut ../Ca_conc current'
@@ -521,7 +521,7 @@ def make_Ca_NMDA( name ):
 
 
 
-        '''
+		'''
 	if moose.exists( 'Ca_NMDA' ):
 		return
 	Ca_NMDA = moose.SynChan( 'Ca_NMDA' )
@@ -547,7 +547,7 @@ def make_Ca_NMDA( name ):
 	moose.connect( sh, 'activationOut', Ca_NMDA, 'activation' )
 	sh.numSynapses = 1
 	sh.synapse[0].weight = 1
-        '''
+		'''
 
 #=====================================================================
 #                        SPIKE DETECTOR
