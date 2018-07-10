@@ -11,4 +11,5 @@
 ./../snippets/transportBranchingNeuron.py
 ./../tutorials/ChemicalBistables/propagationBis.py
 ./../tutorials/ChemicalBistables/scaleVolumes.py
+./../tutorials/ChemicalBistables/doseResponse.py
 ./../tutorials/ChemicalOscillators/TuringOneDim.py
