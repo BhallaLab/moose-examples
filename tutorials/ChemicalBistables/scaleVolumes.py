@@ -52,7 +52,7 @@ def makeModel():
 
 		# connect them up to the compartment for volumes
 		#for x in ( a, b, c, cplx1, cplx2 ):
-		#			moose.connect( x, 'mesh', mesh, 'mesh' )
+		#	moose.connect( x, 'mesh', mesh, 'mesh' )
 
 		# Assign parameters
 		a.concInit = 1
@@ -82,10 +82,10 @@ def makeModel():
 		moose.useClock( 8, '/model/graphs/#', 'process' )
 
 def displayPlots( vol ):
-		for x in moose.wildcardFind( '/model/graphs/conc#' ):
-				t = numpy.arange( 0, x.vector.size, 1 ) #sec
-				pylab.plot( t, x.vector, label=x.name )
-                                pylab.title( "vol = {} um^3".format( vol * 1e18) )
+	for x in moose.wildcardFind( '/model/graphs/conc#' ):
+		t = numpy.arange( 0, x.vector.size, 1 ) #sec
+		pylab.plot( t, x.vector, label=x.name )
+                pylab.title( "vol = {} um^3".format( vol * 1e18) )
 
 def main():
 
