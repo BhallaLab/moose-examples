@@ -41,6 +41,24 @@ rdes_ex3.3.py: Same as 3.1: a long spiral axon. This time we deliver current
 	how the response goes bidirctionally and observe what happens when
 	two action potentials bump into each other.
 
+ex3.4.scaledSoma.py: This is very similar to 3.1, but it introduces a 
+	different way to define the soma and its diameter and length, in
+	the cellProto argument. The diameter and length are optional.
+
+ex3.5.ballAndStick.py: This shows how to make a ball-and-stick model of a 
+	neuron using a cellProto definition line. Things to try:
+	- Change length
+	- Change number of segments. Explore what it does to accuracy. How
+		will you know that you have an accurate model?
+
+ex3.6.ballAndStickSpeedTest.py: This is very similar to 3.5, but it runs
+	much longer to give you a chance to benchmark your system. It also
+	illustrates how to generate an interesting sine-wave stimulus.
+	Things to try:
+	- How slow does it get if you turn on the 3-D moogli display?
+	- Is it costlier to run 2 compartments for 1000 seconds, or 
+		200 compartments for 10 seconds?
+
 rdes_ex4.py: Reaction system in a single compartment. This is a simple
 	chemical oscillator system. Put in chem equations.
 	
@@ -97,9 +115,30 @@ rdes_ex9.py: Build a spiny neuron from a morphology file and put active
 	name of the spine compartments is 'head#' where # is the index of the
 	spine.
 	
+To come:
 rdes_ex10.py: Build a spiny neuron, and insert the oscillatory chemical model
 	into it. Unfortunately Moogli cannot yet plot the chemical waves 
 	going up and down in the dendrites. This example is not yet
 	displayed on the web documentation.
 
+
+rdes_ex11.py: Build a cylindrical dend. Put in ion channels
+	for activity including VGCC-driven Ca influx. Put in an adaptor to
+	take elec Ca and control chem Ca with that. Put in a reaction so Ca
+	turns on an enzyme that phosphorylates a chem pool that represents 
+	KA and disables it. Put in an adaptor from the dephosphorylated KA 
+	to the electrical KA to control its conductance. Together, this should
+	flip into a state of sustained activity when the Ca gets high enough.
+	Plot Vm, Ca, KA
+
+rdes_ex12.py: Build a cylindrical dend with a spine on it. Put in ion channels
+	for activity including NMDAR-driven Ca influx. Put in a reaction to
+	take Ca in the spine to activate CaMKII, and CaMKII to control a 
+	reaction that phosphorylates stargazin and expands the spine. 
+	See how the conductance etc increases.
+	Use Moogull to plot spine as it expands, with colour displaying the Ca.
+	- Implement importing of proto python file and using simple syntax to
+	call the creation functions
+	- Implement synaptic input as synUniform and synPoisson. Or put in as
+	chan prototypes?
 
