@@ -46,10 +46,16 @@ function coloredPrint
     esac
 }
 
-coloredPrint "INFO" "Downloading DOQCS database silently"
-# Download all models.
-wget -A"*.g" -r https://doqcs.ncbs.res.in/database/simfile/
-coloredPrint "INFO" "Done downloading"
+# coloredPrint "INFO" "Downloading DOQCS database silently"
+## NOTE: Following takes too much time on travis. Avoid it. Get the tar file
+# from github.
+## Download all models.
+#wget -A"*.g" -r https://doqcs.ncbs.res.in/database/simfile/
+#coloredPrint "INFO" "Done downloading"
+coloredPrint "INFO" "Downloading DOQCS scripts from github."
+wget https://github.com/BhallaLab/moose-examples/releases/download/3.1.1/doqcs.tar.gz
+tar cvf doqcs.tar.gz 
+coloredPrint "INFO" "Done downloading and extracting."
 
 echo '' > __UNCLEAN__DOQCS__
 MODELS=`find . -type f -name "*.g"`
