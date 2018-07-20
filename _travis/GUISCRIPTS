@@ -19,10 +19,10 @@
 ./../traub_2005/py/gui.py
 ./../util/moogli_viewer.py
 ./../snippets/insertSpines.py
-./../snippets/rxdSpineSize.py
 ./../snippets/insertSpinesWithoutRdesigneur.py
 ./../snippets/loadMorphology.py
 ./../snippets/testWigglySpines.py
 ./../snippets/testRdesigneur.py
+./../snippets/rxdSpineSize.py
 ./../hopfield/guiHopfield.py
 ./../hopfield/hopfield_ui.py

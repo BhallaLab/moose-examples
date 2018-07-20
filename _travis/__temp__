@@ -1,9 +1,46 @@
-  just plotting old results for Fig 5.
-  To simulate and save, give sim as commandline argument.
-  You need to simulate first before loading data file.
-  re-run with sim as a command line argument.
-  rting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
-  Info: Using threaded gsolve: 2 threads. 
-  WARNING: Extra 0.360362 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
-  WARNING: Extra -0.639638 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
-  Info: Using threaded gsolve: 2 threads. 
+  Elements under /n[0]
+  /n[0]/compt
+  /n[0]/shaft0
+  /n[0]/head0
+  /n[0]/shaft1
+  /n[0]/head1
+  /n[0]/shaft2
+  /n[0]/head2
+  /n[0]/shaft3
+  /n[0]/head3
+  /n[0]/shaft4
+  /n[0]/head4
+  /n[0]/hsolve
+  ('running at dt =', 2e-05)
+  ('running at dt =', 5e-05)
+  ('running at dt =', 0.0001)
+  of 32.0 degree Celsius
+  INFO:root:Reading morphology from /home1/dilawars/Work.SVN/GITHUB/BhallaLab/moose-examples/neuroml/CA1PyramidalCell/cells_channels/CA1soma.morph.xml
+  INFO:root:Loading cell CA1soma into /library .
+  INFO:root:readMorphML using combineSegments = False
+  INFO:root:Loading mechanism hd_minus73 into library.
+  INFO:root:Loading mechanism kdr into library.
+  INFO:root:Loading mechanism kap into library.
+  INFO:root:Loading mechanism na3 into library.
+  INFO:root:Loading mechanism nax into library.
+  INFO:root:Loading mechanism kad into library.
+  INFO:root:Loading mechanism hd_minus73 
+  INFO:root:Loading mechanism kdr 
+  INFO:root:Loading mechanism kap 
+  INFO:root:Loading mechanism na3 
+  INFO:root:Loading mechanism pasCA1 
+  INFO:root:Comparment Seg0_soma_0_0 inject 3e-12 A.
+  INFO:root:Comparment Seg0_soma_0_0 inject 3e-12 A.
+  INFO:root:Loading mechanism nax 
+  INFO:root:Loading mechanism kad 
+  INFO:root:Finished loading into library, cell: CA1soma 
+  moose.nml.networkml: INFO     Creating population CA1group of cell type CA1soma
+  INFO:moose.nml.networkml:Creating population CA1group of cell type CA1soma
+  moose.nml.networkml: INFO     Creating input under /elec 
+  INFO:moose.nml.networkml:Creating input under /elec 
+  Reinit MOOSE ... 
+  Solver: ee
+  Using exp euler
+  Using exp euler
+  Running ... 
+  Showing plots ...

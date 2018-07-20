@@ -19,14 +19,4 @@ script:
     - python3 -m compileall -q .
     - python2 -m compileall -q .
     - /usr/bin/python -c 'import moose'
-    - ./.travis_test.sh
-
-exclude : [vendor]
-
-deploy:
-    provider : pages
-    skip_cleanup : true
-    github_token : $GHI_TOKEN
-    on:
-        branch : master
-
+    - cd _travis && make -j2

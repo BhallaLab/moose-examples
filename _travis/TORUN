@@ -128,11 +128,11 @@
 ./../snippets/stochasticLotkaVolterra.py
 ./../snippets/twocells.py
 ./../snippets/vectors.py
-./../tutorials/ChemicalBistables/doseResponse.py
 ./../tutorials/ChemicalBistables/findSteadyState.py
 ./../tutorials/ChemicalBistables/mapkFB.py
 ./../tutorials/ChemicalBistables/simpleBis.py
 ./../tutorials/ChemicalBistables/strongBis.py
+./../tutorials/ChemicalBistables/doseResponse.py
 ./../tutorials/ChemicalOscillators/KholodenkoOscTut.py
 ./../tutorials/ChemicalOscillators/relaxationOsc.py
 ./../tutorials/ChemicalOscillators/repressillator.py
