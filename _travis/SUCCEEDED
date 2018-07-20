@@ -1,21 +1,1136 @@
-- [x] ./../cuda/testScript.py
-- [x] ./../neuroml/CA1PyramidalCell/CA1.py
-- [x] ./../neuroml/LIF/LIFxml_firing.py
-- [x] ./../neuroml/CA1PyramidalCell/CA1_hsolve.py
-- [x] ./../neuroml/GranuleCell/Granule98_hsolve.py
-- [x] ./../neuroml/GranuleCell/Granule98.py
-- [x] ./../neuroml/LIF/twoLIFxml_firing.py
-- [x] ./../neuroml/lobster_pyloric/channels/ChannelTest.py
-- [x] ./../parallelSolver/abstrModelEqns2.py
+- [x] ./../tutorials/ExcInhNetCaPlasticity/ExcInhNet_HigginsGraupnerBrunel2014.py
 - [x] ./../passive/passive_soma.py
-- [x] ./../rall_1964/rall64.py
+- [x] ./../tutorials/ChemicalOscillators/relaxationOsc.py
+- [x] ./../tutorials/ChemicalBistables/strongBis.py
+- [x] ./../tutorials/ChemicalOscillators/repressillator.py
+- [x] ./../tutorials/ChemicalOscillators/KholodenkoOscTut.py
+- [x] ./../tutorials/ChemicalBistables/simpleBis.py
+- [x] ./../tutorials/ChemicalBistables/findSteadyState.py
+- [x] ./../tutorials/ChemicalBistables/doseResponse.py
+- [x] ./../tutorials/ChemicalBistables/mapkFB.py
 - [x] ./../squid/squid.py
 - [x] ./../squid/squid_setup.py
 - [x] ./../symcomp/symcomp.py
 - [x] ./../symcomp/symcomp_readcell.py
+- [x] ./../snippets/showclocks.py
+- [x] ./../snippets/singlemsgcross.py
+- [x] ./../snippets/funcReacLotkaVolterra.py
+- [x] ./../snippets/interpol2d.py
+- [x] ./../snippets/onetoonemsg.py
+- [x] ./../snippets/scriptKineticModel.py
+- [x] ./../snippets/loadCspaceModel.py
+- [x] ./../snippets/pyrun1.py
+- [x] ./../snippets/funcRateHarmonicOsc.py
+- [x] ./../snippets/multiscaleOneCompt.py
+- [x] ./../snippets/ionchannel.py
+- [x] ./../snippets/scriptKineticSolver.py
+- [x] ./../snippets/crossComptOscillator.py
+- [x] ./../snippets/scriptGssaSolver.py
+- [x] ./../snippets/bidirectionalPlasticity.py
+- [x] ./../snippets/function.py
+- [x] ./../snippets/wildcard.py
+- [x] ./../snippets/timetable.py
+- [x] ./../snippets/switchKineticSolvers.py
+- [x] ./../snippets/HigginsGraupnerBrunel2014_LifetimeCaPlasticity.py
+- [x] ./../snippets/STDP.py
+- [x] ./../snippets/rxdReacDiffusion.py
+- [x] ./../snippets/tweakingParameters.py
+- [x] ./../snippets/lifcomp.py
+- [x] ./../snippets/randomspike.py
+- [x] ./../snippets/chemDoseResponse.py
+- [x] ./../snippets/convert_Genesis2Sbml.py
+- [x] ./../snippets/diffEqSolution.py
+- [x] ./../snippets/stochasticLotkaVolterra.py
+- [x] ./../snippets/compartment_net_no_array.py
+- [x] ./../snippets/vectors.py
+- [x] ./../snippets/pyrun.py
+- [x] ./../snippets/savemodel.py
+- [x] ./../snippets/showmsg.py
+- [x] ./../snippets/gapjunction.py
+- [x] ./../snippets/pulsegen2.py
+- [x] ./../snippets/tabledemo.py
+- [x] ./../snippets/cspaceSteadyState.py
+- [x] ./../snippets/rxdFuncDiffusionStoch.py
+- [x] ./../snippets/helloMoose.py
+- [x] ./../snippets/threading_demo.py
+- [x] ./../snippets/RandSpikeStats.py
+- [x] ./../snippets/cubeMeshSigNeur.py
+- [x] ./../snippets/hhcomp.py
+- [x] ./../snippets/analogStimTable.py
+- [x] ./../snippets/lif.py
+- [x] ./../snippets/changeFuncExpression.py
+- [x] ./../snippets/diffusion_using_Gillespie.py
+- [x] ./../snippets/loadKineticModel.py
+- [x] ./../snippets/rxdFuncDiffusion.py
+- [x] ./../snippets/multiComptSigNeur.py
+- [x] ./../snippets/vclamp.py
+- [x] ./../snippets/compartment_net.py
+- [x] ./../snippets/pulsegen.py
+- [x] ./../snippets/mgblock.py
+- [x] ./../snippets/synapse.py
+- [x] ./../snippets/symcompartment.py
+- [x] ./../snippets/stimtable.py
+- [x] ./../snippets/interpol.py
+- [x] ./../snippets/cylinderMotor.py
+- [x] ./../snippets/func.py
+- [x] ./../snippets/neuronFromDotp.py
+- [x] ./../snippets/startstop.py
+- [x] ./../snippets/multicomp_lif.py
+- [x] ./../snippets/traub_naf.py
+- [x] ./../snippets/intfire.py
+- [x] ./../snippets/funcInputToPools.py
+- [x] ./../snippets/HsolveInstability.py
+- [x] ./../snippets/twocells.py
+- [x] ./../parallelSolver/abstrModelEqns2.py
+- [x] ./../snippets/synapse_tutorial.py
+- [x] ./../MemoryNetworks/bidirectional_plastic_switch.py
 - [x] ./../traub_2005/py/test_capool.py
 - [x] ./../traub_2005/py/test_archan.py
-- [x] ./../traub_2005/py/test_cachans.py
-- [x] ./../traub_2005/py/test_nachans.py
 - [x] ./../traub_2005/py/test_kchans.py
+- [x] ./../traub_2005/py/vclamptest.py
+- [x] ./../traub_2005/py/test_cachans.py
 - [x] ./../traub_2005/py/test_singlecomp.py
+- [x] ./../traub_2005/py/fig_a4c.py
+- [x] ./../traub_2005/py/display_morphology.py
+- [x] ./../traub_2005/py/test_nachans.py
+- [x] ./../neuroml/allChannelsCell/allChannelsCell.py
+- [x] ./../traub_2005/py/fig_a2_fs.py
+- [x] ./../neuroml/lobster_pyloric/channels/ChannelTest.py
+- [x] ./../neuroml/GranuleCell/Granule98_hsolve.py
+- [x] ./../neuroml/GranuleCell/Granule98.py
+- [x] ./../neuroml/lobster_pyloric/STG_net.py
+- [x] ./../neuroml/LIF/LIFxml_firing.py
+- [x] ./../neuroml/LIF/twoLIFxml_firing.py
+- [x] ./../neuroml/CA1PyramidalCell/CA1.py
+- [x] ./../neuroml/CA1PyramidalCell/CA1_hsolve.py
+- [x] ./../cuda/testScript.py
+- [x] ./../rall_1964/rall64.py
+- [x] ./../cuda/testHsolve.py
+- [x] ./../passive/passive_soma.py
+- [x] ./../tutorials/ExcInhNet/ExcInhNet_Ostojic2014_Brunel2000.py
+- [x] ./../tutorials/ExcInhNetCaPlasticity/ExcInhNet_HigginsGraupnerBrunel2014.py
+- [x] ./../tutorials/ChemicalOscillators/relaxationOsc.py
+- [x] ./../tutorials/ChemicalOscillators/KholodenkoOscTut.py
+- [x] ./../tutorials/ChemicalOscillators/repressillator.py
+- [x] ./../tutorials/ChemicalBistables/strongBis.py
+- [x] ./../tutorials/ChemicalBistables/simpleBis.py
+- [x] ./../tutorials/ChemicalBistables/mapkFB.py
+- [x] ./../tutorials/ChemicalBistables/findSteadyState.py
+- [x] ./../tutorials/ChemicalBistables/doseResponse.py
+- [x] ./../kinetics/test_ksolve.py
+- [x] ./../symcomp/symcomp_readcell.py
+- [x] ./../symcomp/symcomp.py
+- [x] ./../squid/squid_setup.py
+- [x] ./../squid/squid.py
+- [x] ./../snippets/showclocks.py
+- [x] ./../snippets/crossComptSimpleReac.py
+- [x] ./../snippets/singlemsgcross.py
+- [x] ./../snippets/funcReacLotkaVolterra.py
+- [x] ./../snippets/interpol2d.py
+- [x] ./../snippets/onetoonemsg.py
+- [x] ./../snippets/loadCspaceModel.py
+- [x] ./../snippets/scriptKineticModel.py
+- [x] ./../snippets/pyrun1.py
+- [x] ./../snippets/funcRateHarmonicOsc.py
+- [x] ./../snippets/crossComptSimpleReacGSSA.py
+- [x] ./../snippets/multiscaleOneCompt.py
+- [x] ./../snippets/scriptKineticSolver.py
+- [x] ./../snippets/crossComptOscillator.py
+- [x] ./../snippets/loadSbmlmodel.py
+- [x] ./../snippets/ionchannel.py
+- [x] ./../snippets/function.py
+- [x] ./../snippets/bidirectionalPlasticity.py
+- [x] ./../snippets/scriptGssaSolver.py
+- [x] ./../snippets/recurrentIntFire.py
+- [x] ./../snippets/HigginsGraupnerBrunel2014_LifetimeCaPlasticity.py
+- [x] ./../snippets/timetable.py
+- [x] ./../snippets/wildcard.py
+- [x] ./../snippets/switchKineticSolvers.py
+- [x] ./../snippets/reacDiffConcGradient.py
+- [x] ./../snippets/STDP.py
+- [x] ./../snippets/rxdReacDiffusion.py
+- [x] ./../snippets/tweakingParameters.py
+- [x] ./../snippets/randomspike.py
+- [x] ./../snippets/GraupnerBrunel2012_STDPfromCaPlasticity.py
+- [x] ./../snippets/chemDoseResponse.py
+- [x] ./../snippets/lifcomp.py
+- [x] ./../snippets/diffEqSolution.py
+- [x] ./../snippets/convert_Genesis2Sbml.py
+- [x] ./../snippets/recurrentLIF.py
+- [x] ./../snippets/stochasticLotkaVolterra.py
+- [x] ./../snippets/vectors.py
+- [x] ./../snippets/compartment_net_no_array.py
+- [x] ./../snippets/hdfdemo.py
+- [x] ./../snippets/pyrun.py
+- [x] ./../snippets/savemodel.py
+- [x] ./../snippets/gapjunction.py
+- [x] ./../snippets/showmsg.py
+- [x] ./../snippets/pulsegen2.py
+- [x] ./../snippets/helloMoose.py
+- [x] ./../snippets/tabledemo.py
+- [x] ./../snippets/cspaceSteadyState.py
+- [x] ./../snippets/rxdFuncDiffusionStoch.py
+- [x] ./../snippets/hhcomp.py
+- [x] ./../snippets/RandSpikeStats.py
+- [x] ./../snippets/threading_demo.py
+- [x] ./../snippets/cubeMeshSigNeur.py
+- [x] ./../snippets/changeFuncExpression.py
+- [x] ./../snippets/lif.py
+- [x] ./../snippets/findChemSteadyState.py
+- [x] ./../snippets/analogStimTable.py
+- [x] ./../snippets/diffusion_using_Gillespie.py
+- [x] ./../snippets/multiComptSigNeur.py
+- [x] ./../snippets/rxdFuncDiffusion.py
+- [x] ./../snippets/loadKineticModel.py
+- [x] ./../snippets/vclamp.py
+- [x] ./../snippets/mgblock.py
+- [x] ./../snippets/compartment_net.py
+- [x] ./../snippets/pulsegen.py
+- [x] ./../snippets/synapse.py
+- [x] ./../snippets/gssaCylinderDiffusion.py
+- [x] ./../snippets/symcompartment.py
+- [x] ./../MemoryNetworks/bidirectional_plastic_switch.py
+- [x] ./../parallelSolver/abstrModelEqns2.py
+- [x] ./../traub_2005/py/test_hsolve_tcr.py
+- [x] ./../parallelSolver/Fig2_v4.py
+- [x] ./../traub_2005/py/test_tuftedib.py
+- [x] ./../traub_2005/py/dump_f_i_curves.py
+- [x] ./../snippets/stimtable.py
+- [x] ./../snippets/func.py
+- [x] ./../traub_2005/py/test_capool.py
+- [x] ./../snippets/interpol.py
+- [x] ./../snippets/neuronFromDotp.py
+- [x] ./../traub_2005/py/vclamptest.py
+- [x] ./../snippets/cylinderMotor.py
+- [x] ./../traub_2005/py/test_kchans.py
+- [x] ./../traub_2005/py/test_nontuftedrs.py
+- [x] ./../snippets/startstop.py
+- [x] ./../traub_2005/py/test_nrt.py
+- [x] ./../traub_2005/py/test_archan.py
+- [x] ./../snippets/multicomp_lif.py
+- [x] ./../traub_2005/py/test_suplts.py
+- [x] ./../traub_2005/py/test_deeplts.py
+- [x] ./../traub_2005/py/test_singlecomp.py
+- [x] ./../snippets/nsdf.py
+- [x] ./../snippets/HsolveInstability.py
+- [x] ./../traub_2005/py/test_deepaxoaxonic.py
+- [x] ./../snippets/intfire.py
+- [x] ./../snippets/traub_naf.py
+- [x] ./../snippets/twocells.py
+- [x] ./../snippets/funcInputToPools.py
+- [x] ./../traub_2005/py/test_spinystellate.py
+- [x] ./../traub_2005/py/test_cachans.py
+- [x] ./../traub_2005/py/fig_a3.py
+- [x] ./../snippets/synapse_tutorial.py
+- [x] ./../traub_2005/py/test_tcr.py
+- [x] ./../traub_2005/py/display_morphology.py
+- [x] ./../traub_2005/py/test_deepbasket.py
+- [x] ./../traub_2005/py/test_suppyrrs.py
+- [x] ./../traub_2005/py/test_suppyrfrb.py
+- [x] ./../traub_2005/py/test_nachans.py
+- [x] ./../traub_2005/py/test_supaxoaxonic.py
+- [x] ./../traub_2005/py/fig_a2_fs.py
+- [x] ./../traub_2005/py/fig_a4c.py
+- [x] ./../tutorials/ExcInhNetCaPlasticity/ExcInhNet_HigginsGraupnerBrunel2014.py
+- [x] ./../passive/passive_soma.py
+- [x] ./../tutorials/ChemicalOscillators/relaxationOsc.py
+- [x] ./../tutorials/ExcInhNetCaPlasticity/ExcInhNet_HigginsGraupnerBrunel2014.py
+- [x] ./../passive/passive_soma.py
+- [x] ./../tutorials/ChemicalOscillators/relaxationOsc.py
+- [x] ./../tutorials/ChemicalOscillators/repressillator.py
+- [x] ./../tutorials/ChemicalBistables/strongBis.py
+- [x] ./../tutorials/ChemicalOscillators/KholodenkoOscTut.py
+- [x] ./../tutorials/ChemicalBistables/simpleBis.py
+- [x] ./../tutorials/ChemicalBistables/findSteadyState.py
+- [x] ./../tutorials/ChemicalBistables/doseResponse.py
+- [x] ./../tutorials/ChemicalBistables/mapkFB.py
+- [x] ./../squid/squid.py
+- [x] ./../squid/squid_setup.py
+- [x] ./../symcomp/symcomp_readcell.py
+- [x] ./../symcomp/symcomp.py
+- [x] ./../snippets/showclocks.py
+- [x] ./../snippets/singlemsgcross.py
+- [x] ./../snippets/funcReacLotkaVolterra.py
+- [x] ./../snippets/interpol2d.py
+- [x] ./../snippets/onetoonemsg.py
+- [x] ./../snippets/scriptKineticModel.py
+- [x] ./../snippets/loadCspaceModel.py
+- [x] ./../snippets/pyrun1.py
+- [x] ./../snippets/funcRateHarmonicOsc.py
+- [x] ./../snippets/multiscaleOneCompt.py
+- [x] ./../snippets/scriptKineticSolver.py
+- [x] ./../snippets/loadSbmlmodel.py
+- [x] ./../snippets/ionchannel.py
+- [x] ./../snippets/crossComptOscillator.py
+- [x] ./../snippets/scriptGssaSolver.py
+- [x] ./../snippets/bidirectionalPlasticity.py
+- [x] ./../snippets/function.py
+- [x] ./../snippets/wildcard.py
+- [x] ./../snippets/timetable.py
+- [x] ./../snippets/switchKineticSolvers.py
+- [x] ./../snippets/HigginsGraupnerBrunel2014_LifetimeCaPlasticity.py
+- [x] ./../snippets/rxdReacDiffusion.py
+- [x] ./../snippets/STDP.py
+- [x] ./../snippets/tweakingParameters.py
+- [x] ./../snippets/lifcomp.py
+- [x] ./../snippets/randomspike.py
+- [x] ./../snippets/chemDoseResponse.py
+- [x] ./../snippets/convert_Genesis2Sbml.py
+- [x] ./../snippets/diffEqSolution.py
+- [x] ./../snippets/stochasticLotkaVolterra.py
+- [x] ./../snippets/compartment_net_no_array.py
+- [x] ./../snippets/vectors.py
+- [x] ./../snippets/pyrun.py
+- [x] ./../snippets/showmsg.py
+- [x] ./../snippets/savemodel.py
+- [x] ./../snippets/gapjunction.py
+- [x] ./../snippets/pulsegen2.py
+- [x] ./../snippets/tabledemo.py
+- [x] ./../snippets/cspaceSteadyState.py
+- [x] ./../snippets/rxdFuncDiffusionStoch.py
+- [x] ./../snippets/helloMoose.py
+- [x] ./../snippets/threading_demo.py
+- [x] ./../snippets/RandSpikeStats.py
+- [x] ./../snippets/cubeMeshSigNeur.py
+- [x] ./../snippets/hhcomp.py
+- [x] ./../snippets/analogStimTable.py
+- [x] ./../snippets/lif.py
+- [x] ./../snippets/changeFuncExpression.py
+- [x] ./../snippets/diffusion_using_Gillespie.py
+- [x] ./../snippets/loadKineticModel.py
+- [x] ./../snippets/rxdFuncDiffusion.py
+- [x] ./../snippets/multiComptSigNeur.py
+- [x] ./../snippets/vclamp.py
+- [x] ./../snippets/compartment_net.py
+- [x] ./../snippets/pulsegen.py
+- [x] ./../snippets/mgblock.py
+- [x] ./../snippets/synapse.py
+- [x] ./../snippets/symcompartment.py
+- [x] ./../snippets/stimtable.py
+- [x] ./../snippets/interpol.py
+- [x] ./../snippets/cylinderMotor.py
+- [x] ./../snippets/neuronFromDotp.py
+- [x] ./../snippets/func.py
+- [x] ./../snippets/startstop.py
+- [x] ./../snippets/multicomp_lif.py
+- [x] ./../snippets/traub_naf.py
+- [x] ./../snippets/intfire.py
+- [x] ./../snippets/funcInputToPools.py
+- [x] ./../snippets/HsolveInstability.py
+- [x] ./../snippets/twocells.py
+- [x] ./../parallelSolver/abstrModelEqns2.py
+- [x] ./../snippets/synapse_tutorial.py
+- [x] ./../MemoryNetworks/bidirectional_plastic_switch.py
+- [x] ./../traub_2005/py/test_capool.py
+- [x] ./../traub_2005/py/test_archan.py
+- [x] ./../traub_2005/py/test_kchans.py
+- [x] ./../traub_2005/py/vclamptest.py
+- [x] ./../traub_2005/py/test_cachans.py
+- [x] ./../traub_2005/py/test_singlecomp.py
+- [x] ./../traub_2005/py/fig_a4c.py
+- [x] ./../traub_2005/py/display_morphology.py
+- [x] ./../traub_2005/py/test_nachans.py
+- [x] ./../neuroml/allChannelsCell/allChannelsCell.py
+- [x] ./../passive/passive_soma.py
+- [x] ./../tutorials/ExcInhNetCaPlasticity/ExcInhNet_HigginsGraupnerBrunel2014.py
+- [x] ./../tutorials/ChemicalOscillators/relaxationOsc.py
+- [x] ./../tutorials/ChemicalOscillators/KholodenkoOscTut.py
+- [x] ./../tutorials/ChemicalOscillators/repressillator.py
+- [x] ./../tutorials/ChemicalBistables/strongBis.py
+- [x] ./../tutorials/ChemicalBistables/mapkFB.py
+- [x] ./../tutorials/ChemicalBistables/findSteadyState.py
+- [x] ./../tutorials/ChemicalBistables/doseResponse.py
+- [x] ./../symcomp/symcomp_readcell.py
+- [x] ./../symcomp/symcomp.py
+- [x] ./../squid/squid_setup.py
+- [x] ./../squid/squid.py
+- [x] ./../snippets/showclocks.py
+- [x] ./../snippets/singlemsgcross.py
+- [x] ./../snippets/funcReacLotkaVolterra.py
+- [x] ./../snippets/interpol2d.py
+- [x] ./../snippets/onetoonemsg.py
+- [x] ./../snippets/loadCspaceModel.py
+- [x] ./../snippets/scriptKineticModel.py
+- [x] ./../snippets/pyrun1.py
+- [x] ./../snippets/funcRateHarmonicOsc.py
+- [x] ./../snippets/multiscaleOneCompt.py
+- [x] ./../snippets/scriptKineticSolver.py
+- [x] ./../snippets/crossComptOscillator.py
+- [x] ./../snippets/loadSbmlmodel.py
+- [x] ./../snippets/ionchannel.py
+- [x] ./../snippets/function.py
+- [x] ./../snippets/bidirectionalPlasticity.py
+- [x] ./../snippets/scriptGssaSolver.py
+- [x] ./../snippets/HigginsGraupnerBrunel2014_LifetimeCaPlasticity.py
+- [x] ./../snippets/timetable.py
+- [x] ./../snippets/wildcard.py
+- [x] ./../snippets/switchKineticSolvers.py
+- [x] ./../snippets/STDP.py
+- [x] ./../snippets/rxdReacDiffusion.py
+- [x] ./../snippets/tweakingParameters.py
+- [x] ./../snippets/randomspike.py
+- [x] ./../snippets/chemDoseResponse.py
+- [x] ./../snippets/lifcomp.py
+- [x] ./../snippets/diffEqSolution.py
+- [x] ./../snippets/convert_Genesis2Sbml.py
+- [x] ./../snippets/recurrentLIF.py
+- [x] ./../snippets/stochasticLotkaVolterra.py
+- [x] ./../snippets/vectors.py
+- [x] ./../snippets/compartment_net_no_array.py
+- [x] ./../snippets/pyrun.py
+- [x] ./../snippets/savemodel.py
+- [x] ./../snippets/gapjunction.py
+- [x] ./../snippets/showmsg.py
+- [x] ./../snippets/pulsegen2.py
+- [x] ./../snippets/helloMoose.py
+- [x] ./../snippets/tabledemo.py
+- [x] ./../snippets/cspaceSteadyState.py
+- [x] ./../snippets/rxdFuncDiffusionStoch.py
+- [x] ./../snippets/hhcomp.py
+- [x] ./../snippets/RandSpikeStats.py
+- [x] ./../snippets/threading_demo.py
+- [x] ./../snippets/cubeMeshSigNeur.py
+- [x] ./../snippets/changeFuncExpression.py
+- [x] ./../snippets/lif.py
+- [x] ./../snippets/analogStimTable.py
+- [x] ./../snippets/diffusion_using_Gillespie.py
+- [x] ./../snippets/multiComptSigNeur.py
+- [x] ./../snippets/rxdFuncDiffusion.py
+- [x] ./../snippets/loadKineticModel.py
+- [x] ./../snippets/vclamp.py
+- [x] ./../snippets/mgblock.py
+- [x] ./../snippets/compartment_net.py
+- [x] ./../snippets/pulsegen.py
+- [x] ./../snippets/synapse.py
+- [x] ./../passive/passive_soma.py
+- [x] ./../tutorials/ExcInhNetCaPlasticity/ExcInhNet_HigginsGraupnerBrunel2014.py
+- [x] ./../tutorials/ChemicalOscillators/relaxationOsc.py
+- [x] ./../tutorials/ChemicalOscillators/KholodenkoOscTut.py
+- [x] ./../tutorials/ChemicalOscillators/repressillator.py
+- [x] ./../tutorials/ChemicalBistables/strongBis.py
+- [x] ./../tutorials/ChemicalBistables/mapkFB.py
+- [x] ./../tutorials/ChemicalBistables/findSteadyState.py
+- [x] ./../tutorials/ChemicalBistables/doseResponse.py
+- [x] ./../symcomp/symcomp_readcell.py
+- [x] ./../symcomp/symcomp.py
+- [x] ./../squid/squid_setup.py
+- [x] ./../squid/squid.py
+- [x] ./../snippets/showclocks.py
+- [x] ./../snippets/singlemsgcross.py
+- [x] ./../snippets/funcReacLotkaVolterra.py
+- [x] ./../snippets/interpol2d.py
+- [x] ./../snippets/onetoonemsg.py
+- [x] ./../snippets/loadCspaceModel.py
+- [x] ./../snippets/scriptKineticModel.py
+- [x] ./../snippets/pyrun1.py
+- [x] ./../snippets/funcRateHarmonicOsc.py
+- [x] ./../snippets/multiscaleOneCompt.py
+- [x] ./../snippets/scriptKineticSolver.py
+- [x] ./../snippets/crossComptOscillator.py
+- [x] ./../snippets/loadSbmlmodel.py
+- [x] ./../snippets/ionchannel.py
+- [x] ./../snippets/function.py
+- [x] ./../snippets/bidirectionalPlasticity.py
+- [x] ./../snippets/scriptGssaSolver.py
+- [x] ./../snippets/HigginsGraupnerBrunel2014_LifetimeCaPlasticity.py
+- [x] ./../snippets/timetable.py
+- [x] ./../snippets/wildcard.py
+- [x] ./../snippets/switchKineticSolvers.py
+- [x] ./../snippets/STDP.py
+- [x] ./../snippets/rxdReacDiffusion.py
+- [x] ./../snippets/tweakingParameters.py
+- [x] ./../snippets/randomspike.py
+- [x] ./../snippets/chemDoseResponse.py
+- [x] ./../snippets/lifcomp.py
+- [x] ./../snippets/diffEqSolution.py
+- [x] ./../snippets/convert_Genesis2Sbml.py
+- [x] ./../snippets/stochasticLotkaVolterra.py
+- [x] ./../snippets/vectors.py
+- [x] ./../snippets/compartment_net_no_array.py
+- [x] ./../snippets/pyrun.py
+- [x] ./../snippets/savemodel.py
+- [x] ./../snippets/gapjunction.py
+- [x] ./../snippets/showmsg.py
+- [x] ./../snippets/pulsegen2.py
+- [x] ./../snippets/helloMoose.py
+- [x] ./../snippets/tabledemo.py
+- [x] ./../snippets/cspaceSteadyState.py
+- [x] ./../snippets/rxdFuncDiffusionStoch.py
+- [x] ./../snippets/hhcomp.py
+- [x] ./../snippets/RandSpikeStats.py
+- [x] ./../snippets/threading_demo.py
+- [x] ./../snippets/cubeMeshSigNeur.py
+- [x] ./../snippets/changeFuncExpression.py
+- [x] ./../snippets/lif.py
+- [x] ./../snippets/analogStimTable.py
+- [x] ./../snippets/diffusion_using_Gillespie.py
+- [x] ./../snippets/multiComptSigNeur.py
+- [x] ./../snippets/rxdFuncDiffusion.py
+- [x] ./../snippets/loadKineticModel.py
+- [x] ./../snippets/vclamp.py
+- [x] ./../snippets/mgblock.py
+- [x] ./../snippets/compartment_net.py
+- [x] ./../snippets/pulsegen.py
+- [x] ./../snippets/synapse.py
+- [x] ./../snippets/symcompartment.py
+- [x] ./../snippets/stimtable.py
+- [x] ./../snippets/func.py
+- [x] ./../snippets/neuronFromDotp.py
+- [x] ./../snippets/interpol.py
+- [x] ./../snippets/cylinderMotor.py
+- [x] ./../snippets/startstop.py
+- [x] ./../snippets/multicomp_lif.py
+- [x] ./../snippets/traub_naf.py
+- [x] ./../snippets/HsolveInstability.py
+- [x] ./../snippets/funcInputToPools.py
+- [x] ./../snippets/intfire.py
+- [x] ./../snippets/twocells.py
+- [x] ./../snippets/synapse_tutorial.py
+- [x] ./../MemoryNetworks/bidirectional_plastic_switch.py
+- [x] ./../parallelSolver/abstrModelEqns2.py
+- [x] ./../traub_2005/py/test_capool.py
+- [x] ./../traub_2005/py/vclamptest.py
+- [x] ./../traub_2005/py/test_kchans.py
+- [x] ./../traub_2005/py/test_archan.py
+- [x] ./../traub_2005/py/test_suppyrrs.py
+- [x] ./../traub_2005/py/test_singlecomp.py
+- [x] ./../traub_2005/py/test_cachans.py
+- [x] ./../traub_2005/py/fig_a4c.py
+- [x] ./../cuda/testHsolve.py
+- [x] ./../neuroml/LIF/LIFxml_firing.py
+- [x] ./../neuroml/CA1PyramidalCell/CA1_hsolve.py
+- [x] ./../neuroml/lobster_pyloric/channels/ChannelTest.py
+- [x] ./../neuroml/GranuleCell/Granule98.py
+- [x] ./../traub_2005/py/test_tuftedrs.py
+- [x] ./../traub_2005/py/fig_a2_fs.py
+- [x] ./../traub_2005/py/test_nachans.py
+- [x] ./../traub_2005/py/test_suppyrfrb.py
+- [x] ./../traub_2005/py/fig_a3.py
+- [x] ./../traub_2005/py/test_spinystellate.py
+- [x] ./../traub_2005/py/fig_a4c.py
+- [x] ./../traub_2005/py/test_cachans.py
+- [x] ./../traub_2005/py/test_singlecomp.py
+- [x] ./../traub_2005/py/test_suplts.py
+- [x] ./../traub_2005/py/test_deeplts.py
+- [x] ./../traub_2005/py/test_nrt.py
+- [x] ./../traub_2005/py/test_suppyrrs.py
+- [x] ./../traub_2005/py/test_kchans.py
+- [x] ./../traub_2005/py/test_capool.py
+- [x] ./../traub_2005/py/dump_f_i_curves.py
+- [x] ./../traub_2005/py/test_hsolve_tcr.py
+- [x] ./../neuroml/lobster_pyloric/STG_net.py
+- [x] ./../parallelSolver/Fig2_v4.py
+- [x] ./../unsorted/ksolve_with_heavy_load.py
+- [x] ./../parallelSolver/abstrModelEqns2.py
+- [x] ./../MemoryNetworks/bidirectional_plastic_switch.py
+- [x] ./../snippets/synapse_tutorial.py
+- [x] ./../snippets/twocells.py
+- [x] ./../snippets/HsolveInstability.py
+- [x] ./../snippets/multicomp_lif.py
+- [x] ./../snippets/startstop.py
+- [x] ./../snippets/cylinderMotor.py
+- [x] ./../snippets/interpol.py
+- [x] ./../snippets/stimtable.py
+- [x] ./../neuroml/LIF/twoLIFxml_firing.py
+- [x] ./../traub_2005/py/test_supbasket.py
+- [x] ./../traub_2005/py/display_morphology.py
+- [x] ./../snippets/symcompartment.py
+- [x] ./../snippets/pulsegen.py
+- [x] ./../snippets/compartment_net.py
+- [x] ./../kinetics/test_ksolve.py
+- [x] ./../tutorials/ChemicalBistables/findSteadyState.py
+- [x] ./../snippets/scriptGssaSolver.py
+- [x] ./../squid/squid.py
+- [x] ./../traub_2005/py/test_tuftedib.py
+- [x] ./../snippets/ionchannel.py
+- [x] ./../snippets/loadSbmlmodel.py
+- [x] ./../snippets/stochasticLotkaVolterra.py
+- [x] ./../snippets/scriptKineticModel.py
+- [x] ./../snippets/showclocks.py
+- [x] ./../snippets/traub_naf.py
+- [x] ./../snippets/loadCspaceModel.py
+- [x] ./../snippets/funcReacLotkaVolterra.py
+- [x] ./../traub_2005/py/vclamptest.py
+- [x] ./../snippets/HigginsGraupnerBrunel2014_LifetimeCaPlasticity.py
+- [x] ./../snippets/timetable.py
+- [x] ./../snippets/nsdf.py
+- [x] ./../snippets/singlemsgcross.py
+- [x] ./../neuroml/CA1PyramidalCell/CA1.py
+- [x] ./../tutorials/ChemicalOscillators/repressillator.py
+- [x] ./../tutorials/ChemicalOscillators/KholodenkoOscTut.py
+- [x] ./../tutorials/ExcInhNet/ExcInhNet_Ostojic2014_Brunel2000.py
+- [x] ./../traub_2005/py/test_tcr.py
+- [x] ./../snippets/func.py
+- [x] ./../tutorials/ChemicalBistables/doseResponse.py
+- [x] ./../passive/passive_soma.py
+- [x] ./../traub_2005/py/test_deepbasket.py
+- [x] ./../snippets/hdfdemo.py
+- [x] ./../traub_2005/py/test_nontuftedrs.py
+- [x] ./../snippets/funcRateHarmonicOsc.py
+- [x] ./../snippets/neuronFromDotp.py
+- [x] ./../traub_2005/py/test_supaxoaxonic.py
+- [x] ./../snippets/crossComptSimpleReacGSSA.py
+- [x] ./../snippets/onetoonemsg.py
+- [x] ./../neuroml/GranuleCell/Granule98_hsolve.py
+- [x] ./../snippets/interpol2d.py
+- [x] ./../snippets/synapse.py
+- [x] ./../tutorials/ChemicalBistables/simpleBis.py
+- [x] ./../snippets/vectors.py
+- [x] ./../snippets/gapjunction.py
+- [x] ./../snippets/pyrun1.py
+- [x] ./../snippets/wildcard.py
+- [x] ./../symcomp/symcomp.py
+- [x] ./../snippets/cspaceSteadyState.py
+- [x] ./../snippets/function.py
+- [x] ./../snippets/tabledemo.py
+- [x] ./../tutorials/ChemicalBistables/strongBis.py
+- [x] ./../snippets/gssaCylinderDiffusion.py
+- [x] ./../snippets/bidirectionalPlasticity.py
+- [x] ./../tutorials/ChemicalBistables/mapkFB.py
+- [x] ./../snippets/crossComptSimpleReac.py
+- [x] ./../snippets/diffEqSolution.py
+- [x] ./../symcomp/symcomp_readcell.py
+- [x] ./../squid/squid_setup.py
+- [x] ./../traub_2005/py/test_deepaxoaxonic.py
+- [x] ./../snippets/switchKineticSolvers.py
+- [x] ./../snippets/reacDiffConcGradient.py
+- [x] ./../tutorials/ChemicalOscillators/relaxationOsc.py
+- [x] ./../snippets/STDP.py
+- [x] ./../snippets/showmsg.py
+- [x] ./../snippets/convert_Genesis2Sbml.py
+- [x] ./../snippets/rxdReacDiffusion.py
+- [x] ./../snippets/tweakingParameters.py
+- [x] ./../snippets/randomspike.py
+- [x] ./../tutorials/ExcInhNetCaPlasticity/ExcInhNet_HigginsGraupnerBrunel2014.py
+- [x] ./../snippets/GraupnerBrunel2012_STDPfromCaPlasticity.py
+- [x] ./../snippets/funcInputToPools.py
+- [x] ./../snippets/chemDoseResponse.py
+- [x] ./../snippets/recurrentIntFire.py
+- [x] ./../snippets/lifcomp.py
+- [x] ./../snippets/compartment_net_no_array.py
+- [x] ./../snippets/pyrun.py
+- [x] ./../snippets/intfire.py
+- [x] ./../snippets/savemodel.py
+- [x] ./../snippets/pulsegen2.py
+- [x] ./../snippets/helloMoose.py
+- [x] ./../snippets/rxdFuncDiffusionStoch.py
+- [x] ./../snippets/hhcomp.py
+- [x] ./../snippets/crossComptOscillator.py
+- [x] ./../snippets/multiscaleOneCompt.py
+- [x] ./../snippets/threading_demo.py
+- [x] ./../cuda/testScript.py
+- [x] ./../snippets/cubeMeshSigNeur.py
+- [x] ./../snippets/scriptKineticSolver.py
+- [x] ./../snippets/RandSpikeStats.py
+- [x] ./../snippets/changeFuncExpression.py
+- [x] ./../snippets/lif.py
+- [x] ./../snippets/findChemSteadyState.py
+- [x] ./../snippets/analogStimTable.py
+- [x] ./../neuroml/allChannelsCell/allChannelsCell.py
+- [x] ./../snippets/diffusion_using_Gillespie.py
+- [x] ./../snippets/multiComptSigNeur.py
+- [x] ./../snippets/loadKineticModel.py
+- [x] ./../snippets/recurrentLIF.py
+- [x] ./../snippets/rxdFuncDiffusion.py
+- [x] ./../traub_2005/py/test_archan.py
+- [x] ./../snippets/vclamp.py
+- [x] ./../snippets/mgblock.py
+- [x] ./../traub_2005/py/display_morphology.py
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] ./../traub_2005/py/test_nachans.py
+- [x] ./../traub_2005/py/fig_a2_fs.py
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] ./../neuroml/allChannelsCell/allChannelsCell.py
+- [x] ./../neuroml/GranuleCell/Granule98.py
+- [x] ./../neuroml/GranuleCell/Granule98_hsolve.py
+- [x] ./../neuroml/lobster_pyloric/channels/ChannelTest.py
+- [x] ./../neuroml/lobster_pyloric/STG_net.py
+- [x] ./../neuroml/CA1PyramidalCell/CA1_hsolve.py
+- [x] ./../neuroml/CA1PyramidalCell/CA1.py
+- [x] ./../neuroml/LIF/twoLIFxml_firing.py
+- [x] ./../neuroml/LIF/LIFxml_firing.py
+- [x] ./../cuda/testHsolve.py
+- [x] ./../cuda/testScript.py
+- [x] ./../rall_1964/rall64.py
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] ./../rall_1964/rall64.py
+- [x] ./../rall_1964/rall64.py
+- [x] ./../rall_1964/rall64.py
+- [x] ./../neuroml/LIF/LIFxml_firing.py
+- [x] ./../neuroml/CA1PyramidalCell/CA1_hsolve.py
+- [x] ./../neuroml/lobster_pyloric/channels/ChannelTest.py
+- [x] ./../neuroml/GranuleCell/Granule98.py
+- [x] ./../cuda/testHsolve.py
+- [x] ./../neuroml/LIF/LIFxml_firing.py
+- [x] ./../rall_1964/rall64.py
+- [x] ./../neuroml/CA1PyramidalCell/CA1_hsolve.py
+- [x] ./../neuroml/lobster_pyloric/channels/ChannelTest.py
+- [x] ./../neuroml/GranuleCell/Granule98.py
+- [x] ./../traub_2005/py/test_nachans.py
+- [x] ./../traub_2005/py/test_cachans.py
+- [x] ./../traub_2005/py/test_singlecomp.py
+- [x] ./../traub_2005/py/test_capool.py
+- [x] ./../traub_2005/py/test_kchans.py
+- [x] ./../parallelSolver/abstrModelEqns2.py
+- [x] ./../MemoryNetworks/bidirectional_plastic_switch.py
+- [x] ./../snippets/synapse_tutorial.py
+- [x] ./../snippets/HsolveInstability.py
+- [x] ./../snippets/startstop.py
+- [x] ./../snippets/multicomp_lif.py
+- [x] ./../snippets/cylinderMotor.py
+- [x] ./../snippets/interpol.py
+- [x] ./../neuroml/LIF/twoLIFxml_firing.py
+- [x] ./../snippets/stimtable.py
+- [x] ./../snippets/pulsegen.py
+- [x] ./../snippets/symcompartment.py
+- [x] ./../snippets/compartment_net.py
+- [x] ./../tutorials/ChemicalBistables/findSteadyState.py
+- [x] ./../snippets/scriptGssaSolver.py
+- [x] ./../squid/squid.py
+- [x] ./../traub_2005/py/display_morphology.py
+- [x] ./../snippets/ionchannel.py
+- [x] ./../snippets/loadSbmlmodel.py
+- [x] ./../snippets/scriptKineticModel.py
+- [x] ./../snippets/showclocks.py
+- [x] ./../snippets/stochasticLotkaVolterra.py
+- [x] ./../snippets/loadCspaceModel.py
+- [x] ./../snippets/funcReacLotkaVolterra.py
+- [x] ./../snippets/timetable.py
+- [x] ./../snippets/traub_naf.py
+- [x] ./../snippets/singlemsgcross.py
+- [x] ./../neuroml/CA1PyramidalCell/CA1.py
+- [x] ./../traub_2005/py/vclamptest.py
+- [x] ./../tutorials/ChemicalOscillators/repressillator.py
+- [x] ./../tutorials/ChemicalOscillators/KholodenkoOscTut.py
+- [x] ./../snippets/func.py
+- [x] ./../passive/passive_soma.py
+- [x] ./../snippets/funcRateHarmonicOsc.py
+- [x] ./../tutorials/ChemicalBistables/doseResponse.py
+- [x] ./../snippets/neuronFromDotp.py
+- [x] ./../snippets/onetoonemsg.py
+- [x] ./../snippets/interpol2d.py
+- [x] ./../neuroml/GranuleCell/Granule98_hsolve.py
+- [x] ./../snippets/synapse.py
+- [x] ./../snippets/vectors.py
+- [x] ./../snippets/gapjunction.py
+- [x] ./../snippets/pyrun1.py
+- [x] ./../tutorials/ChemicalBistables/simpleBis.py
+- [x] ./../snippets/wildcard.py
+- [x] ./../symcomp/symcomp.py
+- [x] ./../snippets/tabledemo.py
+- [x] ./../snippets/cspaceSteadyState.py
+- [x] ./../snippets/bidirectionalPlasticity.py
+- [x] ./../tutorials/ChemicalBistables/strongBis.py
+- [x] ./../snippets/diffEqSolution.py
+- [x] ./../symcomp/symcomp_readcell.py
+- [x] ./../squid/squid_setup.py
+- [x] ./../tutorials/ChemicalOscillators/relaxationOsc.py
+- [x] ./../snippets/showmsg.py
+- [x] ./../snippets/convert_Genesis2Sbml.py
+- [x] ./../snippets/STDP.py
+- [x] ./../snippets/randomspike.py
+- [x] ./../tutorials/ExcInhNetCaPlasticity/ExcInhNet_HigginsGraupnerBrunel2014.py
+- [x] ./../snippets/rxdReacDiffusion.py
+- [x] ./../snippets/funcInputToPools.py
+- [x] ./../snippets/tweakingParameters.py
+- [x] ./../snippets/chemDoseResponse.py
+- [x] ./../snippets/lifcomp.py
+- [x] ./../snippets/compartment_net_no_array.py
+- [x] ./../snippets/pyrun.py
+- [x] ./../snippets/intfire.py
+- [x] ./../snippets/savemodel.py
+- [x] ./../snippets/helloMoose.py
+- [x] ./../snippets/rxdFuncDiffusionStoch.py
+- [x] ./../snippets/crossComptOscillator.py
+- [x] ./../snippets/threading_demo.py
+- [x] ./../cuda/testScript.py
+- [x] ./../snippets/cubeMeshSigNeur.py
+- [x] ./../snippets/scriptKineticSolver.py
+- [x] ./../snippets/RandSpikeStats.py
+- [x] ./../snippets/changeFuncExpression.py
+- [x] ./../snippets/lif.py
+- [x] ./../snippets/analogStimTable.py
+- [x] ./../snippets/hhcomp.py
+- [x] ./../snippets/diffusion_using_Gillespie.py
+- [x] ./../snippets/multiComptSigNeur.py
+- [x] ./../snippets/loadKineticModel.py
+- [x] ./../traub_2005/py/test_archan.py
+- [x] ./../snippets/vclamp.py
+- [x] ./../snippets/rxdFuncDiffusion.py
+- [x] ./../snippets/mgblock.py
+- [x] ./../snippets/rxdFuncDiffusion.py
+- [x] ./../snippets/rxdFuncDiffusion.py

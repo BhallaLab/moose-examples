@@ -53,7 +53,7 @@ def makeChemProto( name ):
     chem = moose.Neutral( '/library/' + name )
     comptVol = diffLen * dendDia * dendDia * PI / 4.0
     for i in ( ['dend', comptVol], ['spine', 1e-19], ['psd', 1e-20] ):
-        print(('making ', i))
+        print('making ', i)
         compt = moose.CubeMesh( chem.path + '/' + i[0] )
         compt.volume = i[1]
         z = moose.Pool( compt.path + '/z' )
@@ -105,7 +105,7 @@ def makeModel():
         )
     moose.seed(1234)
     rdes.buildModel( '/model' )
-    print 'built model'
+    print( 'built model' )
     x = moose.vec( '/model/chem/dend/x' )
     x.concInit = 0.0
     for i in range( 0,20 ):
@@ -154,7 +154,7 @@ def main():
     '''
     debug = moose.PyRun( '/pyrun' )
     debug.tick = 10
-    debug.runString = """print "RUNNING: ", moose.element( '/model/chem/psd/z' ).n, moose.element( '/model/elec/head0' ).diameter"""
+    debug.runString = """print( "RUNNING: ", moose.element( '/model/chem/psd/z').n, moose.element( '/model/elec/head0' ).diameter)"""
     '''
     moose.reinit()
     moose.start( runtime )

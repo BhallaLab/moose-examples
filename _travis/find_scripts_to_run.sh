@@ -1,6 +1,6 @@
 #!/bin/bash
 #set -x
-set -e
+# set -e
 source ./colors.sh
 
 # matplotlibrc file.
