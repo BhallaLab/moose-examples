@@ -53,7 +53,9 @@ function coloredPrint
 #wget -A"*.g" -r https://doqcs.ncbs.res.in/database/simfile/
 #coloredPrint "INFO" "Done downloading"
 coloredPrint "INFO" "Downloading DOQCS scripts from github."
-wget https://github.com/BhallaLab/moose-examples/releases/download/3.1.1/doqcs.tar.gz
+if [ ! -f doqcs.tar.gz ]; then
+    wget https://github.com/BhallaLab/moose-examples/releases/download/3.1.1/doqcs.tar.gz
+fi
 tar xvf doqcs.tar.gz 
 coloredPrint "INFO" "Done downloading and extracting."
 
