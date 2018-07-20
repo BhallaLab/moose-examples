@@ -1125,3 +1125,10 @@
 - [x] ./../snippets/lif.py
 - [x] ./../snippets/analogStimTable.py
 - [x] ./../snippets/hhcomp.py
+- [x] ./../snippets/diffusion_using_Gillespie.py
+- [x] ./../snippets/multiComptSigNeur.py
+- [x] ./../snippets/loadKineticModel.py
+- [x] ./../traub_2005/py/test_archan.py
+- [x] ./../snippets/vclamp.py
+- [x] ./../snippets/rxdFuncDiffusion.py
+- [x] ./../snippets/mgblock.py
