@@ -54,7 +54,7 @@ function coloredPrint
 #coloredPrint "INFO" "Done downloading"
 coloredPrint "INFO" "Downloading DOQCS scripts from github."
 wget https://github.com/BhallaLab/moose-examples/releases/download/3.1.1/doqcs.tar.gz
-tar cvf doqcs.tar.gz 
+tar xvf doqcs.tar.gz 
 coloredPrint "INFO" "Done downloading and extracting."
 
 echo '' > __UNCLEAN__DOQCS__
