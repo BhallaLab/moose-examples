@@ -1064,3 +1064,17 @@
 - [x] ./../traub_2005/py/display_morphology.py
 - [x] ./../snippets/ionchannel.py
 - [x] ./../snippets/loadSbmlmodel.py
+- [x] ./../snippets/scriptKineticModel.py
+- [x] ./../snippets/showclocks.py
+- [x] ./../snippets/stochasticLotkaVolterra.py
+- [x] ./../snippets/loadCspaceModel.py
+- [x] ./../snippets/funcReacLotkaVolterra.py
+- [x] ./../snippets/timetable.py
+- [x] ./../snippets/traub_naf.py
+- [x] ./../snippets/singlemsgcross.py
+- [x] ./../neuroml/CA1PyramidalCell/CA1.py
+- [x] ./../traub_2005/py/vclamptest.py
+- [x] ./../tutorials/ChemicalOscillators/repressillator.py
+- [x] ./../tutorials/ChemicalOscillators/KholodenkoOscTut.py
+- [x] ./../snippets/func.py
+- [x] ./../passive/passive_soma.py

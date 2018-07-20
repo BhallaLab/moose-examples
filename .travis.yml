@@ -10,6 +10,7 @@ notifications:
 
 install:
     - sudo apt-get -y update
+    - sudo apt-get install cmake --force-yet
     - sudo apt-get -y --force-yes install python-qt4 python-pip graphviz
     - sudo apt-get -y --force-yes install python-h5py python-scipy python-pygraphviz
     - sudo pip install python-libsbml networkx matplotlib numpy --upgrade
@@ -19,4 +20,4 @@ script:
     - python3 -m compileall -q .
     - python2 -m compileall -q .
     - /usr/bin/python -c 'import moose'
-    - cd _travis && make -j2
+    - cd _travis && cmake . && make -j4
