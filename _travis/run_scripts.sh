@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 trap ctrl_c INT 
 
@@ -15,10 +15,9 @@ SUCCEEDED=$PWD/SUCCEEDED
 FAILED=$PWD/FAILED
 TEMP=$PWD/__temp__
 
-rm -f $BLACKLISTED $SUCCEEDED $FAILED $TEMP TORUN
-$PWD/find_scripts_to_run.sh 
+# rm -f $BLACKLISTED $SUCCEEDED $FAILED $TEMP TORUN
+# $PWD/find_scripts_to_run.sh
 
-PYC=`which python2`
 PYC=/usr/bin/python                 # Force PYTHONPATH.
 MATPLOTRC=$PWD/matplotlibrc
 if [ ! -f $MATPLOTRC ]; then
@@ -27,12 +26,11 @@ if [ ! -f $MATPLOTRC ]; then
 fi
 
 TIMEOUT=${1:-60}     # default timeout is 60 secs.
-NTHREADS=4
 for f in `cat ./TORUN`; do
     d=`dirname $f`
     fn=`basename $f`
     # Wait of NTHREADS to join
-    ((i=i%NTHREADS)); ((i++==0)) && wait
+    # ((i=i%NTHREADS)); ((i++==0)) && wait
     (
         cp $MATPLOTRC $d/
         cd $d
@@ -63,25 +61,28 @@ for f in `cat ./TORUN`; do
             cat $TEMP
             echo "|| Failed. Error written to $FAILED"
         fi
-    ) & 
+    )
 done
-
-# Auto deploy to README.md file
-python ./deploy_gh_pages.py 
 
 echo "Following scripts were successful"
 cat $SUCCEEDED
 
+set -x
 if [ -f $BLACKLISTED ]; then
     echo "Following scripts were blacklisted due to timeout or singal interrupt"
     cat $BLACKLISTED 
-    echo "# Blacklisted " >> ../README.md
 fi
-
 
 if [ -f $FAILED ]; then 
     echo "=========================================="
     echo "Following scripts failed."
     cat $FAILED
+    echo "FAILED."
     exit 1
+else
+    echo "=========================================="
+    echo "WOW: No script failed."
 fi
+set +x
+
+echo "ALL DONE..."

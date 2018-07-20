@@ -3,7 +3,6 @@
 ## June 26, 2014
 
 import moose
-import pylab
 import numpy as np
 from matplotlib import pyplot as plt
 
@@ -107,17 +106,19 @@ def main():
     joint = np.array([factorArr, solutionVector])
     joint = joint[:,joint[1,:].argsort()]
     
-    # Plot dose response. 
-    fig0 = plt.figure()
-    pylab.semilogx(joint[0,:],joint[1,:],marker="o",label = 'concA')
-    pylab.xlabel('Dose')
-    pylab.ylabel('Response')
-    pylab.suptitle('Dose-Reponse Curve for a bistable system')
+    # Plot dose response. Remove NaN from the values else plotting will fail.
+    ax = plt.subplot()
+    # plt.semilogx was failing. not sure why. That is why this convoluted
+    # approach.
+    ax.plot( joint[0,:], joint[1,:] , marker="o", label = 'concA')
+    ax.set_xscale( 'log' )
+    plt.xlabel('Dose')
+    plt.ylabel('Response')
+    plt.suptitle('Dose-Reponse Curve for a bistable system')
     
-    pylab.legend(loc=3)
+    plt.legend(loc=3)
     #plt.savefig(outputDir + "/" + modelName +"_doseResponse" + ".png")
     plt.show()
-    #plt.close(fig0)
     quit()
     
 

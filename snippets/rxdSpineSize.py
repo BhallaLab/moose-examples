@@ -107,7 +107,7 @@ def makeModel():
         )
     moose.seed(1234)
     rdes.buildModel( '/model' )
-    print ('built model')
+    print( 'built model' )
     x = moose.vec( '/model/chem/dend/x' )
     x.concInit = 0.0
     for i in range( 0,20 ):
@@ -156,7 +156,7 @@ def main():
     '''
     debug = moose.PyRun( '/pyrun' )
     debug.tick = 10
-    debug.runString = """print "RUNNING: ", moose.element( '/model/chem/psd/z' ).n, moose.element( '/model/elec/head0' ).diameter"""
+    debug.runString = """print( "RUNNING: ", moose.element( '/model/chem/psd/z').n, moose.element( '/model/elec/head0' ).diameter)"""
     '''
     moose.reinit()
     moose.start( runtime )
