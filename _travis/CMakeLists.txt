@@ -17,13 +17,15 @@ set(PYV ${PYTHON_EXECUTABLE})
 configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/run.sh.in
     ${CMAKE_BINARY_DIR}/run.sh)
 
+add_custom_target( run_all ALL)
+
 foreach( _script ${FILESTORUN})
     message(STATUS "Script to run ${_script}")
     set(OUTFILE "NONE" )
 
     get_filename_component(TGT_NAME ${_script} NAME_WE)
 
-    add_custom_target( ${TGT_NAME} ALL
+    add_custom_target( ${TGT_NAME}
         COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/run.sh "${_script}"
         DEPENDS ${_script}
         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
@@ -31,5 +33,13 @@ foreach( _script ${FILESTORUN})
         VERBATIM
         )
 
+    add_dependencies( run_all ${TGT_NAME})
+
 endforeach()
 
+# before we run, make sure to run find_files to run script.
+add_custom_command(TARGET run_all PRE_BUILD
+    COMMAND bash -c ${CMAKE_CURRENT_SOURCE_DIR}/find_scripts_to_run.sh
+    VERBATIM
+    COMMENT "Searching files to execute."
+    )

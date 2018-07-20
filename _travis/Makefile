@@ -657,30 +657,17 @@ compartment_net/fast:
 .PHONY : compartment_net/fast
 
 #=============================================================================
-# Target rules for targets named test_ksolve
+# Target rules for targets named mgblock
 
 # Build rule for target.
-test_ksolve: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test_ksolve
-.PHONY : test_ksolve
+mgblock: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 mgblock
+.PHONY : mgblock
 
 # fast build rule for target.
-test_ksolve/fast:
-	$(MAKE) -f CMakeFiles/test_ksolve.dir/build.make CMakeFiles/test_ksolve.dir/build
-.PHONY : test_ksolve/fast
-
-#=============================================================================
-# Target rules for targets named findSteadyState
-
-# Build rule for target.
-findSteadyState: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 findSteadyState
-.PHONY : findSteadyState
-
-# fast build rule for target.
-findSteadyState/fast:
-	$(MAKE) -f CMakeFiles/findSteadyState.dir/build.make CMakeFiles/findSteadyState.dir/build
-.PHONY : findSteadyState/fast
+mgblock/fast:
+	$(MAKE) -f CMakeFiles/mgblock.dir/build.make CMakeFiles/mgblock.dir/build
+.PHONY : mgblock/fast
 
 #=============================================================================
 # Target rules for targets named scriptGssaSolver
@@ -889,45 +876,6 @@ singlemsgcross: cmake_check_build_system
 singlemsgcross/fast:
 	$(MAKE) -f CMakeFiles/singlemsgcross.dir/build.make CMakeFiles/singlemsgcross.dir/build
 .PHONY : singlemsgcross/fast
-
-#=============================================================================
-# Target rules for targets named CA1
-
-# Build rule for target.
-CA1: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 CA1
-.PHONY : CA1
-
-# fast build rule for target.
-CA1/fast:
-	$(MAKE) -f CMakeFiles/CA1.dir/build.make CMakeFiles/CA1.dir/build
-.PHONY : CA1/fast
-
-#=============================================================================
-# Target rules for targets named repressillator
-
-# Build rule for target.
-repressillator: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 repressillator
-.PHONY : repressillator
-
-# fast build rule for target.
-repressillator/fast:
-	$(MAKE) -f CMakeFiles/repressillator.dir/build.make CMakeFiles/repressillator.dir/build
-.PHONY : repressillator/fast
-
-#=============================================================================
-# Target rules for targets named KholodenkoOscTut
-
-# Build rule for target.
-KholodenkoOscTut: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 KholodenkoOscTut
-.PHONY : KholodenkoOscTut
-
-# fast build rule for target.
-KholodenkoOscTut/fast:
-	$(MAKE) -f CMakeFiles/KholodenkoOscTut.dir/build.make CMakeFiles/KholodenkoOscTut.dir/build
-.PHONY : KholodenkoOscTut/fast
 
 #=============================================================================
 # Target rules for targets named ExcInhNet_Ostojic2014_Brunel2000
@@ -1229,6 +1177,110 @@ cspaceSteadyState/fast:
 .PHONY : cspaceSteadyState/fast
 
 #=============================================================================
+# Target rules for targets named KholodenkoOscTut
+
+# Build rule for target.
+KholodenkoOscTut: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 KholodenkoOscTut
+.PHONY : KholodenkoOscTut
+
+# fast build rule for target.
+KholodenkoOscTut/fast:
+	$(MAKE) -f CMakeFiles/KholodenkoOscTut.dir/build.make CMakeFiles/KholodenkoOscTut.dir/build
+.PHONY : KholodenkoOscTut/fast
+
+#=============================================================================
+# Target rules for targets named run_all
+
+# Build rule for target.
+run_all: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 run_all
+.PHONY : run_all
+
+# fast build rule for target.
+run_all/fast:
+	$(MAKE) -f CMakeFiles/run_all.dir/build.make CMakeFiles/run_all.dir/build
+.PHONY : run_all/fast
+
+#=============================================================================
+# Target rules for targets named lif
+
+# Build rule for target.
+lif: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 lif
+.PHONY : lif
+
+# fast build rule for target.
+lif/fast:
+	$(MAKE) -f CMakeFiles/lif.dir/build.make CMakeFiles/lif.dir/build
+.PHONY : lif/fast
+
+#=============================================================================
+# Target rules for targets named crossComptSimpleReac
+
+# Build rule for target.
+crossComptSimpleReac: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 crossComptSimpleReac
+.PHONY : crossComptSimpleReac
+
+# fast build rule for target.
+crossComptSimpleReac/fast:
+	$(MAKE) -f CMakeFiles/crossComptSimpleReac.dir/build.make CMakeFiles/crossComptSimpleReac.dir/build
+.PHONY : crossComptSimpleReac/fast
+
+#=============================================================================
+# Target rules for targets named diffEqSolution
+
+# Build rule for target.
+diffEqSolution: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 diffEqSolution
+.PHONY : diffEqSolution
+
+# fast build rule for target.
+diffEqSolution/fast:
+	$(MAKE) -f CMakeFiles/diffEqSolution.dir/build.make CMakeFiles/diffEqSolution.dir/build
+.PHONY : diffEqSolution/fast
+
+#=============================================================================
+# Target rules for targets named symcomp_readcell
+
+# Build rule for target.
+symcomp_readcell: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 symcomp_readcell
+.PHONY : symcomp_readcell
+
+# fast build rule for target.
+symcomp_readcell/fast:
+	$(MAKE) -f CMakeFiles/symcomp_readcell.dir/build.make CMakeFiles/symcomp_readcell.dir/build
+.PHONY : symcomp_readcell/fast
+
+#=============================================================================
+# Target rules for targets named CA1
+
+# Build rule for target.
+CA1: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 CA1
+.PHONY : CA1
+
+# fast build rule for target.
+CA1/fast:
+	$(MAKE) -f CMakeFiles/CA1.dir/build.make CMakeFiles/CA1.dir/build
+.PHONY : CA1/fast
+
+#=============================================================================
+# Target rules for targets named repressillator
+
+# Build rule for target.
+repressillator: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 repressillator
+.PHONY : repressillator
+
+# fast build rule for target.
+repressillator/fast:
+	$(MAKE) -f CMakeFiles/repressillator.dir/build.make CMakeFiles/repressillator.dir/build
+.PHONY : repressillator/fast
+
+#=============================================================================
 # Target rules for targets named function
 
 # Build rule for target.
@@ -1307,43 +1359,30 @@ mapkFB/fast:
 .PHONY : mapkFB/fast
 
 #=============================================================================
-# Target rules for targets named crossComptSimpleReac
+# Target rules for targets named findSteadyState
 
 # Build rule for target.
-crossComptSimpleReac: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 crossComptSimpleReac
-.PHONY : crossComptSimpleReac
+findSteadyState: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 findSteadyState
+.PHONY : findSteadyState
 
 # fast build rule for target.
-crossComptSimpleReac/fast:
-	$(MAKE) -f CMakeFiles/crossComptSimpleReac.dir/build.make CMakeFiles/crossComptSimpleReac.dir/build
-.PHONY : crossComptSimpleReac/fast
+findSteadyState/fast:
+	$(MAKE) -f CMakeFiles/findSteadyState.dir/build.make CMakeFiles/findSteadyState.dir/build
+.PHONY : findSteadyState/fast
 
 #=============================================================================
-# Target rules for targets named diffEqSolution
+# Target rules for targets named test_ksolve
 
 # Build rule for target.
-diffEqSolution: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 diffEqSolution
-.PHONY : diffEqSolution
+test_ksolve: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_ksolve
+.PHONY : test_ksolve
 
 # fast build rule for target.
-diffEqSolution/fast:
-	$(MAKE) -f CMakeFiles/diffEqSolution.dir/build.make CMakeFiles/diffEqSolution.dir/build
-.PHONY : diffEqSolution/fast
-
-#=============================================================================
-# Target rules for targets named symcomp_readcell
-
-# Build rule for target.
-symcomp_readcell: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 symcomp_readcell
-.PHONY : symcomp_readcell
-
-# fast build rule for target.
-symcomp_readcell/fast:
-	$(MAKE) -f CMakeFiles/symcomp_readcell.dir/build.make CMakeFiles/symcomp_readcell.dir/build
-.PHONY : symcomp_readcell/fast
+test_ksolve/fast:
+	$(MAKE) -f CMakeFiles/test_ksolve.dir/build.make CMakeFiles/test_ksolve.dir/build
+.PHONY : test_ksolve/fast
 
 #=============================================================================
 # Target rules for targets named squid_setup
@@ -1775,19 +1814,6 @@ changeFuncExpression/fast:
 .PHONY : changeFuncExpression/fast
 
 #=============================================================================
-# Target rules for targets named lif
-
-# Build rule for target.
-lif: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 lif
-.PHONY : lif
-
-# fast build rule for target.
-lif/fast:
-	$(MAKE) -f CMakeFiles/lif.dir/build.make CMakeFiles/lif.dir/build
-.PHONY : lif/fast
-
-#=============================================================================
 # Target rules for targets named findChemSteadyState
 
 # Build rule for target.
@@ -1853,19 +1879,6 @@ multiComptSigNeur/fast:
 .PHONY : multiComptSigNeur/fast
 
 #=============================================================================
-# Target rules for targets named loadKineticModel
-
-# Build rule for target.
-loadKineticModel: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 loadKineticModel
-.PHONY : loadKineticModel
-
-# fast build rule for target.
-loadKineticModel/fast:
-	$(MAKE) -f CMakeFiles/loadKineticModel.dir/build.make CMakeFiles/loadKineticModel.dir/build
-.PHONY : loadKineticModel/fast
-
-#=============================================================================
 # Target rules for targets named recurrentLIF
 
 # Build rule for target.
@@ -1877,6 +1890,19 @@ recurrentLIF: cmake_check_build_system
 recurrentLIF/fast:
 	$(MAKE) -f CMakeFiles/recurrentLIF.dir/build.make CMakeFiles/recurrentLIF.dir/build
 .PHONY : recurrentLIF/fast
+
+#=============================================================================
+# Target rules for targets named loadKineticModel
+
+# Build rule for target.
+loadKineticModel: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 loadKineticModel
+.PHONY : loadKineticModel
+
+# fast build rule for target.
+loadKineticModel/fast:
+	$(MAKE) -f CMakeFiles/loadKineticModel.dir/build.make CMakeFiles/loadKineticModel.dir/build
+.PHONY : loadKineticModel/fast
 
 #=============================================================================
 # Target rules for targets named rxdFuncDiffusion
@@ -1916,19 +1942,6 @@ vclamp: cmake_check_build_system
 vclamp/fast:
 	$(MAKE) -f CMakeFiles/vclamp.dir/build.make CMakeFiles/vclamp.dir/build
 .PHONY : vclamp/fast
-
-#=============================================================================
-# Target rules for targets named mgblock
-
-# Build rule for target.
-mgblock: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 mgblock
-.PHONY : mgblock
-
-# fast build rule for target.
-mgblock/fast:
-	$(MAKE) -f CMakeFiles/mgblock.dir/build.make CMakeFiles/mgblock.dir/build
-.PHONY : mgblock/fast
 
 # Help Target
 help:
@@ -1978,8 +1991,7 @@ help:
 	@echo "... symcompartment"
 	@echo "... pulsegen"
 	@echo "... compartment_net"
-	@echo "... test_ksolve"
-	@echo "... findSteadyState"
+	@echo "... mgblock"
 	@echo "... scriptGssaSolver"
 	@echo "... squid"
 	@echo "... test_tuftedib"
@@ -1997,9 +2009,6 @@ help:
 	@echo "... timetable"
 	@echo "... nsdf"
 	@echo "... singlemsgcross"
-	@echo "... CA1"
-	@echo "... repressillator"
-	@echo "... KholodenkoOscTut"
 	@echo "... ExcInhNet_Ostojic2014_Brunel2000"
 	@echo "... test_tcr"
 	@echo "... func"
@@ -2023,15 +2032,22 @@ help:
 	@echo "... wildcard"
 	@echo "... symcomp"
 	@echo "... cspaceSteadyState"
+	@echo "... KholodenkoOscTut"
+	@echo "... run_all"
+	@echo "... lif"
+	@echo "... crossComptSimpleReac"
+	@echo "... diffEqSolution"
+	@echo "... symcomp_readcell"
+	@echo "... CA1"
+	@echo "... repressillator"
 	@echo "... function"
 	@echo "... tabledemo"
 	@echo "... strongBis"
 	@echo "... gssaCylinderDiffusion"
 	@echo "... bidirectionalPlasticity"
 	@echo "... mapkFB"
-	@echo "... crossComptSimpleReac"
-	@echo "... diffEqSolution"
-	@echo "... symcomp_readcell"
+	@echo "... findSteadyState"
+	@echo "... test_ksolve"
 	@echo "... squid_setup"
 	@echo "... test_deepaxoaxonic"
 	@echo "... switchKineticSolvers"
@@ -2065,19 +2081,17 @@ help:
 	@echo "... scriptKineticSolver"
 	@echo "... RandSpikeStats"
 	@echo "... changeFuncExpression"
-	@echo "... lif"
 	@echo "... findChemSteadyState"
 	@echo "... analogStimTable"
 	@echo "... allChannelsCell"
 	@echo "... diffusion_using_Gillespie"
 	@echo "... rebuild_cache"
 	@echo "... multiComptSigNeur"
-	@echo "... loadKineticModel"
 	@echo "... recurrentLIF"
+	@echo "... loadKineticModel"
 	@echo "... rxdFuncDiffusion"
 	@echo "... test_archan"
 	@echo "... vclamp"
-	@echo "... mgblock"
 .PHONY : help
 
 

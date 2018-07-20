@@ -9,7 +9,13 @@ TIMEOUT=@TIMEOUT@
 FILE="$1"
 echo "++ Executing script $FILE"
 
-timeout $TIMEOUT $PYC $FILE &> $TEMP
+_DIR=$(dirname $FILE)
+_FS=$(basename $FILE)
+
+cp ./matplotlibrc $_DIR/
+(
+cd $_DIR
+timeout $TIMEOUT $PYC $_FS &> $TEMP
 status=$?
 if [ "$status" -eq "0" ]; then                   # success
     echo "|| Success. Written to $SUCCEEDED"
@@ -34,3 +40,4 @@ else                                    # Failed
     cat $TEMP
     echo "|| Failed. Error written to $FAILED"
 fi
+)
