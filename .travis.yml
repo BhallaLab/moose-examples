@@ -12,8 +12,8 @@ install:
     - sudo apt-get -y update
     - sudo apt-get -y --force-yes install python-qt4 python-pip graphviz
     - sudo apt-get -y --force-yes install python-h5py python-scipy python-pygraphviz
-    - sudo pip install python-libsbml networkx matplotlib
-    - sudo pip install pymoose
+    - sudo pip install python-libsbml networkx matplotlib numpy --upgrade
+    - sudo pip install pymoose numpy 
 
 script:
     - python3 -m compileall -q .
