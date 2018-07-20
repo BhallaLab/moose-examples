@@ -72,12 +72,11 @@ python ./deploy_gh_pages.py
 echo "Following scripts were successful"
 cat $SUCCEEDED
 
+set -x
 if [ -f $BLACKLISTED ]; then
     echo "Following scripts were blacklisted due to timeout or singal interrupt"
     cat $BLACKLISTED 
-    echo "# Blacklisted " >> ../README.md
 fi
-
 
 if [ -f $FAILED ]; then 
     echo "=========================================="
@@ -85,6 +84,10 @@ if [ -f $FAILED ]; then
     cat $FAILED
     echo "FAILED."
     exit 1
+else
+    echo "=========================================="
+    echo "WOW: No script failed."
 fi
+set +x
 
 echo "ALL DONE..."
