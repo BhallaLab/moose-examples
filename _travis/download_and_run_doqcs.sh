@@ -67,7 +67,7 @@ moose.start( 1 )
     DT=$(echo "$T2-$T1" | bc)
     OUTTRIMMED=`echo $OUT | xargs`
     coloredPrint "INFO" "TOOK $DT seconds to run 1 sec."
-    if [[ ! -z $OUTTRIMMED ]]; then 
+    if [[ "$OUTTRIMMED" == *"Warning:"* ]]; then 
         coloredPrint "WARN" "$_model did not load/run cleanly"
         echo "[] ${_model} \n" >> __UNCLEAN__DOQCS__
         echo "\`\`\`" >> __UNCLEAN__DOQCS__ 
