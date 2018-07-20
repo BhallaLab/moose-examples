@@ -26,7 +26,7 @@ add_custom_target(find_scripts
     COMMENT "Searching files to execute."
     )
 
-add_custom_target( docqs 
+add_custom_target( doqcs 
     COMMAND bash -c ./download_and_run_doqcs.sh 
     COMMENT "Testing doqcs"
     VERBATIM
