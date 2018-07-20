@@ -1,2611 +1,6 @@
 - [ ] ./../tutorials/ExcInhNet/ExcInhNet_Ostojic2014_Brunel2000.py
 
 ```
-  just plotting old results for Fig 5.
-  To simulate and save, give sim as commandline argument.
-  You need to simulate first before loading data file.
-  re-run with sim as a command line argument.
-```
-- [ ] ./../kinetics/test_ksolve.py
-
-```
-  
-  
-  Totals:	-3273.39	3377.49	
-  gamma[2, 5] = 
-      -1    -1    -2     1     0
-       1     1     2     0     1
-  Nr[3, 4] = 
-      -1     0     0     1
-       0     2    -1    -1
-       0     0  -0.5   0.5
-  LU[5, 9] = 
-      -1     0     0     1     1     0     0     0     0
-       0     2    -1    -1    -1     1     0     0     0
-       0     0  -0.5   0.5   0.5   0.5     1     0     0
-       0     0     0     0    -1    -1    -2     1     0
-       0     0     0     0     1     1     2     0     1
-  scale=0.010	kcat=0.004
-  scale=0.013	kcat=0.005
-  scale=0.016	kcat=0.006
-  scale=0.020	kcat=0.007
-  scale=0.025	kcat=0.009
-  scale=0.032	kcat=0.011
-  scale=0.040	kcat=0.014
-  scale=0.050	kcat=0.018
-  scale=0.063	kcat=0.023
-  scale=0.079	kcat=0.029
-  scale=0.100	kcat=0.036
-  scale=0.126	kcat=0.045
-  scale=0.158	kcat=0.057
-  Warning: SteadyState iteration failed, status = input domain error, nIter = 4
-  scale=0.200	kcat=0.072
-  scale=0.251	kcat=0.091
-  scale=0.316	kcat=0.114
-  scale=0.398	kcat=0.144
-  scale=0.501	kcat=0.181
-  scale=0.631	kcat=0.228
-  scale=0.794	kcat=0.287
-  scale=1.000	kcat=0.361
-  scale=1.259	kcat=0.454
-  scale=1.585	kcat=0.572
-  scale=1.995	kcat=0.720
-  scale=2.512	kcat=0.907
-  scale=3.162	kcat=1.142
-  scale=3.981	kcat=1.437
-  scale=5.012	kcat=1.809
-  scale=6.310	kcat=2.278
-  scale=7.943	kcat=2.868
-  scale=10.000	kcat=3.610
-  scale=12.589	kcat=4.545
-  scale=15.849	kcat=5.722
-  scale=19.953	kcat=7.203
-  scale=25.119	kcat=9.068
-  scale=31.623	kcat=11.416
-  scale=39.811	kcat=14.372
-  scale=50.119	kcat=18.093
-  scale=63.096	kcat=22.778
-  scale=79.433	kcat=28.676
-  scale=100.000	kcat=36.101
-  5 0.00 0.03 0.01 Type=0 NegEig=3 PosEig=0 status=0 success Iter=14
-  0.18 0.75 0.00 0.03 0.01 Type=0 NegEig=3 PosEig=0 status=0 success Iter=12
-  0.18 0.75 0.00 0.03 0.01 Type=0 NegEig=3 PosEig=0 status=0 success Iter=19
-  0.18 0.75 0.00 0.03 0.01 Type=0 NegEig=3 PosEig=0 status=0 success Iter= 6
-  0.18 0.75 0.00 0.03 0.01 Type=0 NegEig=3 PosEig=0 status=0 success Iter=14
-  0.18 0.75 0.00 0.03 0.01 Type=0 NegEig=3 PosEig=0 status=0 success Iter=23
-  0.18 0.75 0.00 0.03 0.01 Type=0 NegEig=3 PosEig=0 status=0 success Iter=25
-  0.18 0.75 0.00 0.03 0.01 Type=0 NegEig=3 PosEig=0 status=0 success Iter=16
-  0.18 0.75 0.00 0.03 0.01 Type=0 NegEig=3 PosEig=0 status=0 success Iter= 5
-  0.92 0.05 0.00 0.01 0.01 Type=2 NegEig=2 PosEig=1 status=0 success Iter=43
-  0.92 0.05 0.00 0.01 0.01 Type=2 NegEig=2 PosEig=1 status=0 success Iter= 9
-  0.92 0.05 0.00 0.01 0.01 Type=2 NegEig=2 PosEig=1 status=0 success Iter=43
-  0.92 0.05 0.00 0.01 0.01 Type=2 NegEig=2 PosEig=1 status=0 success Iter=29
-  0.18 0.75 0.00 0.03 0.01 Type=0 NegEig=3 PosEig=0 status=0 success Iter=27
-  0.18 0.75 0.00 0.03 0.01 Type=0 NegEig=3 PosEig=0 status=0 success Iter= 9
-  0.18 0.75 0.00 0.03 0.01 Type=0 NegEig=3 PosEig=0 status=0 success Iter=12
-  0.92 0.05 0.00 0.01 0.01 Type=2 NegEig=2 PosEig=1 status=0 success Iter=24
-  0.92 0.05 0.00 0.01 0.01 Type=2 NegEig=2 PosEig=1 status=0 success Iter=26
-  0.18 0.75 0.00 0.03 0.01 Type=0 NegEig=3 PosEig=0 status=0 success Iter=14
-  0.92 0.05 0.00 0.01 0.01 Type=2 NegEig=2 PosEig=1 status=0 success Iter=14
-  0.18 0.75 0.00 0.03 0.01 Type=0 NegEig=3 PosEig=0 status=0 success Iter=10
-  0.18 0.75 0.00 0.03 0.01 Type=0 NegEig=3 PosEig=0 status=0 success Iter=13
-  0.18 0.75 0.00 0.03 0.01 Type=0 NegEig=3 PosEig=0 status=0 success Iter=26
-  0.18 0.75 0.00 0.03 0.01 Type=0 NegEig=3 PosEig=0 status=0 success Iter=21
-  0.18 0.75 0.00 0.03 0.01 Type=0 NegEig=3 PosEig=0 status=0 success Iter=26
-  0.18 0.75 0.00 0.03 0.01 Type=0 NegEig=3 PosEig=0 status=0 success Iter=24
-  0.18 0.75 0.00 0.03 0.01 Type=0 NegEig=3 PosEig=0 status=0 success Iter=24
-  0.92 0.05 0.00 0.01 0.01 Type=2 NegEig=2 PosEig=1 status=0 success Iter=18
-  0.18 0.75 0.00 0.03 0.01 Type=0 NegEig=3 PosEig=0 status=0 success Iter=26
-  0.18 0.75 0.00 0.03 0.01 Type=5 NegEig=4 PosEig=0 status=0 success Iter=13
-  0.18 0.75 0.00 0.03 0.01 Type=0 NegEig=3 PosEig=0 status=0 success Iter=23
-  0.92 0.05 0.00 0.01 0.01 Type=2 NegEig=2 PosEig=1 status=0 success Iter=24
-  0.18 0.75 0.00 0.03 0.01 Type=0 NegEig=3 PosEig=0 status=0 success Iter= 8
-  0.18 0.75 0.00 0.03 0.01 Type=0 NegEig=3 PosEig=0 status=0 success Iter=18
-  0.18 0.75 0.00 0.03 0.01 Type=0 NegEig=3 PosEig=1 status=0 success Iter=21
-  0.99 0.00 0.01 0.00 0.00 Type=0 NegEig=3 PosEig=0 status=0 success Iter=15
-  0.92 0.05 0.00 0.01 0.01 Type=2 NegEig=2 PosEig=1 status=0 success Iter=29
-```
-- [ ] ./../snippets/recurrentIntFire.py
-
-```
-```
-- [ ] ./../snippets/GraupnerBrunel2012_STDPfromCaPlasticity.py
-
-```
-  Elements under /network[0]
-  -----------------------------------------------
-  post before pre, dt = -0.100 s, dw/w = -0.008
-  post before pre, dt = -0.098 s, dw/w = -0.008
-  post before pre, dt = -0.096 s, dw/w = -0.009
-  post before pre, dt = -0.094 s, dw/w = -0.009
-  post before pre, dt = -0.092 s, dw/w = -0.010
-  post before pre, dt = -0.090 s, dw/w = -0.010
-  post before pre, dt = -0.088 s, dw/w = -0.011
-  post before pre, dt = -0.086 s, dw/w = -0.012
-  post before pre, dt = -0.084 s, dw/w = -0.013
-  post before pre, dt = -0.082 s, dw/w = -0.014
-  post before pre, dt = -0.080 s, dw/w = -0.015
-  post before pre, dt = -0.078 s, dw/w = -0.016
-  post before pre, dt = -0.076 s, dw/w = -0.017
-  post before pre, dt = -0.074 s, dw/w = -0.019
-  post before pre, dt = -0.072 s, dw/w = -0.020
-  post before pre, dt = -0.070 s, dw/w = -0.022
-  post before pre, dt = -0.068 s, dw/w = -0.024
-  post before pre, dt = -0.066 s, dw/w = -0.026
-  post before pre, dt = -0.064 s, dw/w = -0.028
-  post before pre, dt = -0.062 s, dw/w = -0.031
-  post before pre, dt = -0.060 s, dw/w = -0.034
-  post before pre, dt = -0.058 s, dw/w = -0.037
-  post before pre, dt = -0.056 s, dw/w = -0.040
-  post before pre, dt = -0.054 s, dw/w = -0.044
-  post before pre, dt = -0.052 s, dw/w = -0.048
-  post before pre, dt = -0.050 s, dw/w = -0.052
-  post before pre, dt = -0.048 s, dw/w = -0.057
-  post before pre, dt = -0.046 s, dw/w = -0.062
-  post before pre, dt = -0.044 s, dw/w = -0.067
-  post before pre, dt = -0.042 s, dw/w = -0.073
-  post before pre, dt = -0.040 s, dw/w = -0.080
-  post before pre, dt = -0.038 s, dw/w = -0.087
-  post before pre, dt = -0.036 s, dw/w = -0.094
-  post before pre, dt = -0.034 s, dw/w = -0.102
-  post before pre, dt = -0.032 s, dw/w = -0.111
-  post before pre, dt = -0.030 s, dw/w = -0.120
-  post before pre, dt = -0.028 s, dw/w = -0.130
-  post before pre, dt = -0.026 s, dw/w = -0.140
-  post before pre, dt = -0.024 s, dw/w = -0.152
-  post before pre, dt = -0.022 s, dw/w = -0.140
-  post before pre, dt = -0.020 s, dw/w = -0.127
-  post before pre, dt = -0.018 s, dw/w = -0.114
-  post before pre, dt = -0.016 s, dw/w = -0.102
-  post before pre, dt = -0.014 s, dw/w = -0.089
-  post before pre, dt = -0.012 s, dw/w = -0.076
-  post before pre, dt = -0.010 s, dw/w = -0.063
-  post before pre, dt = -0.008 s, dw/w = -0.051
-  post before pre, dt = -0.006 s, dw/w = -0.039
-  post before pre, dt = -0.004 s, dw/w = -0.027
-  post before pre, dt = -0.002 s, dw/w = -0.015
-  -----------------------------------------------
-  pre before post, dt = 0.002 s, dw/w = 0.089
-  pre before post, dt = 0.004 s, dw/w = 0.120
-  pre before post, dt = 0.006 s, dw/w = 0.114
-  pre before post, dt = 0.008 s, dw/w = 0.109
-  pre before post, dt = 0.010 s, dw/w = 0.103
-  pre before post, dt = 0.012 s, dw/w = 0.097
-  pre before post, dt = 0.014 s, dw/w = 0.092
-  pre before post, dt = 0.016 s, dw/w = 0.088
-  pre before post, dt = 0.018 s, dw/w = 0.083
-  pre before post, dt = 0.020 s, dw/w = 0.078
-  pre before post, dt = 0.022 s, dw/w = 0.073
-  pre before post, dt = 0.024 s, dw/w = 0.068
-  pre before post, dt = 0.026 s, dw/w = 0.064
-  pre before post, dt = 0.028 s, dw/w = 0.059
-  pre before post, dt = 0.030 s, dw/w = 0.055
-  pre before post, dt = 0.032 s, dw/w = 0.051
-  pre before post, dt = 0.034 s, dw/w = 0.047
-  pre before post, dt = 0.036 s, dw/w = 0.044
-  pre before post, dt = 0.038 s, dw/w = 0.040
-  pre before post, dt = 0.040 s, dw/w = 0.037
-  pre before post, dt = 0.042 s, dw/w = 0.034
-  pre before post, dt = 0.044 s, dw/w = 0.031
-  pre before post, dt = 0.046 s, dw/w = 0.028
-  pre before post, dt = 0.048 s, dw/w = 0.025
-  pre before post, dt = 0.050 s, dw/w = 0.023
-  pre before post, dt = 0.052 s, dw/w = 0.021
-  pre before post, dt = 0.054 s, dw/w = 0.019
-  pre before post, dt = 0.056 s, dw/w = 0.017
-  pre before post, dt = 0.058 s, dw/w = 0.015
-  pre before post, dt = 0.060 s, dw/w = 0.014
-  pre before post, dt = 0.062 s, dw/w = 0.012
-  pre before post, dt = 0.064 s, dw/w = 0.011
-  pre before post, dt = 0.066 s, dw/w = 0.009
-  pre before post, dt = 0.068 s, dw/w = 0.008
-  pre before post, dt = 0.070 s, dw/w = 0.007
-  pre before post, dt = 0.072 s, dw/w = 0.006
-  pre before post, dt = 0.074 s, dw/w = 0.005
-  pre before post, dt = 0.076 s, dw/w = 0.005
-  p```
-- [ ] ./../snippets/recurrentLIF.py
-
-```
-  ReadKkit::setMethod: option  not known, using Exponential Euler (ee)
-  line 1: (10501 [Warning]) The units of the expressions used as arguments to a function call are expected to match the units expected for the arguments of that function. 
-  Reference: L3V1 Section 3.4
-   The formula 'Km + MKKK_dash_P_471_0_' in the math element of the <kineticLaw> can only act on variables with the same units.
-  
-  line 1: (10501 [Warning]) The units of the expressions used as arguments to a function call are expected to match the units expected for the arguments of that function. 
-  Reference: L3V1 Section 3.4
-   The formula 'Km + MKK_465_0_' in the math element of the <kineticLaw> can only act on variables with the same units.
-  
-  line 1: (10501 [Warning]) The units of the expressions used as arguments to a function call are expected to match the units expected for the arguments of that function. 
-  Reference: L3V1 Section 3.4
-   The formula 'Km + MKK_dash_P_485_0_' in the math element of the <kineticLaw> can only act on variables with the same units.
-  
-  line 1: (10501 [Warning]) The units of the expressions used as arguments to a function call are expected to match the units expected for the arguments of that function. 
-  Reference: L3V1 Section 3.4
-   The formula 'Km + MKK_dash_P_485_0_' in the math element of the <kineticLaw> can only act on variables with the same units.
-  
-  line 1: (10501 [Warning]) The units of the expressions used as arguments to a function call are expected to match the units expected for the arguments of that function. 
-  Reference: L3V1 Section 3.4
-   The formula 'Km + MAPK_dash_P_487_0_' in the math element of the <kineticLaw> can only act on variables with the same units.
-  
-  line 1: (10501 [Warning]) The units of the expressions used as arguments to a function call are expected to match the units expected for the arguments of that function. 
-  Reference: L3V1 Section 3.4
-   The formula 'Km + MKK_dash_PP_505_0_' in the math element of the <kineticLaw> can only act on variables with the same units.
-  
-  line 1: (10501 [Warning]) The units of the expressions used as arguments to a function call are expected to match the units expected for the arguments of that function. 
-  Reference: L3V1 Section 3.4
-   The formula 'Km + MAPK_dash_PP_511_0_' in the math element of the <kineticLaw> can only act on variables with the same units.
-  
-  line 1: (10501 [Warning]) The units of the expressions used as arguments to a function call are expected to match the units expected for the arguments of that function. 
-  Reference: L3V1 Section 3.4
-   The formula 'Km + MKKK_463_0_' in the math element of the <kineticLaw> can only act on variables with the same units.
-  
-  line 1: (10501 [Warning]) The units of the expressions used as arguments to a function call are expected to match the units expected for the arguments of that function. 
-  Reference: L3V1 Section 3.4
-   The formula 'Km + MAPK_461_0_' in the math element of the <kineticLaw> can only act on variables with the same units.
-  
-  line 1: (10501 [Warning]) The units of the expressions used as arguments to a function call are expected to match the units expected for the arguments of that function. 
-  Reference: L3V1 Section 3.4
-   The formula 'Km + MAPK_dash_P_487_0_' in the math element of the <kineticLaw> can only act on variables with the same units.
-  
-  line 1: (10503 [Warning]) The unit of measurement associated with the mathematical formula in the MathML math element of every KineticLaw object in a model should be identical to all KineticLaw objects in the model.
-  Reference: L3V1 Section 3.4
-   The formula 'kcat * MKKK_dash_P_471_0_ * int1_467_0_ / (kinetics_453_0_ * (Km + MKKK_dash_P_471_0_))' in the <kineticLaw> element of the <reaction> with id '_2_469_0_' produces units that are inconsistent with units of earlier KineticLaw elements.
-  
-  line 1: (10503 [Warning]) The unit of measurement associated with the mathematical formula in the MathML math element of every KineticLaw object in a model should be identical to all KineticLaw objects in the model.
-  Reference: L3V1 Section 3.4
-   The formula 'kcat * MKK_465_0_ * MKKK_dash_P_471_0_ / (kinetics_453_0_ * (Km + MKK_465_0_))' in the <kineticLaw> element of the <reaction> with id '_3_473_0_' produces units that are inconsistent with units of earlier KineticLaw elements.
-  
-  line 1: (10503 [Warning]) The unit of measurement associated with the mathematical formula in the MathML math element of every KineticLaw object in a model should be identical to all KineticLaw objects in the model.
-  Reference: L3V1 Section 3.4
-   The formula 'kcat * MKK_dash_P_485_0_ * MKKK_dash_P_471_0_ / (kinetics_453_0_ * (Km + MKK_dash_P_485_0_))' in the <kineticLaw> element of the <reaction> with id '_4_475_0_' produces units that are inconsistent with units of earlier KineticLaw elements.
-  
-  line 1: (10503 [Warning]) The unit of measurement associated with the mathematical formula in the MathML math element of every KineticLaw object in a model should be identical to all KineticLaw objects in the model.
-  Reference: L3V1 Section 3.4
-   The formula 'kcat * MKK_dash_P_485_0_ * int3_477_0_ / (kinetics_453_0_ * (Km + MKK_dash_P_485_0_))' in the <kineticLaw> element of the <reaction> with id '_6_479_0_' produces units that are inconsistent with units of earlier KineticLaw elements.
-  
-  line 1: (10503 [Warning]) The unit of measurement associated with the mathematical formula in the MathML math element of every KineticLaw object in a model should be identical to all KineticLaw objects in the model.
-  Reference: L3V1 Section 3.4
-   The formula 'kcat * MAPK_dash_P_487_0_ * int5_481_0_ / (kinetics_453_0_ * (Km + MAPK_dash_P_487_0_))' in the <kineticLaw> element of the <reaction> with id '_10_483_0_' produces units that are inconsistent with units of earlier KineticLaw elements.
-  
-  line 1: (10503 [Warning]) The unit of measurement associated with the mathematical formula in the MathML math element of every KineticLaw object in a model should be identical to all KineticLaw objects in the model.
-  Reference: L3V1 Section 3.4
-   The formula 'kcat * MKK_dash_PP_505_0_ * int2_489_0_ / (kinetics_453_0_ * (Km + MKK_dash_PP_505_0_))' in the <kineticLaw> element of the <reaction> with id '_5_491_0_' produces units that are inconsistent with units of earlier KineticLaw elements.
-  
-  line 1: (10503 [Warning]) The unit of measurement associated with the mathematical formula in the MathML math element of every KineticLaw object in a model should be identical to all KineticLaw objects in the model.
-  Reference: L3V1 Section 3.4
-   The formula 'kcat * MAPK_dash_PP_511_0_ * int4_493_0_ / (kinetics_453_0_ * (Km + MAPK_dash_PP_511_0_))' in the <kineticLaw> element of the <reaction> with id '_9_495_0_' produces units that are inconsistent with units of earlier KineticLaw elements.
-  
-  line 1: (10503 [Warning]) The unit of measurement associated with the mathematical formula in the MathML math element of every KineticLaw object in a model should be identical to all KineticLaw objects in the model.
-  Reference: L3V1 Section 3.4
-   The formula 'kcat * MKKK_463_0_ * Ras_dash_MKKKK_497_0_ / (kinetics_453_0_ * (Km + MKKK_463_0_))' in the <kineticLaw> element of the <reaction> with id '_1_499_0_' produces units that are inconsistent with units of earlier KineticLaw elements.
-  
-  line 1: (10503 [Warning]) The unit of measurement associated with the mathematical formula in the MathML math element of every KineticLaw object in a model should be identical to all KineticLaw objects in the model.
-  Reference: L3V1 Section 3.4
-   The formula 'kcat * MAPK_461_0_ * MKK_dash_PP_505_0_ / (kinetics_453_0_ * (Km + MAPK_461_0_))' in the <kineticLaw> element of the <reaction> with id '_7_507_0_' produces units that are inconsistent with units of earlier KineticLaw elements.
-  
-  line 1: (10503 [Warning]) The unit of measurement associated with the mathematical formula in the MathML math element of every KineticLaw object in a model should be identical to all KineticLaw objects in the model.
-  Reference: L3V1 Section 3.4
-   The formula 'kcat * MAPK_dash_P_487_0_ * MKK_dash_PP_505_0_ / (kinetics_453_0_ * (Km + MAPK_dash_P_487_0_))' in the <kineticLaw> element of the <reaction> with id '_8_509_0_' produces units that are inconsistent with units of earlier KineticLaw elements.
-  
-  line 1: (10541 [Warning]) The units of the 'math' formula in a <kineticLaw> definition are expected to be the equivalent of _substance per time_.
-  Reference: L3V1 Sections 4.11.7, 4.2.4 AND 4.9.4
-   In level 3 the expected units are extent_per_time. Expected units are mole (exponent = 1, multiplier = 1, scale = -3), second (exponent = -1, multiplier = 1, scale = 0) but the units returned by the <math> expression in the <kineticLaw> (from the <reaction> with id '_2_469_0_') are second (exponent = -1, multiplier = 1, scale = 0), mole (exponent = 2, multiplier = 0.001, scale = 0), litre (exponent = -3, multiplier = 1, scale = 0).
-  
-  line 1: (10541 [Warning]) The units of the 'math' formula in a <kineticLaw> definition are expected to be the equivalent of _substance per time_.
-  Reference: L3V1 Sections 4.11.7, 4.2.4 AND 4.9.4
-   In level 3 the expected units are extent_per_time. Expected units are mole (exponent = 1, multiplier = 1, scale = -3), second (exponent = -1, multiplier = 1, scale = 0) but the units returned by the <math> expression in the <kineticLaw> (from the <reaction> with id '_3_473_0_') are second (exponent = -1, multiplier = 1, scale = 0), mole (exponent = 2, multiplier = 0.001, scale = 0), litre (exponent = -3, multiplier = 1, scale = 0).
-  
-  line 1: (10541 [Warning]) The units of the 'math' formula in a <kineticLaw> definition are expected to be the equivalent of _substance per time_.
-  Reference: L3V1 Sections 4.11.7, 4.2.4 AND 4.9.4
-   In level 3 the expected units are extent_per_time. Expected units are mole (exponent = 1, multiplier = 1, scale = -3), second (exponent = -1, multiplier = 1, scale = 0) but the units returned by the <math> expression in the <kineticLaw> (from the <reaction> with id '_4_475_0_') are second (exponent = -1, multiplier = 1, scale = 0), mole (exponent = 2, multiplier = 0.001, scale = 0), litre (exponent = -3, multiplier = 1, scale = 0).
-  
-  line 1: (10541 [Warning]) The units of the 'math' formula in a <kineticLaw> definition are expected to be the equivalent of _substance per time_.
-  Reference: L3V1 Sections 4.11.7, 4.2.4 AND 4.9.4
-   In level 3 the expected units are extent_per_time. Expected units are mole (exponent = 1, multiplier = 1, scale = -3), second (exponent = -1, multiplier = 1, scale = 0) but the units returned by the <math> expression in the <kineticLaw> (from the <reaction> with id '_6_479_0_') are second (exponent = -1, multiplier = 1, scale = 0), mole (exponent = 2, multiplier = 0.001, scale = 0), litre (exponent = -3, multiplier = 1, scale = 0).
-  
-  line 1: (10541 [Warning]) The units of the 'math' formula in a <kineticLaw> definition are expected to be the equivalent of _substance per time_.
-  Reference: L3V1 Sections 4.11.7, 4.2.4 AND 4.9.4
-   In level 3 the expected units are extent_per_time. Expected units are mole (exponent = 1, multiplier = 1, scale = -3), second (exponent = -1, multiplier = 1, scale = 0) but the units returned by the <math> expression in the <kineticLaw> (from the <reaction> with id '_10_483_0_') are second (exponent = -1, multiplier = 1, scale = 0), mole (exponent = 2, multiplier = 0.001, scale = 0), litre (exponent = -3, multiplier = 1, scale = 0).
-  
-  line 1: (10541 [Warning]) The units of the 'math' formula in a <kineticLaw> definition are expected to be the equivalent of _substance per time_.
-  Reference: L3V1 Sections 4.11.7, 4.2.4 AND 4.9.4
-   In level 3 the expected units are extent_per_time. Expected units are mole (exponent = 1, multiplier = 1, scale = -3), second (exponent = -1, multiplier = 1, scale = 0) but the units returned by the <math> expression in the <kineticLaw> (from the <reaction> with id '_5_491_0_') are second (exponent = -1, multiplier = 1, scale = 0), mole (exponent = 2, multiplier = 0.001, scale = 0), litre (exponent = -3, multiplier = 1, scale = 0).
-  
-  line 1: (10541 [Warning]) The units of the 'math' formula in a <kineticLaw> definition are expected to be the equivalent of _substance per time_.
-  Reference: L3V1 Sections 4.11.7, 4.2.4 AND 4.9.4
-   In level 3 the expected units are extent_per_time. Expected units are mole (exponent = 1, multiplier = 1, scale = -3), second (exponent = -1, multiplier = 1, scale = 0) but the units returned by the <math> expression in the <kineticLaw> (from the <reaction> with id '_9_495_0_') are second (exponent = -1, multiplier = 1, scale = 0), mole (exponent = 2, multiplier = 0.001, scale = 0), litre (exponent = -3, multiplier = 1, scale = 0).
-  
-  line 1: (10541 [Warning]) The units of the 'math' formula in a <kineticLaw> definition are expected to be the equivalent of _substance per time_.
-  Reference: L3V1 Sections 4.11.7, 4.2.4 AND 4.9.4
-   In level 3 the expected units are extent_per_time. Expected units are mole (exponent = 1, multiplier = 1, scale = -3), second (exponent = -1, multiplier = 1, scale = 0) but the units returned by the <math> expression in the <kineticLaw> (from the <reaction> with id '_1_499_0_') are second (exponent = -1, multiplier = 1, scale = 0), mole (exponent = 2, multiplier = 0.001, scale = 0), litre (exponent = -3, multiplier = 1, scale = 0).
-  
-  line 1: (10541 [Warning]) The units of the 'math' formula in a <kineticLaw> definition are expected to be the equivalent of _substance per time_.
-  Reference: L3V1 Sections 4.11.7, 4.2.4 AND 4.9.4
-   In level 3 the expected units are extent_per_time. Expected units are mole (exponent = 1, multiplier = 1, scale = -3), second (exponent = -1, multiplier = 1, scale = 0) but the units returned by the <math> expression in the <kineticLaw> (from the <reaction> with id '_7_507_0_') are second (exponent = -1, multiplier = 1, scale = 0), mole (exponent = 2, multiplier = 0.001, scale = 0), litre (exponent = -3, multiplier = 1, scale = 0).
-  
-  line 1: (10541 [Warning]) The units of the 'math' formula in a <kineticLaw> definition are expected to be the equivalent of _substance per time_.
-  Reference: L3V1 Sections 4.11.7, 4.2.4 AND 4.9.4
-   In level 3 the expected units are extent_per_time. Expected units are mole (exponent = 1, multiplier = 1, scale = -3), second (exponent = -1, multiplier = 1, scale = 0) but the units returned by the <math> expression in the <kineticLaw> (from the <reaction> with id '_8_509_0_') are second (exponent = -1, multiplier = 1, scale = 0), mole (exponent = 2, multiplier = 0.001, scale = 0), litre (exponent = -3, multiplier = 1, scale = 0).
-  
-  (True, '', '../genesis/Kholodenko_tosbml.xml')
-```
-- [ ] ./../snippets/findChemSteadyState.py
-
-```
-  [0. 0.]
-  106384558.575
-  6.02214e+06	
-  gamma[2, 5] = 
-     0.5   0.5  -0.5     1     0
-       0     0     1     0     1
-  Nr[3, 5] = 
-      -1    -1     0     0     1
-       0    -2     2    -1     1
-       0     0     0    -1     1
-  LU[5, 10] = 
-      -1    -1     0     0     1     1     0     0     0     0
-       0    -2     2    -1     1     1     1     0     0     0
-       0     0     0    -1     1     0     0     1     0     0
-       0     0     0     0     0   0.5   0.5  -0.5     1     0
-       0     0     0     0     0     0     0     1     0     1
-  0.9190341711512564 0.04978520361935978 0.0016727267014723006 0.01143830706805263 0.008327508270297887 16 success 2 2 1 0
-  0.919034171151257 0.049785203619359356 0.0016727267014723113 0.011438307068052664 0.008327508270297865 29 success 2 2 1 0
-  0.1768783840567198 0.7471970037367659 0.0001320721925256645 0.033039973302144095 0.0098681627792445 10 success 0 3 0 0
-  0.17687838405671955 0.7471970037367668 0.0001320721925256644 0.033039973302144095 0.009868162779244481 26 success 0 3 0 0
-  0.1768783840567192 0.7471970037367682 0.0001320721925256635 0.033039973302144095 0.009868162779244457 27 success 0 3 0 0
-  0.9190341711512592 0.04978520361935895 0.0016727267014723126 0.011438307068052482 0.008327508270297811 30 success 2 2 1 0
-  0.17687838405671963 0.7471970037367698 0.00013207219252566168 0.03303997330214411 0.009868162779244452 12 success 0 3 0 0
-  0.9190341711512595 0.049785203619359036 0.0016727267014723022 0.011438307068052454 0.00832750827029779 29 success 2 2 1 0
-  0.17687838405671868 0.7471970037367703 0.00013207219252566295 0.033039973302144095 0.009868162779244422 12 success 0 3 0 0
-  0.919034171151261 0.04978520361935813 0.0016727267014723603 0.011438307068052503 0.008327508270297705 41 success 2 2 1 0
-  0.1768783840567187 0.7471970037367706 0.00013207219252566184 0.03303997330214407 0.009868162779244401 29 success 0 3 0 0
-  0.17687838405671868 0.74719700373677 0.00013207219252566252 0.03303997330214407 0.009868162779244408 18 success 0 3 0 0
-  0.1768783840567186 0.74719700373677 0.00013207219252566244 0.03303997330214405 0.009868162779244403 27 success 0 3 0 0
-  0.17687838405671868 0.7471970037367687 0.00013207219252566257 0.033039973302144025 0.009868162779244398 14 success 0 3 0 0
-  0.1768783840567185 0.7471970037367703 0.0001320721925256623 0.03303997330214405 0.009868162779244393 12 success 0 3 0 0
-  0.17687838405671835 0.7471970037367713 0.0001320721925256623 0.03303997330214407 0.009868162779244393 19 success 0 3 0 0
-  0.1768783840567188 0.7471970037367711 0.00013207219252566311 0.03303997330214395 0.00986816277924439 6 success 0 3 0 0
-  0.17687838405671824 0.7471970037367719 0.00013207219252566187 0.03303997330214407 0.009868162779244382 14 success 0 3 0 0
-  0.1768783840567188 0.7471970037367713 0.00013207219252566135 0.03303997330214405 0.009868162779244393 23 success 0 3 0 0
-  0.1768783840567187 0.7471970037367721 0.00013207219252566146 0.03303997330214411 0.009868162779244408 25 success 0 3 0 0
-  0.17687838405671835 0.7471970037367723 0.000132072192525662 0.03303997330214411 0.009868162779244398 16 success 0 3 0 0
-  0.17687838405671824 0.7471970037367729 0.00013207219252566195 0.03303997330214412 0.009868162779244398 5 success 0 3 0 0
-  0.9190341711512647 0.049785203619357885 0.0016727267014723284 0.011438307068052348 0.008327508270297723 43 success 2 2 1 0
-  0.9190341711512647 0.04978520361935773 0.0016727267014723362 0.011438307068052371 0.008327508270297719 9 success 2 2 1 0
-  0.9190341711512643 0.049785203619357635 0.001672726701472336 0.011438307068052376 0.008327508270297723 43 success 2 2 1 0
-  0.9190341711512631 0.04978520361935791 0.0016727267014723306 0.01143830706805242 0.00832750827029774 29 success 2 2 1 0
-  0.1768783840567185 0.7471970037367731 0.000132072192525662 0.03303997330214413 0.009868162779244412 27 success 0 3 0 0
-  0.17687838405671855 0.7471970037367726 0.00013207219252566227 0.033039973302144164 0.009868162779244431 9 success 0 3 0 0
-  0.17687838405671855 0.7471970037367733 0.0001320721925256625 0.033039973302144185 0.009868162779244433 12 success 0 3 0 0
-  0.9190341711512621 0.04978520361935875 0.0016727267014723132 0.01143830706805235 0.0```
-- [ ] ./../snippets/gssaCylinderDiffusion.py
-
-```
-  /model[0]/spikegen_0[0] --> /model[0]/synchan[0]/synh[0]/synapse[0]
-  /model[0]/spikegen_1[0] --> /model[0]/synchan[0]/synh[0]/synapse[0]
-  /model[0]/spikegen_2[0] --> /model[0]/synchan[0]/synh[0]/synapse[0]
-  /model[0]/spikegen_3[0] --> /model[0]/synchan[0]/synh[0]/synapse[0]
-  /model[0]/spikegen_4[0] --> /model[0]/synchan[0]/synh[0]/synapse[0]
-```
-- [ ] ./../parallelSolver/Fig2_v4.py
-
-```
-  0.4
-  0
-  3
-  4
-  ('Before:', 0.0)
-  ('After:', 1.0)
-  [0.2 0.2 0.2 0.2]
-  ('Delays for synapses on ', '/network[0]/synh[0]', ':', array([3.02020167, 0.03520501, 0.37630896, 2.3276827 , 0.08705358,
-         0.85733315, 1.9578949 , 3.85745317, 3.4043964 , 2.41884699]))
-  ('Weights for synapses on ', '/network[0]/synh[0]', ':', array([0.12383527, 0.2574093 , 0.19832058, 0.10466719, 0.44053145,
-         0.02508591, 0.27227766, 0.03246445, 0.1103094 , 0.40536463]))
-  ('Delays for synapses on ', '/network[0]/synh[1]', ':', array([2.76330583, 3.63702182, 2.28917605, 2.9226296 , 2.68701489,
-         0.4634368 ]))
-  ('Weights for synapses on ', '/network[0]/synh[1]', ':', array([0.04979742, 0.02725645, 0.42288144, 0.35960408, 0.42975984,
-         0.10288202]))
-  ('Delays for synapses on ', '/network[0]/synh[2]', ':', array([0.98858354, 1.95209727, 1.04039716, 1.79942779, 3.27060576,
-         1.55252532, 0.44135003, 1.3550744 ]))
-  ('Weights for synapses on ', '/network[0]/synh[2]', ':', array([0.19463093, 0.24712415, 0.49494805, 0.1491626 , 0.02252253,
-         0.03975893, 0.49084545, 0.30722466]))
-  ('Delays for synapses on ', '/network[0]/synh[3]', ':', array([0.82092501, 3.65489609, 2.69881627, 3.68621071, 1.56795571,
-         1.35695109, 2.11470804]))
-  ('Weights for synapses on ', '/network[0]/synh[3]', ':', array([0.01296931, 0.00473242, 0.25911207, 0.01469259, 0.41993588,
-         0.21939551, 0.08165272]))
-  ('Delays for synapses on ', '/network[0]/synh[4]', ':', array([3.31644315, 1.93023119]))
-  ('Weights for synapses on ', '/network[0]/synh[4]', ':', array([0.34023729, 0.26213168]))
-```
-- [ ] ./../traub_2005/py/test_hsolve_tcr.py
-
-```
-    Traceback (most recent call last):
-      File "dump_f_i_curves.py", line 51, in <module>
-        import h5py as h5
-    ImportError: No module named h5py
-```
-- [ ] ./../traub_2005/py/test_tuftedib.py
-
-```
-      Traceback (most recent call last):
-        File "dump_f_i_curves.py", line 51, in <module>
-          import h5py as h5
-      ImportError: No module named h5py
-```
-- [ ] ./../traub_2005/py/test_nontuftedrs.py
-
-```
-  Solver: hsolve
-  Using hsolve
-  Using hsolve
-  07_20')
-  ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-  Elements under /clock[0]
-  ('Starting simulation', 209594521661648555913454054456549122799L, 'for', 0.35, 's')
-  Finished simulation
-  ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-  ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/KDR_Vm.dat')
-  (1401, 1401)
-  ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/KDR_Gk.dat')
-  ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/KDR_Ik.dat')
-  ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-  Elements under /clock[0]
-  ('Starting simulation', 186941567025079679032231374644414240434L, 'for', 0.35, 's')
-  Finished simulation
-  ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-  ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/KDR_FS_Vm.dat')
-  (1401, 1401)
-  ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/KDR_FS_Gk.dat')
-  ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/KDR_FS_Ik.dat')
-  ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-  Elements under /clock[0]
-  ('Starting simulation', 74582059467149784407507158185918807646L, 'for', 0.35, 's')
-  Finished simulation
-  ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-  ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/KA_Vm.dat')
-  (1401, 1401)
-  ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/KA_Gk.dat')
-  ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/KA_Ik.dat')
-  ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-  Elements under /clock[0]
-  ('Starting simulation', 308926495416995318012272516147384807451L, 'for', 0.35, 's')
-  Finished simulation
-  ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-  ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/KA_IB_Vm.dat')
-  (1401, 1401)
-  ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/KA_IB_Gk.dat')
-  ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/KA_IB_Ik.dat')
-  ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-  Elements under /clock[0]
-  ('Starting simulation', 88929569493381445456273563631577832220L, 'for', 0.35, 's')
-  Finished simulation
-  ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-  ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/K2_Vm.dat')
-  (1401, 1401)
-  ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/K2_Gk.dat')
-  ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/K2_Ik.dat')
-  ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-  Elements under /clock[0]
-  ('Starting simulation', 292596832453912936101469469830410600513L, 'for', 0.35, 's')
-  Finished simulation
-  ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-  ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/KM_Vm.dat')
-  (1401, 1401)
-  ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/KM_Gk.dat')
-  ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/KM_Ik.dat')
-  ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-  Elements under /clock[0]
-  ('Starting simulation', 204521349119074009772219591991570170771L, 'for', 0.35, 's')
-  Finished simulation
-  ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-  ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/KAHP_Vm.dat')
-  ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/KAHP_Gk.dat')
-  ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/KAHP_Ik.dat')
-  ('Saved [Ca2+] in', '/tmp/traub2005_data/2018_07_20/KAHP_Ca.dat')
-  ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-  Elements under /clock[0]
-  ('Starting simulation', 199466507004528034042719466995938057368L, 'for', 0.35, 's')
-  Finished simulation
-  ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-  ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/KAHP_SLOWER_Vm.dat')
-  ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/KAHP_SLOWER_Gk.dat')
-  ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/KAHP_SLOWER_Ik.dat')
-  ('Saved [Ca2+] in', '/tmp/traub2005_data/2018_07_20/KAHP_SLOWER_Ca.dat')
-  ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-  Elements under /clock[0]
-  ('Starting simulation', 137058867993004782526118664746861453663L, 'for', 0.35, 's')
-  Finished simulation
-  ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-  ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/KAHP_DP_Vm.dat')
-  ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/KAHP_DP_Gk.dat')
-  ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/KAHP_DP_Ik.dat')
-  ('Saved [Ca2+] in', '/tmp/traub2005_data/2018_07_20/KAHP_DP_Ca.dat')
-  ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-  Elements under /cl......................
-  ----------------------------------------------------------------------
-  Ran 22 tests in 0.007s
-  
-  OK
-  ock[0]
-  ('Starting simulation', 2947820151114782656761883196701983188L, 'for', 0.35, 's')
-  Finished simulation
-  ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-  ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/KC_Vm.dat')
-  ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/KC_Gk.dat')
-  ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/KC_Ik.dat')
-  ('Saved [Ca2+] in', '/tmp/traub2005_data/2018_07_20/KC_Ca.dat')
-  ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-  Elements under /clock[0]
-  ('Starting simulation', 314606227287977509065412895834581613964L, 'for', 0.35, 's')
-  Finished simulation
-  ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-  ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/KC_FAST_Vm.dat')
-  ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/KC_FAST_Gk.dat')
-  ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/KC_FAST_Ik.dat')
-  ('Saved [Ca2+] in', '/tmp/traub2005_data/2018_07_20/KC_FAST_Ca.dat')
-  /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/K2_Gk.dat.gz not found.
-  /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/K2_Vm.dat.gz not found.
-  /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/KA_Gk.dat.gz not found.
-  /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/KA_Vm.dat.gz not found.
-  /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/KAHP_Gk.dat.gz not found.
-  /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/KAHP_Vm.dat.gz not found.
-  /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/KAHP_DP_Gk.dat.gz not found.
-  /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/KAHP_DP_Vm.dat.gz not found.
-  /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/KAHP_SLOWER_Gk.dat.gz not found.
-  /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/KAHP_SLOWER_Vm.dat.gz not found.
-  /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/KA_IB_Gk.dat.gz not found.
-  /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/KA_IB_Vm.dat.gz not found.
-  /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/KC_Gk.dat.gz not found.
-  /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/KC_Vm.dat.gz not found.
-  /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/KC_FAST_Gk.dat.gz not found.
-  /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/KC_FAST_Vm.dat.gz not found.
-  /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/KDR_Gk.dat.gz not found.
-  /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/KDR_Vm.dat.gz not found.
-  /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/KDR_FS_Gk.dat.gz not found.
-  /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/KDR_FS_Vm.dat.gz not found.
-  /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/KM_Gk.dat.gz not found.
-  /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/KM_Vm.dat.gz not found.
-```
-- [ ] ./../traub_2005/py/test_suppyrrs.py
-- [ ] ./../traub_2005/py/test_nrt.py
-
-```
-
-```
-    .    .```
-```
-- [ ] ./../traub_2005/py/test_deeplts.py
-
-```
-      .```
-- [ ] ./../traub_2005/py/test_suplts.py
-
-```
-        .```
-- [ ] ./../traub_2005/py/test_deepaxoaxonic.py
-
-```
-  .
-  ----------------------------------------------------------------------
-  Ran 1 test in 4.085s
-  
-  OK
-  ('data_dir =', '/tmp/traub2005_data/2018_07_20')
-  ('/test217176055025663401470295417261230329897[0]/model[0]/soma[0]/CaPool[0]', 2.758685680259519e+16, 0.05)
-  
-  [ /test217176055025663401470295417261230329897[0]/model[0]/soma[0]/KAHP_SLOWER[0] ]
-  Ek                   = -0.1
-  Gbar                 = 9.42477796077e-10
-  Gk                   = 0.0
-  Ik                   = 0.0
-  X                    = 0.0
-  Xpower               = 0.0
-  Y                    = 0.0
-  Ypower               = 0.0
-  Z                    = 0.0
-  Zpower               = 1.0
-  className            = HHChannel
-  dt                   = 5e-05
-  fieldIndex           = 0
-  idValue              = 579
-  index                = 0
-  instant              = 0
-  modulation           = 1.0
-  name                 = KAHP_SLOWER
-  numData              = 1
-  numField             = 1
-  path                 = /test217176055025663401470295417261230329897[0]/model[0]/soma[0]/KAHP_SLOWER[0]
-  tick                 = 2
-  useConcentration     = 1
-  
-  [ /test217176055025663401470295417261230329897[0]/model[0]/soma[0]/KC_FAST[0] ]
-  Ek                   = -0.1
-  Gbar                 = 9.42477796077e-08
-  Gk                   = 0.0
-  Ik                   = 0.0
-  X                    = 0.0
-  Xpower               = 1.0
-  Y                    = 0.0
-  Ypower               = 0.0
-  Z                    = 0.0
-  Zpower               = 1.0
-  className            = HHChannel
-  dt                   = 5e-05
-  fieldIndex           = 0
-  idValue              = 586
-  index                = 0
-  instant              = 4
-  modulation           = 1.0
-  name                 = KC_FAST
-  numData              = 1
-  numField             = 1
-  path                 = /test217176055025663401470295417261230329897[0]/model[0]/soma[0]/KC_FAST[0]
-  tick                 = 2
-  useConcentration     = 1
-  
-  [ /test217176055025663401470295417261230329897[0]/model[0]/soma[0]/CaL[0] ]
-  Ek                   = 0.125
-  Gbar                 = 4.71238898038e-09
-  Gk                   = 0.0
-  Ik                   = 0.0
-  X                    = 0.0
-  Xpower               = 2.0
-  Y                    = 0.0
-  Ypower               = 0.0
-  Z                    = 0.0
-  Zpower               = 0.0
-  className            = HHChannel
-  dt                   = 5e-05
-  fieldIndex           = 0
-  idValue              = 628
-  index                = 0
-  instant              = 0
-  modulation           = 1.0
-  name                 = CaL
-  numData              = 1
-  numField             = 1
-  path                 = /test217176055025663401470295417261230329897[0]/model[0]/soma[0]/CaL[0]
-  tick                 = 2
-  useConcentration     = 0
-  ('Setting up clocks: simdt', 2.5e-05, 'plotdt', 2.5e-05)
-  Elements under /clock[0]
-  Simulation of 0.35 s finished in 0.214123 s
-  /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/nrn/data/singlecomp_Vm.dat not found.
-```
-- [ ] ./../traub_2005/py/test_spinystellate.py
-
-```
-  ('data_dir =', '/tmp/traub2005_data/2018_07_20')
-  ReadCell: 74 compartments, 772 channels, 69 others
-  ReadCell: 74 compartments, 772 channels, 69 others
-  ReadCell: 59 compartments, 501 channels, 54 others
-  ReadCell: 59 compartments, 283 channels, 54 others
-  ReadCell: 59 compartments, 283 channels, 54 others
-  ReadCell: 59 compartments, 539 channels, 54 others
-  ReadCell: 50 compartments, 448 channels, 45 others
-  ReadCell: 61 compartments, 594 channels, 56 others
-  ReadCell: 61 compartments, 594 channels, 56 others
-  ReadCell: 59 compartments, 501 channels, 54 others
-  ReadCell: 59 compartments, 283 channels, 54 others
-  ReadCell: 59 compartments, 283 channels, 54 others
-  ReadCell: 137 compartments, 1345 channels, 132 others
-  ReadCell: 59 compartments, 607 channels, 54 others
-  ['display_morphology.py']
-  args [] []
-  tments found at or below '/model[0]'.
-```
-- [ ] ./../traub_2005/py/fig_a3.py
-
-```
-    ('data_dir =', '/tmp/traub2005_data/2018_07_20')
-    ReadCell: 74 compartments, 772 channels, 69 others
-    ReadCell: 74 compartments, 772 channels, 69 others
-    ReadCell: 59 compartments, 501 channels, 54 others
-    ReadCell: 59 compartments, 283 channels, 54 others
-    ReadCell: 59 compartments, 283 channels, 54 others
-    ReadCell: 59 compartments, 539 channels, 54 others
-    ReadCell: 50 compartments, 448 channels, 45 others
-    ReadCell: 61 compartments, 594 channels, 56 others
-    ReadCell: 61 compartments, 594 channels, 56 others
-    ReadCell: 59 compartments, 501 channels, 54 others
-    ReadCell: 59 compartments, 283 channels, 54 others
-    ReadCell: 59 compartments, 283 channels, 54 others
-    ReadCell: 137 compartments, 1345 channels, 132 others
-    ReadCell: 59 compartments, 607 channels, 54 others
-    ['display_morphology.py']
-    args [] []
-    tments found at or below '/model[0]'.
-```
-- [ ] ./../traub_2005/py/test_tcr.py
-
-```
-      ('data_dir =', '/tmp/traub2005_data/2018_07_20')
-      ReadCell: 74 compartments, 772 channels, 69 others
-      ReadCell: 74 compartments, 772 channels, 69 others
-      ReadCell: 59 compartments, 501 channels, 54 others
-      ReadCell: 59 compartments, 283 channels, 54 others
-      ReadCell: 59 compartments, 283 channels, 54 others
-      ReadCell: 59 compartments, 539 channels, 54 others
-      ReadCell: 50 compartments, 448 channels, 45 others
-      ReadCell: 61 compartments, 594 channels, 56 others
-      ReadCell: 61 compartments, 594 channels, 56 others
-      ReadCell: 59 compartments, 501 channels, 54 others
-      ReadCell: 59 compartments, 283 channels, 54 others
-      ReadCell: 59 compartments, 283 channels, 54 others
-      ReadCell: 137 compartments, 1345 channels, 132 others
-      ReadCell: 59 compartments, 607 channels, 54 others
-      ['display_morphology.py']
-      args [] []
-      tments found at or below '/model[0]'.
-```
-- [ ] ./../traub_2005/py/test_deepbasket.py
-
-```
-  .....('data_dir =', '/tmp/traub2005_data/2018_07_20')
-  ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-  Elements under /clock[0]
-  ('Starting simulation', 202575550310040895577963852143979165941L, 'for', 0.35, 's')
-  Finished simulation
-  ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-  ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/NaF_Vm.dat')
-  (1401, 1401)
-  ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/NaF_Gk.dat')
-  ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/NaF_Ik.dat')
-  ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-  Elements under /clock[0]
-  ('Starting simulation', 236655119121182296847640633428289459253L, 'for', 0.35, 's')
-  Finished simulation
-  ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-  ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/NaF_TCR_Vm.dat')
-  (1401, 1401)
-  ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/NaF_TCR_Gk.dat')
-  ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/NaF_TCR_Ik.dat')
-  ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-  Elements under /clock[0]
-  ('Starting simulation', 249504178810884121469668451374136394685L, 'for', 0.35, 's')
-  Finished simulation
-  ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-  ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/NaF2_Vm.dat')
-  (1401, 1401)
-  ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/NaF2_Gk.dat')
-  ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/NaF2_Ik.dat')
-  ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-  Elements under /clock[0]
-  ('Starting simulation', 293101273357709147977627005204659127379L, 'for', 0.35, 's')
-  Finished simulation
-  ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-  ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/NaF2_nRT_Vm.dat')
-  (1401, 1401)
-  ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/NaF2_nRT_Gk.dat')
-  ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/NaF2_nRT_Ik.dat')
-  ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-  Elements under /clock[0]
-  ('Starting simulation', 132959951948188003238159578403111828797L, 'for', 0.35, 's')
-  Finished simulation
-  ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-  ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/NaP_Vm.dat')
-  (1401, 1401)
-  ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/NaP_Gk.dat')
-  ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/NaP_Ik.dat')
-  ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-  Elements under /clock[0]
-  ('Starting simulation', 253251188170765996289091182133900658345L, 'for', 0.35, 's')
-  Finished simulation
-  ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-  ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/NaPF_Vm.dat')
-  (1401, 1401)
-  ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/NaPF_Gk.dat')
-  ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/NaPF_Ik.dat')
-  ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-  Elements under /clock[0]
-  ('Starting simulation', 288344868057289023184542857662526244847L, 'for', 0.35, 's')
-  Finished simulation
-  ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-  ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/NaPF_SS_Vm.dat')
-  (1401, 1401)
-  ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/NaPF_SS_Gk.dat')
-  ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/NaPF_SS_Ik.dat')
-  ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-  Elements under /clock[0]
-  ('Starting simulation', 48282470126497286119101716562082953759L, 'for', 0.35, 's')
-  Finished simulation
-  ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-  ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/NaPF_TCR_Vm.dat')
-  (1401, 1401)
-  ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/NaPF_TCR_Gk.dat')
-  ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/NaPF_TCR_Ik.dat')
-  Testing MOOSE Gk  ...
-  /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaF_Gk.dat.gz not found.
-  OK
-  Testing NEURON Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaF_Gk.dat.gz not found.
-  OK
-  Testing MOOSE Vm  ...
-  /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaF_Vm.dat.gz not found.
-  OK
-  Testing NEURON Vm  ... /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaF_Vm.dat.gz not found.
-  OK
-  Testing MOOSE Gk  ... /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaF2_Gk.dat.gz not found.
-  OK
-  Testing NEU...........................
-  ----------------------------------------------------------------------
-  Ran 32 tests in 0.011s
-  
-  OK
-  RON Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaF2_Gk.dat.gz not found.
-  OK
-  Testing MOOSE Vm  ... /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaF2_Vm.dat.gz not found.
-  OK
-  Testing NEURON Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaF2_Vm.dat.gz not found.
-  OK
-  Testing MOOSE Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaF2_nRT_Gk.dat.gz not found.
-  OK
-  Testing NEURON Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaF2_nRT_Gk.dat.gz not found.
-  OK
-  Testing MOOSE Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaF2_nRT_Vm.dat.gz not found.
-  OK
-  Testing NEURON Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaF2_nRT_Vm.dat.gz not found.
-  OK
-  Testing MOOSE Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaF_TCR_Gk.dat.gz not found.
-  OK
-  Testing NEURON Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaF_TCR_Gk.dat.gz not found.
-  OK
-  Testing MOOSE Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaF_TCR_Vm.dat.gz not found.
-  OK
-  Testing NEURON Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaF_TCR_Vm.dat.gz not found.
-  OK
-  Testing MOOSE Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaP_Gk.dat.gz not found.
-  OK
-  Testing NEURON Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaP_Gk.dat.gz not found.
-  OK
-  Testing MOOSE Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaP_Vm.dat.gz not found.
-  OK
-  Testing NEURON Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaP_Vm.dat.gz not found.
-  OK
-  Testing MOOSE Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaPF_Gk.dat.gz not found.
-  OK
-  Testing NEURON Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaPF_Gk.dat.gz not found.
-  OK
-  Testing MOOSE Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaPF_Vm.dat.gz not found.
-  OK
-  Testing NEURON Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaPF_Vm.dat.gz not found.
-  OK
-  Testing MOOSE Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaPF_SS_Gk.dat.gz not found.
-  OK
-  Testing NEURON Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaPF_SS_Gk.dat.gz not found.
-  OK
-  Testing MOOSE Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaPF_SS_Vm.dat.gz not found.
-  OK
-  Testing NEURON Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaPF_SS_Vm.dat.gz not found.
-  OK
-  Testing MOOSE Gk  ... /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaPF_TCR_Gk.dat.gz not found.
-  OK
-  Testing NEURON Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaPF_TCR_Gk.dat.gz not found.
-  OK
-  Testing MOOSE Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaPF_TCR_Vm.dat.gz not found.
-  OK
-  Testing NEURON Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaPF_TCR_Vm.dat.gz not found.
-  OK
-```
-- [ ] ./../traub_2005/py/test_suppyrfrb.py
-
-```
-    .....('data_dir =', '/tmp/traub2005_data/2018_07_20')
-    ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-    Elements under /clock[0]
-    ('Starting simulation', 202575550310040895577963852143979165941L, 'for', 0.35, 's')
-    Finished simulation
-    ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-    ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/NaF_Vm.dat')
-    (1401, 1401)
-    ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/NaF_Gk.dat')
-    ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/NaF_Ik.dat')
-    ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-    Elements under /clock[0]
-    ('Starting simulation', 236655119121182296847640633428289459253L, 'for', 0.35, 's')
-    Finished simulation
-    ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-    ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/NaF_TCR_Vm.dat')
-    (1401, 1401)
-    ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/NaF_TCR_Gk.dat')
-    ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/NaF_TCR_Ik.dat')
-    ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-    Elements under /clock[0]
-    ('Starting simulation', 249504178810884121469668451374136394685L, 'for', 0.35, 's')
-    Finished simulation
-    ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-    ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/NaF2_Vm.dat')
-    (1401, 1401)
-    ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/NaF2_Gk.dat')
-    ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/NaF2_Ik.dat')
-    ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-    Elements under /clock[0]
-    ('Starting simulation', 293101273357709147977627005204659127379L, 'for', 0.35, 's')
-    Finished simulation
-    ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-    ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/NaF2_nRT_Vm.dat')
-    (1401, 1401)
-    ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/NaF2_nRT_Gk.dat')
-    ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/NaF2_nRT_Ik.dat')
-    ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-    Elements under /clock[0]
-    ('Starting simulation', 132959951948188003238159578403111828797L, 'for', 0.35, 's')
-    Finished simulation
-    ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-    ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/NaP_Vm.dat')
-    (1401, 1401)
-    ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/NaP_Gk.dat')
-    ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/NaP_Ik.dat')
-    ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-    Elements under /clock[0]
-    ('Starting simulation', 253251188170765996289091182133900658345L, 'for', 0.35, 's')
-    Finished simulation
-    ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-    ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/NaPF_Vm.dat')
-    (1401, 1401)
-    ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/NaPF_Gk.dat')
-    ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/NaPF_Ik.dat')
-    ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-    Elements under /clock[0]
-    ('Starting simulation', 288344868057289023184542857662526244847L, 'for', 0.35, 's')
-    Finished simulation
-    ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-    ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/NaPF_SS_Vm.dat')
-    (1401, 1401)
-    ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/NaPF_SS_Gk.dat')
-    ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/NaPF_SS_Ik.dat')
-    ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-    Elements under /clock[0]
-    ('Starting simulation', 48282470126497286119101716562082953759L, 'for', 0.35, 's')
-    Finished simulation
-    ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-    ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/NaPF_TCR_Vm.dat')
-    (1401, 1401)
-    ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/NaPF_TCR_Gk.dat')
-    ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/NaPF_TCR_Ik.dat')
-    Testing MOOSE Gk  ...
-    /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaF_Gk.dat.gz not found.
-    OK
-    Testing NEURON Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaF_Gk.dat.gz not found.
-    OK
-    Testing MOOSE Vm  ...
-    /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaF_Vm.dat.gz not found.
-    OK
-    Testing NEURON Vm  ... /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaF_Vm.dat.gz not found.
-    OK
-    Testing MOOSE Gk  ... /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaF2_Gk.dat.gz not found.
-    OK
-    Testing NEU...........................
-    ----------------------------------------------------------------------
-    Ran 32 tests in 0.011s
-    
-    OK
-    RON Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaF2_Gk.dat.gz not found.
-    OK
-    Testing MOOSE Vm  ... /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaF2_Vm.dat.gz not found.
-    OK
-    Testing NEURON Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaF2_Vm.dat.gz not found.
-    OK
-    Testing MOOSE Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaF2_nRT_Gk.dat.gz not found.
-    OK
-    Testing NEURON Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaF2_nRT_Gk.dat.gz not found.
-    OK
-    Testing MOOSE Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaF2_nRT_Vm.dat.gz not found.
-    OK
-    Testing NEURON Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaF2_nRT_Vm.dat.gz not found.
-    OK
-    Testing MOOSE Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaF_TCR_Gk.dat.gz not found.
-    OK
-    Testing NEURON Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaF_TCR_Gk.dat.gz not found.
-    OK
-    Testing MOOSE Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaF_TCR_Vm.dat.gz not found.
-    OK
-    Testing NEURON Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaF_TCR_Vm.dat.gz not found.
-    OK
-    Testing MOOSE Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaP_Gk.dat.gz not found.
-    OK
-    Testing NEURON Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaP_Gk.dat.gz not found.
-    OK
-    Testing MOOSE Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaP_Vm.dat.gz not found.
-    OK
-    Testing NEURON Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaP_Vm.dat.gz not found.
-    OK
-    Testing MOOSE Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaPF_Gk.dat.gz not found.
-    OK
-    Testing NEURON Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaPF_Gk.dat.gz not found.
-    OK
-    Testing MOOSE Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaPF_Vm.dat.gz not found.
-    OK
-    Testing NEURON Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaPF_Vm.dat.gz not found.
-    OK
-    Testing MOOSE Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaPF_SS_Gk.dat.gz not found.
-    OK
-    Testing NEURON Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaPF_SS_Gk.dat.gz not found.
-    OK
-    Testing MOOSE Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaPF_SS_Vm.dat.gz not found.
-    OK
-    Testing NEURON Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaPF_SS_Vm.dat.gz not found.
-    OK
-    Testing MOOSE Gk  ... /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaPF_TCR_Gk.dat.gz not found.
-    OK
-    Testing NEURON Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaPF_TCR_Gk.dat.gz not found.
-    OK
-    Testing MOOSE Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaPF_TCR_Vm.dat.gz not found.
-    OK
-    Testing NEURON Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaPF_TCR_Vm.dat.gz not found.
-    OK
-```
-- [ ] ./../traub_2005/py/test_supaxoaxonic.py
-
-```
-      .....('data_dir =', '/tmp/traub2005_data/2018_07_20')
-      ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-      Elements under /clock[0]
-      ('Starting simulation', 202575550310040895577963852143979165941L, 'for', 0.35, 's')
-      Finished simulation
-      ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-      ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/NaF_Vm.dat')
-      (1401, 1401)
-      ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/NaF_Gk.dat')
-      ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/NaF_Ik.dat')
-      ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-      Elements under /clock[0]
-      ('Starting simulation', 236655119121182296847640633428289459253L, 'for', 0.35, 's')
-      Finished simulation
-      ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-      ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/NaF_TCR_Vm.dat')
-      (1401, 1401)
-      ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/NaF_TCR_Gk.dat')
-      ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/NaF_TCR_Ik.dat')
-      ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-      Elements under /clock[0]
-      ('Starting simulation', 249504178810884121469668451374136394685L, 'for', 0.35, 's')
-      Finished simulation
-      ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-      ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/NaF2_Vm.dat')
-      (1401, 1401)
-      ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/NaF2_Gk.dat')
-      ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/NaF2_Ik.dat')
-      ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-      Elements under /clock[0]
-      ('Starting simulation', 293101273357709147977627005204659127379L, 'for', 0.35, 's')
-      Finished simulation
-      ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-      ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/NaF2_nRT_Vm.dat')
-      (1401, 1401)
-      ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/NaF2_nRT_Gk.dat')
-      ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/NaF2_nRT_Ik.dat')
-      ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-      Elements under /clock[0]
-      ('Starting simulation', 132959951948188003238159578403111828797L, 'for', 0.35, 's')
-      Finished simulation
-      ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-      ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/NaP_Vm.dat')
-      (1401, 1401)
-      ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/NaP_Gk.dat')
-      ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/NaP_Ik.dat')
-      ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-      Elements under /clock[0]
-      ('Starting simulation', 253251188170765996289091182133900658345L, 'for', 0.35, 's')
-      Finished simulation
-      ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-      ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/NaPF_Vm.dat')
-      (1401, 1401)
-      ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/NaPF_Gk.dat')
-      ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/NaPF_Ik.dat')
-      ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-      Elements under /clock[0]
-      ('Starting simulation', 288344868057289023184542857662526244847L, 'for', 0.35, 's')
-      Finished simulation
-      ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-      ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/NaPF_SS_Vm.dat')
-      (1401, 1401)
-      ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/NaPF_SS_Gk.dat')
-      ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/NaPF_SS_Ik.dat')
-      ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-      Elements under /clock[0]
-      ('Starting simulation', 48282470126497286119101716562082953759L, 'for', 0.35, 's')
-      Finished simulation
-      ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-      ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/NaPF_TCR_Vm.dat')
-      (1401, 1401)
-      ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/NaPF_TCR_Gk.dat')
-      ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/NaPF_TCR_Ik.dat')
-      Testing MOOSE Gk  ...
-      /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaF_Gk.dat.gz not found.
-      OK
-      Testing NEURON Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaF_Gk.dat.gz not found.
-      OK
-      Testing MOOSE Vm  ...
-      /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaF_Vm.dat.gz not found.
-      OK
-      Testing NEURON Vm  ... /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaF_Vm.dat.gz not found.
-      OK
-      Testing MOOSE Gk  ... /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaF2_Gk.dat.gz not found.
-      OK
-      Testing NEU...........................
-      ----------------------------------------------------------------------
-      Ran 32 tests in 0.011s
-      
-      OK
-      RON Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaF2_Gk.dat.gz not found.
-      OK
-      Testing MOOSE Vm  ... /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaF2_Vm.dat.gz not found.
-      OK
-      Testing NEURON Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaF2_Vm.dat.gz not found.
-      OK
-      Testing MOOSE Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaF2_nRT_Gk.dat.gz not found.
-      OK
-      Testing NEURON Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaF2_nRT_Gk.dat.gz not found.
-      OK
-      Testing MOOSE Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaF2_nRT_Vm.dat.gz not found.
-      OK
-      Testing NEURON Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaF2_nRT_Vm.dat.gz not found.
-      OK
-      Testing MOOSE Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaF_TCR_Gk.dat.gz not found.
-      OK
-      Testing NEURON Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaF_TCR_Gk.dat.gz not found.
-      OK
-      Testing MOOSE Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaF_TCR_Vm.dat.gz not found.
-      OK
-      Testing NEURON Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaF_TCR_Vm.dat.gz not found.
-      OK
-      Testing MOOSE Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaP_Gk.dat.gz not found.
-      OK
-      Testing NEURON Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaP_Gk.dat.gz not found.
-      OK
-      Testing MOOSE Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaP_Vm.dat.gz not found.
-      OK
-      Testing NEURON Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaP_Vm.dat.gz not found.
-      OK
-      Testing MOOSE Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaPF_Gk.dat.gz not found.
-      OK
-      Testing NEURON Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaPF_Gk.dat.gz not found.
-      OK
-      Testing MOOSE Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaPF_Vm.dat.gz not found.
-      OK
-      Testing NEURON Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaPF_Vm.dat.gz not found.
-      OK
-      Testing MOOSE Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaPF_SS_Gk.dat.gz not found.
-      OK
-      Testing NEURON Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaPF_SS_Gk.dat.gz not found.
-      OK
-      Testing MOOSE Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaPF_SS_Vm.dat.gz not found.
-      OK
-      Testing NEURON Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaPF_SS_Vm.dat.gz not found.
-      OK
-      Testing MOOSE Gk  ... /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaPF_TCR_Gk.dat.gz not found.
-      OK
-      Testing NEURON Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaPF_TCR_Gk.dat.gz not found.
-      OK
-      Testing MOOSE Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaPF_TCR_Vm.dat.gz not found.
-      OK
-      Testing NEURON Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaPF_TCR_Vm.dat.gz not found.
-      OK
-```
-- [ ] ./../traub_2005/py/test_tuftedrs.py
-
-```
-  .'data_dir =', '/tmp/traub2005_data/2018_07_20')
-  ReadCell: 74 compartments, 772 channels, 69 others
-  ReadCell: 74 compartments, 772 channels, 69 others
-  ReadCell: 59 compartments, 501 channels, 54 others
-  ReadCell: 59 compartments, 283 channels, 54 others
-  ReadCell: 59 compartments, 283 channels, 54 othermoose.nml.networkml: INFO     Creating population Gran of cell type Granule_98
-  moose.nml.networkml: INFO     Creating population Gran of cell type Granule_98
-  moose.nml.networkml: INFO     Creating input under /elec 
-  moose.nml.networkml: INFO     Creating input under /elec 
-  [INFO] [92mLoading Ca pool Gran_CaPool_98 into /library . [0m
-  Reinit MOOSE ... 
-  Solver: hsolve
-  Using hsolve
-  Using hsolve
-  Running ... 
-  Showing plots ...
-  mpartments, 607 channels, 54 others
-  Warning: HSolve::setPath(): No compartments found at or below '/model[0]/deepbasket[0]'.
-  Saved data for 4e-10 A current pulse in data_fig_a2_FS.txt
-```
-- [ ] ./../traub_2005/py/test_supbasket.py
-
-```
-    .'data_dir =', '/tmp/traub2005_data/2018_07_20')
-    ReadCell: 74 compartments, 772 channels, 69 others
-    ReadCell: 74 compartments, 772 channels, 69 others
-    ReadCell: 59 compartments, 501 channels, 54 others
-    ReadCell: 59 compartments, 283 channels, 54 others
-    ReadCell: 59 compartments, 283 channels, 54 othermoose.nml.networkml: INFO     Creating population Gran of cell type Granule_98
-    moose.nml.networkml: INFO     Creating population Gran of cell type Granule_98
-    moose.nml.networkml: INFO     Creating input under /elec 
-    moose.nml.networkml: INFO     Creating input under /elec 
-    [INFO] [92mLoading Ca pool Gran_CaPool_98 into /library . [0m
-    Reinit MOOSE ... 
-    Solver: hsolve
-    Using hsolve
-    Using hsolve
-    Running ... 
-    Showing plots ...
-    mpartments, 607 channels, 54 others
-    Warning: HSolve::setPath(): No compartments found at or below '/model[0]/deepbasket[0]'.
-    Saved data for 4e-10 A current pulse in data_fig_a2_FS.txt
-```
-- [ ] ./../unsorted/ksolve_with_heavy_load.py
-
-```
-  Elements under /n[0]
-  /n[0]/compt
-  /n[0]/shaft0
-  /n[0]/head0
-  /n[0]/shaft1
-  /n[0]/head1
-  /n[0]/shaft2
-  /n[0]/head2
-  /n[0]/shaft3
-  /n[0]/head3
-  /n[0]/shaft4
-  /n[0]/head4
-  /n[0]/hsolve
-  ('running at dt =', 2e-05)
-  ('running at dt =', 5e-05)
-  ('running at dt =', 0.0001)
-  0 
-  0.0 0.0 0.0 0.0 4.9672941329e-10 4.9672941329e-10 0.0 0.0 
-  4
-  -----------------
-  0.0 0.0 0.0 0.0 4.9672941329e-10 4.9672941329e-10 0.0 0.0 
-  0.0 0.0 4.9672941329e-10 4.9672941329e-10 0.0 0.0 0.0 0.0 
-  6
-  -----------------
-  0.0 0.0 0.0 0.0 0.0 0.0 4.9672941329e-10 4.9672941329e-10 
-  4.9672941329e-10 4.9672941329e-10 0.0 0.0 0.0 0.0 0.0 0.0 
-```
-- [ ] ./../tutorials/ExcInhNet/ExcInhNet_Ostojic2014_Brunel2000.py
-
-```
-  just plotting old results for Fig 5.
-  To simulate and save, give sim as commandline argument.
-  You need to simulate first before loading data file.
-  re-run with sim as a command line argument.
-```
-- [ ] ./../tutorials/ExcInhNet/ExcInhNet_Ostojic2014_Brunel2000.py
-
-```
-  just plotting old results for Fig 5.
-  To simulate and save, give sim as commandline argument.
-  You need to simulate first before loading data file.
-  re-run with sim as a command line argument.
-```
-- [ ] ./../kinetics/test_ksolve.py
-
-```
-  
-  
-  Totals:	2.98096e+08	6.0221gamma[2, 5] = 
-      -1    -1    -2     1     0
-       1     1     2     0     1
-  Nr[3, 4] = 
-      -1     0     0     1
-       0     2    -1    -1
-       0     0  -0.5   0.5
-  LU[5, 9] = 
-      -1     0     0     1     1     0     0     0     0
-       0     2    -1    -1    -1     1     0     0     0
-       0     0  -0.5   0.5   0.5   0.5     1     0     0
-       0     0     0     0    -1    -1    -2     1     0
-       0     0     0     0     1     1     2     0     1
-  scale=0.010	kcat=0.004
-  scale=0.013	kcat=0.005
-  scale=0.016	kcat=0.006
-  scale=0.020	kcat=0.007
-  scale=0.025	kcat=0.009
-  scale=0.032	kcat=0.011
-  scale=0.040	kcat=0.014
-  scale=0.050	kcat=0.018
-  scale=0.063	kcat=0.023
-  scale=0.079	kcat=0.029
-  scale=0.100	kcat=0.036
-  scale=0.126	kcat=0.045
-  scale=0.158	kcat=0.057
-  Warning: SteadyState iteration failed, status = input domain error, nIter = 4
-  scale=0.200	kcat=0.072
-  scale=0.251	kcat=0.091
-  scale=0.316	kcat=0.114
-  scale=0.398	kcat=0.144
-  scale=0.501	kcat=0.181
-  scale=0.631	kcat=0.228
-  scale=0.794	kcat=0.287
-  scale=1.000	kcat=0.361
-  scale=1.259	kcat=0.454
-  scale=1.585	kcat=0.572
-  scale=1.995	kcat=0.720
-  scale=2.512	kcat=0.907
-  scale=3.162	kcat=1.142
-  scale=3.981	kcat=1.437
-  scale=5.012	kcat=1.809
-  scale=6.310	kcat=2.278
-  scale=7.943	kcat=2.868
-  scale=10.000	kcat=3.610
-  scale=12.589	kcat=4.545
-  scale=15.849	kcat=5.722
-  scale=19.953	kcat=7.203
-  scale=25.119	kcat=9.068
-  scale=31.623	kcat=11.416
-  scale=39.811	kcat=14.372
-  scale=50.119	kcat=18.093
-  scale=63.096	kcat=22.778
-  scale=79.433	kcat=28.676
-  scale=100.000	kcat=36.101
-  5 0.00 0.03 0.01 Type=0 NegEig=3 PosEig=0 status=0 success Iter=14
-  0.18 0.75 0.00 0.03 0.01 Type=0 NegEig=3 PosEig=0 status=0 success Iter=12
-  0.18 0.75 0.00 0.03 0.01 Type=0 NegEig=3 PosEig=0 status=0 success Iter=19
-  0.18 0.75 0.00 0.03 0.01 Type=0 NegEig=3 PosEig=0 status=0 success Iter= 6
-  0.18 0.75 0.00 0.03 0.01 Type=0 NegEig=3 PosEig=0 status=0 success Iter=14
-  0.18 0.75 0.00 0.03 0.01 Type=0 NegEig=3 PosEig=0 status=0 success Iter=23
-  0.18 0.75 0.00 0.03 0.01 Type=0 NegEig=3 PosEig=0 status=0 success Iter=25
-  0.18 0.75 0.00 0.03 0.01 Type=0 NegEig=3 PosEig=0 status=0 success Iter=16
-  0.18 0.75 0.00 0.03 0.01 Type=0 NegEig=3 PosEig=0 status=0 success Iter= 5
-  0.92 0.05 0.00 0.01 0.01 Type=2 NegEig=2 PosEig=1 status=0 success Iter=43
-  0.92 0.05 0.00 0.01 0.01 Type=2 NegEig=2 PosEig=1 status=0 success Iter= 9
-  0.92 0.05 0.00 0.01 0.01 Type=2 NegEig=2 PosEig=1 status=0 success Iter=43
-  0.92 0.05 0.00 0.01 0.01 Type=2 NegEig=2 PosEig=1 status=0 success Iter=29
-  0.18 0.75 0.00 0.03 0.01 Type=0 NegEig=3 PosEig=0 status=0 success Iter=27
-  0.18 0.75 0.00 0.03 0.01 Type=0 NegEig=3 PosEig=0 status=0 success Iter= 9
-  0.18 0.75 0.00 0.03 0.01 Type=0 NegEig=3 PosEig=0 status=0 success Iter=12
-  0.92 0.05 0.00 0.01 0.01 Type=2 NegEig=2 PosEig=1 status=0 success Iter=24
-  0.92 0.05 0.00 0.01 0.01 Type=2 NegEig=2 PosEig=1 status=0 success Iter=26
-  0.18 0.75 0.00 0.03 0.01 Type=0 NegEig=3 PosEig=0 status=0 success Iter=14
-  0.92 0.05 0.00 0.01 0.01 Type=2 NegEig=2 PosEig=1 status=0 success Iter=14
-  0.18 0.75 0.00 0.03 0.01 Type=0 NegEig=3 PosEig=0 status=0 success Iter=10
-  0.18 0.75 0.00 0.03 0.01 Type=0 NegEig=3 PosEig=0 status=0 success Iter=13
-  0.18 0.75 0.00 0.03 0.01 Type=0 NegEig=3 PosEig=0 status=0 success Iter=26
-  0.18 0.75 0.00 0.03 0.01 Type=0 NegEig=3 PosEig=0 status=0 success Iter=21
-  0.18 0.75 0.00 0.03 0.01 Type=0 NegEig=3 PosEig=0 status=0 success Iter=26
-  0.18 0.75 0.00 0.03 0.01 Type=0 NegEig=3 PosEig=0 status=0 success Iter=24
-  0.18 0.75 0.00 0.03 0.01 Type=0 NegEig=3 PosEig=0 status=0 success Iter=24
-  0.92 0.05 0.00 0.01 0.01 Type=2 NegEig=2 PosEig=1 status=0 success Iter=18
-  0.18 0.75 0.00 0.03 0.01 Type=0 NegEig=3 PosEig=0 status=0 success Iter=26
-  0.18 0.75 0.00 0.03 0.01 Type=5 NegEig=4 PosEig=0 status=0 success Iter=13
-  0.18 0.75 0.00 0.03 0.01 Type=0 NegEig=3 PosEig=0 status=0 success Iter=23
-  0.92 0.05 0.00 0.01 0.01 Type=2 NegEig=2 PosEig=1 status=0 success Iter=24
-  0.18 0.75 0.00 0.03 0.01 Type=0 NegEig=3 PosEig=0 status=0 success Iter= 8
-  0.18 0.75 0.00 0.03 0.01 Type=0 NegEig=3 PosEig=0 status=0 success Iter=18
-  0.18 0.75 0.00 0.03 0.01 Type=0 NegEig=3 PosEig=1 status=0 success Iter=21
-  0.99 0.00 0.01 0.00 0.00 Type=0 NegEig=3 PosEig=0 status=0 success Iter=15
-  0.92 0.05 0.00 0.01 0.01 Type=2 NegEig=2 PosEig=1 status=0 success Iter=29
-```
-- [ ] ./../snippets/recurrentIntFire.py
-
-```
-```
-- [ ] ./../snippets/GraupnerBrunel2012_STDPfromCaPlasticity.py
-
-```
-  Elements under /network[0]
-  -----------------------------------------------
-  post before pre, dt = -0.100 s, dw/w = -0.008
-  post before pre, dt = -0.098 s, dw/w = -0.008
-  post before pre, dt = -0.096 s, dw/w = -0.009
-  post before pre, dt = -0.094 s, dw/w = -0.009
-  post before pre, dt = -0.092 s, dw/w = -0.010
-  post before pre, dt = -0.090 s, dw/w = -0.010
-  post before pre, dt = -0.088 s, dw/w = -0.011
-  post before pre, dt = -0.086 s, dw/w = -0.012
-  post before pre, dt = -0.084 s, dw/w = -0.013
-  post before pre, dt = -0.082 s, dw/w = -0.014
-  post before pre, dt = -0.080 s, dw/w = -0.015
-  post before pre, dt = -0.078 s, dw/w = -0.016
-  post before pre, dt = -0.076 s, dw/w = -0.017
-  post before pre, dt = -0.074 s, dw/w = -0.019
-  post before pre, dt = -0.072 s, dw/w = -0.020
-  post before pre, dt = -0.070 s, dw/w = -0.022
-  post before pre, dt = -0.068 s, dw/w = -0.024
-  post before pre, dt = -0.066 s, dw/w = -0.026
-  post before pre, dt = -0.064 s, dw/w = -0.028
-  post before pre, dt = -0.062 s, dw/w = -0.031
-  post before pre, dt = -0.060 s, dw/w = -0.034
-  post before pre, dt = -0.058 s, dw/w = -0.037
-  post before pre, dt = -0.056 s, dw/w = -0.040
-  post before pre, dt = -0.054 s, dw/w = -0.044
-  post before pre, dt = -0.052 s, dw/w = -0.048
-  post before pre, dt = -0.050 s, dw/w = -0.052
-  post before pre, dt = -0.048 s, dw/w = -0.057
-  post before pre, dt = -0.046 s, dw/w = -0.062
-  post before pre, dt = -0.044 s, dw/w = -0.067
-  post before pre, dt = -0.042 s, dw/w = -0.073
-  post before pre, dt = -0.040 s, dw/w = -0.080
-  post before pre, dt = -0.038 s, dw/w = -0.087
-  post before pre, dt = -0.036 s, dw/w = -0.094
-  post before pre, dt = -0.034 s, dw/w = -0.102
-  post before pre, dt = -0.032 s, dw/w = -0.111
-  post before pre, dt = -0.030 s, dw/w = -0.120
-  post before pre, dt = -0.028 s, dw/w = -0.130
-  post before pre, dt = -0.026 s, dw/w = -0.140
-  post before pre, dt = -0.024 s, dw/w = -0.152
-  post before pre, dt = -0.022 s, dw/w = -0.140
-  post before pre, dt = -0.020 s, dw/w = -0.127
-  post before pre, dt = -0.018 s, dw/w = -0.114
-  post before pre, dt = -0.016 s, dw/w = -0.102
-  post before pre, dt = -0.014 s, dw/w = -0.089
-  post before pre, dt = -0.012 s, dw/w = -0.076
-  post before pre, dt = -0.010 s, dw/w = -0.063
-  post before pre, dt = -0.008 s, dw/w = -0.051
-  post before pre, dt = -0.006 s, dw/w = -0.039
-  post before pre, dt = -0.004 s, dw/w = -0.027
-  post before pre, dt = -0.002 s, dw/w = -0.015
-  -----------------------------------------------
-  pre before post, dt = 0.002 s, dw/w = 0.089
-  pre before post, dt = 0.004 s, dw/w = 0.120
-  pre before post, dt = 0.006 s, dw/w = 0.114
-  pre before post, dt = 0.008 s, dw/w = 0.109
-  pre before post, dt = 0.010 s, dw/w = 0.103
-  pre before post, dt = 0.012 s, dw/w = 0.097
-  pre before post, dt = 0.014 s, dw/w = 0.092
-  pre before post, dt = 0.016 s, dw/w = 0.088
-  pre before post, dt = 0.018 s, dw/w = 0.083
-  pre before post, dt = 0.020 s, dw/w = 0.078
-  pre before post, dt = 0.022 s, dw/w = 0.073
-  pre before post, dt = 0.024 s, dw/w = 0.068
-  pre before post, dt = 0.026 s, dw/w = 0.064
-  pre before post, dt = 0.028 s, dw/w = 0.059
-  pre before post, dt = 0.030 s, dw/w = 0.055
-  pre before post, dt = 0.032 s, dw/w = 0.051
-  pre before post, dt = 0.034 s, dw/w = 0.047
-  pre before post, dt = 0.036 s, dw/w = 0.044
-  pre before post, dt = 0.038 s, dw/w = 0.040
-  pre before post, dt = 0.040 s, dw/w = 0.037
-  pre before post, dt = 0.042 s, dw/w = 0.034
-  pre before post, dt = 0.044 s, dw/w = 0.031
-  pre before post, dt = 0.046 s, dw/w = 0.028
-  pre before post, dt = 0.048 s, dw/w = 0.025
-  pre before post, dt = 0.050 s, dw/w = 0.023
-  pre before post, dt = 0.052 s, dw/w = 0.021
-  pre before post, dt = 0.054 s, dw/w = 0.019
-  pre before post, dt = 0.056 s, dw/w = 0.017
-  pre before post, dt = 0.058 s, dw/w = 0.015
-  pre before post, dt = 0.060 s, dw/w = 0.014
-  pre before post, dt = 0.062 s, dw/w = 0.012
-  pre before post, dt = 0.064 s, dw/w = 0.011
-  pre before post, dt = 0.066 s, dw/w = 0.009
-  pre before post, dt = 0.068 s, dw/w = 0.008
-  pre before post, dt = 0.070 s, dw/w = 0.007
-  pre before post, dt = 0.072 s, dw/w = 0.006
-  pre before post, dt = 0.074 s, dw/w = 0.005
-  pre before post, dt = 0.076 s, dw/w = 0.005
-  p```
-- [ ] ./../snippets/recurrentLIF.py
-
-```
-  ReadKkit::setMethod: option  not known, using Exponential Euler (ee)
-  line 1: (10501 [Warning]) The units of the expressions used as arguments to a function call are expected to match the units expected for the arguments of that function. 
-  Reference: L3V1 Section 3.4
-   The formula 'Km + MKKK_dash_P_471_0_' in the math element of the <kineticLaw> can only act on variables with the same units.
-  
-  line 1: (10501 [Warning]) The units of the expressions used as arguments to a function call are expected to match the units expected for the arguments of that function. 
-  Reference: L3V1 Section 3.4
-   The formula 'Km + MKK_465_0_' in the math element of the <kineticLaw> can only act on variables with the same units.
-  
-  line 1: (10501 [Warning]) The units of the expressions used as arguments to a function call are expected to match the units expected for the arguments of that function. 
-  Reference: L3V1 Section 3.4
-   The formula 'Km + MKK_dash_P_485_0_' in the math element of the <kineticLaw> can only act on variables with the same units.
-  
-  line 1: (10501 [Warning]) The units of the expressions used as arguments to a function call are expected to match the units expected for the arguments of that function. 
-  Reference: L3V1 Section 3.4
-   The formula 'Km + MKK_dash_P_485_0_' in the math element of the <kineticLaw> can only act on variables with the same units.
-  
-  line 1: (10501 [Warning]) The units of the expressions used as arguments to a function call are expected to match the units expected for the arguments of that function. 
-  Reference: L3V1 Section 3.4
-   The formula 'Km + MAPK_dash_P_487_0_' in the math element of the <kineticLaw> can only act on variables with the same units.
-  
-  line 1: (10501 [Warning]) The units of the expressions used as arguments to a function call are expected to match the units expected for the arguments of that function. 
-  Reference: L3V1 Section 3.4
-   The formula 'Km + MKK_dash_PP_505_0_' in the math element of the <kineticLaw> can only act on variables with the same units.
-  
-  line 1: (10501 [Warning]) The units of the expressions used as arguments to a function call are expected to match the units expected for the arguments of that function. 
-  Reference: L3V1 Section 3.4
-   The formula 'Km + MAPK_dash_PP_511_0_' in the math element of the <kineticLaw> can only act on variables with the same units.
-  
-  line 1: (10501 [Warning]) The units of the expressions used as arguments to a function call are expected to match the units expected for the arguments of that function. 
-  Reference: L3V1 Section 3.4
-   The formula 'Km + MKKK_463_0_' in the math element of the <kineticLaw> can only act on variables with the same units.
-  
-  line 1: (10501 [Warning]) The units of the expressions used as arguments to a function call are expected to match the units expected for the arguments of that function. 
-  Reference: L3V1 Section 3.4
-   The formula 'Km + MAPK_461_0_' in the math element of the <kineticLaw> can only act on variables with the same units.
-  
-  line 1: (10501 [Warning]) The units of the expressions used as arguments to a function call are expected to match the units expected for the arguments of that function. 
-  Reference: L3V1 Section 3.4
-   The formula 'Km + MAPK_dash_P_487_0_' in the math element of the <kineticLaw> can only act on variables with the same units.
-  
-  line 1: (10503 [Warning]) The unit of measurement associated with the mathematical formula in the MathML math element of every KineticLaw object in a model should be identical to all KineticLaw objects in the model.
-  Reference: L3V1 Section 3.4
-   The formula 'kcat * MKKK_dash_P_471_0_ * int1_467_0_ / (kinetics_453_0_ * (Km + MKKK_dash_P_471_0_))' in the <kineticLaw> element of the <reaction> with id '_2_469_0_' produces units that are inconsistent with units of earlier KineticLaw elements.
-  
-  line 1: (10503 [Warning]) The unit of measurement associated with the mathematical formula in the MathML math element of every KineticLaw object in a model should be identical to all KineticLaw objects in the model.
-  Reference: L3V1 Section 3.4
-   The formula 'kcat * MKK_465_0_ * MKKK_dash_P_471_0_ / (kinetics_453_0_ * (Km + MKK_465_0_))' in the <kineticLaw> element of the <reaction> with id '_3_473_0_' produces units that are inconsistent with units of earlier KineticLaw elements.
-  
-  line 1: (10503 [Warning]) The unit of measurement associated with the mathematical formula in the MathML math element of every KineticLaw object in a model should be identical to all KineticLaw objects in the model.
-  Reference: L3V1 Section 3.4
-   The formula 'kcat * MKK_dash_P_485_0_ * MKKK_dash_P_471_0_ / (kinetics_453_0_ * (Km + MKK_dash_P_485_0_))' in the <kineticLaw> element of the <reaction> with id '_4_475_0_' produces units that are inconsistent with units of earlier KineticLaw elements.
-  
-  line 1: (10503 [Warning]) The unit of measurement associated with the mathematical formula in the MathML math element of every KineticLaw object in a model should be identical to all KineticLaw objects in the model.
-  Reference: L3V1 Section 3.4
-   The formula 'kcat * MKK_dash_P_485_0_ * int3_477_0_ / (kinetics_453_0_ * (Km + MKK_dash_P_485_0_))' in the <kineticLaw> element of the <reaction> with id '_6_479_0_' produces units that are inconsistent with units of earlier KineticLaw elements.
-  
-  line 1: (10503 [Warning]) The unit of measurement associated with the mathematical formula in the MathML math element of every KineticLaw object in a model should be identical to all KineticLaw objects in the model.
-  Reference: L3V1 Section 3.4
-   The formula 'kcat * MAPK_dash_P_487_0_ * int5_481_0_ / (kinetics_453_0_ * (Km + MAPK_dash_P_487_0_))' in the <kineticLaw> element of the <reaction> with id '_10_483_0_' produces units that are inconsistent with units of earlier KineticLaw elements.
-  
-  line 1: (10503 [Warning]) The unit of measurement associated with the mathematical formula in the MathML math element of every KineticLaw object in a model should be identical to all KineticLaw objects in the model.
-  Reference: L3V1 Section 3.4
-   The formula 'kcat * MKK_dash_PP_505_0_ * int2_489_0_ / (kinetics_453_0_ * (Km + MKK_dash_PP_505_0_))' in the <kineticLaw> element of the <reaction> with id '_5_491_0_' produces units that are inconsistent with units of earlier KineticLaw elements.
-  
-  line 1: (10503 [Warning]) The unit of measurement associated with the mathematical formula in the MathML math element of every KineticLaw object in a model should be identical to all KineticLaw objects in the model.
-  Reference: L3V1 Section 3.4
-   The formula 'kcat * MAPK_dash_PP_511_0_ * int4_493_0_ / (kinetics_453_0_ * (Km + MAPK_dash_PP_511_0_))' in the <kineticLaw> element of the <reaction> with id '_9_495_0_' produces units that are inconsistent with units of earlier KineticLaw elements.
-  
-  line 1: (10503 [Warning]) The unit of measurement associated with the mathematical formula in the MathML math element of every KineticLaw object in a model should be identical to all KineticLaw objects in the model.
-  Reference: L3V1 Section 3.4
-   The formula 'kcat * MKKK_463_0_ * Ras_dash_MKKKK_497_0_ / (kinetics_453_0_ * (Km + MKKK_463_0_))' in the <kineticLaw> element of the <reaction> with id '_1_499_0_' produces units that are inconsistent with units of earlier KineticLaw elements.
-  
-  line 1: (10503 [Warning]) The unit of measurement associated with the mathematical formula in the MathML math element of every KineticLaw object in a model should be identical to all KineticLaw objects in the model.
-  Reference: L3V1 Section 3.4
-   The formula 'kcat * MAPK_461_0_ * MKK_dash_PP_505_0_ / (kinetics_453_0_ * (Km + MAPK_461_0_))' in the <kineticLaw> element of the <reaction> with id '_7_507_0_' produces units that are inconsistent with units of earlier KineticLaw elements.
-  
-  line 1: (10503 [Warning]) The unit of measurement associated with the mathematical formula in the MathML math element of every KineticLaw object in a model should be identical to all KineticLaw objects in the model.
-  Reference: L3V1 Section 3.4
-   The formula 'kcat * MAPK_dash_P_487_0_ * MKK_dash_PP_505_0_ / (kinetics_453_0_ * (Km + MAPK_dash_P_487_0_))' in the <kineticLaw> element of the <reaction> with id '_8_509_0_' produces units that are inconsistent with units of earlier KineticLaw elements.
-  
-  line 1: (10541 [Warning]) The units of the 'math' formula in a <kineticLaw> definition are expected to be the equivalent of _substance per time_.
-  Reference: L3V1 Sections 4.11.7, 4.2.4 AND 4.9.4
-   In level 3 the expected units are extent_per_time. Expected units are mole (exponent = 1, multiplier = 1, scale = -3), second (exponent = -1, multiplier = 1, scale = 0) but the units returned by the <math> expression in the <kineticLaw> (from the <reaction> with id '_2_469_0_') are second (exponent = -1, multiplier = 1, scale = 0), mole (exponent = 2, multiplier = 0.001, scale = 0), litre (exponent = -3, multiplier = 1, scale = 0).
-  
-  line 1: (10541 [Warning]) The units of the 'math' formula in a <kineticLaw> definition are expected to be the equivalent of _substance per time_.
-  Reference: L3V1 Sections 4.11.7, 4.2.4 AND 4.9.4
-   In level 3 the expected units are extent_per_time. Expected units are mole (exponent = 1, multiplier = 1, scale = -3), second (exponent = -1, multiplier = 1, scale = 0) but the units returned by the <math> expression in the <kineticLaw> (from the <reaction> with id '_3_473_0_') are second (exponent = -1, multiplier = 1, scale = 0), mole (exponent = 2, multiplier = 0.001, scale = 0), litre (exponent = -3, multiplier = 1, scale = 0).
-  
-  line 1: (10541 [Warning]) The units of the 'math' formula in a <kineticLaw> definition are expected to be the equivalent of _substance per time_.
-  Reference: L3V1 Sections 4.11.7, 4.2.4 AND 4.9.4
-   In level 3 the expected units are extent_per_time. Expected units are mole (exponent = 1, multiplier = 1, scale = -3), second (exponent = -1, multiplier = 1, scale = 0) but the units returned by the <math> expression in the <kineticLaw> (from the <reaction> with id '_4_475_0_') are second (exponent = -1, multiplier = 1, scale = 0), mole (exponent = 2, multiplier = 0.001, scale = 0), litre (exponent = -3, multiplier = 1, scale = 0).
-  
-  line 1: (10541 [Warning]) The units of the 'math' formula in a <kineticLaw> definition are expected to be the equivalent of _substance per time_.
-  Reference: L3V1 Sections 4.11.7, 4.2.4 AND 4.9.4
-   In level 3 the expected units are extent_per_time. Expected units are mole (exponent = 1, multiplier = 1, scale = -3), second (exponent = -1, multiplier = 1, scale = 0) but the units returned by the <math> expression in the <kineticLaw> (from the <reaction> with id '_6_479_0_') are second (exponent = -1, multiplier = 1, scale = 0), mole (exponent = 2, multiplier = 0.001, scale = 0), litre (exponent = -3, multiplier = 1, scale = 0).
-  
-  line 1: (10541 [Warning]) The units of the 'math' formula in a <kineticLaw> definition are expected to be the equivalent of _substance per time_.
-  Reference: L3V1 Sections 4.11.7, 4.2.4 AND 4.9.4
-   In level 3 the expected units are extent_per_time. Expected units are mole (exponent = 1, multiplier = 1, scale = -3), second (exponent = -1, multiplier = 1, scale = 0) but the units returned by the <math> expression in the <kineticLaw> (from the <reaction> with id '_10_483_0_') are second (exponent = -1, multiplier = 1, scale = 0), mole (exponent = 2, multiplier = 0.001, scale = 0), litre (exponent = -3, multiplier = 1, scale = 0).
-  
-  line 1: (10541 [Warning]) The units of the 'math' formula in a <kineticLaw> definition are expected to be the equivalent of _substance per time_.
-  Reference: L3V1 Sections 4.11.7, 4.2.4 AND 4.9.4
-   In level 3 the expected units are extent_per_time. Expected units are mole (exponent = 1, multiplier = 1, scale = -3), second (exponent = -1, multiplier = 1, scale = 0) but the units returned by the <math> expression in the <kineticLaw> (from the <reaction> with id '_5_491_0_') are second (exponent = -1, multiplier = 1, scale = 0), mole (exponent = 2, multiplier = 0.001, scale = 0), litre (exponent = -3, multiplier = 1, scale = 0).
-  
-  line 1: (10541 [Warning]) The units of the 'math' formula in a <kineticLaw> definition are expected to be the equivalent of _substance per time_.
-  Reference: L3V1 Sections 4.11.7, 4.2.4 AND 4.9.4
-   In level 3 the expected units are extent_per_time. Expected units are mole (exponent = 1, multiplier = 1, scale = -3), second (exponent = -1, multiplier = 1, scale = 0) but the units returned by the <math> expression in the <kineticLaw> (from the <reaction> with id '_9_495_0_') are second (exponent = -1, multiplier = 1, scale = 0), mole (exponent = 2, multiplier = 0.001, scale = 0), litre (exponent = -3, multiplier = 1, scale = 0).
-  
-  line 1: (10541 [Warning]) The units of the 'math' formula in a <kineticLaw> definition are expected to be the equivalent of _substance per time_.
-  Reference: L3V1 Sections 4.11.7, 4.2.4 AND 4.9.4
-   In level 3 the expected units are extent_per_time. Expected units are mole (exponent = 1, multiplier = 1, scale = -3), second (exponent = -1, multiplier = 1, scale = 0) but the units returned by the <math> expression in the <kineticLaw> (from the <reaction> with id '_1_499_0_') are second (exponent = -1, multiplier = 1, scale = 0), mole (exponent = 2, multiplier = 0.001, scale = 0), litre (exponent = -3, multiplier = 1, scale = 0).
-  
-  line 1: (10541 [Warning]) The units of the 'math' formula in a <kineticLaw> definition are expected to be the equivalent of _substance per time_.
-  Reference: L3V1 Sections 4.11.7, 4.2.4 AND 4.9.4
-   In level 3 the expected units are extent_per_time. Expected units are mole (exponent = 1, multiplier = 1, scale = -3), second (exponent = -1, multiplier = 1, scale = 0) but the units returned by the <math> expression in the <kineticLaw> (from the <reaction> with id '_7_507_0_') are second (exponent = -1, multiplier = 1, scale = 0), mole (exponent = 2, multiplier = 0.001, scale = 0), litre (exponent = -3, multiplier = 1, scale = 0).
-  
-  line 1: (10541 [Warning]) The units of the 'math' formula in a <kineticLaw> definition are expected to be the equivalent of _substance per time_.
-  Reference: L3V1 Sections 4.11.7, 4.2.4 AND 4.9.4
-   In level 3 the expected units are extent_per_time. Expected units are mole (exponent = 1, multiplier = 1, scale = -3), second (exponent = -1, multiplier = 1, scale = 0) but the units returned by the <math> expression in the <kineticLaw> (from the <reaction> with id '_8_509_0_') are second (exponent = -1, multiplier = 1, scale = 0), mole (exponent = 2, multiplier = 0.001, scale = 0), litre (exponent = -3, multiplier = 1, scale = 0).
-  
-  (True, '', '../genesis/Kholodenko_tosbml.xml')
-```
-- [ ] ./../snippets/findChemSteadyState.py
-
-```
-  [0. 0.]
-  106384558.575
-  6.02214e+06	
-  gamma[2, 5] = 
-     0.5   0.5  -0.5     1     0
-       0     0     1     0     1
-  Nr[3, 5] = 
-      -1    -1     0     0     1
-       0    -2     2    -1     1
-       0     0     0    -1     1
-  LU[5, 10] = 
-      -1    -1     0     0     1     1     0     0     0     0
-       0    -2     2    -1     1     1     1     0     0     0
-       0     0     0    -1     1     0     0     1     0     0
-       0     0     0     0     0   0.5   0.5  -0.5     1     0
-       0     0     0     0     0     0     0     1     0     1
-  0.9190341711512564 0.04978520361935978 0.0016727267014723006 0.01143830706805263 0.008327508270297887 16 success 2 2 1 0
-  0.919034171151257 0.049785203619359356 0.0016727267014723113 0.011438307068052664 0.008327508270297865 29 success 2 2 1 0
-  0.1768783840567198 0.7471970037367659 0.0001320721925256645 0.033039973302144095 0.0098681627792445 10 success 0 3 0 0
-  0.17687838405671955 0.7471970037367668 0.0001320721925256644 0.033039973302144095 0.009868162779244481 26 success 0 3 0 0
-  0.1768783840567192 0.7471970037367682 0.0001320721925256635 0.033039973302144095 0.009868162779244457 27 success 0 3 0 0
-  0.9190341711512592 0.04978520361935895 0.0016727267014723126 0.011438307068052482 0.008327508270297811 30 success 2 2 1 0
-  0.17687838405671963 0.7471970037367698 0.00013207219252566168 0.03303997330214411 0.009868162779244452 12 success 0 3 0 0
-  0.9190341711512595 0.049785203619359036 0.0016727267014723022 0.011438307068052454 0.00832750827029779 29 success 2 2 1 0
-  0.17687838405671868 0.7471970037367703 0.00013207219252566295 0.033039973302144095 0.009868162779244422 12 success 0 3 0 0
-  0.919034171151261 0.04978520361935813 0.0016727267014723603 0.011438307068052503 0.008327508270297705 41 success 2 2 1 0
-  0.1768783840567187 0.7471970037367706 0.00013207219252566184 0.03303997330214407 0.009868162779244401 29 success 0 3 0 0
-  0.17687838405671868 0.74719700373677 0.00013207219252566252 0.03303997330214407 0.009868162779244408 18 success 0 3 0 0
-  0.1768783840567186 0.74719700373677 0.00013207219252566244 0.03303997330214405 0.009868162779244403 27 success 0 3 0 0
-  0.17687838405671868 0.7471970037367687 0.00013207219252566257 0.033039973302144025 0.009868162779244398 14 success 0 3 0 0
-  0.1768783840567185 0.7471970037367703 0.0001320721925256623 0.03303997330214405 0.009868162779244393 12 success 0 3 0 0
-  0.17687838405671835 0.7471970037367713 0.0001320721925256623 0.03303997330214407 0.009868162779244393 19 success 0 3 0 0
-  0.1768783840567188 0.7471970037367711 0.00013207219252566311 0.03303997330214395 0.00986816277924439 6 success 0 3 0 0
-  0.17687838405671824 0.7471970037367719 0.00013207219252566187 0.03303997330214407 0.009868162779244382 14 success 0 3 0 0
-  0.1768783840567188 0.7471970037367713 0.00013207219252566135 0.03303997330214405 0.009868162779244393 23 success 0 3 0 0
-  0.1768783840567187 0.7471970037367721 0.00013207219252566146 0.03303997330214411 0.009868162779244408 25 success 0 3 0 0
-  0.17687838405671835 0.7471970037367723 0.000132072192525662 0.03303997330214411 0.009868162779244398 16 success 0 3 0 0
-  0.17687838405671824 0.7471970037367729 0.00013207219252566195 0.03303997330214412 0.009868162779244398 5 success 0 3 0 0
-  0.9190341711512647 0.049785203619357885 0.0016727267014723284 0.011438307068052348 0.008327508270297723 43 success 2 2 1 0
-  0.9190341711512647 0.04978520361935773 0.0016727267014723362 0.011438307068052371 0.008327508270297719 9 success 2 2 1 0
-  0.9190341711512643 0.049785203619357635 0.001672726701472336 0.011438307068052376 0.008327508270297723 43 success 2 2 1 0
-  0.9190341711512631 0.04978520361935791 0.0016727267014723306 0.01143830706805242 0.00832750827029774 29 success 2 2 1 0
-  0.1768783840567185 0.7471970037367731 0.000132072192525662 0.03303997330214413 0.009868162779244412 27 success 0 3 0 0
-  0.17687838405671855 0.7471970037367726 0.00013207219252566227 0.033039973302144164 0.009868162779244431 9 success 0 3 0 0
-  0.17687838405671855 0.7471970037367733 0.0001320721925256625 0.033039973302144185 0.009868162779244433 12 success 0 3 0 0
-  0.9190341711512621 0.04978520361935875 0.0016727267014723132 0.01143830706805235 0.0```
-- [ ] ./../snippets/gssaCylinderDiffusion.py
-
-```
-  /model[0]/spikegen_0[0] --> /model[0]/synchan[0]/synh[0]/synapse[0]
-  /model[0]/spikegen_1[0] --> /model[0]/synchan[0]/synh[0]/synapse[0]
-  /model[0]/spikegen_2[0] --> /model[0]/synchan[0]/synh[0]/synapse[0]
-  /model[0]/spikegen_3[0] --> /model[0]/synchan[0]/synh[0]/synapse[0]
-  /model[0]/spikegen_4[0] --> /model[0]/synchan[0]/synh[0]/synapse[0]
-```
-- [ ] ./../parallelSolver/Fig2_v4.py
-
-```
-  0.4
-  0
-  3
-  4
-  ('Before:', 0.0)
-  ('After:', 1.0)
-  [0.2 0.2 0.2 0.2]
-  ('Delays for synapses on ', '/network[0]/synh[0]', ':', array([2.77019254, 1.86566643, 0.23652409, 3.62333263, 2.57139574,
-         2.6329482 , 0.21560938, 0.52162347]))
-  ('Weights for synapses on ', '/network[0]/synh[0]', ':', array([0.17194717, 0.43193474, 0.34061171, 0.19607728, 0.38896405,
-         0.21755907, 0.15176876, 0.27945662]))
-  ('Delays for synapses on ', '/network[0]/synh[1]', ':', array([2.53934052, 0.07692618, 2.00458279, 3.38791337, 3.42498799,
-         2.96252816, 3.25441419]))
-  ('Weights for synapses on ', '/network[0]/synh[1]', ':', array([0.20055165, 0.30283816, 0.08458893, 0.37567396, 0.13531709,
-         0.39166488, 0.14719308]))
-  ('Delays for synapses on ', '/network[0]/synh[2]', ':', array([1.12826581, 1.32937637, 1.04079803, 1.33755131, 1.06605855,
-         0.67815169]))
-  ('Weights for synapses on ', '/network[0]/synh[2]', ':', array([0.16926313, 0.06965147, 0.16426582, 0.19360709, 0.43161584,
-         0.22987729]))
-  ('Delays for synapses on ', '/network[0]/synh[3]', ':', array([2.45973024, 1.69822555, 1.98800276, 2.52590809, 3.74947343,
-         3.95850685, 3.57229267, 2.28793471, 0.79822164]))
-  ('Weights for synapses on ', '/network[0]/synh[3]', ':', array([0.09029661, 0.33643309, 0.21534217, 0.03826266, 0.31236862,
-         0.40984954, 0.43580315, 0.46145806, 0.09834457]))
-  ('Delays for synapses on ', '/network[0]/synh[4]', ':', array([3.43209691, 0.34914782]))
-  ('Weights for synapses on ', '/network[0]/synh[4]', ':', array([0.34015176, 0.18322982]))
-```
-- [ ] ./../traub_2005/py/test_hsolve_tcr.py
-
-```
-- [ ] ./../traub_2005/py/test_tuftedib.py
-  ('data_dir =', '/tmp/traub2005_data/2018_07_20')
-  ReadCell: 74 compartments, 772 channels, 69 others
-  ReadCell: 74 compartments, 772 channels, 69 others
-  ReadCell: 59 compartments, 501 channels, 54 others
-  ReadCell: 59 compartments, 283 channels, 54 others
-  ReadCell: 59 compartments, 283 channels, 54 others
-  ReadCell: 59 compartments, 539 channels, 54 others
-  ReadCell: 50 compartments, 448 channels, 45 others
-  ReadCell: 61 compartments, 594 channels, 56 others
-  ReadCell: 61 compartments, 594 channels, 56 others
-  ReadCell: 59 compartments, 501 channels, 54 others
-  ReadCell: 59 compartments, 283 channels, 54 others
-  ReadCell: 59 compartments, 283 channels, 54 others
-  ReadCell: 137 compartments, 1345 channels, 132 others
-  ReadCell: 59 compartments, 607 channels, 54 others
-  Warning: HSolve::setPath(): No compartments found at or below '/model[0]/mc_0[0]/SpinyStellate_0[0]'.
-  Warning: HSolve::setPath(): No compartments found at or below '/model[0]/mc_0[0]/DeepBasket_0[0]'.
-  Warning: HSolve::setPath(): No compartments found at or below '/model[0]/mc_0[0]/DeepLTS_0[0]'.
-  Warning: HSolve::setPath(): No compartments found at or below '/model[0]/mc_1[0]/SpinyStellate_1[0]'.
-  Warning: HSolve::setPath(): No compartments found at or below '/model[0]/mc_1[0]/DeepBasket_1[0]'.
-  Warning: HSolve::setPath(): No compartments found at or below '/model[0]/mc_1[0]/DeepLTS_1[0]'.
-  Warning: HSolve::setPath(): No compartments found at or below '/model[0]/mc_2[0]/SpinyStellate_2[0]'.
-  Warning: HSolve::setPath(): No compartments found at or below '/model[0]/mc_2[0]/DeepBasket_2[0]'.
-  Warning: HSolve::setPath(): No compartments found at or below '/model[0]/mc_2[0]/DeepLTS_2[0]'.
-  Warning: HSolve::setPath(): No compartments found at or below '/model[0]/mc_3[0]/SpinyStellate_3[0]'.
-  Warning: HSolve::setPath(): No compartments found at or below '/model[0]/mc_3[0]/DeepBasket_3[0]'.
-  Warning: HSolve::setPath(): No compartments found at or below '/model[0]/mc_3[0]/DeepLTS_3[0]'.
-  Warning: HSolve::setPath(): No compartments found at or below '/model[0]/mc_4[0]/SpinyStellate_4[0]'.
-  Warning: HSolve::setPath(): No compartments found at or below '/model[0]/mc_4[0]/DeepBasket_4[0]'.
-  Warning: HSolve::setPath(): No compartments found at or below '/model[0]/mc_4[0]/DeepLTS_4[0]'.
-```
-- [ ] ./../traub_2005/py/dump_f_i_curves.py
-
-```
-    ('data_dir =', '/tmp/traub2005_data/2018_07_20')
-    ReadCell: 74 compartments, 772 channels, 69 others
-    ReadCell: 74 compartments, 772 channels, 69 others
-    ReadCell: 59 compartments, 501 channels, 54 others
-    ReadCell: 59 compartments, 283 channels, 54 others
-    ReadCell: 59 compartments, 283 channels, 54 others
-    ReadCell: 59 compartments, 539 channels, 54 others
-    ReadCell: 50 compartments, 448 channels, 45 others
-    ReadCell: 61 compartments, 594 channels, 56 others
-    ReadCell: 61 compartments, 594 channels, 56 others
-    ReadCell: 59 compartments, 501 channels, 54 others
-    ReadCell: 59 compartments, 283 channels, 54 others
-    ReadCell: 59 compartments, 283 channels, 54 others
-    ReadCell: 137 compartments, 1345 channels, 132 others
-    ReadCell: 59 compartments, 607 channels, 54 others
-    Warning: HSolve::setPath(): No compartments found at or below '/model[0]/mc_0[0]/SpinyStellate_0[0]'.
-    Warning: HSolve::setPath(): No compartments found at or below '/model[0]/mc_0[0]/DeepBasket_0[0]'.
-    Warning: HSolve::setPath(): No compartments found at or below '/model[0]/mc_0[0]/DeepLTS_0[0]'.
-    Warning: HSolve::setPath(): No compartments found at or below '/model[0]/mc_1[0]/SpinyStellate_1[0]'.
-    Warning: HSolve::setPath(): No compartments found at or below '/model[0]/mc_1[0]/DeepBasket_1[0]'.
-    Warning: HSolve::setPath(): No compartments found at or below '/model[0]/mc_1[0]/DeepLTS_1[0]'.
-    Warning: HSolve::setPath(): No compartments found at or below '/model[0]/mc_2[0]/SpinyStellate_2[0]'.
-    Warning: HSolve::setPath(): No compartments found at or below '/model[0]/mc_2[0]/DeepBasket_2[0]'.
-    Warning: HSolve::setPath(): No compartments found at or below '/model[0]/mc_2[0]/DeepLTS_2[0]'.
-    Warning: HSolve::setPath(): No compartments found at or below '/model[0]/mc_3[0]/SpinyStellate_3[0]'.
-    Warning: HSolve::setPath(): No compartments found at or below '/model[0]/mc_3[0]/DeepBasket_3[0]'.
-    Warning: HSolve::setPath(): No compartments found at or below '/model[0]/mc_3[0]/DeepLTS_3[0]'.
-    Warning: HSolve::setPath(): No compartments found at or below '/model[0]/mc_4[0]/SpinyStellate_4[0]'.
-    Warning: HSolve::setPath(): No compartments found at or below '/model[0]/mc_4[0]/DeepBasket_4[0]'.
-    Warning: HSolve::setPath(): No compartments found at or below '/model[0]/mc_4[0]/DeepLTS_4[0]'.
-```
-
-```
-      ('data_dir =', '/tmp/traub2005_data/2018_07_20')
-      ReadCell: 74 compartments, 772 channels, 69 others
-      ReadCell: 74 compartments, 772 channels, 69 others
-      ReadCell: 59 compartments, 501 channels, 54 others
-      ReadCell: 59 compartments, 283 channels, 54 others
-      ReadCell: 59 compartments, 283 channels, 54 others
-      ReadCell: 59 compartments, 539 channels, 54 others
-      ReadCell: 50 compartments, 448 channels, 45 others
-      ReadCell: 61 compartments, 594 channels, 56 others
-      ReadCell: 61 compartments, 594 channels, 56 others
-      ReadCell: 59 compartments, 501 channels, 54 others
-      ReadCell: 59 compartments, 283 channels, 54 others
-      ReadCell: 59 compartments, 283 channels, 54 others
-      ReadCell: 137 compartments, 1345 channels, 132 others
-      ReadCell: 59 compartments, 607 channels, 54 others
-      Warning: HSolve::setPath(): No compartments found at or below '/model[0]/mc_0[0]/SpinyStellate_0[0]'.
-      Warning: HSolve::setPath(): No compartments found at or below '/model[0]/mc_0[0]/DeepBasket_0[0]'.
-      Warning: HSolve::setPath(): No compartments found at or below '/model[0]/mc_0[0]/DeepLTS_0[0]'.
-      Warning: HSolve::setPath(): No compartments found at or below '/model[0]/mc_1[0]/SpinyStellate_1[0]'.
-      Warning: HSolve::setPath(): No compartments found at or below '/model[0]/mc_1[0]/DeepBasket_1[0]'.
-      Warning: HSolve::setPath(): No compartments found at or below '/model[0]/mc_1[0]/DeepLTS_1[0]'.
-      Warning: HSolve::setPath(): No compartments found at or below '/model[0]/mc_2[0]/SpinyStellate_2[0]'.
-      Warning: HSolve::setPath(): No compartments found at or below '/model[0]/mc_2[0]/DeepBasket_2[0]'.
-      Warning: HSolve::setPath(): No compartments found at or below '/model[0]/mc_2[0]/DeepLTS_2[0]'.
-      Warning: HSolve::setPath(): No compartments found at or below '/model[0]/mc_3[0]/SpinyStellate_3[0]'.
-      Warning: HSolve::setPath(): No compartments found at or below '/model[0]/mc_3[0]/DeepBasket_3[0]'.
-      Warning: HSolve::setPath(): No compartments found at or below '/model[0]/mc_3[0]/DeepLTS_3[0]'.
-      Warning: HSolve::setPath(): No compartments found at or below '/model[0]/mc_4[0]/SpinyStellate_4[0]'.
-      Warning: HSolve::setPath(): No compartments found at or below '/model[0]/mc_4[0]/DeepBasket_4[0]'.
-      Warning: HSolve::setPath(): No compartments found at or below '/model[0]/mc_4[0]/DeepLTS_4[0]'.
-```
-- [ ] ./../traub_2005/py/test_nontuftedrs.py
-
-```
-  Solver: hsolve
-  Using hsolve
-  Using hsolve
-  07_20')
-  ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-  Elements under /clock[0]
-  ('Starting simulation', 44668230761671299141841724060292631094L, 'for', 0.35, 's')
-  Finished simulation
-  ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-  ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/KDR_Vm.dat')
-  (1401, 1401)
-  ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/KDR_Gk.dat')
-  ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/KDR_Ik.dat')
-  ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-  Elements under /clock[0]
-  ('Starting simulation', 220584442979196629902409123857486861809L, 'for', 0.35, 's')
-  Finished simulation
-  ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-  ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/KDR_FS_Vm.dat')
-  (1401, 1401)
-  ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/KDR_FS_Gk.dat')
-  ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/KDR_FS_Ik.dat')
-  ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-  Elements under /clock[0]
-  ('Starting simulation', 337842586332730690332674538001007913719L, 'for', 0.35, 's')
-  Finished simulation
-  ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-  ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/KA_Vm.dat')
-  (1401, 1401)
-  ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/KA_Gk.dat')
-  ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/KA_Ik.dat')
-  ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-  Elements under /clock[0]
-  ('Starting simulation', 74873611624432128435967864002939992772L, 'for', 0.35, 's')
-  Finished simulation
-  ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-  ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/KA_IB_Vm.dat')
-  (1401, 1401)
-  ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/KA_IB_Gk.dat')
-  ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/KA_IB_Ik.dat')
-  ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-  Elements under /clock[0]
-  ('Starting simulation', 53161562216618395868267693293812825582L, 'for', 0.35, 's')
-  Finished simulation
-  ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-  ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/K2_Vm.dat')
-  (1401, 1401)
-  ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/K2_Gk.dat')
-  ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/K2_Ik.dat')
-  ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-  Elements under /clock[0]
-  ('Starting simulation', 11933109676071469015060607596464384428L, 'for', 0.35, 's')
-  Finished simulation
-  ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-  ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/KM_Vm.dat')
-  (1401, 1401)
-  ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/KM_Gk.dat')
-  ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/KM_Ik.dat')
-  ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-  Elements under /clock[0]
-  ('Starting simulation', 21122982320346827359687344611543785941L, 'for', 0.35, 's')
-  Finished simulation
-  ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-  ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/KAHP_Vm.dat')
-  ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/KAHP_Gk.dat')
-  ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/KAHP_Ik.dat')
-  ('Saved [Ca2+] in', '/tmp/traub2005_data/2018_07_20/KAHP_Ca.dat')
-  ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-  Elements under /clock[0]
-  ('Starting simulation', 109553677471984842563396421240485916322L, 'for', 0.35, 's')
-  Finished simulation
-  ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-  ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/KAHP_SLOWER_Vm.dat')
-  ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/KAHP_SLOWER_Gk.dat')
-  ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/KAHP_SLOWER_Ik.dat')
-  ('Saved [Ca2+] in', '/tmp/traub2005_data/2018_07_20/KAHP_SLOWER_Ca.dat')
-  ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-  Elements under /clock[0]
-  ('Starting simulation', 318222713817727056047617735791880003064L, 'for', 0.35, 's')
-  Finished simulation
-  ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-  ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/KAHP_DP_Vm.dat')
-  ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/KAHP_DP_Gk.dat')
-  ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/KAHP_DP_Ik.dat')
-  ('Saved [Ca2+] in', '/tmp/traub2005_data/2018_07_20/KAHP_DP_Ca.dat')
-  ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-  Elements under /clock......................
-  ----------------------------------------------------------------------
-  Ran 22 tests in 0.006s
-  
-  OK
-  [0]
-  ('Starting simulation', 12745749147601530490856815170817831674L, 'for', 0.35, 's')
-  Finished simulation
-  ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-  ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/KC_Vm.dat')
-  ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/KC_Gk.dat')
-  ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/KC_Ik.dat')
-  ('Saved [Ca2+] in', '/tmp/traub2005_data/2018_07_20/KC_Ca.dat')
-  ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-  Elements under /clock[0]
-  ('Starting simulation', 38054525236200827308132135747433094117L, 'for', 0.35, 's')
-  Finished simulation
-  ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-  ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/KC_FAST_Vm.dat')
-  ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/KC_FAST_Gk.dat')
-  ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/KC_FAST_Ik.dat')
-  ('Saved [Ca2+] in', '/tmp/traub2005_data/2018_07_20/KC_FAST_Ca.dat')
-  /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/K2_Gk.dat.gz not found.
-  /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/K2_Vm.dat.gz not found.
-  /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/KA_Gk.dat.gz not found.
-  /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/KA_Vm.dat.gz not found.
-  /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/KAHP_Gk.dat.gz not found.
-  /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/KAHP_Vm.dat.gz not found.
-  /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/KAHP_DP_Gk.dat.gz not found.
-  /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/KAHP_DP_Vm.dat.gz not found.
-  /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/KAHP_SLOWER_Gk.dat.gz not found.
-  /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/KAHP_SLOWER_Vm.dat.gz not found.
-  /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/KA_IB_Gk.dat.gz not found.
-  /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/KA_IB_Vm.dat.gz not found.
-  /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/KC_Gk.dat.gz not found.
-  /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/KC_Vm.dat.gz not found.
-  /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/KC_FAST_Gk.dat.gz not found.
-  /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/KC_FAST_Vm.dat.gz not found.
-  /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/KDR_Gk.dat.gz not found.
-  /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/KDR_Vm.dat.gz not found.
-  /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/KDR_FS_Gk.dat.gz not found.
-  /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/KDR_FS_Vm.dat.gz not found.
-  /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/KM_Gk.dat.gz not found.
-  /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/KM_Vm.dat.gz not found.
-```
-- [ ] ./../traub_2005/py/test_nrt.py
-- [ ] ./../traub_2005/py/test_suppyrrs.py
-
-```
-
-```
-  .  .```
-```
-- [ ] ./../traub_2005/py/test_deeplts.py
-
-```
-- [ ] ./../traub_2005/py/test_suplts.py
-    .```
-
-```
-      .```
-- [ ] ./../traub_2005/py/test_deepaxoaxonic.py
-
-```
-  .
-  ----------------------------------------------------------------------
-  Ran 1 test in 4.107s
-  
-  OK
-  ('data_dir =', '/tmp/traub2005_data/2018_07_20')
-  ('/test246387715736075622765376410985945766276[0]/model[0]/soma[0]/CaPool[0]', 2.758685680259519e+16, 0.05)
-  
-  [ /test246387715736075622765376410985945766276[0]/model[0]/soma[0]/KAHP_SLOWER[0] ]
-  Ek                   = -0.1
-  Gbar                 = 9.42477796077e-10
-  Gk                   = 0.0
-  Ik                   = 0.0
-  X                    = 0.0
-  Xpower               = 0.0
-  Y                    = 0.0
-  Ypower               = 0.0
-  Z                    = 0.0
-  Zpower               = 1.0
-  className            = HHChannel
-  dt                   = 5e-05
-  fieldIndex           = 0
-  idValue              = 579
-  index                = 0
-  instant              = 0
-  modulation           = 1.0
-  name                 = KAHP_SLOWER
-  numData              = 1
-  numField             = 1
-  path                 = /test246387715736075622765376410985945766276[0]/model[0]/soma[0]/KAHP_SLOWER[0]
-  tick                 = 2
-  useConcentration     = 1
-  
-  [ /test246387715736075622765376410985945766276[0]/model[0]/soma[0]/KC_FAST[0] ]
-  Ek                   = -0.1
-  Gbar                 = 9.42477796077e-08
-  Gk                   = 0.0
-  Ik                   = 0.0
-  X                    = 0.0
-  Xpower               = 1.0
-  Y                    = 0.0
-  Ypower               = 0.0
-  Z                    = 0.0
-  Zpower               = 1.0
-  className            = HHChannel
-  dt                   = 5e-05
-  fieldIndex           = 0
-  idValue              = 586
-  index                = 0
-  instant              = 4
-  modulation           = 1.0
-  name                 = KC_FAST
-  numData              = 1
-  numField             = 1
-  path                 = /test246387715736075622765376410985945766276[0]/model[0]/soma[0]/KC_FAST[0]
-  tick                 = 2
-  useConcentration     = 1
-  
-  [ /test246387715736075622765376410985945766276[0]/model[0]/soma[0]/CaL[0] ]
-  Ek                   = 0.125
-  Gbar                 = 4.71238898038e-09
-  Gk                   = 0.0
-  Ik                   = 0.0
-  X                    = 0.0
-  Xpower               = 2.0
-  Y                    = 0.0
-  Ypower               = 0.0
-  Z                    = 0.0
-  Zpower               = 0.0
-  className            = HHChannel
-  dt                   = 5e-05
-  fieldIndex           = 0
-  idValue              = 628
-  index                = 0
-  instant              = 0
-  modulation           = 1.0
-  name                 = CaL
-  numData              = 1
-  numField             = 1
-  path                 = /test246387715736075622765376410985945766276[0]/model[0]/soma[0]/CaL[0]
-  tick                 = 2
-  useConcentration     = 0
-  ('Setting up clocks: simdt', 2.5e-05, 'plotdt', 2.5e-05)
-  Elements under /clock[0]
-  Simulation of 0.35 s finished in 0.19321 s
-  /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/nrn/data/singlecomp_Vm.dat not found.
-```
-- [ ] ./../traub_2005/py/test_spinystellate.py
-- [ ] ./../traub_2005/py/fig_a3.py
-
-```
-- [ ] ./../traub_2005/py/test_tcr.py
-  ('data_dir =', '/tmp/traub2005_data/2018_07_20')
-  ReadCell: 74 compartments, 772 channels, 69 others
-  ReadCell: 74 compartments, 772 channels, 69 others
-  ReadCell: 59 compartments, 501 channels, 54 others
-  ReadCell: 59 compartments, 283 channels, 54 others
-  ReadCell: 59 compartments, 283 channels, 54 others
-  ReadCell: 59 compartments, 539 channels, 54 others
-  ReadCell: 50 compartments, 448 channels, 45 others
-  ReadCell: 61 compartments, 594 channels, 56 others
-  ReadCell: 61 compartments, 594 channels, 56 others
-  ReadCell: 59 compartments, 501 channels, 54 others
-  ReadCell: 59 compartments, 283 channels, 54 others
-  ReadCell: 59 compartments, 283 channels, 54 others
-  ReadCell: 137 compartments, 1345 channels, 132 others
-  ReadCell: 59 compartments, 607 channels, 54 others
-  ['display_morphology.py']
-  args [] []
-  tments found at or below '/model[0]'.
-```
-
-```
-
-```
-    ('data_dir =', '/tmp/traub2005_data/2018_07_20')
-    ReadCell: 74 compartments, 772 channels, 69 others
-    ReadCell: 74 compartments, 772 channels, 69 others
-    ReadCell: 59 compartments, 501 channels, 54 others
-    ReadCell: 59 compartments, 283 channels, 54 others
-    ReadCell: 59 compartments, 283 channels, 54 others
-    ReadCell: 59 compartments, 539 channels, 54 others
-    ReadCell: 50 compartments, 448 channels, 45 others
-    ReadCell: 61 compartments, 594 channels, 56 others
-    ReadCell: 61 compartments, 594 channels, 56 others
-    ReadCell: 59 compartments, 501 channels, 54 others
-    ReadCell: 59 compartments, 283 channels, 54 others
-    ReadCell: 59 compartments, 283 channels, 54 others
-    ReadCell: 137 compartments, 1345 channels, 132 others
-    ReadCell: 59 compartments, 607 channels, 54 others
-    ['display_morphology.py']
-    args [] []
-    tments found at or below '/model[0]'.
-    ('data_dir =', '/tmp/traub2005_data/2018_07_20')
-    ReadCell: 74 compartments, 772 channels, 69 others
-    ReadCell: 74 compartments, 772 channels, 69 others
-    ReadCell: 59 compartments, 501 channels, 54 others
-    ReadCell: 59 compartments, 283 channels, 54 others
-    ReadCell: 59 compartments, 283 channels, 54 others
-    ReadCell: 59 compartments, 539 channels, 54 others
-    ReadCell: 50 compartments, 448 channels, 45 others
-    ReadCell: 61 compartments, 594 channels, 56 others
-    ReadCell: 61 compartments, 594 channels, 56 others
-    ReadCell: 59 compartments, 501 channels, 54 others
-    ReadCell: 59 compartments, 283 channels, 54 others
-    ReadCell: 59 compartments, 283 channels, 54 others
-    ReadCell: 137 compartments, 1345 channels, 132 others
-    ReadCell: 59 compartments, 607 channels, 54 others
-    ['display_morphology.py']
-    args [] []
-    tments found at or below '/model[0]'.
-```
-```
-- [ ] ./../traub_2005/py/test_deepbasket.py
-
-```
-  .....('data_dir =', '/tmp/traub2005_data/2018_07_20')
-  ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-  Elements under /clock[0]
-  ('Starting simulation', 226219322250683657456776157297598980147L, 'for', 0.35, 's')
-  Finished simulation
-  ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-  ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/NaF_Vm.dat')
-  (1401, 1401)
-  ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/NaF_Gk.dat')
-  ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/NaF_Ik.dat')
-  ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-  Elements under /clock[0]
-  ('Starting simulation', 280241803510642267678202130902434368151L, 'for', 0.35, 's')
-  Finished simulation
-  ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-  ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/NaF_TCR_Vm.dat')
-  (1401, 1401)
-  ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/NaF_TCR_Gk.dat')
-  ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/NaF_TCR_Ik.dat')
-  ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-  Elements under /clock[0]
-  ('Starting simulation', 115362411163758855977399027255389709372L, 'for', 0.35, 's')
-  Finished simulation
-  ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-  ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/NaF2_Vm.dat')
-  (1401, 1401)
-  ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/NaF2_Gk.dat')
-  ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/NaF2_Ik.dat')
-  ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-  Elements under /clock[0]
-  ('Starting simulation', 276550681673945074198181158366381552877L, 'for', 0.35, 's')
-  Finished simulation
-  ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-  ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/NaF2_nRT_Vm.dat')
-  (1401, 1401)
-  ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/NaF2_nRT_Gk.dat')
-  ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/NaF2_nRT_Ik.dat')
-  ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-  Elements under /clock[0]
-  ('Starting simulation', 43230921895720606547036678162671102201L, 'for', 0.35, 's')
-  Finished simulation
-  ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-  ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/NaP_Vm.dat')
-  (1401, 1401)
-  ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/NaP_Gk.dat')
-  ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/NaP_Ik.dat')
-  ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-  Elements under /clock[0]
-  ('Starting simulation', 68956014659089575707861748742984823403L, 'for', 0.35, 's')
-  Finished simulation
-  ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-  ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/NaPF_Vm.dat')
-  (1401, 1401)
-  ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/NaPF_Gk.dat')
-  ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/NaPF_Ik.dat')
-  ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-  Elements under /clock[0]
-  ('Starting simulation', 255868131081394533042505784441166490183L, 'for', 0.35, 's')
-  Finished simulation
-  ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-  ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/NaPF_SS_Vm.dat')
-  (1401, 1401)
-  ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/NaPF_SS_Gk.dat')
-  ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/NaPF_SS_Ik.dat')
-  ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-  Elements under /clock[0]
-  ('Starting simulation', 5300605979141206393904399487613751964L, 'for', 0.35, 's')
-  Finished simulation
-  ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-  ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/NaPF_TCR_Vm.dat')
-  (1401, 1401)
-  ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/NaPF_TCR_Gk.dat')
-  ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/NaPF_TCR_Ik.dat')
-  Testing MOOSE Gk  ...
-  /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaF_Gk.dat.gz not found.
-  OK
-  Testing NEURON Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaF_Gk.dat.gz not found.
-  OK
-  Testing MOOSE Vm  ...
-  /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaF_Vm.dat.gz not found.
-  OK
-  Testing NEURON Vm  ... /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaF_Vm.dat.gz not found.
-  OK
-  Testing MOOSE Gk  ... /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaF2_Gk.dat.gz not found.
-  OK
-  Testing NEURON...........................
-  ----------------------------------------------------------------------
-  Ran 32 tests in 0.011s
-  
-  OK
-   Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaF2_Gk.dat.gz not found.
-  OK
-  Testing MOOSE Vm  ... /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaF2_Vm.dat.gz not found.
-  OK
-  Testing NEURON Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaF2_Vm.dat.gz not found.
-  OK
-  Testing MOOSE Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaF2_nRT_Gk.dat.gz not found.
-  OK
-  Testing NEURON Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaF2_nRT_Gk.dat.gz not found.
-  OK
-  Testing MOOSE Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaF2_nRT_Vm.dat.gz not found.
-  OK
-  Testing NEURON Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaF2_nRT_Vm.dat.gz not found.
-  OK
-  Testing MOOSE Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaF_TCR_Gk.dat.gz not found.
-  OK
-  Testing NEURON Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaF_TCR_Gk.dat.gz not found.
-  OK
-  Testing MOOSE Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaF_TCR_Vm.dat.gz not found.
-  OK
-  Testing NEURON Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaF_TCR_Vm.dat.gz not found.
-  OK
-  Testing MOOSE Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaP_Gk.dat.gz not found.
-  OK
-  Testing NEURON Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaP_Gk.dat.gz not found.
-  OK
-  Testing MOOSE Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaP_Vm.dat.gz not found.
-  OK
-  Testing NEURON Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaP_Vm.dat.gz not found.
-  OK
-  Testing MOOSE Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaPF_Gk.dat.gz not found.
-  OK
-  Testing NEURON Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaPF_Gk.dat.gz not found.
-  OK
-  Testing MOOSE Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaPF_Vm.dat.gz not found.
-  OK
-  Testing NEURON Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaPF_Vm.dat.gz not found.
-  OK
-  Testing MOOSE Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaPF_SS_Gk.dat.gz not found.
-  OK
-  Testing NEURON Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaPF_SS_Gk.dat.gz not found.
-  OK
-  Testing MOOSE Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaPF_SS_Vm.dat.gz not found.
-  OK
-  Testing NEURON Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaPF_SS_Vm.dat.gz not found.
-  OK
-  Testing MOOSE Gk  ... /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaPF_TCR_Gk.dat.gz not found.
-  OK
-  Testing NEURON Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaPF_TCR_Gk.dat.gz not found.
-  OK
-  Testing MOOSE Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaPF_TCR_Vm.dat.gz not found.
-  OK
-  Testing NEURON Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaPF_TCR_Vm.dat.gz not found.
-  OK
-- [ ] ./../traub_2005/py/test_suppyrfrb.py
-```
-
-```
-    .....('data_dir =', '/tmp/traub2005_data/2018_07_20')
-    ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-    Elements under /clock[0]
-    ('Starting simulation', 226219322250683657456776157297598980147L, 'for', 0.35, 's')
-    Finished simulation
-    ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-    ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/NaF_Vm.dat')
-    (1401, 1401)
-    ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/NaF_Gk.dat')
-    ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/NaF_Ik.dat')
-    ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-    Elements under /clock[0]
-    ('Starting simulation', 280241803510642267678202130902434368151L, 'for', 0.35, 's')
-    Finished simulation
-    ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-    ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/NaF_TCR_Vm.dat')
-    (1401, 1401)
-    ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/NaF_TCR_Gk.dat')
-    ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/NaF_TCR_Ik.dat')
-    ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-    Elements under /clock[0]
-    ('Starting simulation', 115362411163758855977399027255389709372L, 'for', 0.35, 's')
-    Finished simulation
-    ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-    ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/NaF2_Vm.dat')
-    (1401, 1401)
-    ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/NaF2_Gk.dat')
-    ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/NaF2_Ik.dat')
-    ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-    Elements under /clock[0]
-    ('Starting simulation', 276550681673945074198181158366381552877L, 'for', 0.35, 's')
-    Finished simulation
-    ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-    ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/NaF2_nRT_Vm.dat')
-    (1401, 1401)
-    ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/NaF2_nRT_Gk.dat')
-    ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/NaF2_nRT_Ik.dat')
-    ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-    Elements under /clock[0]
-    ('Starting simulation', 43230921895720606547036678162671102201L, 'for', 0.35, 's')
-    Finished simulation
-    ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-    ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/NaP_Vm.dat')
-    (1401, 1401)
-    ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/NaP_Gk.dat')
-    ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/NaP_Ik.dat')
-    ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-    Elements under /clock[0]
-    ('Starting simulation', 68956014659089575707861748742984823403L, 'for', 0.35, 's')
-    Finished simulation
-    ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-    ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/NaPF_Vm.dat')
-    (1401, 1401)
-    ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/NaPF_Gk.dat')
-    ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/NaPF_Ik.dat')
-    ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-    Elements under /clock[0]
-    ('Starting simulation', 255868131081394533042505784441166490183L, 'for', 0.35, 's')
-    Finished simulation
-    ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-    ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/NaPF_SS_Vm.dat')
-    (1401, 1401)
-    ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/NaPF_SS_Gk.dat')
-    ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/NaPF_SS_Ik.dat')
-    ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-    Elements under /clock[0]
-    ('Starting simulation', 5300605979141206393904399487613751964L, 'for', 0.35, 's')
-    Finished simulation
-    ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-    ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/NaPF_TCR_Vm.dat')
-    (1401, 1401)
-    ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/NaPF_TCR_Gk.dat')
-    ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/NaPF_TCR_Ik.dat')
-    Testing MOOSE Gk  ...
-    /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaF_Gk.dat.gz not found.
-    OK
-    Testing NEURON Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaF_Gk.dat.gz not found.
-    OK
-    Testing MOOSE Vm  ...
-    /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaF_Vm.dat.gz not found.
-    OK
-    Testing NEURON Vm  ... /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaF_Vm.dat.gz not found.
-    OK
-    Testing MOOSE Gk  ... /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaF2_Gk.dat.gz not found.
-    OK
-    Testing NEURON...........................
-    ----------------------------------------------------------------------
-    Ran 32 tests in 0.011s
-    
-    OK
-     Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaF2_Gk.dat.gz not found.
-    OK
-    Testing MOOSE Vm  ... /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaF2_Vm.dat.gz not found.
-    OK
-    Testing NEURON Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaF2_Vm.dat.gz not found.
-    OK
-    Testing MOOSE Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaF2_nRT_Gk.dat.gz not found.
-    OK
-    Testing NEURON Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaF2_nRT_Gk.dat.gz not found.
-    OK
-    Testing MOOSE Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaF2_nRT_Vm.dat.gz not found.
-    OK
-    Testing NEURON Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaF2_nRT_Vm.dat.gz not found.
-    OK
-    Testing MOOSE Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaF_TCR_Gk.dat.gz not found.
-    OK
-    Testing NEURON Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaF_TCR_Gk.dat.gz not found.
-    OK
-    Testing MOOSE Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaF_TCR_Vm.dat.gz not found.
-    OK
-    Testing NEURON Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaF_TCR_Vm.dat.gz not found.
-    OK
-    Testing MOOSE Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaP_Gk.dat.gz not found.
-    OK
-    Testing NEURON Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaP_Gk.dat.gz not found.
-    OK
-    Testing MOOSE Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaP_Vm.dat.gz not found.
-    OK
-    Testing NEURON Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaP_Vm.dat.gz not found.
-    OK
-    Testing MOOSE Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaPF_Gk.dat.gz not found.
-    OK
-    Testing NEURON Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaPF_Gk.dat.gz not found.
-    OK
-    Testing MOOSE Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaPF_Vm.dat.gz not found.
-    OK
-    Testing NEURON Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaPF_Vm.dat.gz not found.
-    OK
-    Testing MOOSE Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaPF_SS_Gk.dat.gz not found.
-    OK
-    Testing NEURON Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaPF_SS_Gk.dat.gz not found.
-    OK
-    Testing MOOSE Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaPF_SS_Vm.dat.gz not found.
-    OK
-    Testing NEURON Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaPF_SS_Vm.dat.gz not found.
-    OK
-    Testing MOOSE Gk  ... /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaPF_TCR_Gk.dat.gz not found.
-    OK
-    Testing NEURON Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaPF_TCR_Gk.dat.gz not found.
-    OK
-    Testing MOOSE Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaPF_TCR_Vm.dat.gz not found.
-    OK
-    Testing NEURON Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaPF_TCR_Vm.dat.gz not found.
-    OK
-```
-- [ ] ./../traub_2005/py/test_supaxoaxonic.py
-
-```
-      .....('data_dir =', '/tmp/traub2005_data/2018_07_20')
-      ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-      Elements under /clock[0]
-      ('Starting simulation', 226219322250683657456776157297598980147L, 'for', 0.35, 's')
-      Finished simulation
-      ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-      ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/NaF_Vm.dat')
-      (1401, 1401)
-      ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/NaF_Gk.dat')
-      ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/NaF_Ik.dat')
-      ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-      Elements under /clock[0]
-      ('Starting simulation', 280241803510642267678202130902434368151L, 'for', 0.35, 's')
-      Finished simulation
-      ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-      ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/NaF_TCR_Vm.dat')
-      (1401, 1401)
-      ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/NaF_TCR_Gk.dat')
-      ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/NaF_TCR_Ik.dat')
-      ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-      Elements under /clock[0]
-      ('Starting simulation', 115362411163758855977399027255389709372L, 'for', 0.35, 's')
-      Finished simulation
-      ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-      ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/NaF2_Vm.dat')
-      (1401, 1401)
-      ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/NaF2_Gk.dat')
-      ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/NaF2_Ik.dat')
-      ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-      Elements under /clock[0]
-      ('Starting simulation', 276550681673945074198181158366381552877L, 'for', 0.35, 's')
-      Finished simulation
-      ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-      ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/NaF2_nRT_Vm.dat')
-      (1401, 1401)
-      ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/NaF2_nRT_Gk.dat')
-      ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/NaF2_nRT_Ik.dat')
-      ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-      Elements under /clock[0]
-      ('Starting simulation', 43230921895720606547036678162671102201L, 'for', 0.35, 's')
-      Finished simulation
-      ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-      ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/NaP_Vm.dat')
-      (1401, 1401)
-      ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/NaP_Gk.dat')
-      ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/NaP_Ik.dat')
-      ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-      Elements under /clock[0]
-      ('Starting simulation', 68956014659089575707861748742984823403L, 'for', 0.35, 's')
-      Finished simulation
-      ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-      ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/NaPF_Vm.dat')
-      (1401, 1401)
-      ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/NaPF_Gk.dat')
-      ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/NaPF_Ik.dat')
-      ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-      Elements under /clock[0]
-      ('Starting simulation', 255868131081394533042505784441166490183L, 'for', 0.35, 's')
-      Finished simulation
-      ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-      ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/NaPF_SS_Vm.dat')
-      (1401, 1401)
-      ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/NaPF_SS_Gk.dat')
-      ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/NaPF_SS_Ik.dat')
-      ('Setting up clocks: simdt', 5e-06, 'plotdt', 0.00025)
-      Elements under /clock[0]
-      ('Starting simulation', 5300605979141206393904399487613751964L, 'for', 0.35, 's')
-      Finished simulation
-      ('Vm:', 1401, 'Gk', 1401, 'Ik', 1401)
-      ('Saved Vm in', '/tmp/traub2005_data/2018_07_20/NaPF_TCR_Vm.dat')
-      (1401, 1401)
-      ('Saved Gk in', '/tmp/traub2005_data/2018_07_20/NaPF_TCR_Gk.dat')
-      ('Saved Ik in', '/tmp/traub2005_data/2018_07_20/NaPF_TCR_Ik.dat')
-      Testing MOOSE Gk  ...
-      /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaF_Gk.dat.gz not found.
-      OK
-      Testing NEURON Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaF_Gk.dat.gz not found.
-      OK
-      Testing MOOSE Vm  ...
-      /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaF_Vm.dat.gz not found.
-      OK
-      Testing NEURON Vm  ... /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaF_Vm.dat.gz not found.
-      OK
-      Testing MOOSE Gk  ... /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaF2_Gk.dat.gz not found.
-      OK
-      Testing NEURON...........................
-      ----------------------------------------------------------------------
-      Ran 32 tests in 0.011s
-      
-      OK
-       Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaF2_Gk.dat.gz not found.
-      OK
-      Testing MOOSE Vm  ... /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaF2_Vm.dat.gz not found.
-      OK
-      Testing NEURON Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaF2_Vm.dat.gz not found.
-      OK
-      Testing MOOSE Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaF2_nRT_Gk.dat.gz not found.
-      OK
-      Testing NEURON Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaF2_nRT_Gk.dat.gz not found.
-      OK
-      Testing MOOSE Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaF2_nRT_Vm.dat.gz not found.
-      OK
-      Testing NEURON Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaF2_nRT_Vm.dat.gz not found.
-      OK
-      Testing MOOSE Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaF_TCR_Gk.dat.gz not found.
-      OK
-      Testing NEURON Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaF_TCR_Gk.dat.gz not found.
-      OK
-      Testing MOOSE Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaF_TCR_Vm.dat.gz not found.
-      OK
-      Testing NEURON Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaF_TCR_Vm.dat.gz not found.
-      OK
-      Testing MOOSE Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaP_Gk.dat.gz not found.
-      OK
-      Testing NEURON Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaP_Gk.dat.gz not found.
-      OK
-      Testing MOOSE Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaP_Vm.dat.gz not found.
-      OK
-      Testing NEURON Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaP_Vm.dat.gz not found.
-      OK
-      Testing MOOSE Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaPF_Gk.dat.gz not found.
-      OK
-      Testing NEURON Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaPF_Gk.dat.gz not found.
-      OK
-      Testing MOOSE Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaPF_Vm.dat.gz not found.
-      OK
-      Testing NEURON Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaPF_Vm.dat.gz not found.
-      OK
-      Testing MOOSE Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaPF_SS_Gk.dat.gz not found.
-      OK
-      Testing NEURON Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaPF_SS_Gk.dat.gz not found.
-      OK
-      Testing MOOSE Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaPF_SS_Vm.dat.gz not found.
-      OK
-      Testing NEURON Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaPF_SS_Vm.dat.gz not found.
-      OK
-      Testing MOOSE Gk  ... /home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaPF_TCR_Gk.dat.gz not found.
-      OK
-      Testing NEURON Gk  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaPF_TCR_Gk.dat.gz not found.
-      OK
-      Testing MOOSE Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/testdata/NaPF_TCR_Vm.dat.gz not found.
-      OK
-      Testing NEURON Vm  .../home/dilawars/Work/GITHUB/BhallaLab/moose-examples/traub_2005/py/../nrn/data/NaPF_TCR_Vm.dat.gz not found.
-      OK
-```
-- [ ] ./../traub_2005/py/fig_a2_fs.py
-- [ ] ./../traub_2005/py/test_tuftedrs.py
-
-```
-
-```
-    .'data_dir =', '/tmp/traub2005_data/2018_07_20')
-    ReadCell: 74 compartments, 772 channels, 69 others
-    ReadCell: 74 compartments, 772 channels, 69 others
-    ReadCell: 59 compartments, 501 channels, 54 others
-    ReadCell: 59 compartments, 283 channels, 54 others
-    ReadCell: 59 compartments, 283 channels, 54 othermoose.nml.networkml: INFO     Creating population Gran of cell type Granule_98
-    moose.nml.networkml: INFO     Creating population Gran of cell type Granule_98
-    moose.nml.networkml: INFO     Creating input under /elec 
-    moose.nml.networkml: INFO     Creating input under /elec 
-    [INFO] [92mLoading Ca pool Gran_CaPool_98 into /library . [0m
-    Reinit MOOSE ... 
-    Solver: hsolve
-    Using hsolve
-    Using hsolve
-    Running ... 
-    Showing plots ...
-    mpartments, 607 channels, 54 others
-    Warning: HSolve::setPath(): No compartments found at or below '/model[0]/deepbasket[0]'.
-```
-    .'data_dir =', '/tmp/traub2005_data/2018_07_20')
-    ReadCell: 74 compartments, 772 channels, 69 others
-    ReadCell: 74 compartments, 772 channels, 69 others
-    ReadCell: 59 compartments, 501 channels, 54 others
-    ReadCell: 59 compartments, 283 channels, 54 others
-    ReadCell: 59 compartments, 283 channels, 54 othermoose.nml.networkml: INFO     Creating population Gran of cell type Granule_98
-    moose.nml.networkml: INFO     Creating population Gran of cell type Granule_98
-    moose.nml.networkml: INFO     Creating input under /elec 
-    moose.nml.networkml: INFO     Creating input under /elec 
-    [INFO] [92mLoading Ca pool Gran_CaPool_98 into /library . [0m
-    Reinit MOOSE ... 
-    Solver: hsolve
-    Using hsolve
-    Using hsolve
-    Running ... 
-    Showing plots ...
-    mpartments, 607 channels, 54 others
-    Warning: HSolve::setPath(): No compartments found at or below '/model[0]/deepbasket[0]'.
-```
-- [ ] ./../traub_2005/py/test_supbasket.py
-
-```
-      .'data_dir =', '/tmp/traub2005_data/2018_07_20')
-      ReadCell: 74 compartments, 772 channels, 69 others
-      ReadCell: 74 compartments, 772 channels, 69 others
-      ReadCell: 59 compartments, 501 channels, 54 others
-      ReadCell: 59 compartments, 283 channels, 54 others
-      ReadCell: 59 compartments, 283 channels, 54 othermoose.nml.networkml: INFO     Creating population Gran of cell type Granule_98
-      moose.nml.networkml: INFO     Creating population Gran of cell type Granule_98
-      moose.nml.networkml: INFO     Creating input under /elec 
-      moose.nml.networkml: INFO     Creating input under /elec 
-      [INFO] [92mLoading Ca pool Gran_CaPool_98 into /library . [0m
-      Reinit MOOSE ... 
-      Solver: hsolve
-      Using hsolve
-      Using hsolve
-      Running ... 
-      Showing plots ...
-      mpartments, 607 channels, 54 others
-      Warning: HSolve::setPath(): No compartments found at or below '/model[0]/deepbasket[0]'.
-```
-- [ ] ./../tutorials/ExcInhNet/ExcInhNet_Ostojic2014_Brunel2000.py
-
-```
 ```
 - [ ] ./../tutorials/ChemicalBistables/simpleBis.py
 
@@ -2714,6 +109,10 @@
   pre before post, dt = 0.074 s, dw/w = 0.005
   pre before post, dt = 0.076 s, dw/w = 0.005
   p```
+- [ ] ./../snippets/recurrentLIF.py
+
+```
+```
 - [ ] ./../snippets/findChemSteadyState.py
 
 ```
@@ -2766,4 +165,334 @@
 - [ ] ./../snippets/gssaCylinderDiffusion.py
 
 ```
+```
+- [ ] ./../parallelSolver/Fig2_v4.py
+
+```
+```
+- [ ] ./../traub_2005/py/test_hsolve_tcr.py
+
+```
+```
+- [ ] ./../traub_2005/py/test_tuftedib.py
+
+```
+  .```
+- [ ] ./../traub_2005/py/dump_f_i_curves.py
+
+```
+  ('data_dir =', '/tmp/traub2005_data/2018_07_20')
+  ReadCell: 74 compartments, 772 channels, 69 others
+  ReadCell: 74 compartments, 772 channels, 69 others
+  ReadCell: 59 compartments, 501 channels, 54 others
+  ReadCell: 59 compartments, 283 channels, 54 others
+  ReadCell: 59 compartments, 283 channels, 54 others
+  ReadCell: 59 compartments, 539 channels, 54 others
+  ReadCell: 50 compartments, 448 channels, 45 others
+  ReadCell: 61 compartments, 594 channels, 56 others
+  ReadCell: 61 compartments, 594 channels, 56 others
+  ReadCell: 59 compartments, 501 channels, 54 others
+  ReadCell: 59 compartments, 283 channels, 54 others
+  ReadCell: 59 compartments, 283 channels, 54 others
+  ReadCell: 137 compartments, 1345 channels, 132 others
+  ReadCell: 59 compartments, 607 channels, 54 others
+  Warning: HSolve::setPath(): No compartments found at or below '/model[0]/mc_0[0]/SpinyStellate_0[0]'.
+  Warning: HSolve::setPath(): No compartments found at or below '/model[0]/mc_0[0]/DeepBasket_0[0]'.
+  Warning: HSolve::setPath(): No compartments found at or below '/model[0]/mc_0[0]/DeepLTS_0[0]'.
+  Warning: HSolve::setPath(): No compartments found at or below '/model[0]/mc_1[0]/SpinyStellate_1[0]'.
+  Warning: HSolve::setPath(): No compartments found at or below '/model[0]/mc_1[0]/DeepBasket_1[0]'.
+  Warning: HSolve::setPath(): No compartments found at or below '/model[0]/mc_1[0]/DeepLTS_1[0]'.
+  Warning: HSolve::setPath(): No compartments found at or below '/model[0]/mc_2[0]/SpinyStellate_2[0]'.
+  Warning: HSolve::setPath(): No compartments found at or below '/model[0]/mc_2[0]/DeepBasket_2[0]'.
+  Warning: HSolve::setPath(): No compartments found at or below '/model[0]/mc_2[0]/DeepLTS_2[0]'.
+  Warning: HSolve::setPath(): No compartments found at or below '/model[0]/mc_3[0]/SpinyStellate_3[0]'.
+  Warning: HSolve::setPath(): No compartments found at or below '/model[0]/mc_3[0]/DeepBasket_3[0]'.
+  Warning: HSolve::setPath(): No compartments found at or below '/model[0]/mc_3[0]/DeepLTS_3[0]'.
+  Warning: HSolve::setPath(): No compartments found at or below '/model[0]/mc_4[0]/SpinyStellate_4[0]'.
+  Warning: HSolve::setPath(): No compartments found at or below '/model[0]/mc_4[0]/DeepBasket_4[0]'.
+  Warning: HSolve::setPath(): No compartments found at or below '/model[0]/mc_4[0]/DeepLTS_4[0]'.
+```
+- [ ] ./../traub_2005/py/test_nontuftedrs.py
+
+```
+  .```
+- [ ] ./../traub_2005/py/test_nrt.py
+
+```
+  .```
+- [ ] ./../traub_2005/py/test_deeplts.py
+
+```
+  .```
+- [ ] ./../traub_2005/py/test_suplts.py
+
+```
+  .```
+- [ ] ./../traub_2005/py/test_deepaxoaxonic.py
+
+```
+  .```
+- [ ] 
+
+```
+  Python 2.7.15rc1 (default, Apr 15 2018, 21:51:34) 
+  [GCC 7.3.0] on linux2
+  Type "help", "copyright", "credits" or "license" for more information.
+  >>> ```
+- [ ] ./../traub_2005/py/test_spinystellate.py
+
+```
+  .```
+- [ ] 
+
+```
+  Python 2.7.15rc1 (default, Apr 15 2018, 21:51:34) 
+  [GCC 7.3.0] on linux2
+  Type "help", "copyright", "credits" or "license" for more information.
+  >>> ```
+- [ ] 
+
+```
+  Python 2.7.15rc1 (default, Apr 15 2018, 21:51:34) 
+  [GCC 7.3.0] on linux2
+  Type "help", "copyright", "credits" or "license" for more information.
+  >>> ```
+- [ ] ./../traub_2005/py/fig_a3.py
+
+```
+  ('data_dir =', '/tmp/traub2005_data/2018_07_20')
+  ReadCell: 74 compartments, 772 channels, 69 others
+  ReadCell: 74 compartments, 772 channels, 69 others
+  ReadCell: 59 compartments, 501 channels, 54 others
+  ReadCell: 59 compartments, 283 channels, 54 others
+  ReadCell: 59 compartments, 283 channels, 54 others
+  ReadCell: 59 compartments, 539 channels, 54 others
+  ReadCell: 50 compartments, 448 channels, 45 others
+  ReadCell: 61 compartments, 594 channels, 56 others
+  ReadCell: 61 compartments, 594 channels, 56 others
+  ReadCell: 59 compartments, 501 channels, 54 others
+  ReadCell: 59 compartments, 283 channels, 54 others
+  ReadCell: 59 compartments, 283 channels, 54 others
+  ReadCell: 137 compartments, 1345 channels, 132 others
+  ReadCell: 59 compartments, 607 channels, 54 others
+  Warning: HSolve::setPath(): No compartments found at or below '/model[0]'.
+```
+- [ ] ./../rall_1964/rall64.py
+
+```
+```
+- [ ] ./../traub_2005/py/test_tcr.py
+
+```
+```
+- [ ] 
+
+```
+  Python 2.7.15rc1 (default, Apr 15 2018, 21:51:34) 
+  [GCC 7.3.0] on linux2
+  Type "help", "copyright", "credits" or "license" for more information.
+  >>> ```
+- [ ] ./../traub_2005/py/test_deepbasket.py
+
+```
+  .```
+- [ ] 
+
+```
+```
+- [ ] ./../traub_2005/py/test_suppyrfrb.py
+
+```
+  .```
+- [ ] 
+
+```
+  Python 2.7.15rc1 (default, Apr 15 2018, 21:51:34) 
+  [GCC 7.3.0] on linux2
+  Type "help", "copyright", "credits" or "license" for more information.
+  >>> ```
+- [ ] ./../traub_2005/py/test_supaxoaxonic.py
+
+```
+  .```
+- [ ] 
+
+```
+  Python 2.7.15rc1 (default, Apr 15 2018, 21:51:34) 
+  [GCC 7.3.0] on linux2
+  Type "help", "copyright", "credits" or "license" for more information.
+  >>> ```
+- [ ] 
+
+```
+  Python 2.7.15rc1 (default, Apr 15 2018, 21:51:34) 
+  [GCC 7.3.0] on linux2
+  Type "help", "copyright", "credits" or "license" for more information.
+  >>> ```
+- [ ] 
+
+```
+  Python 2.7.15rc1 (default, Apr 15 2018, 21:51:34) 
+  [GCC 7.3.0] on linux2
+  Type "help", "copyright", "credits" or "license" for more information.
+  >>> ```
+- [ ] ./../traub_2005/py/test_tuftedrs.py
+
+```
+  .```
+- [ ] 
+
+```
+  Python 2.7.15rc1 (default, Apr 15 2018, 21:51:34) 
+  [GCC 7.3.0] on linux2
+  Type "help", "copyright", "credits" or "license" for more information.
+  >>> ```
+- [ ] 
+
+```
+```
+- [ ] ./../traub_2005/py/test_supbasket.py
+
+```
+  .```
+- [ ] 
+
+```
+```
+- [ ] ./../unsorted/ksolve_with_heavy_load.py
+
+```
+  
+  
+```
+- [ ] 
+
+```
+  Python 2.7.15rc1 (default, Apr 15 2018, 21:51:34) 
+  [GCC 7.3.0] on linux2
+  Type "help", "copyright", "credits" or "license" for more information.
+  >>> ```
+- [ ] 
+
+```
+```
+- [ ] ./../cuda/testHsolve.py
+
+```
+  ('data_dir =', '/tmp/traub2005_data/2018_07_20')
+  ReadCell: 74 compartments, 772 channels, 69 others
+  ReadCell: 74 compartments, 772 channels, 69 others
+  ReadCell: 59 compartments, 501 channels, 54 others
+  ReadCell: 59 compartments, 283 channels, 54 others
+  ReadCell: 59 compartments, 283 channels, 54 others
+  ReadCell: 59 compartments, 539 channels, 54 others
+  ReadCell: 50 compartments, 448 channels, 45 others
+  ReadCell: 61 compartments, 594 channels, 56 others
+  ReadCell: 61 compartments, 594 channels, 56 others
+  ReadCell: 59 compartments, 501 channels, 54 others
+  ReadCell: 59 compartments, 283 channels, 54 others
+  ReadCell: 59 compartments, 283 channels, 54 others
+  ReadCell: 137 compartments, 1345 channels, 132 others
+  ReadCell: 59 compartments, 607 channels, 54 others
+  Warning: HSolve::setPath(): No compartments found at or below '/model[0]/deepbasket[0]'.
+```
+- [ ] ./../traub_2005/py/test_tuftedrs.py
+
+```
+    ('data_dir =', '/tmp/traub2005_data/2018_07_20')
+    ReadCell: 74 compartments, 772 channels, 69 others
+    ReadCell: 74 compartments, 772 channels, 69 others
+    ReadCell: 59 compartments, 501 channels, 54 others
+    ReadCell: 59 compartments, 283 channels, 54 others
+    ReadCell: 59 compartments, 283 channels, 54 others
+    ReadCell: 59 compartments, 539 channels, 54 others
+    ReadCell: 50 compartments, 448 channels, 45 others
+    ReadCell: 61 compartments, 594 channels, 56 others
+    ReadCell: 61 compartments, 594 channels, 56 others
+    ReadCell: 59 compartments, 501 channels, 54 others
+    ReadCell: 59 compartments, 283 channels, 54 others
+    ReadCell: 59 compartments, 283 channels, 54 others
+    ReadCell: 137 compartments, 1345 channels, 132 others
+    ReadCell: 59 compartments, 607 channels, 54 others
+    Warning: HSolve::setPath(): No compartments found at or below '/model[0]/deepbasket[0]'.
+```
+- [ ] ./../traub_2005/py/fig_a2_fs.py
+
+```
+      ('data_dir =', '/tmp/traub2005_data/2018_07_20')
+      ReadCell: 74 compartments, 772 channels, 69 others
+      ReadCell: 74 compartments, 772 channels, 69 others
+      ReadCell: 59 compartments, 501 channels, 54 others
+      ReadCell: 59 compartments, 283 channels, 54 others
+      ReadCell: 59 compartments, 283 channels, 54 others
+      ReadCell: 59 compartments, 539 channels, 54 others
+      ReadCell: 50 compartments, 448 channels, 45 others
+      ReadCell: 61 compartments, 594 channels, 56 others
+      ReadCell: 61 compartments, 594 channels, 56 others
+      ReadCell: 59 compartments, 501 channels, 54 others
+      ReadCell: 59 compartments, 283 channels, 54 others
+      ReadCell: 59 compartments, 283 channels, 54 others
+      ReadCell: 137 compartments, 1345 channels, 132 others
+      ReadCell: 59 compartments, 607 channels, 54 others
+      Warning: HSolve::setPath(): No compartments found at or below '/model[0]/deepbasket[0]'.
+```
+- [ ] ./../cuda/testHsolve.py
+
+```
+  ('data_dir =', '/tmp/traub2005_data/2018_07_20')
+  ReadCell: 74 compartments, 772 channels, 69 others
+  ReadCell: 74 compartments, 772 channels, 69 others
+  ReadCell: 59 compartments, 501 channels, 54 others
+  ReadCell: 59 compartments, 283 channels, 54 others
+  ReadCell: 59 compartments, 283 channels, 54 others
+  ReadCell: 59 compartments, 539 channels, 54 others
+  ReadCell: 50 compartments, 448 channels, 45 others
+  ReadCell: 61 compartments, 594 channels, 56 others
+  ReadCell: 61 compartments, 594 channels, 56 others
+  ReadCell: 59 compartments, 501 channels, 54 others
+  ReadCell: 59 compartments, 283 channels, 54 others
+  ReadCell: 59 compartments, 283 channels, 54 others
+  ReadCell: 137 compartments, 1345 channels, 132 others
+  ReadCell: 59 compartments, 607 channels, 54 others
+  Warning: HSolve::setPath(): No compartments found at or below '/model[0]/deepbasket[0]'.
+```
+- [ ] ./../traub_2005/py/test_tuftedrs.py
+
+```
+    ('data_dir =', '/tmp/traub2005_data/2018_07_20')
+    ReadCell: 74 compartments, 772 channels, 69 others
+    ReadCell: 74 compartments, 772 channels, 69 others
+    ReadCell: 59 compartments, 501 channels, 54 others
+    ReadCell: 59 compartments, 283 channels, 54 others
+    ReadCell: 59 compartments, 283 channels, 54 others
+    ReadCell: 59 compartments, 539 channels, 54 others
+    ReadCell: 50 compartments, 448 channels, 45 others
+    ReadCell: 61 compartments, 594 channels, 56 others
+    ReadCell: 61 compartments, 594 channels, 56 others
+    ReadCell: 59 compartments, 501 channels, 54 others
+    ReadCell: 59 compartments, 283 channels, 54 others
+    ReadCell: 59 compartments, 283 channels, 54 others
+    ReadCell: 137 compartments, 1345 channels, 132 others
+    ReadCell: 59 compartments, 607 channels, 54 others
+    Warning: HSolve::setPath(): No compartments found at or below '/model[0]/deepbasket[0]'.
+```
+- [ ] ./../traub_2005/py/fig_a2_fs.py
+
+```
+      ('data_dir =', '/tmp/traub2005_data/2018_07_20')
+      ReadCell: 74 compartments, 772 channels, 69 others
+      ReadCell: 74 compartments, 772 channels, 69 others
+      ReadCell: 59 compartments, 501 channels, 54 others
+      ReadCell: 59 compartments, 283 channels, 54 others
+      ReadCell: 59 compartments, 283 channels, 54 others
+      ReadCell: 59 compartments, 539 channels, 54 others
+      ReadCell: 50 compartments, 448 channels, 45 others
+      ReadCell: 61 compartments, 594 channels, 56 others
+      ReadCell: 61 compartments, 594 channels, 56 others
+      ReadCell: 59 compartments, 501 channels, 54 others
+      ReadCell: 59 compartments, 283 channels, 54 others
+      ReadCell: 59 compartments, 283 channels, 54 others
+      ReadCell: 137 compartments, 1345 channels, 132 others
+      ReadCell: 59 compartments, 607 channels, 54 others
+      Warning: HSolve::setPath(): No compartments found at or below '/model[0]/deepbasket[0]'.
 ```
