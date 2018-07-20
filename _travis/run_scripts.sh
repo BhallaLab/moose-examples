@@ -26,7 +26,7 @@ if [ ! -f $MATPLOTRC ]; then
     exit
 fi
 
-TIMEOUT=${1:-30}     # default timeout is 60 secs.
+TIMEOUT=${1:-60}     # default timeout is 60 secs.
 NTHREADS=4
 for f in `cat ./TORUN`; do
     d=`dirname $f`
@@ -83,5 +83,8 @@ if [ -f $FAILED ]; then
     echo "=========================================="
     echo "Following scripts failed."
     cat $FAILED
+    echo "FAILED."
     exit 1
 fi
+
+echo "ALL DONE..."
