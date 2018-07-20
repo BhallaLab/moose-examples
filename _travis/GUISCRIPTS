@@ -14,9 +14,9 @@
 ./../paper-2015/Fig5_CellMultiscale/Fig5BCD.py
 ./../paper-2015/Fig5_CellMultiscale/Fig5A.py
 ./../paper-2015/Fig6_NetMultiscale/Fig6A.py
-./../paper-2015/rxdSpineSize.py
 ./../squid/channeleditor.py
 ./../squid/squid_demo.py
+./../traub_2005/py/gui.py
 ./../util/moogli_viewer.py
 ./../snippets/insertSpines.py
 ./../snippets/rxdSpineSize.py

@@ -2,3 +2,8 @@
   To simulate and save, give sim as commandline argument.
   You need to simulate first before loading data file.
   re-run with sim as a command line argument.
+  rting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  Info: Using threaded gsolve: 2 threads. 
+  WARNING: Extra 0.360362 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.639638 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  Info: Using threaded gsolve: 2 threads. 

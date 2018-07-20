@@ -6,13 +6,6 @@
 ./../snippets/cylinderDiffusion.py
 ./../snippets/diffSpinyNeuron.py
 ./../snippets/gssaRDspiny.py
-./../snippets/MULTI/multi1_ee.py
-./../snippets/MULTI/minimal.py
-./../snippets/MULTI/midchan.py
-./../snippets/MULTI/multi1.py
-./../snippets/MULTI/multi2.py
-./../snippets/MULTI/multi3.py
-./../snippets/MULTI/minchan.py
 ./../snippets/reacDiffBranchingNeuron.py
 ./../snippets/reacDiffSpinyNeuron.py
 ./../snippets/scaleVolumes.py
