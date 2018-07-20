@@ -52,7 +52,6 @@
 ./../snippets/stochasticLotkaVolterra.py
 ./../snippets/vectors.py
 ./../snippets/compartment_net_no_array.py
-./../snippets/hdfdemo.py
 ./../snippets/pyrun.py
 ./../snippets/savemodel.py
 ./../snippets/gapjunction.py
@@ -87,7 +86,6 @@
 ./../snippets/interpol.py
 ./../snippets/cylinderMotor.py
 ./../snippets/startstop.py
-./../snippets/nsdf.py
 ./../snippets/multicomp_lif.py
 ./../snippets/traub_naf.py
 ./../snippets/HsolveInstability.py

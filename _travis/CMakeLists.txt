@@ -19,6 +19,13 @@ configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/run.sh.in
 
 add_custom_target( run_all ALL)
 
+# before we run, make sure to run find_files to run script.
+add_custom_target(find_scripts 
+    COMMAND bash -c ${CMAKE_CURRENT_SOURCE_DIR}/find_scripts_to_run.sh
+    VERBATIM
+    COMMENT "Searching files to execute."
+    )
+
 add_custom_target( docqs 
     COMMAND bash -c ./download_and_run_doqcs.sh 
     COMMENT "Testing doqcs"
@@ -39,13 +46,8 @@ foreach( _script ${FILESTORUN})
         VERBATIM
         )
 
+    add_dependencies( ${TGT_NAME} find_scripts)
     add_dependencies( run_all ${TGT_NAME})
 
 endforeach()
 
-# before we run, make sure to run find_files to run script.
-add_custom_command(TARGET run_all PRE_BUILD
-    COMMAND bash -c ${CMAKE_CURRENT_SOURCE_DIR}/find_scripts_to_run.sh
-    VERBATIM
-    COMMENT "Searching files to execute."
-    )

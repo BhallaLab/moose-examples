@@ -113,3 +113,10 @@
 ./../snippets/testSigNeur.py
 ./../snippets/Izhikevich_with_synapse.py
 ./../neuroml/LIF/LIFxml_firing_hsolve.py
+./../hopfield/hopfield.py
+./../hopfield/hopfield1.py
+./../snippets/testSigNeur.py
+./../snippets/Izhikevich_with_synapse.py
+./../snippets/hdfdemo.py
+./../snippets/nsdf.py
+./../neuroml/LIF/LIFxml_firing_hsolve.py
