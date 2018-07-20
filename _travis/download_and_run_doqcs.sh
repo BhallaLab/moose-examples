@@ -48,7 +48,7 @@ function coloredPrint
 
 coloredPrint "INFO" "Downloading DOQCS database silently"
 # Download all models.
-wget -q -A"*.g" -r https://doqcs.ncbs.res.in/database/simfile/
+wget -A"*.g" -r https://doqcs.ncbs.res.in/database/simfile/
 coloredPrint "INFO" "Done downloading"
 
 echo '' > __UNCLEAN__DOQCS__
@@ -57,7 +57,7 @@ for _model in ${MODELS}; do
     echo "===================================================================="
     coloredPrint "INFO" "Running $_model for 1 sec"
     T1=$(date +%s.%N)
-    OUT=$(timeout 10 python -c "
+    OUT=$(timeout 10s python -c "
 import moose
 moose.loadModel( '${_model}', '/model', 'gsl' )
 moose.reinit( )

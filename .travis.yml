@@ -19,8 +19,7 @@ script:
     - python3 -m compileall -q .
     - python2 -m compileall -q .
     - /usr/bin/python -c 'import moose'
-    - ( cd _travis && ./find_scripts_to_run.sh && ./run_scripts.sh )
-    - ( cd _travis && ./download_and_run_doqcs.sh )
+    - ./.travis_test.sh
 
 exclude : [vendor]
 

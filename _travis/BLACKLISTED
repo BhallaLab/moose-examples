@@ -48,21 +48,20 @@
   Running ... 
   Showing plots ...
 ```
-- [ ] ./../neuroml/lobster_pyloric/STG_net.py
+- [ ] ./../neuroml/allChannelsCell/allChannelsCell.py
 
 ```
-      Selecting a channel randomly form ['H_STG', 'CaS_STG', 'CaT_STG', 'KA_STG', 'Kd_STG', 'Na_STG']
-      Selected Na_STG
-      Traceback (most recent call last):
-        File "ChannelTest.py", line 41, in <module>
-          for varidx in range(len(mechanism_vars)/2): # loop over each inf and tau
-      TypeError: 'float' object cannot be interpreted as an integer
-      /dilawars/Work.SVN/GITHUB/BhallaLab/moose-examples/neuroml/allChannelsCell/cells_channels/Granule_98.morph.xml
-      INFO:root:Loading cell Granule_98 into /library .
-      INFO:root:readMorphML using combineSegments = False
+      moose.nml.neuroml: INFO     Loading neuroml file allChannelsCell.net.xml 
+      INFO:moose.nml.neuroml:Loading neuroml file allChannelsCell.net.xml 
+      moose.nml.neuroml: INFO     Using default temperature of 32.0 degree Celsius
+      INFO:moose.nml.neuroml:Using default temperature of 32.0 degree Celsius
+      INFO:root:Reading morphology from /home1/dilawars/Work.SVN/GITHUB/BhallaLab/moose-examples/neuroml/allChannelsCell/cells_cINFO:root:Loading mechanism Kd_STG into library.
+      INFO:root:Loading mechanism KCa_STG into library.
+      L using combineSegments = False
       INFO:root:Loading mechanism Gran_KDr_98 into library.
-      INFO:root:Loading mechanism Gran_H_98 into library.
-       (most recent call last):
+       direct cause of the following exception:
+      
+      Traceback (most recent call last):
         File "twoLIFxml_firing.py", line 47, in <module>
           populationDict,projectionDict = create_twoLIFs()
         File "twoLIFxml_firing.py", line 35, in create_twoLIFs
@@ -81,28 +80,346 @@
           moosechannelval = moose.Mstring(moosechannel.path+'/thresh')
       SystemError: <class 'moose.moose.Mstring'> returned a result with an error set
 ```
+- [ ] ./../neuroml/lobster_pyloric/STG_net.py
+
+```
+        moose.nml.neuroml: INFO     Loading neuroml file allChannelsCell.net.xml 
+        INFO:moose.nml.neuroml:Loading neuroml file allChannelsCell.net.xml 
+        moose.nml.neuroml: INFO     Using default temperature of 32.0 degree Celsius
+        INFO:moose.nml.neuroml:Using default temperature of 32.0 degree Celsius
+        INFO:root:Reading morphology from /home1/dilawars/Work.SVN/GITHUB/BhallaLab/moose-examples/neuroml/allChannelsCell/cells_cINFO:root:Loading mechanism Kd_STG into library.
+        INFO:root:Loading mechanism KCa_STG into library.
+        L using combineSegments = False
+        INFO:root:Loading mechanism Gran_KDr_98 into library.
+         direct cause of the following exception:
+        
+        Traceback (most recent call last):
+          File "twoLIFxml_firing.py", line 47, in <module>
+            populationDict,projectionDict = create_twoLIFs()
+          File "twoLIFxml_firing.py", line 35, in create_twoLIFs
+            NML.readNetworkMLFromFile('twoLIFs.net.xml', {}, params={})
+          File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/neuroml/NetworkML.py", line 76, in readNetworkMLFromFile
+            return self.readNetworkML(root_element,cellSegmentDict,params,root_element.attrib['lengthUnits'])
+          File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/neuroml/NetworkML.py", line 93, in readNetworkML
+            self.network.findall(".//{"+nml_ns+"}population")
+          File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/neuroml/NetworkML.py", line 92, in <listcomp>
+            [ self.createPopulation(pop) for pop in
+          File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/neuroml/NetworkML.py", line 184, in createPopulation
+            cellDict = mmlR.readMorphMLFromFile(model_path, self.params)
+          File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/neuroml/MorphML.py", line 79, in readMorphMLFromFile
+            cellDict = self.readMorphML(cell,params,lengthUnits)
+          File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/neuroml/MorphML.py", line 267, in readMorphML
+            moosechannelval = moose.Mstring(moosechannel.path+'/thresh')
+        SystemError: <class 'moose.moose.Mstring'> returned a result with an error set
+```
 - [ ] ./../unsorted/ksolve_with_heavy_load.py
 
 ```
     timeout: the monitored command dumped core
     ebug: User wants Ksolve with 3 threads
 ```
-- [ ] ./../snippets/GraupnerBrunel2012_STDPfromCaPlasticity.py
+- [ ] ./../snippets/HigginsGraupnerBrunel2014_LifetimeCaPlasticity.py
 
 ```
       timeout: the monitored command dumped core
       ebug: User wants Ksolve with 3 threads
 ```
+- [ ] ./../snippets/GraupnerBrunel2012_STDPfromCaPlasticity.py
+
+```
+        timeout: the monitored command dumped core
+        ebug: User wants Ksolve with 3 threads
+```
 - [ ] ./../snippets/findChemSteadyState.py
 
 ```
   Debug: User wants Ksolve with 3 threads
-  
-  
-  Totals:	2.98096e+08	6.02214e+06	
-  nteger e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  em after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
   WARNING: Extra -0.55717 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
   Info: Using threaded gsolve: 2 threads. 
   Elements under /model[0]/compartment[0]
   /model[0]/compartment[0]/mesh
+```
+- [ ] ./../snippets/multiscaleOneCompt.py
+
+```
+  ('event input', /model[0]/writer[0].eventInput, 0)
+  <moose.NSDFWriter: id=487, dataIndex=0, path=/model[0]/writer[0]>
+  /model[0]/writer[0]/eventInput[0]
+  ('Starting simulation at:', '2018-07-20T13:37:04.197317')
+  ('Finished simulation at:', '2018-07-20T13:37:04.399914')
+  the functionality to verify accurately the consistency of the units in such expressions. 
+  
+  line 29: (99508 [Warning]) In situations where a mathematical expression refers to a compartment, species or parameter, it is necessary to know the units of the object to establish unit consistency. In models where the units of an object have not been declared, libSBML does not yet have the functionality to accurately verify the consistency of the units in mathematical expressions referring to that object. 
+   The units of the <parameter> 'k1' cannot be fully checked. Unit consistency reported as either no errors or further unit errors related to this object may not be accurate.
+  
+  line 29: (20702 [Warning]) If the attribute 'units' on a given Parameter object has not been set, then the unit of measurement associated with that parameter's value is undefined.
+  Reference: L3V1 Section 4.7.3
+   The <parameter> with id 'k1' does not have a 'units' attribute.
+  
+  line 39: (99505 [Warning]) In situations where a mathematical expression contains literal numbers or parameters whose units have not been declared, it is not possible to verify accurately the consistency of the units in the expression. 
+   The units of the <kineticLaw> <math> expression 'compartment * k1 * S1' cannot be fully checked. Unit consistency reported as either no errors or further unit errors related to this object may not be accurate.
+  
+  line 29: (80701 [Warning]) As a principle of best modeling practice, the units of a <parameter> should be declared rather than be left undefined. Doing so improves the ability of software to check the consistency of units and helps make it easier to detect potential errors in models.
+   The <parameter> with the id 'k1' does not have a 'units' attribute.
+  
+  
+  File: ../genesis/00001-sbml-l3v1.xml (Level 3, version 1)
+  Compartment size is 1
+  (<moose.Neutral: id=484, dataIndex=0, path=/sbml[0]>, '')
+```
+- [ ] ./../snippets/gssaCylinderDiffusion.py
+
+```
+  ('Expression:', 'avg(x_0, x_1, x_2, x_3, x_4)')
+  ('Setting:', 'x_0', '=', 0.0)
+  ('Setting:', 'x_1', '=', 0.0)
+  ('Setting:', 'x_2', '=', 0.0)
+  ('Setting:', 'x_3', '=', 0.0)
+  ('Setting:', 'x_4', '=', 0.0)
+  ('Expression:', 'avg(x_0, x_1, x_2, x_3, x_4) ')
+  Variables after assignment:
+    x_0 = 0
+    x_1 = 1
+    x_2 = 2
+    x_3 = 3
+    x_4 = 4
+  value 2
+  
+  (0.0, 0.16)
+  ('Run for', 0.16)
+  (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.793919 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 0.123092 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 0.881757 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 0.641541 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 0.749423 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.45065 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.617755 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 1.586 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 1.4955 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 0.442562 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.243985 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.238357 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -1.21779 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 0.137438 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.855957 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 1.1157 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 0.363065 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 0.193758 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 0.912378 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.179503 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 1.21666 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 0.396377 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.347857 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.726579 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 1.54664 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 0.755221 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.820466 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.903064 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.218245 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -1.49471 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -1.46418 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 0.13858 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 0.575797 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 0.106662 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 0.470963 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 0.807648 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.755523 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.974493 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 1.39177 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.418742 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -1.17104 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.633186 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.576253 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.774347 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 1.31473 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.705072 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.895842 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -1.04984 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.96237 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.431746 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -1.25932 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.249467 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.209592 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 0.715476 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 0.452593 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 0.302878 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.219662 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 0.263056 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 0.583885 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 0.163031 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 0.15071 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 0.694114 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.73716 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 0.68678 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.51398 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.213439 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.288621 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.61958 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.584175 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 1.00695 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 0.791813 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.124769 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.641013 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 0.341839 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 1.18473 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.772858 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 2.13341 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.131008 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.143539 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -1.97589 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.217474 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -1.94585 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 0.338646 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 0.206081 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 1.01554 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 0.123092 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 0.881757 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 0.641541 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -1.25058 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 1.54935 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 1.38225 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 0.586005 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 0.495497 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.557438 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 0.756015 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -1.23836 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -1.21779 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 1.13744 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 1.14404 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 1.1157 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.636935 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.806242 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.179503 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.783342 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 0.396377 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 0.652143 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.726579 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 0.546644 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 0.755221 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 1.17953 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 2.78176 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.494708 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 1.53582 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.86142 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.424203 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.893338 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 1.47096 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.192352 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 1.24448 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 1.02551 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 0.391766 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.418742 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.171042 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.633186 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 2.42375 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.774347 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 0.952819 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.685265 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 0.294928 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 0.104158 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 1.03763 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.431746 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -1.25932 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 0.750533 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.209592 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.284524 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 0.969106 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.547407 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 0.302878 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 0.780338 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 1.0473 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 0.263056 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.416115 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 0.163031 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 1.15071 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.305886 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 1.02172 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.73716 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 1.68678 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 0.48602 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 0.786561 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 1.71138 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 2.38042 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 0.415825 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 1.00695 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -1.20819 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 0.875231 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 0.358987 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 0.341839 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -2.08048 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.815274 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 0.227142 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 0.133415 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -1.13101 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra 0.856461 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  WARNING: Extra -0.975887 molecules in system after converting fractional to integer e.g. 1.1 = 1 (~90% of times) or 2 (~10% of times).
+  Info: Using threaded gsolve: 2 threads. 
+```
+- [ ] ./../snippets/pulsegen2.py
+
+```
+  Starting simulation for 0.5
+  Simulated till 0.1. Left: 0.4. 0.1 of simulation took: 0.002729 s
+  Simulated till 0.2. Left: 0.3. 0.1 of simulation took: 0.002654 s
+  Simulated till 0.3. Left: 0.2. 0.1 of simulation took: 0.002773 s
+  Simulated till 0.4. Left: 0.1. 0.1 of simulation took: 0.002815 s
+  Running the remaining 0.1.
+  Finished simulation of 0.5 with minimum dt=1e-05 in 0.014003 s
+         = 0.0
+  fieldIndex       = 0
+  idValue          = 490
+  index            = 0
+  name             = synapse
+  numData          = 1
+  numField         = 1
+  path             = /model[0]/soma[0]/nmda[0]/handler[0]/synapse[0]
+  spikeTime        = 0.0
+  tick             = -1
+  weight           = 10.0
+  
+  [ /model[0]/soma[0]/nmda_noMg[0]/handler[0]/synapse[0] ]
+  className        = Synapse
+  delay            = 0.01
+  dt               = 0.0
+  fieldIndex       = 0
+  idValue          = 493
+  index            = 0
+  name             = synapse
+  numData          = 1
+  numField         = 1
+  path             = /model[0]/soma[0]/nmda_noMg[0]/handler[0]/synapse[0]
+  spikeTime        = 0.0
+  tick             = -1
+  weight           = 1.0
+  (1e-06, 9.999999999999999e-05)
+```
+- [ ] ./../snippets/twocells.py
+
+```
+  Elements under /n[0]
+  /n[0]/compt
+  /n[0]/shaft0
+  /n[0]/head0
+  /n[0]/shaft1
+  /n[0]/head1
+  /n[0]/shaft2
+  /n[0]/head2
+  /n[0]/shaft3
+  /n[0]/head3
+  /n[0]/shaft4
+  /n[0]/head4
+  /n[0]/hsolve
+  ('running at dt =', 2e-05)
+  ('running at dt =', 5e-05)
+  ('running at dt =', 0.0001)
+```
+- [ ] ./../tutorials/ExcInhNet/ExcInhNet_Ostojic2014_Brunel2000.py
+
+```
+  just plotting old results for Fig 5.
+  To simulate and save, give sim as commandline argument.
+  You need to simulate first before loading data file.
+  re-run with sim as a command line argument.
 ```
