@@ -19,6 +19,12 @@ configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/run.sh.in
 
 add_custom_target( run_all ALL)
 
+add_custom_target( docqs 
+    COMMAND bash -c ./download_and_run_doqcs.sh 
+    COMMENT "Testing doqcs"
+    VERBATIM
+    )
+
 foreach( _script ${FILESTORUN})
     message(STATUS "Script to run ${_script}")
     set(OUTFILE "NONE" )

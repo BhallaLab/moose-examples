@@ -730,3 +730,73 @@
   
   Totals:	-3273.39	3377.49	
 ```
+- [ ] ./../tutorials/ExcInhNet/ExcInhNet_Ostojic2014_Brunel2000.py
+
+```
+  .```
+- [ ] ./../traub_2005/py/test_tcr.py
+
+```
+```
+- [ ] ./../traub_2005/py/test_deepbasket.py
+
+```
+  moose.nml.neuroml: INFO     Loading neuroml file GranuleCell.net.xml 
+  moose.nml.neuroml: INFO     Loading neuroml file GranuleCell.net.xml 
+  moose.nml.neuroml: INFO     Using default temperature of 32.0 degree Celsius
+  moose.nml.neuroml: INFO     Using default temperature of 32.0 degree Celsius
+```
+- [ ] ./../traub_2005/py/test_nontuftedrs.py
+
+```
+```
+- [ ] ./../traub_2005/py/test_supaxoaxonic.py
+
+```
+```
+- [ ] ./../snippets/function.py
+
+```
+  .```
+- [ ] ./../snippets/gssaCylinderDiffusion.py
+
+```
+```
+- [ ] ./../tutorials/ChemicalBistables/mapkFB.py
+
+```
+```
+- [ ] ./../traub_2005/py/test_deepaxoaxonic.py
+
+```
+```
+- [ ] ./../snippets/switchKineticSolvers.py
+
+```
+```
+- [ ] ./../snippets/GraupnerBrunel2012_STDPfromCaPlasticity.py
+
+```
+```
+- [ ] ./../snippets/recurrentIntFire.py
+
+```
+  1 7 7
+  1 1
+  1 6 6
+  <moose.ZombieReac: id=461, dataIndex=0, path=/model[0]/kinetics[0]/endo[0]>
+  <moose.ZombieReac: id=459, dataIndex=0, path=/model[0]/compartment_1[0]/exo[0]>
+  Elements under /model[0]/compartment_1[0]
+  /model[0]/compartment_1[0]/mesh
+  /model[0]/compartment_1[0]/P
+  /model[0]/compartment_1[0]/M
+  /model[0]/compartment_1[0]/M_p
+  /model[0]/compartment_1[0]/basal
+  /model[0]/compartment_1[0]/exo
+  /model[0]/compartment_1[0]/stoich
+  /model[0]/compartment_1[0]/ksolve
+```
+- [ ] ./../snippets/pulsegen2.py
+
+```
+```
