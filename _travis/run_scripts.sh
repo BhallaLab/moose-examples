@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 trap ctrl_c INT 
 
@@ -15,10 +15,9 @@ SUCCEEDED=$PWD/SUCCEEDED
 FAILED=$PWD/FAILED
 TEMP=$PWD/__temp__
 
-rm -f $BLACKLISTED $SUCCEEDED $FAILED $TEMP TORUN
-$PWD/find_scripts_to_run.sh 
+# rm -f $BLACKLISTED $SUCCEEDED $FAILED $TEMP TORUN
+# $PWD/find_scripts_to_run.sh
 
-PYC=`which python2`
 PYC=/usr/bin/python                 # Force PYTHONPATH.
 MATPLOTRC=$PWD/matplotlibrc
 if [ ! -f $MATPLOTRC ]; then
@@ -27,12 +26,11 @@ if [ ! -f $MATPLOTRC ]; then
 fi
 
 TIMEOUT=${1:-60}     # default timeout is 60 secs.
-NTHREADS=4
 for f in `cat ./TORUN`; do
     d=`dirname $f`
     fn=`basename $f`
     # Wait of NTHREADS to join
-    ((i=i%NTHREADS)); ((i++==0)) && wait
+    # ((i=i%NTHREADS)); ((i++==0)) && wait
     (
         cp $MATPLOTRC $d/
         cd $d
@@ -63,11 +61,8 @@ for f in `cat ./TORUN`; do
             cat $TEMP
             echo "|| Failed. Error written to $FAILED"
         fi
-    ) & 
+    )
 done
-
-# Auto deploy to README.md file
-python ./deploy_gh_pages.py 
 
 echo "Following scripts were successful"
 cat $SUCCEEDED

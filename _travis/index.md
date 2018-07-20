@@ -1826,3 +1826,328 @@ The final element.
       "Data has no positive values, and therefore can not be "
   ValueError: Data has no positive values, and therefore can not be log-scaled.
 ```
+# Following scripts failed 
+- [ ] ./../snippets/crossComptSimpleReac.py
+
+```
+  ('Ticks connected to `process` method of', '/comp[0]')
+  (' ->', '/clock')
+  ('Ticks connected to `init` method of', '/comp[0]')
+  (' ->', '/clock')
+  Elements on tick 0
+  (' ->', '/comp')
+  Elements on tick 1
+  (' ->', '/comp')
+  ('/comp[0]/chan[0]', 'has been scheduled')
+  Elements on tick 1
+  (' ->', '/comp')
+  (' ->', '/comp[0]/chan')
+  ('Ticks connected to `process` method of', '/comp[0]')
+  (' ->', '/clock')
+```
+- [ ] ./../snippets/crossComptSimpleReacGSSA.py
+
+```
+  Hello: current time: 2018-07-20T20:34:44.464838
+  World: current time: 2018-07-20T20:34:44.465059
+  Init <moose.PyRun: id=453, dataIndex=0, path=/model[0]/Hello[0]>
+  Running Hello
+  Hello count = 0
+  Init World
+  Running World
+  World count = 0
+  Running Hello
+  Hello count = 1
+  Running World
+  World count = 1
+  Running Hello
+  Hello count = 2
+  Running World
+  World count = 2
+  Running Hello
+  Hello count = 3
+  Running World
+  World count = 3
+  Running Hello
+  Hello count = 4
+  Running World
+  World count = 4
+  Running Hello
+  Hello count = 5
+  Running World
+  World count = 5
+  Running Hello
+  Hello count = 6
+  Running World
+  World count = 6
+  Running Hello
+  Hello count = 7
+  Running World
+  World count = 7
+  Running Hello
+  Hello count = 8
+  Running World
+  World count = 8
+  Running Hello
+  Hello count = 9
+  Running World
+  World count = 9
+  Running Hello
+  Hello count = 10
+  Running World
+  World count = 10
+  Running Hello
+  Hello count = 11
+  Running World
+  World count = 11
+  Running Hello
+  Hello count = 12
+  Running World
+  World count = 12
+  Running Hello
+  Hello count = 13
+  Running World
+  World count = 13
+  Running Hello
+  Hello count = 14
+  Running World
+  World count = 14
+  Running Hello
+  Hello count = 15
+  Running World
+  World count = 15
+  Running Hello
+  Hello count = 16
+  Running World
+  World count = 16
+  Running Hello
+  Hello count = 17
+  Running World
+  World count = 17
+  Running Hello
+  Hello count = 18
+  Running World
+  World count = 18
+  Running Hello
+  Hello count = 19
+  Running World
+  World count = 19
+  Running Hello
+  Hello count = 20
+  Running World
+  World count = 20
+  Init World
+  Running World
+  World count = 0
+  input = 0.0
+  output = 0.0
+  Running World
+  World count = 1
+  input = 0.0
+  output = 0.0
+  Running World
+  World count = 2
+  input = 0.0
+  output = 0.0
+  Running World
+  World count = 3
+  input = 0.0
+  output = 0.0
+  Running World
+  World count = 4
+  input = 1.0
+  output = 1.0
+  Running World
+  World count = 5
+  input = 1.0
+  output = 1.0
+  Running World
+  World count = 6
+  input = 1.0
+  output = 1.0
+  Running World
+  World count = 7
+  input = 1.0
+  output = 1.0
+  Running World
+  World count = 8
+  input = 2.0
+  output = 4.0
+  Running World
+  World count = 9
+  input = 2.0
+  output = 4.0
+  Running World
+  World count = 10
+  input = 2.0
+  output = 4.0
+  Running World
+  World count = 11
+  input = 2.0
+  output = 4.0
+  Running World
+  World count = 12
+  input = 3.0
+  output = 9.0
+  Running World
+  World count = 13
+  input = 3.0
+  output = 9.0
+  Running World
+  World count = 14
+  input = 3.0
+  output = 9.0
+  Running World
+  World count = 15
+  input = 3.0
+  output = 9.0
+  Running World
+  World count = 16
+  input = 0.0
+  output = 0.0
+  Running World
+  World count = 17
+  input = 0.0
+  output = 0.0
+  Running World
+  World count = 18
+  input = 0.0
+  output = 0.0
+  Running World
+  World count = 19
+  input = 0.0
+  output = 0.0
+  Running World
+  World count = 20
+  input = 1.0
+  output = 1.0
+  Running World
+  World count = 21
+  input = 1.0
+  output = 1.0
+  Running World
+  World count = 22
+  input = 1.0
+  output = 1.0
+  Running World
+  World count = 23
+  input = 1.0
+  output = 1.0
+  Running World
+  World count = 24
+  input = 2.0
+  output = 4.0
+  Running World
+  World count = 25
+  input = 2.0
+  output = 4.0
+  Running World
+  World count = 26
+  input = 2.0
+  output = 4.0
+  Running World
+  World count = 27
+  input = 2.0
+  output = 4.0
+  Running World
+  World count = 28
+  input = 3.0
+  output = 9.0
+  Running World
+  World count = 29
+  input = 3.0
+  output = 9.0
+  Running World
+  World count = 30
+  input = 3.0
+  output = 9.0
+  Running World
+  World count = 31
+  input = 3.0
+  output = 9.0
+  Running World
+  World count = 32
+  input = 0.0
+  output = 0.0
+  Running World
+  World count = 33
+  input = 0.0
+  output = 0.0
+  Running World
+  World count = 34
+  input = 0.0
+  output = 0.0
+  Running World
+  World count = 35
+  input = 0.0
+  output = 0.0
+  Running World
+  World count = 36
+  input = 1.0
+  output = 1.0
+  Running World
+  World count = 37
+  input = 1.0
+  output = 1.0
+  Running World
+  World count = 38
+  input = 1.0
+  output = 1.0
+  Running World
+  World count = 39
+  input = 1.0
+  output = 1.0
+  Running World
+  World count = 40
+  input = 2.0
+  output = 4.0
+```
+- [ ] ./../snippets/loadSbmlmodel.py
+
+```
+  [FATAL] Module python-libsbml is not found.
+  This module can be installed by following command in terminal:
+  	 easy_install python-libsbml
+  Traceback (most recent call last):
+    File "loadSbmlmodel.py", line 122, in <module>
+      modelPath, modelpathexist,msg = main()
+    File "loadSbmlmodel.py", line 84, in main
+      elif sbmlId.path != '/':
+  AttributeError: 'NoneType' object has no attribute 'path'
+```
+- [ ] ./../snippets/reacDiffConcGradient.py
+
+```
+```
+- [ ] ./../snippets/hdfdemo.py
+
+```
+  Traceback (most recent call last):
+    File "hdfdemo.py", line 102, in <module>
+      main()
+    File "hdfdemo.py", line 99, in main
+      example()
+    File "hdfdemo.py", line 18, in example
+      hdfwriter = moose.HDF5DataWriter('h')
+  AttributeError: 'module' object has no attribute 'HDF5DataWriter'
+```
+- [ ] ./../snippets/nsdf.py
+
+```
+  Traceback (most recent call last):
+    File "nsdf.py", line 173, in <module>
+      main()
+    File "nsdf.py", line 170, in main
+      setup_model()
+    File "nsdf.py", line 123, in setup_model
+      nsdf = moose.NSDFWriter('/model/writer')
+  AttributeError: 'module' object has no attribute 'NSDFWriter'
+```
+- [ ] ./../traub_2005/py/dump_f_i_curves.py
+
+```
+  Traceback (most recent call last):
+    File "dump_f_i_curves.py", line 51, in <module>
+      import h5py as h5
+  ImportError: No module named h5py
+```
