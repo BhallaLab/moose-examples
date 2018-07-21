@@ -4,17 +4,20 @@ documentation at
 
 https://moose.ncbs.res.in/readthedocs/install/user/py/cookbook/Rd.html
 
-rdes_ex1.py: Bare Rdesigneur: single passive compartment
-	No graphics. Suggestion: Modify to print out the parameters of the
-	compartment.
+ex1_minimalModel.py: Bare Rdesigneur: single passive compartment
+	No graphics. Suggestions: 
+	- Modify to print out the parameters of the compartment.
 	- Change default values.
 
-rdes_ex2.py: Simulate and display current pulse to soma
+ex2_currentPulse.py: Simulate and display current pulse to soma
 	Introduces stimulus and plotting.
 	Suggestion: Play with the stimulus parameters. Can you put in a
 	current ramp? Plot it too.
 
-rdes_ex3.py: HH Squid model in a single compartment
+ex2.1_vclamp.py: Show how to do voltage clamp (vclamp) stimulus and plotting,
+	on the passive soma. Illustrates the capacitive transients.
+
+ex3_squid.py: HH Squid model in a single compartment
 	Add HH ion channels to the compartment model, plot action potentials. 
 	Suggestion: Play with the stimulus parameters. 
 	- Change injection current.
@@ -25,33 +28,47 @@ rdes_ex3.py: HH Squid model in a single compartment
 	- Modify channel or passive parameters. See if it still fires. 
 	Try the frequency chirp on the modified cell, is it retuned?
 
-rdes_ex3.1.py: Set up a long spiral axon with HH channels. Inject current at 
+ex3.1.squid_vclamp.py: Voltage clamp on HH Squid model in a single compartment.
+	Here we add a voltage clamp circuit to the HH Squid model, and 
+	monitor the holding current.
+	Suggestions: 
+	- Monitor individual channel currents through additional plots.
+	- Convert this into a voltage clamp series. Easiest way to do this is
+	to complete the rdes.BuildModel, then delete the Function object 
+	on the /model/elec/soma/vclamp. Now you can simply set the 'command'
+	field of the vclamp in a for loop, going from -ve to +ve voltages.
+	Remember, SI units. You may wish to capture the plot vectors each
+	cycle. The plot vectors are accessed by something like
+		moose.element( '/model/graphs/plot1' ).vector
+
+ex3.2_squid_axon_propgn.py: Set up a long spiral axon with HH channels. 
+	Inject current at 
 	the soma in order to trigger periodic action potentials propagating 
 	down the axon. Display using moogli as well as plotting the output 
 	at a few points.
+
+ex3.3_AP_collision.py: Same as 3.2: a long spiral axon. This time we deliver 
+	current injection at two points, the soma and a point along the axon. 
+	Watch how the AP is triggered bidirectionally and observe what happens 
+	when two action potentials bump into each other.
 	
-rdes_ex3.2.py: Set up a long spiral myelinated axon with HH channels, odd
-	though this combination is. Inject current at the soma. Display using 
-	moogli as well as plotting the output at a few points.
-	Note that we get failure of propagation through nodes of Ranvier on
-	some of the somatic action potentials.
+ex3.4_myelinated_axon.py: Set up a long spiral myelinated axon with 
+	HH channels, odd though this combination is. Inject current at the 
+	soma. Display using moogli as well as plotting the output at a few 
+	points.  Note that we get failure of propagation through nodes of 
+	Ranvier on some of the somatic action potentials.
 
-rdes_ex3.3.py: Same as 3.1: a long spiral axon. This time we deliver current
-	injection at two points, the soma and a point along the axon. Watch
-	how the response goes bidirctionally and observe what happens when
-	two action potentials bump into each other.
-
-ex3.4.scaledSoma.py: This is very similar to 3.1, but it introduces a 
+ex4.0_scaledSoma.py: This is very similar to ex3, but it introduces a 
 	different way to define the soma and its diameter and length, in
 	the cellProto argument. The diameter and length are optional.
 
-ex3.5.ballAndStick.py: This shows how to make a ball-and-stick model of a 
+ex4.1_ballAndStick.py: This shows how to make a ball-and-stick model of a 
 	neuron using a cellProto definition line. Things to try:
 	- Change length
 	- Change number of segments. Explore what it does to accuracy. How
 		will you know that you have an accurate model?
 
-ex3.6.ballAndStickSpeedTest.py: This is very similar to 3.5, but it runs
+ex4.2_ballAndStickSpeed.py: This is very similar to 4.1, but it runs
 	much longer to give you a chance to benchmark your system. It also
 	illustrates how to generate an interesting sine-wave stimulus.
 	Things to try:
