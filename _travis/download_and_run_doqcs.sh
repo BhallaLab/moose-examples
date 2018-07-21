@@ -46,10 +46,18 @@ function coloredPrint
     esac
 }
 
-coloredPrint "INFO" "Downloading DOQCS database silently"
-# Download all models.
-wget -q -A"*.g" -r https://doqcs.ncbs.res.in/database/simfile/
-coloredPrint "INFO" "Done downloading"
+# coloredPrint "INFO" "Downloading DOQCS database silently"
+## NOTE: Following takes too much time on travis. Avoid it. Get the tar file
+# from github.
+## Download all models.
+#wget -A"*.g" -r https://doqcs.ncbs.res.in/database/simfile/
+#coloredPrint "INFO" "Done downloading"
+coloredPrint "INFO" "Downloading DOQCS scripts from github."
+if [ ! -f doqcs.tar.gz ]; then
+    wget https://github.com/BhallaLab/moose-examples/releases/download/3.1.1/doqcs.tar.gz
+fi
+tar xvf doqcs.tar.gz 
+coloredPrint "INFO" "Done downloading and extracting."
 
 echo '' > __UNCLEAN__DOQCS__
 MODELS=`find . -type f -name "*.g"`
@@ -57,7 +65,7 @@ for _model in ${MODELS}; do
     echo "===================================================================="
     coloredPrint "INFO" "Running $_model for 1 sec"
     T1=$(date +%s.%N)
-    OUT=$(timeout 10 python -c "
+    OUT=$(timeout 10s python -c "
 import moose
 moose.loadModel( '${_model}', '/model', 'gsl' )
 moose.reinit( )
@@ -67,15 +75,15 @@ moose.start( 1 )
     DT=$(echo "$T2-$T1" | bc)
     OUTTRIMMED=`echo $OUT | xargs`
     coloredPrint "INFO" "TOOK $DT seconds to run 1 sec."
-    if [[ ! -z $OUTTRIMMED ]]; then 
+    if [[ -z "$OUTTRIMMED" ]] || [[ "$OUTTRIMMED" == *"Debug:"* ]]; then 
+        coloredPrint "INFO" "$_model loaded just fine. We did NOT check output results"
+    else
         coloredPrint "WARN" "$_model did not load/run cleanly"
         echo "[] ${_model} \n" >> __UNCLEAN__DOQCS__
         echo "\`\`\`" >> __UNCLEAN__DOQCS__ 
         echo "$OUTTRIMMED" >> __UNCLEAN__DOQCS__ 
         echo "\n\`\`\`" >> __UNCLEAN__DOQCS__ 
         echo $OUTTRIMMED
-    else
-        coloredPrint "INFO" "$_model loaded just fine. We did NOT check output results"
     fi
 done
 
