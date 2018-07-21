@@ -76,6 +76,12 @@ ex4.2_ballAndStickSpeed.py: This is very similar to 4.1, but it runs
 	- Is it costlier to run 2 compartments for 1000 seconds, or 
 		200 compartments for 10 seconds?
 
+ex5.0_random_syn_input.py: Deliver Poisson (random) synaptic input to glu 
+	synapse on soma.
+
+ex5.1_periodic_syn_input.py: Deliver periodic synaptic input to glu synapse on
+	soma.
+
 rdes_ex4.py: Reaction system in a single compartment. This is a simple
 	chemical oscillator system. Put in chem equations.
 	
