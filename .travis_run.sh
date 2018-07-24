@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 mkdir -p _temp
-cd _temp && cmake .. && make -j3
+cd _temp && cmake .. && make && cd ..
