@@ -17,8 +17,8 @@ ex2_currentPulse.py: Simulate and display current pulse to soma
 ex2.1_vclamp.py: Show how to do voltage clamp (vclamp) stimulus and plotting,
 	on the passive soma. Illustrates the capacitive transients.
 
-ex3_squid.py: HH Squid model in a single compartment
-	Add HH ion channels to the compartment model, plot action potentials. 
+ex3.0_squid_currentPulse.py: HH Squid model in a single compartment, given
+	a current pulse to elicit action potentials. 
 	Suggestion: Play with the stimulus parameters. 
 	- Change injection current.
 	- Put in a protocol to get rebound action potential.
@@ -82,13 +82,18 @@ ex5.0_random_syn_input.py: Deliver Poisson (random) synaptic input to glu
 ex5.1_periodic_syn_input.py: Deliver periodic synaptic input to glu synapse on
 	soma.
 
-rdes_ex4.py: Reaction system in a single compartment. This is a simple
-	chemical oscillator system. Put in chem equations.
+ex6_chem_osc.py: Reaction system in a single compartment. This is a simple
+	chemical oscillator system: 
+	s ---a---> a  // s goes to a, catalyzed by a.
+	s ---a---> b  // s goes to b, catalyzed by a.
+	a ---b---> s  // a goes to s, catalyzed by b.
+	b -------> s  // b is degraded irreversibly to s
 	
-rdes_ex5.py: Reaction-diffusion system. This is the same oscillator, but
-	now in a length of dendrite so we get travelling waves.
+ex7.0_spatial_chem_osc.py: Oscillating reaction-diffusion system. This is the 
+	same oscillator as in ex6, but now in a length of dendrite so we get 
+	travelling waves.
 	Suggestions:
-	**- Play with the diffusionLength term. See what happens if it is too
+	- Play with the diffusionLength term. See what happens if it is too
 	sparse or too fine.
 	- See how to give different initial conditions. For example, what if 
 	the oscillations start from the middle?
@@ -100,23 +105,34 @@ rdes_ex5.py: Reaction-diffusion system. This is the same oscillator, but
 	buffered source of molecules at one end, and a sink at the other. Does
 	this system make sense?
 
-rdes_ex5.1.py: Reaction-diffusion system. This is an illustration of simple
-	diffusion of a molecule that starts out bunched up to the left of the
-	cylinder.
+ex7.1_diffusive_gradient.py: Simple diffusion of a molecule that starts out 
+	bunched up to the left of a cylinder, and spreads out over time.
+	Suggestions:
+	- Use different diffusion constants.
+	- Compare to analytical solution
 
-rdes_ex6.py:Make a toy multiscale model with electrical and chemical signaling.
-	This is a non-physiological model but illustrates how to set up
-	such models.
+ex8.0_multiscale_KA_phosph.py: Multiscale model that is bistable. It switches
+	between a resting, non-spiking state, and an active, tonically spiking
+	state. In the active state, spiking -> Ca influx -> chemical activity->
+	phosphorylation and inactivation of KA -> depolarization -> spiking.
+	This example illustrates rather a lot of new things.
+	Suggestions:
+	- Vary the adaptor settings, which couple electrical to chemical
+	signaling and vice versa.
+	- Play with the channel densities
+	- Open the chem model in moosegui and vary its parameters too.
 
-rdes_ex7.py: Morphology: Load .swc morphology file and view it
+ex9.0_load_neuronal_morphology_file.py: Load .swc morphology file and view it.
 	Illustrates loading a file in rdesigneur. You've already seen how to
-	make a moogli viewer.
-	Suggestion: Grab another morphology file from NeuroMorpho.org. Make a
-	temporary copy of rdes_ex7.py and replace the file name, to view the
-	other file.
+	make a moogli viewer, this utilizes it for something more complicated.
+	Suggestion: 
+	- The tutorial directory already has a number of pre-loaded files from
+	NeuroMorpho. Pass them in to ex9.0 on the command line:
+	python ex9.0_load_neuronal_morphology_file.py <morpho.swc>
+	- Grab other morphology files from NeuroMorpho.org,  try them out.
 
-rdes_ex8.py: Build an active neuron model by putting channels into a 
-	morphology file. 
+ex9.1_chans_in_neuronal_morph.py: Build an active neuron model by putting 
+	channels into a morphology file. 
 	Same as above except now we distribute ion channels over different
 	parts of the cell morphology. In addition we illustrate how to  use
 	Moogli to display both voltage and Ca influx. The units of Ca are
@@ -126,9 +142,9 @@ rdes_ex8.py: Build an active neuron model by putting channels into a
 	- Try different channel distributions by editing the chanDistrib lines.
 	- Deliver stimuli on the dendrites rather than the soma.
 
-rdes_ex9.py: Build a spiny neuron from a morphology file and put active 
-	channels in it.
-	Same as above except now we also insert spines, using the spineDistrib
+ex9.2_spines_in_neuronal_morpho.py: Add spines to a neuron built from a 
+	morphology file and put active channels in it.
+	Same as ex9.1 except now we also insert spines, using the spineDistrib
 	keyword.
 	Suggestions: 
 	- Try different spine settings. Warning: if you put in too many spines
