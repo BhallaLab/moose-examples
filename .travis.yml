@@ -12,11 +12,6 @@ notifications:
             - bhalla@ncbs.res.in
             - hrani@ncbs.res.in
 
-before_script:
-    - source "https://rubygems.org"
-    - gem "jekyll"
-    - gem "html-proofer"
-
 install:
     - sudo ./.travis_prepare.sh
 
