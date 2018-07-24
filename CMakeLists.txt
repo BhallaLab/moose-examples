@@ -2,6 +2,10 @@
 cmake_minimum_required(VERSION 2.8)
 project(moose-examples LANGUAGES)  
 
+# Pass PYTHON_EXECUTABLE from command line to use a  different one.
+find_package( PythonInterp REQUIRED )
+message( STATUS "Found ${PYTHON_EXECUTABLE}" )
+
 # set variables
 set(TIMEOUT 30s)
 set(BLACKLISTED_FILE ${CMAKE_CURRENT_BINARY_DIR}/BLACKLISTED)
@@ -12,11 +16,6 @@ set(TEMP_FILE ${CMAKE_CURRENT_BINARY_DIR}/TEMP)
 set(PYV ${PYTHON_EXECUTABLE})
 
 configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/run.sh.in ${CMAKE_BINARY_DIR}/run.sh)
-
-
-# Pass PYTHON_EXECUTABLE from command line to use a  different one.
-find_package( PythonInterp REQUIRED )
-message( STATUS "Found ${PYTHON_EXECUTABLE}" )
 
 # Now find all python files.
 add_custom_target( lint )
