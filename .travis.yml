@@ -23,6 +23,8 @@ install:
 script:
     - ./.travis_run.sh
 
+exclude: [vendor]
+
 deploy:
   provider: pages
   skip-cleanup: true
