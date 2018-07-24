@@ -9,7 +9,7 @@ notifications:
 
 
 install:
-    - ./.travis_prepare.sh
+    - sudo ./.travis_prepare.sh
 
 script:
     - ./.travis_run.sh
