@@ -18,10 +18,13 @@ file( MAKE_DIRECTORY ${TEST_DATA_DIR} )
 set( SCRIPTS_TO_EXECUTE "" )
 macro( suitable_for_execution script)
     file(READ ${script} _text)
-    string( REGEX MATCH "input(\\s*)|raw_input(\\s*)" FORBIDDEN_TEXT ${_text} )
+    string( FIND "${_text}" "__BROKEN__" DEVELOPER_MARKED_IT_AS_BROKEN )
+    string( REGEX MATCH "input(\\s*)|raw_input(\\s*)" HUMAN_IS_REQUIRED ${_text} )
     string( REGEX MATCH "__main__" MUST_HAVE_TEXT ${_text} )
-    if( FORBIDDEN_TEXT OR (NOT MUST_HAVE_TEXT) )
-        message( STATUS "|| File is not suitable for running" )
+    if( HUMAN_IS_REQUIRED OR (NOT MUST_HAVE_TEXT) )
+        message( STATUS "-> File is not suitable for running" )
+    elseif(DEVELOPER_MARKED_IT_AS_BROKEN GREATER 0)
+        message(STATUS "-> This script is marked BROKEN by developer." )
     elseif( ${_script} MATCHES ".+traub_2005/.+" )
         message( STATUS "|| Script is blacklisted" )
     else()
@@ -44,7 +47,7 @@ foreach( _script ${PY_SCRIPTS} )
     add_custom_target( ${TARGET_NAME} DEPENDS ${STATUS_FILE})
 
     add_custom_command( OUTPUT ${STATUS_FILE}
-        COMMAND timeout 30 ${PYTHON_EXECUTABLE} -m py_compile "${_script}"
+        COMMAND ${PYTHON_EXECUTABLE} -m py_compile "${_script}"
         MAIN_DEPENDENCY ${_script}
         COMMENT "Compiling with ${PYTHON_EXECUTABLE}"
         WORKING_DIRECTORY ${_script_dirname} 
@@ -59,7 +62,7 @@ endforeach( )
 add_custom_target( execute ALL )
 message( STATUS "Following script will run" )
 foreach( _script ${SCRIPTS_TO_EXECUTE} )
-    message( STATUS "++ Script ${_script} will execute" )
+    # message( STATUS "|| Script ${_script} will be xecuted" )
     get_filename_component( _script_filename ${_script} NAME )
     get_filename_component( _script_dirname ${_script} DIRECTORY )
     file(MD5 ${_script} _script_MD5_sum )
@@ -74,14 +77,16 @@ foreach( _script ${SCRIPTS_TO_EXECUTE} )
     file(COPY ${MATPLOTLIB_INITRC} DESTINATION ${_script_dirname} )
     add_custom_command( 
         OUTPUT ${STATUS_FILE}
-        COMMAND ${PYTHON_EXECUTABLE} "${_script}"
+        COMMAND timeout 30 ${PYTHON_EXECUTABLE} "${_script}"
         MAIN_DEPENDENCY ${_script}
         WORKING_DIRECTORY ${_script_dirname} 
-        COMMENT "Running with ${PYTHON_EXECUTABLE}"
+        COMMENT "Running ${_script} with ${PYTHON_EXECUTABLE}"
         VERBATIM 
         )
     add_dependencies( execute ${TARGET_NAME} )
 endforeach( )
 
+list(LENGTH SCRIPTS_TO_EXECUTE NUMBER_OF_SCRIPTS)
+message(STATUS "Total ${NUMBER_OF_SCRIPTS} will be executed." )
 
 add_dependencies( execute lint )

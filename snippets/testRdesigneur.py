@@ -1,3 +1,9 @@
+# -*- coding: utf-8 -*-
+
+# __BROKEN__ : This script will not work with Python3. Therefore it has been
+# marked as broken script. 
+# With python3, it fails to import QtGui module.
+
 import math
 import pylab
 import numpy
@@ -185,4 +191,4 @@ def getMidpts( compt ):
 
 # Run the 'main' if this script is executed standalone.
 if __name__ == '__main__':
-        main()
+    main()
