@@ -10,14 +10,18 @@ notifications:
 
 install:
     - sudo apt-get -y update
-    - sudo apt-get install cmake --force-yes
-    - sudo apt-get -y --force-yes install python-qt4 python-pip graphviz
+    - sudo apt-get install cmake --allow-yes
+    - sudo apt-get -y --force-yes install python-qt4 python-pip graphviz python3-dev python3-numpy
     - sudo apt-get -y --force-yes install python-h5py python-scipy python-pygraphviz
     - sudo pip install python-libsbml networkx matplotlib numpy --upgrade
-    - sudo pip install pymoose numpy 
+    - wget -nv https://download.opensuse.org/repositories/home:moose/xUbuntu_14.04/Release.key -O Release.key
+    - sudo apt-key add - < Release.key
+    - sudo sh -c "echo 'deb http://download.opensuse.org/repositories/home:/moose/xUbuntu_14.04/ /' > /etc/apt/sources.list.d/home:moose.list"
+    - sudo apt-get update
+    - sudo apt-get install pymoose
 
 script:
     - python3 -m compileall -q .
-    - python2 -m compileall -q .
+    - python -m compileall -q .
     - /usr/bin/python -c 'import moose'
     - cd _travis && cmake . && make -j4 && make doqcs
