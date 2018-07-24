@@ -1,8 +1,11 @@
 import moose
+import numpy as np
 import pylab
 import rdesigneur as rd
 rdes = rd.rdesigneur(
     turnOffElec = True,
+    #This subdivides the length of the soma into 2 micron voxels
+    diffusionLength = 2e-6, 
     chemProto = [['makeChemOscillator()', 'osc']],
     chemDistrib = [['osc', 'soma', 'install', '1' ]],
     plotList = [['soma', '1', 'dend/a', 'conc', 'Concentration of a'],
@@ -16,4 +19,4 @@ bv[0].concInit *= 2
 bv[-1].concInit *= 2
 moose.reinit()
 
-rdes.displayMoogli( 1, 400, 0.001 )
+rdes.displayMoogli( 1, 400, rotation = 0, azim = np.pi/2, elev = 0.0 )

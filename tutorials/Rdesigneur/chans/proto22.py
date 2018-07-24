@@ -43,7 +43,7 @@ EK = -0.015 + EREST_ACT #// -0.075
 ECA = 0.140 + EREST_ACT #// 0.080
 SOMA_A = 3.320e-9       #// soma area in square meters
 CA_SCALE = 25000        # Ratio of Traub units to mM. 250::0.01
-                            
+							
 
 #/*
 #For these channels, the maximum channel conductance (Gbar) has been
@@ -182,22 +182,22 @@ def make_Ca_conc( name ):
 #             Calcium channel including Nernst potential and calcium pool
 #========================================================================
 def make_Ca_conc_with_Nernst( name ):
-    if moose.exists( '/library/' + name ):
-        return
-    make_Ca_conc( name )
-    Ca_conc = moose.element( '/library/' + name )
-    Ca_conc.Ca_base = 0.0001
-    nernst = moose.Nernst( '/library/' + name + '/nernst' )
-    nernst.Temperature = 300
-    nernst.valence = 2
-    nernst.Cout = 1.5   # 1.5 mM
-    moose.connect( Ca_conc, "concOut", nernst, 'ci' )
+	if moose.exists( '/library/' + name ):
+		return
+	make_Ca_conc( name )
+	Ca_conc = moose.element( '/library/' + name )
+	Ca_conc.Ca_base = 0.0001
+	nernst = moose.Nernst( '/library/' + name + '/nernst' )
+	nernst.Temperature = 300
+	nernst.valence = 2
+	nernst.Cout = 1.5   # 1.5 mM
+	moose.connect( Ca_conc, "concOut", nernst, 'ci' )
 
-    #addmsg1 = moose.Mstring( Ca_conc.path + '/addmsg1' )
-    #addmsg1.value = '.  concOut nernst  ci'
+	#addmsg1 = moose.Mstring( Ca_conc.path + '/addmsg1' )
+	#addmsg1.value = '.  concOut nernst  ci'
 
-    #moose.connect( nernst, "Eout", VGCC, "setEk" )
-    #moose.connect( Ca_conc, "concOut", nernst, 'ci' )
+	#moose.connect( nernst, "Eout", VGCC, "setEk" )
+	#moose.connect( Ca_conc, "concOut", nernst, 'ci' )
 
 #========================================================================
 #             Tabulated Ca-dependent K AHP Channel

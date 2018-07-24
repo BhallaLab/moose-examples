@@ -33,9 +33,36 @@ Play with them. Observe when the states flip
 	another in defining the bistable range.
 4. Try re-running using the gssa, to see how well it tracks the deterministic
 	case. See if the state flip happens around the same point.
+5. Modify a copy of this to run using gssa, with an assigned volume, but 
+	without any triggers for state flips. Find out its persistence time
+	in each (upper and lower) state.
 
 -----------------------------------------------------------------------------
-2. scaleVolumes.py
+2. BistabilityStates.py
+This uses a similar model to SimpleBis.py. Here we simply run the model out
+for 500 seconds, which reaches steady-state in most cases. 
+The example lets one buffer a couple of key enzymes, as a way to building up 
+a dose-response curve, which in turn is a way to estimate the steady states 
+of the system.
+
+Things to do:
+1. As before, there are sliders to control the enzyme rates and the 
+concentrations. In addition there is a radio button which lets one buffer
+molecule B or molecule C. Play with them and see what happens.
+
+2. Buffer B, systematically vary it, and measure C. This is one of the 
+	dose-response curves.
+	Now buffer C instead, and vary B. This is the other dose-response
+	curve. 
+	Plot them on the same axis (e.g., B vs C) and see what happens.
+
+3. Change kcat2 to a higher value. Repeat step 2. See if you end up with only
+	one stable point.
+
+4. Buffer A. Observe how the simulation is prone to get stuck. Figure out why.
+
+-----------------------------------------------------------------------------
+3. scaleVolumes.py
 This script runs exactly the same model as in simpleBis.py, but it 
 automatically scales the volumes from 1e-19 down to smaller values.
 Run using:
@@ -45,7 +72,7 @@ Note how the simulation successively becomes moisier, until
 at very small volumes there are spontaneous state transitions.
 
 -----------------------------------------------------------------------------
-3. strongBis.py
+4. strongBis.py
 This example illustrates a particularly strong, that is, parametrically
 robust bistable system. The model topology is symmetric between
 molecules b and c. We have both positive feedback of molecules **b** and **c**
@@ -63,8 +90,16 @@ is larger.
 At t = 430 we give it a strong push to take it back to the **c** dominant
 state.
 
+Things to do:
+1 Run it in stochastic mode
+2 Modify it to run in stochastic mode with assigned volume, without the 
+	triggers. See how long it stays in a given state, as a func of volume.
+3 Compare with simpleBis.
+4. Do 2, but now make the system asymmetric. See how this affects the state
+	timing.
+
 -----------------------------------------------------------------------------
-4. mapkFB.py
+5. mapkFB.py
 
 This example illustrates loading, and running a kinetic model for a much 
 more complex bistable positive feedback system, defined in kkit format.
@@ -90,7 +125,7 @@ Following this the model settles back to the same 'off' state it was in
 originally.
 
 -----------------------------------------------------------------------------
-5. propagationBis.py
+6. propagationBis.py
 All the above models have been well-mixed, that is point or non-spatial
 models. Bistables do interesting things when they are dispersed in space.
 This is illustrated in this example. Here we have a tapering cylinder,
@@ -112,8 +147,16 @@ is a slightly larger volume on the left, the transition point gradually
 advances to the right, as molecule **b** yields to the slightly larger
 amounts of molecule **c**.
 
+Things to do:
+1 Confirm that the movement is due to the tapering. Make a modified copy with
+	the taper in the other direction. 
+2 Try with different taper steepness.
+3 See what happens at higher or lower diffusion constants.
+4 Come up with a way to persuade the state flip to move even if there is no
+	taper.
+
 -----------------------------------------------------------------------------
-6. findSteadyState.py
+7. findSteadyState.py
 This is an example of how to use an internal MOOSE solver to find steady
 states of a system very rapidly. The method starts from a random position
 in state space that obeys mass conservation. It then finds the nearest
@@ -133,8 +176,13 @@ In this example we run the bistable model using the ODE solver right at
 the end, and manually enforce transitions to show where the target steady 
 states are.
 
+Things to do:
+1 Does it work for other models?
+2 What happens if the system has only one steady state?
+3 What happens if the system is an oscillator?
+
 -----------------------------------------------------------------------------
-7. doseResponse.py
+8. doseResponse.py
 This example generates a doseResponse plot for a bistable system, against
 a control parameter (dose) that takes the system in and out again from the 
 bistable regime. Like the previous example, it uses the steady-state solver 
