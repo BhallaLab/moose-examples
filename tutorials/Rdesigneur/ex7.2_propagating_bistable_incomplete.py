@@ -26,7 +26,7 @@ def parseExpr( expr, params, hasCa ):
     else:
         return 'x2*( ' + ret + ')'
 
-    print expr
+    print( expr )
 
 #######################################################################
 
