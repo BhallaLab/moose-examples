@@ -10,7 +10,7 @@ PLOTDT = 0.1
 MAXTIME = 100
 TRANSIENT_TIME = 2
 VARIABLE_DT_FLAG = 0
-DEFAULT_VOL = 1.666666666666667e-19
+DEFAULT_VOL = 1.66666666667e-19
 VERSION = 11.0 
 setfield /file/modpath value ~/scripts/modules
 kparms
@@ -40,9 +40,9 @@ simobjdump kchan perm gmax Vm is_active use_nernst notes xtree_fg_req \
 simobjdump transport input output alloced step_mode stepsize dt delay clock \
   kf xtree_fg_req xtree_textfg_req x y z
 simobjdump proto x y z
-simundump geometry /kinetics/geometry 0 1.666666666666667e-19 3 sphere  "" white black -2 5 0
-simundump kpool /kinetics/Sub 0 0.0 0 0 0 100.36902500000001 0 0 100.36902500000002 0 /kinetics/geometry blue black -6 1 0
-simundump kpool /kinetics/Prd 0 0.0 0 0 0 0.0 0 0 100.36902500000002 0 /kinetics/geometry 60 black 4 0 0
+simundump geometry /kinetics/geometry 0 1.66666666667e-19 3 sphere  "" white black -2 5 0
+simundump kpool /kinetics/Sub 0 0.0 0 0 0 100.369025 0 0 100.369025 0 /kinetics/geometry blue black -6 1 0
+simundump kpool /kinetics/Prd 0 0.0 0 0 0 0.0 0 0 100.369025 0 /kinetics/geometry 60 black 4 0 0
 simundump kreac /kinetics/kreac 0 0.1 0.1 "" 45 black -1 4 0
 simundump xgraph /graphs/conc1 0 0 99 0.001 0.999 0
 simundump xgraph /graphs/conc2 0 0 100 0 1 0

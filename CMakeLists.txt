@@ -2,6 +2,18 @@
 cmake_minimum_required(VERSION 2.8)
 project(moose-examples LANGUAGES)  
 
+# set variables
+set(TIMEOUT 30s)
+set(BLACKLISTED_FILE ${CMAKE_CURRENT_BINARY_DIR}/BLACKLISTED)
+set(TIMEOUT_FILE ${CMAKE_CURRENT_BINARY_DIR}/TIMEOUT)
+set(SUCCEEDED_FILE ${CMAKE_CURRENT_BINARY_DIR}/SUCCEEDED)
+set(FAILED_FILE ${CMAKE_CURRENT_BINARY_DIR}/FAILED)
+set(TEMP_FILE ${CMAKE_CURRENT_BINARY_DIR}/TEMP)
+set(PYV ${PYTHON_EXECUTABLE})
+
+configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/run.sh.in ${CMAKE_BINARY_DIR}/run.sh)
+
+
 # Pass PYTHON_EXECUTABLE from command line to use a  different one.
 find_package( PythonInterp REQUIRED )
 message( STATUS "Found ${PYTHON_EXECUTABLE}" )
@@ -60,6 +72,13 @@ foreach( _script ${PY_SCRIPTS} )
 endforeach( )
 
 add_custom_target( execute ALL )
+add_custom_target( deploy ALL 
+    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/_travis/deploy_gh_pages.py
+    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+    VERBATIM
+    )
+
+
 message( STATUS "Following script will run" )
 foreach( _script ${SCRIPTS_TO_EXECUTE} )
     # message( STATUS "|| Script ${_script} will be xecuted" )
@@ -77,10 +96,10 @@ foreach( _script ${SCRIPTS_TO_EXECUTE} )
     file(COPY ${MATPLOTLIB_INITRC} DESTINATION ${_script_dirname} )
     add_custom_command( 
         OUTPUT ${STATUS_FILE}
-        COMMAND timeout 30 ${PYTHON_EXECUTABLE} "${_script}"
+        COMMAND ${CMAKE_BINARY_DIR}/run.sh "${_script}"
         MAIN_DEPENDENCY ${_script}
         WORKING_DIRECTORY ${_script_dirname} 
-        COMMENT "Running ${_script} with ${PYTHON_EXECUTABLE}"
+        COMMENT "Executing ${_script}"
         VERBATIM 
         )
     add_dependencies( execute ${TARGET_NAME} )
@@ -90,3 +109,6 @@ list(LENGTH SCRIPTS_TO_EXECUTE NUMBER_OF_SCRIPTS)
 message(STATUS "Total ${NUMBER_OF_SCRIPTS} will be executed." )
 
 add_dependencies( execute lint )
+add_dependencies( deploy execute )
+
+# deploy 

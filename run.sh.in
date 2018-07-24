@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+PYC=@PYTHON_EXECUTABLE@
+SUCCEEDED=@SUCCEEDED_FILE@
+FAILED=@FAILED_FILE@
+BLACKLISTED=@BLACKLISTED_FILE@
+TIMEOUTED=@TIMEOUT_FILE@
+TEMP=@TEMP_FILE@
+
+TIMEOUT=@TIMEOUT@
+
+FILE="$1"
+
+timeout $TIMEOUT $PYC $FILE &> $TEMP
+status=$?
+if [ "$status" -eq "0" ]; then                   # success
+    echo "|| Success. Written to $SUCCEEDED"
+    echo "- [x] $FILE" >> $SUCCEEDED
+    # If there is timeout then add to TIMEOUT
+    # For return status See 
+    # http://git.savannah.gnu.org/cgit/coreutils.git/tree/src/timeout.c
+elif [ "$status" -eq "124" ]; then               # timeout. 
+    echo "|| Timed-out status: $status" 
+    echo "- [ ] $FILE" >> $TIMEOUTED
+    sed -i 's/^/\ \ /' $TEMP
+    printf "\n\`\`\`\n" >> $TIMEOUTED
+    cat $TEMP >> $TIMEOUTED 
+    printf "\`\`\`\n" >> $TIMEOUTED
+else                                    # Failed
+    echo "|| Failed with status "$status" "
+    echo "- [ ] $FILE" >> $FAILED
+    sed -i 's/^/\ \ /' $TEMP
+    printf "\n\`\`\`\n" >> $FAILED 
+    cat $TEMP >> $FAILED 
+    printf "\`\`\`\n" >> $FAILED 
+    cat $TEMP
+    echo "|| Failed. Error written to $FAILED"
+fi

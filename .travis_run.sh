@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
-( cd _travis && cmake . && make -j3 )
-( cd _travis && python deploy_gh_pages.py )
+mkdir -p _temp
+cd _temp && cmake .. && make -j3
