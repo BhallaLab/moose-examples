@@ -11,7 +11,8 @@ CMAKE_SOURCE_DIR=@CMAKE_CURRENT_SOURCE_DIR@
 TIMEOUT=@TIMEOUT@
 
 FILE="$1"
-OUTFILE="$2"
+MD5SUM=$(md5sum $FILE)
+OUTFILE=${2:-/tmp/${MD5SUM}}
 
 SCRIPT_DIR=$(cd "$(dirname "$\{BASH_SOURCE[0]\}" )" && pwd)
 BASEURL=https://github.com/BhallaLab/moose-examples/blob/master
