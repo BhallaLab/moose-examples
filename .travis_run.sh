@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 set -e
-pwd
+REPODIR=$(pwd)
 TEMPDIR=$HOME/moose-example-test
 mkdir -p $TEMPDIR
 # Run in the current directory. Unfortunately travis is not pushing from other
 # directory.
 ( 
     cd $TEMPDIR
-    cmake -DPYTHON_EXECUTABLE=/usr/bin/python $HOME/BhallaLab/moose-examples && make -j4 
+    cmake -DPYTHON_EXECUTABLE=/usr/bin/python $REPODIR && make -j4 
 
     echo "We did not run following scripts"
     if [[ -f SUCCEEDED ]]; then
