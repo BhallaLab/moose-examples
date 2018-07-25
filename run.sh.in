@@ -11,7 +11,7 @@ CMAKE_SOURCE_DIR=@CMAKE_CURRENT_SOURCE_DIR@
 TIMEOUT=@TIMEOUT@
 
 FILE="$1"
-MD5SUM=$(md5sum $FILE)
+MD5SUM=$(md5sum $FILE | cut -d" " -f1)
 OUTFILE=${2:-/tmp/${MD5SUM}}
 
 SCRIPT_DIR=$(cd "$(dirname "$\{BASH_SOURCE[0]\}" )" && pwd)

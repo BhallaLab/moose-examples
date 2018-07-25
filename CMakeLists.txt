@@ -53,17 +53,17 @@ macro(write_to_file list_of_files filename)
     set(TEXT_TO_WRITE "")
     foreach( _file ${list_of_files})
         get_filename_component(_filepath ${_file} ABSOLUTE)
-        execute_process( COMMAND realpath
-            --relative-to=${CMAKE_CURRENT_SOURCE_DIR} ${_filepath}
+        execute_process( COMMAND 
+            realpath --relative-to=${CMAKE_CURRENT_SOURCE_DIR} ${_filepath}
             WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
             OUTPUT_VARIABLE relative_filepath
             OUTPUT_STRIP_TRAILING_WHITESPACE
             )
         set(BASEURL "https://github.com/BhallaLab/moose-examples/blob/master")
         set(URL "${BASEURL}/${relative_filepath}")
-        set(TEXT_TO_WRITE "${TEXT_TO_WRITE}\n- [${relative_filepath}](${URL})")
+        set(TEXT_TO_WRITE "${TEXT_TO_WRITE}\n- Broken [${relative_filepath}](${URL})")
     endforeach()
-    file(WRITE ${filename} ${TEXT_TO_WRITE})
+    file(WRITE ${filename} "${TEXT_TO_WRITE}")
 endmacro()
 
 foreach( _script ${PY_SCRIPTS} )
