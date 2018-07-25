@@ -17,7 +17,7 @@ BASEURL=https://github.com/BhallaLab/moose-examples/blob/master
 function fileToUrl()
 {
     local FILEPATH=$(realpath --relative-to=$CMAKE_SOURCE_DIR $1)
-    echo "[$FILEPATH]($BASEURL/$FILEPATH)"
+    echo "[ ${FILEPATH} ]($BASEURL/$FILEPATH)"
 }
 
 timeout $TIMEOUT $PYC $FILE &> $TEMP
@@ -25,20 +25,20 @@ status=$?
 LINE=$(fileToUrl $FILE)
 if [ "$status" -eq "0" ]; then                   # success
     echo "|| Success. Written to $SUCCEEDED"
-    echo "- [x] $LINE" >> $SUCCEEDED
+    echo "- $LINE" >> $SUCCEEDED
     # If there is timeout then add to TIMEOUT
     # For return status See 
     # http://git.savannah.gnu.org/cgit/coreutils.git/tree/src/timeout.c
 elif [ "$status" -eq "124" ]; then               # timeout. 
     echo "|| Timed-out status: $status" 
-    echo "- [ ] $LINE" >> $TIMEOUTED
+    echo "- $LINE" >> $TIMEOUTED
     sed -i 's/^/\ \ /' $TEMP
     printf "\n\`\`\`\n" >> $TIMEOUTED
     cat $TEMP >> $TIMEOUTED 
     printf "\`\`\`\n" >> $TIMEOUTED
 else                                    # Failed
     echo "|| Failed with status "$status" "
-    echo "- [ ] $LINE" >> $FAILED
+    echo "- $LINE" >> $FAILED
     sed -i 's/^/\ \ /' $TEMP
     printf "\n\`\`\`\n" >> $FAILED 
     cat $TEMP >> $FAILED 

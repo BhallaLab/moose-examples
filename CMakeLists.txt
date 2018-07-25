@@ -61,7 +61,7 @@ macro(write_to_file list_of_files filename)
             )
         set(BASEURL "https://github.com/BhallaLab/moose-examples/blob/master")
         set(URL "${BASEURL}/${relative_filepath}")
-        set(TEXT_TO_WRITE "${TEXT_TO_WRITE}\n- [ ] [${relative_filepath}](${URL})")
+        set(TEXT_TO_WRITE "${TEXT_TO_WRITE}\n- [${relative_filepath}](${URL})")
     endforeach()
     file(WRITE ${filename} ${TEXT_TO_WRITE})
 endmacro()
@@ -133,3 +133,4 @@ add_dependencies( deploy execute )
 
 # write blacklisted and broken scripts to a text file.
 write_to_file(${BROKEN_SCRIPTS} BROKEN)
+write_to_file(${SCRIPTS_NOT_TO_EXECUTE} NOTORUN)
