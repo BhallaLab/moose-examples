@@ -29,22 +29,18 @@ $SUCCESSTXT
 # Failed scripts
 
 These scripts failed to execute successfully on Travis.
-
 $FAILEDTXT
 
 # Broken scripts
 
-These scripts are marked `BROKEN` by one or more developers.
+These scripts are marked "BROKEN" by one or more developers.
 
 $BROKENTXT
 
-# Blacklist script
+# Blacklisted scripts
 
-This scripts were not tested because they require human interaction.
+These scripts were not tested because they require human interaction :-(.
 
 $BLACKLISTEDTXT
 
 EOF
-
-# remove all files.
-git clean -fxd .
