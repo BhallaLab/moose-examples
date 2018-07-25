@@ -49,6 +49,23 @@ macro(suitable_for_execution script)
     endif( )
 endmacro( )
 
+macro(write_to_file list_of_files filename)
+    set(TEXT_TO_WRITE "")
+    foreach( _file ${list_of_files})
+        get_filename_component(_filepath ${_file} ABSOLUTE)
+        execute_process( COMMAND realpath
+            --relative-to=${CMAKE_CURRENT_SOURCE_DIR} ${_filepath}
+            WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+            OUTPUT_VARIABLE relative_filepath
+            OUTPUT_STRIP_TRAILING_WHITESPACE
+            )
+        set(BASEURL "https://github.com/BhallaLab/moose-examples/blob/master")
+        set(URL "${BASEURL}/${relative_filepath}")
+        set(TEXT_TO_WRITE "${TEXT_TO_WRITE}\n- [ ] [${relative_filepath}](${URL})")
+    endforeach()
+    file(WRITE ${filename} ${TEXT_TO_WRITE})
+endmacro()
+
 foreach( _script ${PY_SCRIPTS} )
     get_filename_component( _script_filename ${_script} NAME )
     get_filename_component( _script_dirname ${_script} DIRECTORY )
@@ -115,7 +132,4 @@ add_dependencies( execute lint )
 add_dependencies( deploy execute )
 
 # write blacklisted and broken scripts to a text file.
-STRING(REGEX REPLACE ";" "\n" BROKEN_SCRIPTS "${BROKEN_SCRIPTS}")
-FILE(WRITE ${CMAKE_BINARY_DIR}/BROKEN "${BROKEN_SCRIPTS}" )
-STRING(REGEX REPLACE ";" "\n" SCRIPTS_NOT_TO_EXECUTE "${SCRIPTS_NOT_TO_EXECUTE}")
-FILE(WRITE ${CMAKE_BINARY_DIR}/NOTTORUN "${SCRIPTS_NOT_TO_EXECUTE}")
+write_to_file(${BROKEN_SCRIPTS} BROKEN)
