@@ -51,6 +51,7 @@ if [ -z "$FAILEDTXT_WITHOUT_WHITESPACE" ]; then
     echo "Success."
     exit 0
 else
-    echo "One of more scripts are breaking. See the output above"
+    echo "One of more scripts are breaking. See the output below:"
+    echo "$FAILEDTXT"
     exit 1
 fi
