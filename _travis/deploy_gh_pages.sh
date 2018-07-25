@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-INDEXMD='index.md'
+INDEXMD='./README.md'
 FAILEDTXT=$(cat FAILED)
 SUCCESSTXT=$(cat SUCCEEDED)
 
@@ -19,7 +19,7 @@ if [[ -f BLACKLISTED ]]; then
     BLACKLISTEDTXT=$(cat BLACKLISTED)
 fi
 
-cat <<-EOF > $INDEXMD 
+cat <<-EOF >> $INDEXMD 
 # Successful scripts
 
 These scripts ran successfully.
@@ -43,6 +43,5 @@ $BROKENTXT
 This scripts were not tested because they require human interaction.
 
 $BLACKLISTEDTXT
-
 
 EOF

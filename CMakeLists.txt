@@ -116,7 +116,7 @@ foreach( _script ${SCRIPTS_TO_EXECUTE} )
     file(COPY ${MATPLOTLIB_INITRC} DESTINATION ${_script_dirname} )
     add_custom_command( 
         OUTPUT ${STATUS_FILE}
-        COMMAND ${CMAKE_BINARY_DIR}/run.sh "${_script}"
+        COMMAND ${CMAKE_BINARY_DIR}/run.sh "${_script}" "${STATUS_FILE}"
         MAIN_DEPENDENCY ${_script}
         WORKING_DIRECTORY ${_script_dirname} 
         COMMENT "Executing ${_script}"

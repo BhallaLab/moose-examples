@@ -11,6 +11,8 @@ CMAKE_SOURCE_DIR=@CMAKE_CURRENT_SOURCE_DIR@
 TIMEOUT=@TIMEOUT@
 
 FILE="$1"
+OUTFILE="$2"
+
 SCRIPT_DIR=$(cd "$(dirname "$\{BASH_SOURCE[0]\}" )" && pwd)
 BASEURL=https://github.com/BhallaLab/moose-examples/blob/master
 
@@ -26,9 +28,8 @@ LINE=$(fileToUrl $FILE)
 if [ "$status" -eq "0" ]; then                   # success
     echo "|| Success. Written to $SUCCEEDED"
     echo "- $LINE" >> $SUCCEEDED
-    # If there is timeout then add to TIMEOUT
-    # For return status See 
-    # http://git.savannah.gnu.org/cgit/coreutils.git/tree/src/timeout.c
+    # Create outfile on success.
+    echo "SUCCESS" > $OUTFILE
 elif [ "$status" -eq "124" ]; then               # timeout. 
     echo "|| Timed-out status: $status" 
     echo "- $LINE" >> $TIMEOUTED
