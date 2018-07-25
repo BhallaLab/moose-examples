@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 mkdir -p _temp
 ( 
-    cd _temp && cmake .. && make -j4 
+    cd _temp && cmake -DPYTHON_EXECUTABLE=/usr/bin/python .. && make -j4 
     echo "We did not run following scripts"
 
     if [[ -f SUCCEEDED ]]; then
