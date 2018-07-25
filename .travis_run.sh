@@ -6,7 +6,7 @@ mkdir -p $TEMPDIR
 # directory.
 ( 
     cd $TEMPDIR
-    cmake -DPYTHON_EXECUTABLE=/usr/bin/python $HOME/moose-examples && make -j4 
+    cmake -DPYTHON_EXECUTABLE=/usr/bin/python $HOME/BhallaLab/moose-examples && make -j4 
 
     echo "We did not run following scripts"
     if [[ -f SUCCEEDED ]]; then
