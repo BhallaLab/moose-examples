@@ -60,6 +60,7 @@ macro(suitable_for_execution script)
     _relative_path(${script} _link)
     string( FIND "${_text}" "__BROKEN__" DEVELOPER_MARKED_IT_AS_BROKEN )
     string( REGEX MATCH "input(\\s*)|raw_input(\\s*)" HUMAN_IS_REQUIRED ${_text} )
+    string( REGEX MATCH "import(\\s*)moogli" DEPRECATED_MOOGLI ${_text} )
     string( REGEX MATCH "__main__" MUST_HAVE_TEXT ${_text} )
 
     if( HUMAN_IS_REQUIRED OR (NOT MUST_HAVE_TEXT) )
@@ -67,32 +68,13 @@ macro(suitable_for_execution script)
     elseif(DEVELOPER_MARKED_IT_AS_BROKEN GREATER 0)
         # message(STATUS "BROKEN: ${script}" )
         file(APPEND ${BROKEN_FILE} "- ${_link}" )
-    elseif( ${_script} MATCHES ".+traub_2005/.+" )
+    elseif( ${_script} MATCHES ".+traub_2005/.+" OR HUMAN_IS_REQUIRED )
         # message(STATUS "BLACKLISTED: ${script}" )
         file(APPEND ${BLACKLISTED_FILE} "- ${_link}")
     else()
         list(APPEND SCRIPTS_TO_EXECUTE ${script} )
     endif( )
 endmacro( )
-
-# function(write_to_file list_of_files _outfile)
-    # set(TEXT_TO_WRITE "")
-    # foreach( _file ${list_of_files})
-        # message( STATUS " ---   ${_flie}")
-        # get_filename_component(_filepath ${_file} ABSOLUTE)
-        # execute_process( COMMAND
-            # realpath --relative-to=${CMAKE_CURRENT_SOURCE_DIR} ${_filepath}
-            # WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-            # OUTPUT_VARIABLE relative_filepath
-            # OUTPUT_STRIP_TRAILING_WHITESPACE
-            # )
-        # set(BASEURL "https://github.com/BhallaLab/moose-examples/blob/master")
-        # set(URL "${BASEURL}/${relative_filepath}")
-        # set(TEXT_TO_WRITE "${TEXT_TO_WRITE}\n- Broken [${relative_filepath}](${URL})")
-    # endforeach()
-    # file(WRITE ${_outfile} "${TEXT_TO_WRITE}")
-    # message(STATUS "Writing ${TEXT_TO_WRITE} to ${_outfile}")
-# endfunction()
 
 foreach( _script ${PY_SCRIPTS} )
     get_filename_component( _script_filename ${_script} NAME )
