@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 INDEXMD='index.md'
 FAILEDTXT=$(cat FAILED)
+SUCCESSTXT=$(cat SUCCEEDED)
 BROKENTXT=""
 if [[ -f BROKEN ]]; then
     BROKENTXT=$(cat BROKEN)
@@ -13,6 +14,12 @@ if [[ -f BLACKLISTED ]]; then
 fi
 
 cat <<-EOF > $INDEXMD 
+# Successful scripts
+
+These scripts ran successfully.
+
+$SUCCESSTXT
+
 # Failed scripts
 
 These scripts failed to execute successfully on Travis.
