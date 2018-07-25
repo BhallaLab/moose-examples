@@ -11,5 +11,6 @@ cat <<EOF > /etc/apt/sources.list.d/home:moose.list
 deb http://download.opensuse.org/repositories/home:/moose/xUbuntu_${VERSION}/ /
 EOF
 apt-get update
-apt-get install numpy matplotlib
+apt-get install python-numpy python-matplotlib python-networkx
 apt-get install pymoose
+python -m pip install python-libsbml --user
