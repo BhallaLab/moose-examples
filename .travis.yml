@@ -1,10 +1,5 @@
 sudo : required 
 
-# jekyll support for gh-pages.
-language: ruby
-rvm:
-    - 2.4.1
-
 notifications:
     email:
         recipients:
@@ -25,5 +20,6 @@ deploy:
   skip-cleanup: true
   github-token: $GHI_TOKEN  #
   keep-history: true
+  local-dir: ..
   on:
     branch: master

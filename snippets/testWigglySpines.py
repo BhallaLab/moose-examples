@@ -1,3 +1,7 @@
+# -*- coding: utf-8 -*-
+# __BROKEN__ . It will break with python3 due to unavailability of QtGui in
+# PyQt4.
+
 from __future__ import print_function
 
 import math

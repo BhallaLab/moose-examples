@@ -6,6 +6,17 @@ project(moose-examples LANGUAGES)
 find_package( PythonInterp REQUIRED )
 message( STATUS "Found ${PYTHON_EXECUTABLE}" )
 
+# set variables
+set(TIMEOUT 30s)
+set(BLACKLISTED_FILE ${CMAKE_CURRENT_BINARY_DIR}/BLACKLISTED)
+set(TIMEOUT_FILE ${CMAKE_CURRENT_BINARY_DIR}/TIMEOUT)
+set(SUCCEEDED_FILE ${CMAKE_CURRENT_BINARY_DIR}/SUCCEEDED)
+set(FAILED_FILE ${CMAKE_CURRENT_BINARY_DIR}/FAILED)
+set(TEMP_FILE ${CMAKE_CURRENT_BINARY_DIR}/TEMP)
+set(PYV ${PYTHON_EXECUTABLE})
+
+configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/run.sh.in ${CMAKE_BINARY_DIR}/run.sh)
+
 # Now find all python files.
 add_custom_target( lint )
 file( GLOB_RECURSE PY_SCRIPTS *.py )
@@ -15,17 +26,25 @@ set( TEST_DATA_DIR "${CMAKE_CURRENT_BINARY_DIR}/_cmake_test_data" )
 file( MAKE_DIRECTORY ${TEST_DATA_DIR} )
 
 # Function to check if given script is suitable for execution.
-set( SCRIPTS_TO_EXECUTE "" )
-macro( suitable_for_execution script)
+set(SCRIPTS_TO_EXECUTE "" )
+set(SCRIPTS_NOT_TO_EXECUTE "")
+set(BROKEN_SCRIPTS "")
+
+macro(suitable_for_execution script)
     file(READ ${script} _text)
-    string( REGEX MATCH "input(\\s*)|raw_input(\\s*)" FORBIDDEN_TEXT ${_text} )
+    string( FIND "${_text}" "__BROKEN__" DEVELOPER_MARKED_IT_AS_BROKEN )
+    string( REGEX MATCH "input(\\s*)|raw_input(\\s*)" HUMAN_IS_REQUIRED ${_text} )
     string( REGEX MATCH "__main__" MUST_HAVE_TEXT ${_text} )
-    if( FORBIDDEN_TEXT OR (NOT MUST_HAVE_TEXT) )
-        message( STATUS "|| File is not suitable for running" )
+    if( HUMAN_IS_REQUIRED OR (NOT MUST_HAVE_TEXT) )
+        list(APPEND SCRIPTS_NOT_TO_EXECUTE "${script}" )
+    elseif(DEVELOPER_MARKED_IT_AS_BROKEN GREATER 0)
+        message(STATUS "BORKEN: ${script}" )
+        list(APPEND BROKEN_SCRIPTS ${script} )
     elseif( ${_script} MATCHES ".+traub_2005/.+" )
-        message( STATUS "|| Script is blacklisted" )
+        message(STATUS "BLACKLISTED: ${script}" )
+        list(APPEND SCRIPTS_NOT_TO_EXECUTE ${script} )
     else()
-        list(APPEND SCRIPTS_TO_EXECUTE "${script}" )
+        list(APPEND SCRIPTS_TO_EXECUTE ${script} )
     endif( )
 endmacro( )
 
@@ -33,7 +52,7 @@ foreach( _script ${PY_SCRIPTS} )
     get_filename_component( _script_filename ${_script} NAME )
     get_filename_component( _script_dirname ${_script} DIRECTORY )
     file(MD5 ${_script} _script_MD5_sum )
-    message( STATUS "Added ${_script_filename} for checking" )
+    # message( STATUS "Added ${_script_filename} for checking" )
 
     set(STATUS_FILE
         "${TEST_DATA_DIR}/_status_${_script_filename}_${_script_MD5_sum}" 
@@ -44,7 +63,7 @@ foreach( _script ${PY_SCRIPTS} )
     add_custom_target( ${TARGET_NAME} DEPENDS ${STATUS_FILE})
 
     add_custom_command( OUTPUT ${STATUS_FILE}
-        COMMAND timeout 30 ${PYTHON_EXECUTABLE} -m py_compile "${_script}"
+        COMMAND ${PYTHON_EXECUTABLE} -m py_compile "${_script}"
         MAIN_DEPENDENCY ${_script}
         COMMENT "Compiling with ${PYTHON_EXECUTABLE}"
         WORKING_DIRECTORY ${_script_dirname} 
@@ -57,9 +76,14 @@ foreach( _script ${PY_SCRIPTS} )
 endforeach( )
 
 add_custom_target( execute ALL )
-message( STATUS "Following script will run" )
+add_custom_target( deploy ALL 
+    COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/_travis/deploy_gh_pages.sh
+    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+    VERBATIM
+    )
+
 foreach( _script ${SCRIPTS_TO_EXECUTE} )
-    message( STATUS "++ Script ${_script} will execute" )
+    # message( STATUS "|| Script ${_script} will be xecuted" )
     get_filename_component( _script_filename ${_script} NAME )
     get_filename_component( _script_dirname ${_script} DIRECTORY )
     file(MD5 ${_script} _script_MD5_sum )
@@ -74,14 +98,23 @@ foreach( _script ${SCRIPTS_TO_EXECUTE} )
     file(COPY ${MATPLOTLIB_INITRC} DESTINATION ${_script_dirname} )
     add_custom_command( 
         OUTPUT ${STATUS_FILE}
-        COMMAND ${PYTHON_EXECUTABLE} "${_script}"
+        COMMAND ${CMAKE_BINARY_DIR}/run.sh "${_script}"
         MAIN_DEPENDENCY ${_script}
         WORKING_DIRECTORY ${_script_dirname} 
-        COMMENT "Running with ${PYTHON_EXECUTABLE}"
+        COMMENT "Executing ${_script}"
         VERBATIM 
         )
     add_dependencies( execute ${TARGET_NAME} )
 endforeach( )
 
+list(LENGTH SCRIPTS_TO_EXECUTE NUMBER_OF_SCRIPTS)
+message(STATUS "Total ${NUMBER_OF_SCRIPTS} will be executed." )
 
 add_dependencies( execute lint )
+add_dependencies( deploy execute )
+
+# write blacklisted and broken scripts to a text file.
+STRING(REGEX REPLACE ";" "\n" BROKEN_SCRIPTS "${BROKEN_SCRIPTS}")
+FILE(WRITE ${CMAKE_BINARY_DIR}/BROKEN "${BROKEN_SCRIPTS}" )
+STRING(REGEX REPLACE ";" "\n" SCRIPTS_NOT_TO_EXECUTE "${SCRIPTS_NOT_TO_EXECUTE}")
+FILE(WRITE ${CMAKE_BINARY_DIR}/NOTTORUN "${SCRIPTS_NOT_TO_EXECUTE}")
