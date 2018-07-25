@@ -44,3 +44,13 @@ These scripts were not tested because they require human interaction :-(.
 $BLACKLISTEDTXT
 
 EOF
+
+# If there is any text in FAILEDTXT then exit 1
+FAILEDTXT_WITHOUT_WHITESPACE=$(echo "$FAILEDTXT" | xargs)
+if [ -z "$FAILEDTXT_WITHOUT_WHITESPACE" ]; then
+    echo "Success."
+    exit 0
+else
+    echo "One of more scripts are breaking. See the output above"
+    exit 1
+fi
