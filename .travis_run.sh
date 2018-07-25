@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -e
 TEMPDIR=$HOME/moose-example-test
 mkdir -p $TEMPDIR
 # Run in the current directory. Unfortunately travis is not pushing from other
