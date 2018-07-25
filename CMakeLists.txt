@@ -21,7 +21,7 @@ configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/run.sh.in
 # Now find all python files.
 add_custom_target( lint )
 file( GLOB_RECURSE PY_SCRIPTS *.py )
-set( MATPLOTLIB_INITRC ${CMAKE_CURRENT_SOURCE_DIR}/_travis/matplotlibrc )
+set( MATPLOTLIB_INITRC ${CMAKE_CURRENT_SOURCE_DIR}/.travis/matplotlibrc )
 
 set( TEST_DATA_DIR "${CMAKE_CURRENT_BINARY_DIR}/_cmake_test_data" )
 file( MAKE_DIRECTORY ${TEST_DATA_DIR} )
@@ -95,7 +95,7 @@ endforeach( )
 
 add_custom_target( execute ALL )
 add_custom_target( deploy ALL 
-    COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/_travis/deploy_gh_pages.sh
+    COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/.travis/deploy_gh_pages.sh
     WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
     VERBATIM
     )
@@ -106,9 +106,7 @@ foreach( _script ${SCRIPTS_TO_EXECUTE} )
     get_filename_component( _script_dirname ${_script} DIRECTORY )
     file(MD5 ${_script} _script_MD5_sum )
 
-    set(STATUS_FILE
-        "${TEST_DATA_DIR}/_run_${_script_filename}_${_script_MD5_sum}" 
-        )
+    set(STATUS_FILE "/tmp/${_script_MD5_sum}")
 
     set(TARGET_NAME "run_${_script_filename}_${_script_MD5_sum}" )
     add_custom_target( ${TARGET_NAME} DEPENDS ${STATUS_FILE})
