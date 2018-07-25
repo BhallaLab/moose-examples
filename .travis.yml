@@ -25,3 +25,4 @@ deploy:
   skip-cleanup: true
   github-token: $GHI_TOKEN  #
   keep-history: true
+  local-dir: ..
