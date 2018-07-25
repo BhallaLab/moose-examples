@@ -31,42 +31,65 @@ set(SCRIPTS_TO_EXECUTE "" )
 set(SCRIPTS_NOT_TO_EXECUTE "")
 set(BROKEN_SCRIPTS "")
 
+# files 
+set( BROKEN_SCRIPTS ${CMAKE_BINARY_DIR}/BROKEN )
+set( SCRIPTS_NOT_TO_EXECUTE ${CMAKE_BINARY_DIR}/SCRIPTS_NOT_TO_RUN )
+file(WRITE ${BROKEN_SCRIPTS} "")
+file(WRITE ${SCRIPTS_NOT_TO_RUN} "")
+
+function(_relative_path _file _result)
+    get_filename_component(_filepath ${_file} ABSOLUTE)
+    execute_process( COMMAND 
+        realpath --relative-to=${CMAKE_CURRENT_SOURCE_DIR} ${_filepath}
+        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+        OUTPUT_VARIABLE relative_filepath
+        OUTPUT_STRIP_TRAILING_WHITESPACE
+        )
+    set(BASEURL "https://github.com/BhallaLab/moose-examples/blob/master")
+    set(URL "${BASEURL}/${relative_filepath}")
+    set(${_result} "${TEXT_TO_WRITE}\n- Broken [${relative_filepath}](${URL})"
+        PARENT_SCOPE
+        )
+endfunction()
+
 macro(suitable_for_execution script)
     file(READ ${script} _text)
+    _relative_path(script _link)
     string( FIND "${_text}" "__BROKEN__" DEVELOPER_MARKED_IT_AS_BROKEN )
     string( REGEX MATCH "input(\\s*)|raw_input(\\s*)" HUMAN_IS_REQUIRED ${_text} )
     string( REGEX MATCH "__main__" MUST_HAVE_TEXT ${_text} )
+
     if( HUMAN_IS_REQUIRED OR (NOT MUST_HAVE_TEXT) )
-        list(APPEND SCRIPTS_NOT_TO_EXECUTE ${script} )
+        file(APPEND ${SCRIPTS_NOT_TO_EXECUTE} "- ${_link}")
     elseif(DEVELOPER_MARKED_IT_AS_BROKEN GREATER 0)
         message(STATUS "BORKEN: ${script}" )
-        list(APPEND BROKEN_SCRIPTS ${script} )
+        file(APPEND BROKEN_SCRIPTS "- ${_link}" )
     elseif( ${_script} MATCHES ".+traub_2005/.+" )
         message(STATUS "BLACKLISTED: ${script}" )
-        list(APPEND SCRIPTS_NOT_TO_EXECUTE ${script} )
+        file(APPEND ${BLACKLISTED_FILE} "- ${_link}")
     else()
         list(APPEND SCRIPTS_TO_EXECUTE ${script} )
     endif( )
 endmacro( )
 
-function(write_to_file list_of_files _outfile)
-    set(TEXT_TO_WRITE "")
-    foreach( _file ${list_of_files})
-        message( STATUS " ---   ${_flie}")
-        get_filename_component(_filepath ${_file} ABSOLUTE)
-        execute_process( COMMAND 
-            realpath --relative-to=${CMAKE_CURRENT_SOURCE_DIR} ${_filepath}
-            WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-            OUTPUT_VARIABLE relative_filepath
-            OUTPUT_STRIP_TRAILING_WHITESPACE
-            )
-        set(BASEURL "https://github.com/BhallaLab/moose-examples/blob/master")
-        set(URL "${BASEURL}/${relative_filepath}")
-        set(TEXT_TO_WRITE "${TEXT_TO_WRITE}\n- Broken [${relative_filepath}](${URL})")
-    endforeach()
-    file(WRITE ${_outfile} "${TEXT_TO_WRITE}")
-    message(STATUS "Writing ${TEXT_TO_WRITE} to ${_outfile}")
-endfunction()
+# function(write_to_file list_of_files _outfile)
+    # set(TEXT_TO_WRITE "")
+    # foreach( _file ${list_of_files})
+        # message( STATUS " ---   ${_flie}")
+        # get_filename_component(_filepath ${_file} ABSOLUTE)
+        # execute_process( COMMAND
+            # realpath --relative-to=${CMAKE_CURRENT_SOURCE_DIR} ${_filepath}
+            # WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+            # OUTPUT_VARIABLE relative_filepath
+            # OUTPUT_STRIP_TRAILING_WHITESPACE
+            # )
+        # set(BASEURL "https://github.com/BhallaLab/moose-examples/blob/master")
+        # set(URL "${BASEURL}/${relative_filepath}")
+        # set(TEXT_TO_WRITE "${TEXT_TO_WRITE}\n- Broken [${relative_filepath}](${URL})")
+    # endforeach()
+    # file(WRITE ${_outfile} "${TEXT_TO_WRITE}")
+    # message(STATUS "Writing ${TEXT_TO_WRITE} to ${_outfile}")
+# endfunction()
 
 foreach( _script ${PY_SCRIPTS} )
     get_filename_component( _script_filename ${_script} NAME )
@@ -132,6 +155,6 @@ add_dependencies( execute lint )
 add_dependencies( deploy execute )
 
 # write blacklisted and broken scripts to a text file.
-write_to_file(BROKEN_SCRIPTS ${CMAKE_BINARY_DIR}/BROKEN)
+# write_to_file(BROKEN_SCRIPTS ${CMAKE_BINARY_DIR}/BROKEN)
 # message(STATUS "yy ${SCRIPTS_NOT_TO_EXECUTE}")
-write_to_file(SCRIPTS_NOT_TO_EXECUTE ${CMAKE_BINARY_DIR}/NOTORUN)
+# write_to_file(SCRIPTS_NOT_TO_EXECUTE ${CMAKE_BINARY_DIR}/NOTORUN)
