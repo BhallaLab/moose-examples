@@ -15,7 +15,8 @@ set(FAILED_FILE ${CMAKE_CURRENT_BINARY_DIR}/FAILED)
 set(TEMP_FILE ${CMAKE_CURRENT_BINARY_DIR}/TEMP)
 set(PYV ${PYTHON_EXECUTABLE})
 
-configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/run.sh.in ${CMAKE_BINARY_DIR}/run.sh)
+configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/run.sh.in
+    ${CMAKE_BINARY_DIR}/run.sh @ONLY)
 
 # Now find all python files.
 add_custom_target( lint )

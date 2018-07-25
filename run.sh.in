@@ -6,29 +6,39 @@ FAILED=@FAILED_FILE@
 BLACKLISTED=@BLACKLISTED_FILE@
 TIMEOUTED=@TIMEOUT_FILE@
 TEMP=@TEMP_FILE@
+CMAKE_SOURCE_DIR=@CMAKE_CURRENT_SOURCE_DIR@
 
 TIMEOUT=@TIMEOUT@
 
 FILE="$1"
+SCRIPT_DIR=$(cd "$(dirname "$\{BASH_SOURCE[0]\}" )" && pwd)
+BASEURL=https://github.com/BhallaLab/moose-examples/blob/master
+
+function fileToUrl()
+{
+    local FILEPATH=$(realpath --relative-to=$CMAKE_SOURCE_DIR $1)
+    echo "[$FILEPATH]($BASEURL/$FILEPATH)"
+}
 
 timeout $TIMEOUT $PYC $FILE &> $TEMP
 status=$?
+LINE=$(fileToUrl $FILE)
 if [ "$status" -eq "0" ]; then                   # success
     echo "|| Success. Written to $SUCCEEDED"
-    echo "- [x] $FILE" >> $SUCCEEDED
+    echo "- [x] $LINE" >> $SUCCEEDED
     # If there is timeout then add to TIMEOUT
     # For return status See 
     # http://git.savannah.gnu.org/cgit/coreutils.git/tree/src/timeout.c
 elif [ "$status" -eq "124" ]; then               # timeout. 
     echo "|| Timed-out status: $status" 
-    echo "- [ ] $FILE" >> $TIMEOUTED
+    echo "- [ ] $LINE" >> $TIMEOUTED
     sed -i 's/^/\ \ /' $TEMP
     printf "\n\`\`\`\n" >> $TIMEOUTED
     cat $TEMP >> $TIMEOUTED 
     printf "\`\`\`\n" >> $TIMEOUTED
 else                                    # Failed
     echo "|| Failed with status "$status" "
-    echo "- [ ] $FILE" >> $FAILED
+    echo "- [ ] $LINE" >> $FAILED
     sed -i 's/^/\ \ /' $TEMP
     printf "\n\`\`\`\n" >> $FAILED 
     cat $TEMP >> $FAILED 
