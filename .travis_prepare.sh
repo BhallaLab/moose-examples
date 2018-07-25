@@ -2,7 +2,7 @@
 # ROOT should run this script.
 VERSION=$(lsb_release -r | cut -f2)
 apt-get -y update
-apt-get install cmake --force-yes
+apt-get install cmake coreutils --force-yes
 apt-get -y --force-yes install python-qt4 python-pip graphviz
 apt-get -y --force-yes install python-h5py python-scipy python-pygraphviz
 wget -nv https://download.opensuse.org/repositories/home:moose/xUbuntu_$VERSION/Release.key -O Release.key
