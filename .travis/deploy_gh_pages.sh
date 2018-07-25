@@ -45,3 +45,6 @@ This scripts were not tested because they require human interaction.
 $BLACKLISTEDTXT
 
 EOF
+
+# remove all files.
+git clean -fxd .
