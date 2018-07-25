@@ -19,7 +19,7 @@ configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/run.sh.in
     ${CMAKE_BINARY_DIR}/run.sh @ONLY)
 
 # File to update.
-set(README_TO_CHANGE ${CMAKE_CURRENT_SOURCE_DIR}/index.md)
+set(README_TO_CHANGE ${CMAKE_CURRENT_SOURCE_DIR}/README.md)
 configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/.travis/deploy_gh_pages.sh.in
     ${CMAKE_BINARY_DIR}/deploy_gh_pages.sh @ONLY)
 
