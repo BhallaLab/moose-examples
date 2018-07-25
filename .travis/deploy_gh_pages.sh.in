@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-INDEXMD='./README.md'
+README=@README_TO_CHANGE@
 FAILEDTXT=$(cat FAILED)
 SUCCESSTXT=$(cat SUCCEEDED)
 
@@ -19,7 +19,7 @@ if [[ -f BLACKLISTED ]]; then
     BLACKLISTEDTXT=$(cat BLACKLISTED)
 fi
 
-cat <<-EOF >> $INDEXMD 
+cat <<-EOF >> $README 
 # Successful scripts
 
 These scripts ran successfully.

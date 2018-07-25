@@ -18,6 +18,11 @@ set(PYV ${PYTHON_EXECUTABLE})
 configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/run.sh.in
     ${CMAKE_BINARY_DIR}/run.sh @ONLY)
 
+# File to update.
+set(README_TO_CHANGE ${CMAKE_CURRENT_SOURCE_DIR}/README.md)
+configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/.travis/deploy_gh_pages.sh.in
+    ${CMAKE_BINARY_DIR}/deploy_gh_pages.sh @ONLY)
+
 # Now find all python files.
 add_custom_target( lint )
 file( GLOB_RECURSE PY_SCRIPTS *.py )
@@ -26,16 +31,14 @@ set( MATPLOTLIB_INITRC ${CMAKE_CURRENT_SOURCE_DIR}/.travis/matplotlibrc )
 set( TEST_DATA_DIR "${CMAKE_CURRENT_BINARY_DIR}/_cmake_test_data" )
 file( MAKE_DIRECTORY ${TEST_DATA_DIR} )
 
-# Function to check if given script is suitable for execution.
 set(SCRIPTS_TO_EXECUTE "" )
-set(SCRIPTS_NOT_TO_EXECUTE "")
-set(BROKEN_SCRIPTS "")
 
 # files 
-set( BROKEN_SCRIPTS ${CMAKE_BINARY_DIR}/BROKEN )
-set( SCRIPTS_NOT_TO_EXECUTE ${CMAKE_BINARY_DIR}/SCRIPTS_NOT_TO_RUN )
-file(WRITE ${BROKEN_SCRIPTS} "")
-file(WRITE ${SCRIPTS_NOT_TO_RUN} "")
+set(BROKEN_FILE ${CMAKE_BINARY_DIR}/BROKEN )
+set(NOTRUN_FILE ${CMAKE_BINARY_DIR}/NOTRUN )
+file(WRITE ${BROKEN_FILE} "")
+file(WRITE ${BLACKLISTED_FILE} "")
+file(WRITE ${NOTRUN_FILE} "")
 
 function(_relative_path _file _result)
     get_filename_component(_filepath ${_file} ABSOLUTE)
@@ -47,25 +50,25 @@ function(_relative_path _file _result)
         )
     set(BASEURL "https://github.com/BhallaLab/moose-examples/blob/master")
     set(URL "${BASEURL}/${relative_filepath}")
-    set(${_result} "${TEXT_TO_WRITE}\n- Broken [${relative_filepath}](${URL})"
+    set(${_result} "${TEXT_TO_WRITE}\n- [${relative_filepath}](${URL})"
         PARENT_SCOPE
         )
 endfunction()
 
 macro(suitable_for_execution script)
     file(READ ${script} _text)
-    _relative_path(script _link)
+    _relative_path(${script} _link)
     string( FIND "${_text}" "__BROKEN__" DEVELOPER_MARKED_IT_AS_BROKEN )
     string( REGEX MATCH "input(\\s*)|raw_input(\\s*)" HUMAN_IS_REQUIRED ${_text} )
     string( REGEX MATCH "__main__" MUST_HAVE_TEXT ${_text} )
 
     if( HUMAN_IS_REQUIRED OR (NOT MUST_HAVE_TEXT) )
-        file(APPEND ${SCRIPTS_NOT_TO_EXECUTE} "- ${_link}")
+        file(APPEND ${NOTRUN_FILE} "- ${_link}")
     elseif(DEVELOPER_MARKED_IT_AS_BROKEN GREATER 0)
-        message(STATUS "BORKEN: ${script}" )
-        file(APPEND BROKEN_SCRIPTS "- ${_link}" )
+        # message(STATUS "BROKEN: ${script}" )
+        file(APPEND ${BROKEN_FILE} "- ${_link}" )
     elseif( ${_script} MATCHES ".+traub_2005/.+" )
-        message(STATUS "BLACKLISTED: ${script}" )
+        # message(STATUS "BLACKLISTED: ${script}" )
         file(APPEND ${BLACKLISTED_FILE} "- ${_link}")
     else()
         list(APPEND SCRIPTS_TO_EXECUTE ${script} )
@@ -120,7 +123,7 @@ endforeach( )
 
 add_custom_target( execute ALL )
 add_custom_target( deploy ALL 
-    COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/.travis/deploy_gh_pages.sh
+    COMMAND ${CMAKE_BINARY_DIR}/deploy_gh_pages.sh
     WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
     VERBATIM
     )
@@ -153,8 +156,3 @@ message(STATUS "Total ${NUMBER_OF_SCRIPTS} will be executed." )
 
 add_dependencies( execute lint )
 add_dependencies( deploy execute )
-
-# write blacklisted and broken scripts to a text file.
-# write_to_file(BROKEN_SCRIPTS ${CMAKE_BINARY_DIR}/BROKEN)
-# message(STATUS "yy ${SCRIPTS_NOT_TO_EXECUTE}")
-# write_to_file(SCRIPTS_NOT_TO_EXECUTE ${CMAKE_BINARY_DIR}/NOTORUN)
