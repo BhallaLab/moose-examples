@@ -26,20 +26,25 @@ set( TEST_DATA_DIR "${CMAKE_CURRENT_BINARY_DIR}/_cmake_test_data" )
 file( MAKE_DIRECTORY ${TEST_DATA_DIR} )
 
 # Function to check if given script is suitable for execution.
-set( SCRIPTS_TO_EXECUTE "" )
-macro( suitable_for_execution script)
+set(SCRIPTS_TO_EXECUTE "" )
+set(SCRIPTS_NOT_TO_EXECUTE "")
+set(BROKEN_SCRIPTS "")
+
+macro(suitable_for_execution script)
     file(READ ${script} _text)
     string( FIND "${_text}" "__BROKEN__" DEVELOPER_MARKED_IT_AS_BROKEN )
     string( REGEX MATCH "input(\\s*)|raw_input(\\s*)" HUMAN_IS_REQUIRED ${_text} )
     string( REGEX MATCH "__main__" MUST_HAVE_TEXT ${_text} )
     if( HUMAN_IS_REQUIRED OR (NOT MUST_HAVE_TEXT) )
-        message( STATUS "-> File is not suitable for running" )
+        list(APPEND SCRIPTS_NOT_TO_EXECUTE "${script}" )
     elseif(DEVELOPER_MARKED_IT_AS_BROKEN GREATER 0)
-        message(STATUS "-> This script is marked BROKEN by developer." )
+        message(STATUS "BORKEN: ${script}" )
+        list(APPEND BROKEN_SCRIPTS ${script} )
     elseif( ${_script} MATCHES ".+traub_2005/.+" )
-        message( STATUS "|| Script is blacklisted" )
+        message(STATUS "BLACKLISTED: ${script}" )
+        list(APPEND SCRIPTS_NOT_TO_EXECUTE ${script} )
     else()
-        list(APPEND SCRIPTS_TO_EXECUTE "${script}" )
+        list(APPEND SCRIPTS_TO_EXECUTE ${script} )
     endif( )
 endmacro( )
 
@@ -47,7 +52,7 @@ foreach( _script ${PY_SCRIPTS} )
     get_filename_component( _script_filename ${_script} NAME )
     get_filename_component( _script_dirname ${_script} DIRECTORY )
     file(MD5 ${_script} _script_MD5_sum )
-    message( STATUS "Added ${_script_filename} for checking" )
+    # message( STATUS "Added ${_script_filename} for checking" )
 
     set(STATUS_FILE
         "${TEST_DATA_DIR}/_status_${_script_filename}_${_script_MD5_sum}" 
@@ -72,13 +77,11 @@ endforeach( )
 
 add_custom_target( execute ALL )
 add_custom_target( deploy ALL 
-    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/_travis/deploy_gh_pages.py
+    COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/_travis/deploy_gh_pages.sh
     WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
     VERBATIM
     )
 
-
-message( STATUS "Following script will run" )
 foreach( _script ${SCRIPTS_TO_EXECUTE} )
     # message( STATUS "|| Script ${_script} will be xecuted" )
     get_filename_component( _script_filename ${_script} NAME )
@@ -110,4 +113,8 @@ message(STATUS "Total ${NUMBER_OF_SCRIPTS} will be executed." )
 add_dependencies( execute lint )
 add_dependencies( deploy execute )
 
-# deploy 
+# write blacklisted and broken scripts to a text file.
+STRING(REGEX REPLACE ";" "\n" BROKEN_SCRIPTS "${BROKEN_SCRIPTS}")
+FILE(WRITE ${CMAKE_BINARY_DIR}/BROKEN "${BROKEN_SCRIPTS}" )
+STRING(REGEX REPLACE ";" "\n" SCRIPTS_NOT_TO_EXECUTE "${SCRIPTS_NOT_TO_EXECUTE}")
+FILE(WRITE ${CMAKE_BINARY_DIR}/NOTTORUN "${SCRIPTS_NOT_TO_EXECUTE}")
