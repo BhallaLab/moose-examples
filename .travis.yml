@@ -13,6 +13,8 @@ notifications:
             - hrani@ncbs.res.in
 
 install:
+    - gem install jekyll 
+    - gen install html-proffer
     - sudo ./.travis_prepare.sh
 
 script:

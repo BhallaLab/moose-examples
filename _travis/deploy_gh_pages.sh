@@ -6,5 +6,7 @@ Following scripts failed.
 
 $FAILEDTXT
 EOF
+
 # generate site
-jekyll b
+bundle exec jekyll build
+bundle exec htmlproofer ./_site
