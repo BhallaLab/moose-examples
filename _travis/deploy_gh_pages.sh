@@ -2,6 +2,12 @@
 INDEXMD='index.md'
 FAILEDTXT=$(cat FAILED)
 SUCCESSTXT=$(cat SUCCEEDED)
+
+SUCCESSTXT=""
+if [[ -f SUCCEEDED ]]; then
+    SUCCESSTXT=$(cat SUCCEEDED)
+fi
+
 BROKENTXT=""
 if [[ -f BROKEN ]]; then
     BROKENTXT=$(cat BROKEN)
