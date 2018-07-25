@@ -1,4 +1,5 @@
-#########################################################################
+# -*- coding: utf-8 -*-
+
 # crossComptOscillator.py --- 
 # 
 # Filename:  crossComptOscillator.py
@@ -12,8 +13,7 @@
 # URL: 
 # Keywords: 
 # Compatibility: 
-# 
-# 
+#   
 
 # Commentary: 
 # 
@@ -30,7 +30,7 @@
 ## See the file COPYING.LIB for the full notice.
 #########################################################################
 
-from __future__ import print_function
+from __future__ import print_function, division
 import moose
 import pylab
 import numpy
