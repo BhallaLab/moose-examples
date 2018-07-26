@@ -19,25 +19,32 @@ if [[ -f BLACKLISTED ]]; then
     BLACKLISTEDTXT=$(cat BLACKLISTED)
 fi
 
-cat <<-EOF >> $README 
-# Successful scripts
+cat <<-EOF > $README 
+
+[![Build Status](https://travis-ci.org/BhallaLab/moose-examples.svg?branch=master)](https://travis-ci.org/BhallaLab/moose-examples).
+
+Examples, tutorial and demo scripts.
+
+# Status of scripts tested by Travis.
+
+## Successful scripts
 
 These scripts ran successfully.
 
 $SUCCESSTXT
 
-# Failed scripts
+## Failed scripts
 
 These scripts failed to execute successfully on Travis.
 $FAILEDTXT
 
-# Broken scripts
+## Broken scripts
 
 These scripts are marked "BROKEN" by one or more developers.
 
 $BROKENTXT
 
-# Blacklisted scripts
+## Blacklisted scripts
 
 These scripts were not tested because they require human interaction :-(.
 
