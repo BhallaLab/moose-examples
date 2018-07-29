@@ -151,6 +151,29 @@ ex8.2_multiscale_gluR_phosph_3compt.py: Multiscale model across PSD, spine head,
 	You can play with # of synapses by altering the spacing between 
 	spines as the third argument of spineDistrib.
 
+ex8.3_spine_vol_change.py: Multiscale model demonstrating spine geometry 
+	changing due to signaling events in a multiscale model. 
+	The reactions are the same as in 8.2:
+	Ca+CaM <===> Ca_CaM;    Ca_CaM + CaMKII <===> Ca_CaM_CaMKII (all in 
+	spine head, except that the Ca_CaM_CaMKII translocates to the PSD)
+	chan ------Ca_CaM_CaMKII-----> chan_p; chan_p ------> chan  (all in PSD)
+	Here the chan_p maps through an adaptor to the psdArea. There are many
+	plots here to show the effects on max channel conductance, on 
+	concentrations of molecules, and on passive electrical properties of 
+	the spine. The diffusion properties also change but are harder to
+	visualize.
+	Suggestions:
+	- The Spine class (instance: spine) manages several possible scaling 
+	targets on the spine geometry: shaftLength, shaftDiameter, 
+	headLength, headDiameter, psdArea, headVolume, totalLength. Try them
+	out. Think about mechanisms by which molecular concentrations might
+	affect each.
+	- When volume changes, we assume that the molecular numbers stay 
+	fixed, so concentration changes. Except for buffered molecules, where
+	we assume concentration remains fixed. Use this to design a bistable
+	simply relying on molecules and spine geometry terms. 
+	- Even more interesting, use it to design an oscillator.
+
 
 ex9.0_load_neuronal_morphology_file.py: Load .swc morphology file and view it.
 	Illustrates loading a file in rdesigneur. You've already seen how to
