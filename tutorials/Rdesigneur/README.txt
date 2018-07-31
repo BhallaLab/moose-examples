@@ -122,6 +122,59 @@ ex8.0_multiscale_KA_phosph.py: Multiscale model that is bistable. It switches
 	- Play with the channel densities
 	- Open the chem model in moosegui and vary its parameters too.
 
+ex8.2_multiscale_gluR_phosph_3compt.py: Multiscale model across PSD, spine head,
+	and dendrite. This is bistable as long as periodic synaptic input keeps
+	coming. This is how it works:
+	At baseline, we just have small EPSPs and little Ca inlux. A burst of
+	strong synaptic input causes Ca entry into the spine via NMDAR. This 
+	triggers activation of CaMKII and its translocation to the PSD, where 
+	it phosphorylates and increases the conductance of gluR. Now that gluR
+	has a greater weight, just baseline input keeps Ca trickling in enough
+	to keep the CaMKII active. In the meantime Ca diffuses into the 
+	dendrite and spreads. Lots going on. 
+	Here are the reactions:
+	Ca+CaM <===> Ca_CaM;    Ca_CaM + CaMKII <===> Ca_CaM_CaMKII (all in 
+	spine head, except that the Ca_CaM_CaMKII translocates to the PSD)
+	chan ------Ca_CaM_CaMKII-----> chan_p; chan_p ------> chan  (all in PSD)
+	Suggestions:
+	- Add GABAR using make_GABA(), put it on soma or dendrite. Stimulate it
+	after 20 s to see if you can turn off the sustained activation
+	- Replace the 'periodicsyn' in stimList with 'randsyn'. This gives 
+	Poisson activity at the specified mean frequency. Does the switch 
+	remain reliable?
+	- What are the limits of various parameters for this switching? You 
+	could try basal synaptic rate, burst rate, the various scaling factors
+	for the adaptors, the densities of various channels, synaptic weight,
+	and so on.
+	- In real life an individual synaptic EPSP is tiny, under a millivolt. 
+	How many synapses would you need to achieve this kind of switching? 
+	You can play with # of synapses by altering the spacing between 
+	spines as the third argument of spineDistrib.
+
+ex8.3_spine_vol_change.py: Multiscale model demonstrating spine geometry 
+	changing due to signaling events in a multiscale model. 
+	The reactions are the same as in 8.2:
+	Ca+CaM <===> Ca_CaM;    Ca_CaM + CaMKII <===> Ca_CaM_CaMKII (all in 
+	spine head, except that the Ca_CaM_CaMKII translocates to the PSD)
+	chan ------Ca_CaM_CaMKII-----> chan_p; chan_p ------> chan  (all in PSD)
+	Here the chan_p maps through an adaptor to the psdArea. There are many
+	plots here to show the effects on max channel conductance, on 
+	concentrations of molecules, and on passive electrical properties of 
+	the spine. The diffusion properties also change but are harder to
+	visualize.
+	Suggestions:
+	- The Spine class (instance: spine) manages several possible scaling 
+	targets on the spine geometry: shaftLength, shaftDiameter, 
+	headLength, headDiameter, psdArea, headVolume, totalLength. Try them
+	out. Think about mechanisms by which molecular concentrations might
+	affect each.
+	- When volume changes, we assume that the molecular numbers stay 
+	fixed, so concentration changes. Except for buffered molecules, where
+	we assume concentration remains fixed. Use this to design a bistable
+	simply relying on molecules and spine geometry terms. 
+	- Even more interesting, use it to design an oscillator.
+
+
 ex9.0_load_neuronal_morphology_file.py: Load .swc morphology file and view it.
 	Illustrates loading a file in rdesigneur. You've already seen how to
 	make a moogli viewer, this utilizes it for something more complicated.
