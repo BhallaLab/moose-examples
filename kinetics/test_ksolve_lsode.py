@@ -462,7 +462,7 @@ def testCubeMultiscale( useSolver ):
     plotDt = 5e-4
     plotName = 'mc.plot'
     elecDt = 50e-6
-    chemDt = 2e-3
+    chemDt = 5e-3
     plotName = 'mcs.plot'
     makeCubeMultiscale()
 
@@ -485,8 +485,8 @@ def testCubeMultiscale( useSolver ):
     ksolve = makeSolvers( elecDt )
     moose.reinit()
     t = time.time()
-    moose.start( 1.0 )
-    print(("Total time taken: %s sec for 1.0 sec of simulation" % (time.time() - t)))
+    moose.start( 10 )
+    print(("Total time taken: %s sec "% (time.time() - t)))
     plotName = '%s_%s.png' % (sys.argv[0], ksolve.method )
     dumpPlots( plotName )
 
