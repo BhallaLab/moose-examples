@@ -35,6 +35,8 @@ import moose
 import pylab
 import numpy
 import sys
+pylab.rcParams['text.usetex'] = False
+
 
 def deq( a, b ):
     eps1 = 1e-9
@@ -69,6 +71,8 @@ def main():
     stoich1 = moose.Stoich( '/model/compartment_1/stoich' )
     ksolve0 = moose.Ksolve( '/model/kinetics/ksolve' )
     ksolve1 = moose.Ksolve( '/model/compartment_1/ksolve' )
+    ksolve0.method = "lsoda"
+    ksolve1.method = "lsoda"
     stoich0.compartment = compt0
     stoich0.ksolve = ksolve0
     stoich0.path = '/model/kinetics/##'
