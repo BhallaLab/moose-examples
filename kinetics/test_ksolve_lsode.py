@@ -1,5 +1,8 @@
 # test_ksolve.py --- 
-# modified by Dilawar Singh Wed Aug  5 19:21:19 2015
+# Originally written by Upinder S. Bhalla. It has been 
+# modified by Dilawar Singh Wed Aug  5 19:21:19 2015 to turn it into a 
+# test script. NOT TO BE USED for scientific demos or tutorials. The sole
+# purpose of this script is to benchmark the Ksolve solver with various methods.
 
 import sys
 import moose
