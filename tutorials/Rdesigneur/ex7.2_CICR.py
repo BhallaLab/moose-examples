@@ -3,6 +3,7 @@
 # dendrite. Here endo_compartments are used for the endoplasmic reticulum 
 # (ER) in a model of Calcium Induced Calcium Release through the 
 # IP3 receptor.
+# Note that units of permeability in the ConcChan are 1/(millimolar.sec)
 # 
 # Copyright (C) Upinder S. Bhalla NCBS 2018
 # Released under the terms of the GNU Public License V3.
@@ -28,9 +29,6 @@ rdes = rd.rdesigneur(
         ['soma', '1', 'dend/ActIP3R', 'conc', 'active IP3R'],
     ],
 )
-
-moose.element('/library/chem/kinetics/ActIP3R/chan').permeability = 2.12e-20
-moose.element('/library/chem/compartment_1/leakPool/leakChan').permeability = 2.55e-23
 
 rdes.buildModel()
 IP3 = moose.element( '/model/chem/dend/IP3' )
