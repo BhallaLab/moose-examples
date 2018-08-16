@@ -44,7 +44,7 @@ rdes = rd.rdesigneur(
         ['Na', '#', 'Gbar', '1200' ],
         ['K', '#', 'Gbar', '360' ]],
     stimList = [['soma', '1', '.', 'inject', '(t>0.01 && t<0.2) * 2e-11' ],
-        ['axon100', '1', '.', 'inject', '(t>0.01 && t<0.2) * 2e-11' ]],
+        ['axon100', '1', '.', 'inject', '(t>0.01 && t<0.2) * 3e-11' ]],
     plotList = [['soma', '1', '.', 'Vm', 'Membrane potential']],
     moogList = [['#', '1', '.', 'Vm', 'Vm (mV)']]
 )

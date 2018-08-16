@@ -9,7 +9,7 @@ rdes = rd.rdesigneur(
     cellProto = [['somaProto', 'soma', 20e-6, 200e-6]],
     chanProto = [['make_glu()', 'glu']],
     chanDistrib = [['glu', 'soma', 'Gbar', '1' ]],
-    stimList = [['soma', '1', 'glu', 'randsyn', '50' ]],
+    stimList = [['soma', '0.5', 'glu', 'randsyn', '50' ]],
     # Deliver stimulus to glu synapse on soma, at mean 50 Hz Poisson.
     plotList = [['soma', '1', '.', 'Vm', 'Soma membrane potential']]
 )

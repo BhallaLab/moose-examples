@@ -9,7 +9,7 @@ ex1_minimalModel.py: Bare Rdesigneur: single passive compartment
 	- Modify to print out the parameters of the compartment.
 	- Change default values.
 
-ex2_currentPulse.py: Simulate and display current pulse to soma
+ex2.0_currentPulse.py: Simulate and display current pulse to soma
 	Introduces stimulus and plotting.
 	Suggestion: Play with the stimulus parameters. Can you put in a
 	current ramp? Plot it too.
@@ -111,6 +111,17 @@ ex7.1_diffusive_gradient.py: Simple diffusion of a molecule that starts out
 	- Use different diffusion constants.
 	- Compare to analytical solution
 
+ex7.2_CICR.py: Calcium-induced Calcium release model. Demonstrates the use of
+	endo compartments. Endo-compartments, as the name suggests, represent
+	compartments that sit within other cellular compartments. If the 
+	surround compartment is subdivided into N voxels, so is the endo-
+	compartment. Here we use the endo-compartment to represent the 
+	endoplasmic reticulum. We also introduce ConcChans in the chemical 
+	model, which act as membrane pores whose permeability scales with 
+	number of channels in the open state. Here the IP3R opens due to 
+	various chemical steps, and the whole system shows propagating-wave
+	oscillations.
+
 ex8.0_multiscale_KA_phosph.py: Multiscale model that is bistable. It switches
 	between a resting, non-spiking state, and an active, tonically spiking
 	state. In the active state, spiking -> Ca influx -> chemical activity->
@@ -125,7 +136,7 @@ ex8.0_multiscale_KA_phosph.py: Multiscale model that is bistable. It switches
 ex8.2_multiscale_gluR_phosph_3compt.py: Multiscale model across PSD, spine head,
 	and dendrite. This is bistable as long as periodic synaptic input keeps
 	coming. This is how it works:
-	At baseline, we just have small EPSPs and little Ca inlux. A burst of
+	At baseline, we just have small EPSPs and little Ca influx. A burst of
 	strong synaptic input causes Ca entry into the spine via NMDAR. This 
 	triggers activation of CaMKII and its translocation to the PSD, where 
 	it phosphorylates and increases the conductance of gluR. Now that gluR
@@ -193,6 +204,20 @@ ex9.1_chans_in_neuronal_morph.py: Build an active neuron model by putting
 	Suggestion: 
 	- Try another morphology file. 
 	- Try different channel distributions by editing the chanDistrib lines.
+        - There are numerous predefined channels available within Rdesigneur.
+	  These can be set up using the following chanProto options:
+		['make_HH_Na()', 'HH_Na']
+		['make_HH_K_DR()', 'HH_K']
+		['make_Na()', 'Na']
+		['make_K_DR()', 'K_DR']
+		['make_K_A()', 'K_A']
+		['make_K_AHP()', 'K_AHP']
+		['make_K_C()', 'K_C']
+		['make_Ca()', 'Ca']
+		['make_Ca_conc()', 'Ca_conc']
+		['make_glu()', 'glu']
+		['make_GABA()', 'GABA']
+	  Then the chanDistrib can refer to these channels instead.
 	- Deliver stimuli on the dendrites rather than the soma.
 
 ex9.2_spines_in_neuronal_morpho.py: Add spines to a neuron built from a 

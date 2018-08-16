@@ -18,7 +18,7 @@ rdes = rd.rdesigneur(
         ['Na', 'dend#', 'Gbar', '400' ],
         ['K', 'dend#', 'Gbar', '120' ]
     ],
-    stimList = [['soma', '1', '.', 'inject', '(1+cos(t/10))*(t>31.4 && t<94) * 0.2e-9' ]],
+    stimList = [['soma', '1', '.', 'inject', '(1+cos(t/10))*(t>31.4 && t<94) * 0.5e-9' ]],
     plotList = [
         ['soma', '1', '.', 'Vm', 'Membrane potential'],
         ['soma', '1', '.', 'inject', 'Stimulus current']
