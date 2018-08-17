@@ -133,6 +133,9 @@ ex8.0_multiscale_KA_phosph.py: Multiscale model that is bistable. It switches
 	- Play with the channel densities
 	- Open the chem model in moosegui and vary its parameters too.
 
+ex8.1_multiscale_CICR.py: Multiscale model of CICR in dend triggered by 
+	synaptic input. Models Ca events in dend, dend_endo and spine. 
+
 ex8.2_multiscale_gluR_phosph_3compt.py: Multiscale model across PSD, spine head,
 	and dendrite. This is bistable as long as periodic synaptic input keeps
 	coming. This is how it works:
