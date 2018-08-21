@@ -126,15 +126,25 @@ ex8.0_multiscale_KA_phosph.py: Multiscale model that is bistable. It switches
 	between a resting, non-spiking state, and an active, tonically spiking
 	state. In the active state, spiking -> Ca influx -> chemical activity->
 	phosphorylation and inactivation of KA -> depolarization -> spiking.
-	This example illustrates rather a lot of new things.
+	This example illustrates rather a lot of new things: adaptors,
+	wave displays of values varying in space and time, and including a 
+	moderately involved chemical model into a simulation.
 	Suggestions:
 	- Vary the adaptor settings, which couple electrical to chemical
 	signaling and vice versa.
 	- Play with the channel densities
 	- Open the chem model in moosegui and vary its parameters too.
 
-ex8.1_multiscale_CICR.py: Multiscale model of CICR in dend triggered by 
-	synaptic input. Models Ca events in dend, dend_endo and spine. 
+ex8.1_synTrigCICR.py: Multiscale model of CICR in dendrite triggered by 
+	synaptic input. Models Ca events in dendrite, ER inside dendrite, 
+	and spine. The signaling is a slight change from the toy model used
+	in ex7.2_CICR.py. Note specially how the range of CICR wave propagation
+	is limited by the level of IP3 in the dendrite.
+	Suggestions:
+	- Vary IP3 profile. Display it as a wave plot.
+	- Vary diffusion constant of Ca. What effect does it have on 
+	propagation and initiation?
+	- Try to change the width of the CICR wave, and its propagation speed.
 
 ex8.2_multiscale_gluR_phosph_3compt.py: Multiscale model across PSD, spine head,
 	and dendrite. This is bistable as long as periodic synaptic input keeps

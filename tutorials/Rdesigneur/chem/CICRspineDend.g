@@ -1,7 +1,7 @@
 //genesis
 // kkit Version 11 flat dumpfile
  
-// Saved on Fri Aug 17 11:18:29 2018
+// Saved on Tue Aug 21 06:59:07 2018
  
 include kkit {argv 1}
  
@@ -121,7 +121,7 @@ simundump kpool /kinetics/IP3_3_R 0 0.0 0 0 0 0 0 0 1866.9 0 \
 simundump text /kinetics/IP3_3_R/notes 0 ""
 call /kinetics/IP3_3_R/notes LOAD \
 ""
-simundump kpool /kinetics/IP3 0 0.0 7.9999 7.9999 14935 14935 0 0 1866.9 4 \
+simundump kpool /kinetics/IP3 0 0.0 0.1 0.1 186.69 186.69 0 0 1866.9 4 \
   /kinetics/geometry 53 black 5 9 0
 simundump text /kinetics/IP3/notes 0 ""
 call /kinetics/IP3/notes LOAD \
@@ -141,7 +141,7 @@ simundump kpool /kinetics/ActIP3R 0 0.0 0 0 0 0 0 0 1866.9 0 \
 simundump text /kinetics/ActIP3R/notes 0 ""
 call /kinetics/ActIP3R/notes LOAD \
 ""
-simundump kchan /kinetics/ActIP3R/chan 0 12720 0.1 0 1 0 "" brown 8 2 2 0
+simundump kchan /kinetics/ActIP3R/chan 0 8000 0.1 0 1 0 "" brown 8 2 2 0
 simundump text /kinetics/ActIP3R/chan/notes 0 ""
 call /kinetics/ActIP3R/chan/notes LOAD \
 ""
@@ -207,7 +207,7 @@ simundump kpool /kinetics/DEND_ER/leakPool 0 0 1 1 234 234 0 0 234 0 \
 simundump text /kinetics/DEND_ER/leakPool/notes 0 ""
 call /kinetics/DEND_ER/leakPool/notes LOAD \
 ""
-simundump kchan /kinetics/DEND_ER/leakPool/leakChan 0 15.3 0.1 0 1 0 "" brown \
+simundump kchan /kinetics/DEND_ER/leakPool/leakChan 0 40 0.1 0 1 0 "" brown \
   45 4 5 0
 simundump text /kinetics/DEND_ER/leakPool/leakChan/notes 0 ""
 call /kinetics/DEND_ER/leakPool/leakChan/notes LOAD \
@@ -227,8 +227,8 @@ simundump kpool /kinetics/SPINE/Ca 0 2e-11 0.08 0.08 4.8 4.8 0 0 60 0 \
 simundump text /kinetics/SPINE/Ca/notes 0 ""
 call /kinetics/SPINE/Ca/notes LOAD \
 ""
-simundump kpool /kinetics/CaExtracell 0 0.0 0.08 0.08 149.35 149.35 0 0 \
-  1866.9 4 /kinetics/geometry 61 black 9 4 0
+simundump kpool /kinetics/CaExtracell 0 0.0 0.079999 0.079999 149.35 149.35 0 \
+  0 1866.9 4 /kinetics/geometry 61 black 9 4 0
 simundump text /kinetics/CaExtracell/notes 0 ""
 call /kinetics/CaExtracell/notes LOAD \
 ""
@@ -248,7 +248,7 @@ simundump xplot /graphs/conc2/CaER.Co 3 524288 \
   "delete_plot.w <s> <d>; edit_plot.D <w>" 0 0 0 1
 simundump xgraph /moregraphs/conc3 0 0 100 0 1 0
 simundump xgraph /moregraphs/conc4 0 0 100 0 1 0
-simundump xcoredraw /edit/draw 0 2.2857 11.143 0.27608 9.7239
+simundump xcoredraw /edit/draw 0 -3 11 -3 13
 simundump xtree /edit/draw/tree 0 \
   /kinetics/#[],/kinetics/#[]/#[],/kinetics/#[]/#[]/#[][TYPE!=proto],/kinetics/#[]/#[]/#[][TYPE!=linkinfo]/##[] \
   "edit_elm.D <v>; drag_from_edit.w <d> <S> <x> <y> <z>" auto 0.6
