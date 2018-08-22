@@ -93,7 +93,7 @@ foreach( _script ${PY_SCRIPTS} )
     add_custom_command( OUTPUT ${STATUS_FILE}
         COMMAND ${PYTHON_EXECUTABLE} -m py_compile "${_script}"
         MAIN_DEPENDENCY ${_script}
-        COMMENT "Compiling with ${PYTHON_EXECUTABLE}"
+        COMMENT "Compiling ${_script} with ${PYTHON_EXECUTABLE}"
         WORKING_DIRECTORY ${_script_dirname} 
         VERBATIM 
         )
