@@ -18,7 +18,9 @@ BASEURL=https://github.com/BhallaLab/moose-examples/blob/master
 
 function fileToUrl()
 {
-    local FILEPATH=$(realpath --relative-to=$CMAKE_SOURCE_DIR $1)
+    local FILEPATH=$(python -c "import \
+            os.path;print(os.path.relpath('$1', '$CMAKE_SOURCE_DIR'))" \
+        )
     echo "[ ${FILEPATH} ]($BASEURL/$FILEPATH)"
 }
 
