@@ -6,6 +6,7 @@
 
 import sys
 import moose
+print( '[INFO] Using moose from %s' % moose.__file__)
 import math
 import os
 import time
@@ -372,13 +373,14 @@ def makeChemInCubeMesh():
     dendKinaseEnzCplx = moose.element( '/model/chem/neuroMesh/Ca.kinase/enz/cplx' )
     assert dendKinaseEnzCplx.volume == dendSide * dendSide * dendSide
 
-def makeSolvers( elecDt ):
+def makeSolvers( elecDt, method ):
     # Put in the solvers, see how they fare.
     # Here we kludge in a single chem solver for the whole system.
     ksolve = moose.Ksolve( '/model/ksolve' )
     stoich = moose.Stoich( '/model/stoich' )
     stoich.compartment = moose.element( '/model/chem/neuroMesh' )
     stoich.ksolve = ksolve
+    ksolve.method = method
     stoich.path = '/model/chem/##'
     moose.useClock( 5, '/model/ksolve', 'init' )
     moose.useClock( 6, '/model/ksolve', 'process' )
@@ -482,8 +484,7 @@ def testCubeMultiscale( method ):
     moose.useClock( 6, '/model/##[ISA=PoolBase],/model/chem/##[ISA=Adaptor]', 'process' )
     moose.useClock( 7, '/graphs/#', 'process' )
     moose.useClock( 8, '/graphs/elec/#', 'process' )
-    ksolve = makeSolvers( elecDt )
-    ksolve.method = method
+    ksolve = makeSolvers( elecDt, method )
     print( '[INFO] Using method %s' % ksolve.method )
     moose.reinit()
     t = time.time()
