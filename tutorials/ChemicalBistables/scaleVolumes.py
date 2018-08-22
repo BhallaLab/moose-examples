@@ -154,7 +154,7 @@ def main():
 		# Iterate through all plots, dump their contents to data.plot.
 		displayPlots( vol )
 		pylab.show( block=False )
-		print( 'vol = %f . hit enter to go to next plot' % vol )
+                print( 'vol = {:.5f} cubic microns . hit enter to go to next plot'.format( vol*1e18 ) )
 		try:
 			raw_input()
 		except NameError as e:
