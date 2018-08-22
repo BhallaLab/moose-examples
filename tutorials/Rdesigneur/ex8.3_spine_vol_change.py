@@ -12,7 +12,6 @@
 # Released under the terms of the GNU Public License V3.
 ########################################################################
 import moose
-import pylab
 import rdesigneur as rd
 rdes = rd.rdesigneur(
     elecDt = 50e-6,
