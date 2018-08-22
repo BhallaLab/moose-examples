@@ -32,6 +32,7 @@ runtime = 100
 moose.reinit()
 t0= time.time()
 moose.start( runtime )
-print "Real time to run {} simulated seconds = {} seconds".format( runtime, time.time() - t0 )
+print( "Real time to run {} simulated seconds = {} seconds".format( runtime,
+    time.time() - t0 ) )
 
 rdes.display()

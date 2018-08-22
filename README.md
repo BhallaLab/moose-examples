@@ -2,7 +2,7 @@
 
 Examples, tutorial and demo scripts.
 
-# Blacklisted 
-# Blacklisted 
-# Blacklisted 
-# Blacklisted 
+# Status of scripts tested by Travis.
+
+Check [THIS PAGE](https://bhallalab.github.io/moose-examples).
+

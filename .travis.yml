@@ -7,17 +7,16 @@ notifications:
             - bhalla@ncbs.res.in
             - hrani@ncbs.res.in
 
-
 install:
-    - sudo apt-get -y update
-    - sudo apt-get install cmake --force-yes
-    - sudo apt-get -y --force-yes install python-qt4 python-pip graphviz
-    - sudo apt-get -y --force-yes install python-h5py python-scipy python-pygraphviz
-    - sudo pip install python-libsbml networkx matplotlib numpy --upgrade
-    - sudo pip install pymoose numpy 
+    - sudo ./.travis_prepare.sh
 
 script:
-    - python3 -m compileall -q .
-    - python2 -m compileall -q .
-    - /usr/bin/python -c 'import moose'
-    - cd _travis && cmake . && make -j4 && make doqcs
+    - ./.travis_run.sh
+
+exclude: [vendor]
+
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GHI_TOKEN  #
+  keep-history: true
