@@ -1,7 +1,7 @@
 ########################################################################
 # This example illustrates molecular transport of an oscillatory reaction
 # system, along a closed-end cylinder. Here all the molecules are 
-#, transported, a right to left and b and s backwards.
+#, transported, a left to right and b and s right to left.
 ########################################################################
 import moose
 import numpy as np
@@ -14,9 +14,6 @@ rdes = rd.rdesigneur(
     chemProto = [['makeChemOscillator()', 'osc']],
     chemDistrib = [['osc', 'soma', 'install', '1' ]],
     plotList = [
-        #['soma', '1', 'dend/a', 'conc', 'Concentration of a'],
-        #['soma', '1', 'dend/b', 'conc', 'Concentration of b'],
-        #['soma', '1', 'dend/s', 'conc', 'Concentration of s'],
         ['soma', '1', 'dend/a', 'conc', 'Concentration of a', 'wave', 0, 1800],
         ['soma', '1', 'dend/b', 'conc', 'Concentration of b', 'wave', 0, 500],
         ['soma', '1', 'dend/s', 'conc', 'Concentration of s', 'wave', 0, 1200],

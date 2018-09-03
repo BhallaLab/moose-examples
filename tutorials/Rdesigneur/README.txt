@@ -128,7 +128,7 @@ ex7.3_simple_transport.py: Model of a single molecule undergoing molecular
 	eventually they all end up on the right. Note the formulation for
 	transport is to compute the number of moving molecules from the 
 	product of the motor constant with the number in the local compartment:
-	Nmove = dt * Nlocal * motorConst
+	Flux = conc * motorConst / spacing
 	This is not a pure shift register, which would have just assigned the
 	local conc to the next voxel. This is why there is a spread.
 	Suggestions:
@@ -147,7 +147,8 @@ ex7.4_travelling_osc.py: Another transport model. Here the entire system is the
 		- What happens if b is transported opposite to a?
 		- What happens if there is also diffusion?
 
-ex7.5_travelling_osc2.py: Very similar system, but now b and s are transported
+ex7.5_bidirectional_transport.py: Very similar system to ex7.4, but now 
+	b and s are transported
 	the other way from a. The oscillations propagate to the right, but the
 	zone of oscillations gets eroded from right to left.
 	Suggestions:
@@ -155,9 +156,10 @@ ex7.5_travelling_osc2.py: Very similar system, but now b and s are transported
 		which an oscillator at one end is coupled to the outgrowing
 		cells. The departing cells retain a signal that is 'frozen' 
 		in the oscillation phase they saw. Can you model this using
-		the MOOSE transport equations? Hint: No, but it is instructive
-		to try. You need a bistable system to be able to retain its 
-		shape as it propagates.
+		the MOOSE transport equations? Hint: probably not, but it is 
+		instructive to try. You need a bistable or non-distorting
+		tranport system to be able to retain the signal shape as 
+		it propagates.
 
 ex7.6_French_flag (pending): Here we show how to achieve local developmental 
 	patterning due to molecular gradients. We set up the gradients using 
