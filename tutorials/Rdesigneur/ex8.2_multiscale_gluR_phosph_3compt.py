@@ -30,7 +30,7 @@ rdes = rd.rdesigneur(
         ['make_Ca()', 'Ca' ],
         ['make_Ca_conc()', 'Ca_conc' ]
     ],
-    passiveDistrib = [['.', 'soma', 'CM', '0.01', 'Em', '-0.06']],
+    passiveDistrib = [['soma', 'CM', '0.01', 'Em', '-0.06']],
     spineDistrib = [['spine', '#dend#', '50e-6', '1e-6']],
     chemDistrib = [['chem', '#', 'install', '1' ]],
     chanDistrib = [

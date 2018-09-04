@@ -28,7 +28,7 @@ rdes = rd.rdesigneur(
         ['make_Ca_conc()', 'Ca_conc' ]
     ],
     # Some changes to the default passive properties of the cell.
-    passiveDistrib = [['.', 'soma', 'CM', '0.03', 'Em', '-0.06']],
+    passiveDistrib = [['soma', 'CM', '0.03', 'Em', '-0.06']],
     chemDistrib = [['chem', 'soma', 'install', '1' ]],
     chanDistrib = [
         ['Na', 'soma', 'Gbar', '300' ],
