@@ -23,9 +23,11 @@ set(README_TO_CHANGE ${CMAKE_CURRENT_SOURCE_DIR}/index.md)
 configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/.travis/deploy_gh_pages.sh.in
     ${CMAKE_BINARY_DIR}/deploy_gh_pages.sh @ONLY)
 
-# Now find all python files.
 add_custom_target( lint )
+
+# Now find all python files which are not in ./BROKEN_SCRIPTS/ folder.
 file( GLOB_RECURSE PY_SCRIPTS *.py )
+
 set( MATPLOTLIB_INITRC ${CMAKE_CURRENT_SOURCE_DIR}/.travis/matplotlibrc )
 
 set( TEST_DATA_DIR "${CMAKE_CURRENT_BINARY_DIR}/_cmake_test_data" )
@@ -66,16 +68,17 @@ macro(suitable_for_execution script)
     if( HUMAN_IS_REQUIRED OR (NOT MUST_HAVE_TEXT) )
         file(APPEND ${NOTRUN_FILE} "- ${_link}")
     elseif(DEVELOPER_MARKED_IT_AS_BROKEN GREATER 0)
-        # message(STATUS "BROKEN: ${script}" )
+        message(STATUS "BROKEN: ${script}" )
         file(APPEND ${BROKEN_FILE} "- ${_link}" )
     elseif( ${_script} MATCHES ".+traub_2005/.+" OR (DEPRECATED_MOOGLI GREATER 0) )
-        # message(STATUS "BLACKLISTED: ${script}" )
+        message(STATUS "BLACKLISTED: ${script}" )
         file(APPEND ${BLACKLISTED_FILE} "- ${_link}")
     else()
         list(APPEND SCRIPTS_TO_EXECUTE ${script} )
     endif( )
 endmacro( )
 
+# Check if script can be executed.
 foreach( _script ${PY_SCRIPTS} )
     get_filename_component( _script_filename ${_script} NAME )
     get_filename_component( _script_dirname ${_script} DIRECTORY )
