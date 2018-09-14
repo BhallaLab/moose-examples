@@ -122,6 +122,53 @@ ex7.2_CICR.py: Calcium-induced Calcium release model. Demonstrates the use of
 	various chemical steps, and the whole system shows propagating-wave
 	oscillations.
 
+ex7.3_simple_transport.py: Model of a single molecule undergoing molecular
+	transport along a cylinder. All the molecules start out in a single 
+	voxel on the left, the spread and move along the cylinder, and 
+	eventually they all end up on the right. Note the formulation for
+	transport is to compute the number of moving molecules from the 
+	product of the motor constant with the number in the local compartment:
+	Flux = conc * motorConst / spacing
+	This is not a pure shift register, which would have just assigned the
+	local conc to the next voxel. This is why there is a spread.
+	Suggestions:
+		- Play with different motor rates.
+		- Change the diffConst of A to a nonzero value.
+		- Consider how you could avoid the buildup in the last voxel.
+		- Consider how to achieve a nice exponential falloff over a
+			much longer range than possible with diffusion.
+
+ex7.4_travelling_osc.py: Another transport model. Here the entire system is the
+	simple oscillator model, and instead of diffusion the molecule a is
+	transported to the right. The oscillatory zone slowly moves to the
+	right, with an amplification in the last compartment due to end-effects.
+	Suggestions:
+		- What happens if all molecules undergo transport?
+		- What happens if b is transported opposite to a?
+		- What happens if there is also diffusion?
+
+ex7.5_bidirectional_transport.py: Very similar system to ex7.4, but now 
+	b and s are transported
+	the other way from a. The oscillations propagate to the right, but the
+	zone of oscillations gets eroded from right to left.
+	Suggestions:
+		- There is a model for formation of vertebral somites, in
+		which an oscillator at one end is coupled to the outgrowing
+		cells. The departing cells retain a signal that is 'frozen' 
+		in the oscillation phase they saw. Can you model this using
+		the MOOSE transport equations? Hint: probably not, but it is 
+		instructive to try. You need a bistable or non-distorting
+		tranport system to be able to retain the signal shape as 
+		it propagates.
+
+ex7.6_French_flag (pending): Here we show how to achieve local developmental 
+	patterning due to molecular gradients. We set up the gradients using 
+	two counter-propagating transport sytems, and use a 3-component 
+	winner-take-all chemical system to get nice sharp zones.
+	Suggestions:
+		- Contrast winner-take-all with a simple molecular cooperative
+		system for obtaining 3 zones.
+
 ex8.0_multiscale_KA_phosph.py: Multiscale model that is bistable. It switches
 	between a resting, non-spiking state, and an active, tonically spiking
 	state. In the active state, spiking -> Ca influx -> chemical activity->
@@ -244,6 +291,16 @@ ex9.2_spines_in_neuronal_morpho.py: Add spines to a neuron built from a
 	- See if you can deliver the current injection to the spine. Hint: the
 	name of the spine compartments is 'head#' where # is the index of the
 	spine.
+
+
+ex9.3_spiral_spines.py: Just for fun. Illustrates how to place spines in a
+spiral around the dendrite. For good measure the spines get bigger the further
+they are from the soma. Note that the uniform spacing of spines is signified 
+by the negative minSpacing term, the fourth argument to spineDistrib.
+	Suggestions:
+	- Play with expressions for spine size and angular placement.
+	- See what happens if the segment size gets smaller than the
+  	spine spacing.
 	
 To come:
 rdes_ex10.py: Build a spiny neuron, and insert the oscillatory chemical model
