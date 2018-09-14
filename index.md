@@ -663,6 +663,837 @@ These scripts failed to execute successfully on Travis.
 
 ```
 ```
+- [ snippets/vectors.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/vectors.py)
+
+```
+- [ snippets/lifcomp.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/lifcomp.py)
+  Traceback (most recent call last):
+    File "/home1/dilawars/Work/GITHUB/BhallaLab/moose-examples/snippets/tweakingParameters.py", line 10, in <module>
+      import moose
+    File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/__init__.py", line 6, in <module>
+      from moose.moose import *
+    File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/moose.py", line 63, in <module>
+      from moose._moose import *
+  ImportError: libhdf5_cpp.so.102: cannot open shared object file: No such file or directory
+  ctory
+```
+
+```
+    Traceback (most recent call last):
+      File "/home1/dilawars/Work/GITHUB/BhallaLab/moose-examples/snippets/tweakingParameters.py", line 10, in <module>
+        import moose
+      File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/__init__.py", line 6, in <module>
+        from moose.moose import *
+      File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/moose.py", line 63, in <module>
+        from moose._moose import *
+    ImportError: libhdf5_cpp.so.102: cannot open shared object file: No such file or directory
+    ctory
+```
+- [ tutorials/Electrophys/ephys1_cable.py ](https://github.com/BhallaLab/moose-examples/blob/master/tutorials/Electrophys/ephys1_cable.py)
+
+```
+      Traceback (most recent call last):
+        File "/home1/dilawars/Work/GITHUB/BhallaLab/moose-examples/snippets/tweakingParameters.py", line 10, in <module>
+          import moose
+        File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/__init__.py", line 6, in <module>
+          from moose.moose import *
+        File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/moose.py", line 63, in <module>
+          from moose._moose import *
+      ImportError: libhdf5_cpp.so.102: cannot open shared object file: No such file or directory
+      ctory
+```
+- [ snippets/tweakingParameters.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/tweakingParameters.py)
+
+```
+        Traceback (most recent call last):
+          File "/home1/dilawars/Work/GITHUB/BhallaLab/moose-examples/snippets/tweakingParameters.py", line 10, in <module>
+            import moose
+          File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/__init__.py", line 6, in <module>
+            from moose.moose import *
+          File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/moose.py", line 63, in <module>
+            from moose._moose import *
+        ImportError: libhdf5_cpp.so.102: cannot open shared object file: No such file or directory
+        ctory
+```
+- [ snippets/synapse.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/synapse.py)
+
+```
+  Traceback (most recent call last):
+    File "/home1/dilawars/Work/GITHUB/BhallaLab/moose-examples/snippets/showclocks.py", line 4, in <module>
+      import moose
+    File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/__init__.py", line 6, in <module>
+      from moose.moose import *
+    File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/moose.py", line 63, in <module>
+      from moose._moose import *
+  ImportError: libhdf5_cpp.so.102: cannot open shared object file: No such file or directory
+  tory
+```
+- [ snippets/symcompartment.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/symcompartment.py)
+
+```
+    Traceback (most recent call last):
+      File "/home1/dilawars/Work/GITHUB/BhallaLab/moose-examples/snippets/showclocks.py", line 4, in <module>
+        import moose
+      File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/__init__.py", line 6, in <module>
+        from moose.moose import *
+      File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/moose.py", line 63, in <module>
+        from moose._moose import *
+    ImportError: libhdf5_cpp.so.102: cannot open shared object file: No such file or directory
+    tory
+```
+- [ snippets/startstop.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/startstop.py)
+
+```
+```
+- [ snippets/showclocks.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/showclocks.py)
+
+```
+```
+- [ snippets/savemodel.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/savemodel.py)
+
+```
+  Traceback (most recent call last):
+    File "/home1/dilawars/Work/GITHUB/BhallaLab/moose-examples/tutorials/ChemicalBistables/strongBis.py", line 10, in <module>
+      import moose
+    File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/__init__.py", line 6, in <module>
+      from moose.moose import *
+    File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/moose.py", line 63, in <module>
+      from moose._moose import *
+  ImportError: libhdf5_cpp.so.102: cannot open shared object file: No such file or directory
+```
+- [ snippets/neuronFromDotp.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/neuronFromDotp.py)
+
+```
+- [ unsorted/ksolve_with_heavy_load.py ](https://github.com/BhallaLab/moose-examples/blob/master/unsorted/ksolve_with_heavy_load.py)
+    Traceback (most recent call last):
+      File "/home1/dilawars/Work/GITHUB/BhallaLab/moose-examples/tutorials/ChemicalBistables/strongBis.py", line 10, in <module>
+        import moose
+      File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/__init__.py", line 6, in <module>
+        from moose.moose import *
+      File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/moose.py", line 63, in <module>
+        from moose._moose import *
+    ImportError: libhdf5_cpp.so.102: cannot open shared object file: No such file or directory
+```
+- [ tutorials/ChemicalBistables/strongBis.py ](https://github.com/BhallaLab/moose-examples/blob/master/tutorials/ChemicalBistables/strongBis.py)
+
+```
+```
+
+```
+```
+- [ symcomp/symcomp_readcell.py ](https://github.com/BhallaLab/moose-examples/blob/master/symcomp/symcomp_readcell.py)
+
+```
+  Traceback (most recent call last):
+    File "/home1/dilawars/Work/GITHUB/BhallaLab/moose-examples/squid/squid.py", line 32, in <module>
+      import moose
+    File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/__init__.py", line 6, in <module>
+      from moose.moose import *
+    File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/moose.py", line 63, in <module>
+      from moose._moose import *
+  ImportError: libhdf5_cpp.so.102: cannot open shared object file: No such file or directory
+   directory
+```
+- [ snippets/multicomp_lif.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/multicomp_lif.py)
+
+```
+    Traceback (most recent call last):
+      File "/home1/dilawars/Work/GITHUB/BhallaLab/moose-examples/squid/squid.py", line 32, in <module>
+        import moose
+      File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/__init__.py", line 6, in <module>
+        from moose.moose import *
+      File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/moose.py", line 63, in <module>
+        from moose._moose import *
+    ImportError: libhdf5_cpp.so.102: cannot open shared object file: No such file or directory
+     directory
+```
+- [ squid/squid.py ](https://github.com/BhallaLab/moose-examples/blob/master/squid/squid.py)
+
+```
+      Traceback (most recent call last):
+        File "/home1/dilawars/Work/GITHUB/BhallaLab/moose-examples/squid/squid.py", line 32, in <module>
+          import moose
+        File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/__init__.py", line 6, in <module>
+          from moose.moose import *
+        File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/moose.py", line 63, in <module>
+          from moose._moose import *
+      ImportError: libhdf5_cpp.so.102: cannot open shared object file: No such file or directory
+       directory
+```
+- [ squid/squid_setup.py ](https://github.com/BhallaLab/moose-examples/blob/master/squid/squid_setup.py)
+
+```
+```
+- [ snippets/ionchannel.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/ionchannel.py)
+
+```
+  Traceback (most recent call last):
+    File "/home1/dilawars/Work/GITHUB/BhallaLab/moose-examples/snippets/hhcomp.py", line 51, in <module>
+      import moose
+    File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/__init__.py", line 6, in <module>
+      from moose.moose import *
+    File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/moose.py", line 63, in <module>
+      from moose._moose import *
+  ImportError: libhdf5_cpp.so.102: cannot open shared object file: No such file or directory
+  ory
+```
+- [ snippets/hhcomp.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/hhcomp.py)
+- [ snippets/interpol2d.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/interpol2d.py)
+
+```
+
+```
+    Traceback (most recent call last):
+      File "/home1/dilawars/Work/GITHUB/BhallaLab/moose-examples/snippets/hhcomp.py", line 51, in <module>
+        import moose
+      File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/__init__.py", line 6, in <module>
+        from moose.moose import *
+      File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/moose.py", line 63, in <module>
+        from moose._moose import *
+    ImportError: libhdf5_cpp.so.102: cannot open shared object file: No such file or directory
+    ory
+    Traceback (most recent call last):
+      File "/home1/dilawars/Work/GITHUB/BhallaLab/moose-examples/snippets/hhcomp.py", line 51, in <module>
+        import moose
+      File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/__init__.py", line 6, in <module>
+        from moose.moose import *
+      File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/moose.py", line 63, in <module>
+        from moose._moose import *
+    ImportError: libhdf5_cpp.so.102: cannot open shared object file: No such file or directory
+    ory
+```
+```
+- [ snippets/gssaCylinderDiffusion.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/gssaCylinderDiffusion.py)
+
+```
+```
+- [ snippets/findChemSteadyState.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/findChemSteadyState.py)
+
+```
+- [ snippets/diffusion_using_Gillespie.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/diffusion_using_Gillespie.py)
+  Traceback (most recent call last):
+    File "/home1/dilawars/Work/GITHUB/BhallaLab/moose-examples/snippets/RandSpikeStats.py", line 18, in <module>
+      import moose
+    File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/__init__.py", line 6, in <module>
+      from moose.moose import *
+    File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/moose.py", line 63, in <module>
+      from moose._moose import *
+  ImportError: libhdf5_cpp.so.102: cannot open shared object file: No such file or directory
+```
+
+```
+    Traceback (most recent call last):
+      File "/home1/dilawars/Work/GITHUB/BhallaLab/moose-examples/snippets/RandSpikeStats.py", line 18, in <module>
+        import moose
+      File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/__init__.py", line 6, in <module>
+        from moose.moose import *
+      File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/moose.py", line 63, in <module>
+        from moose._moose import *
+    ImportError: libhdf5_cpp.so.102: cannot open shared object file: No such file or directory
+```
+- [ snippets/singlemsgcross.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/singlemsgcross.py)
+
+```
+      Traceback (most recent call last):
+        File "/home1/dilawars/Work/GITHUB/BhallaLab/moose-examples/snippets/RandSpikeStats.py", line 18, in <module>
+          import moose
+        File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/__init__.py", line 6, in <module>
+          from moose.moose import *
+        File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/moose.py", line 63, in <module>
+          from moose._moose import *
+      ImportError: libhdf5_cpp.so.102: cannot open shared object file: No such file or directory
+```
+- [ snippets/RandSpikeStats.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/RandSpikeStats.py)
+
+```
+```
+- [ rall_1964/rall64.py ](https://github.com/BhallaLab/moose-examples/blob/master/rall_1964/rall64.py)
+
+```
+```
+- [ neuroml/allChannelsCell/allChannelsCell.py ](https://github.com/BhallaLab/moose-examples/blob/master/neuroml/allChannelsCell/allChannelsCell.py)
+
+```
+```
+- [ parallelSolver/Fig2_v4.py ](https://github.com/BhallaLab/moose-examples/blob/master/parallelSolver/Fig2_v4.py)
+
+```
+```
+- [ neuroml/GranuleCell/Granule98_hsolve.py ](https://github.com/BhallaLab/moose-examples/blob/master/neuroml/GranuleCell/Granule98_hsolve.py)
+
+```
+```
+- [ cuda/testScript.py ](https://github.com/BhallaLab/moose-examples/blob/master/cuda/testScript.py)
+
+```
+  Traceback (most recent call last):
+    File "/home1/dilawars/Work/GITHUB/BhallaLab/moose-examples/snippets/diffEqSolution.py", line 13, in <module>
+      import moose
+    File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/__init__.py", line 6, in <module>
+      from moose.moose import *
+    File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/moose.py", line 63, in <module>
+      from moose._moose import *
+  ImportError: libhdf5_cpp.so.102: cannot open shared object file: No such file or directory
+  or directory
+```
+- [ cuda/testHsolve.py ](https://github.com/BhallaLab/moose-examples/blob/master/cuda/testHsolve.py)
+
+```
+    Traceback (most recent call last):
+      File "/home1/dilawars/Work/GITHUB/BhallaLab/moose-examples/snippets/diffEqSolution.py", line 13, in <module>
+        import moose
+      File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/__init__.py", line 6, in <module>
+        from moose.moose import *
+      File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/moose.py", line 63, in <module>
+        from moose._moose import *
+    ImportError: libhdf5_cpp.so.102: cannot open shared object file: No such file or directory
+    or directory
+```
+- [ snippets/diffEqSolution.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/diffEqSolution.py)
+- [ tutorials/Electrophys/ephys2_Rall_law.py ](https://github.com/BhallaLab/moose-examples/blob/master/tutorials/Electrophys/ephys2_Rall_law.py)
+
+```
+
+```
+        Traceback (most recent call last):
+          File "/home1/dilawars/Work/GITHUB/BhallaLab/moose-examples/snippets/diffEqSolution.py", line 13, in <module>
+            import moose
+          File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/__init__.py", line 6, in <module>
+            from moose.moose import *
+          File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/moose.py", line 63, in <module>
+            from moose._moose import *
+        ImportError: libhdf5_cpp.so.102: cannot open shared object file: No such file or directory
+        or directory
+```
+        Traceback (most recent call last):
+          File "/home1/dilawars/Work/GITHUB/BhallaLab/moose-examples/snippets/diffEqSolution.py", line 13, in <module>
+            import moose
+          File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/__init__.py", line 6, in <module>
+            from moose.moose import *
+          File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/moose.py", line 63, in <module>
+            from moose._moose import *
+        ImportError: libhdf5_cpp.so.102: cannot open shared object file: No such file or directory
+        or directory
+```
+- [ neuroml/GranuleCell/Granule98.py ](https://github.com/BhallaLab/moose-examples/blob/master/neuroml/GranuleCell/Granule98.py)
+
+```
+  Traceback (most recent call last):
+    File "/home1/dilawars/Work/GITHUB/BhallaLab/moose-examples/tutorials/ChemicalOscillators/repressillator.py", line 11, in <module>
+      import moose
+    File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/__init__.py", line 6, in <module>
+      from moose.moose import *
+    File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/moose.py", line 63, in <module>
+      from moose._moose import *
+  ImportError: libhdf5_cpp.so.102: cannot open shared object file: No such file or directory
+```
+- [ snippets/showmsg.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/showmsg.py)
+
+```
+    Traceback (most recent call last):
+      File "/home1/dilawars/Work/GITHUB/BhallaLab/moose-examples/tutorials/ChemicalOscillators/repressillator.py", line 11, in <module>
+        import moose
+      File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/__init__.py", line 6, in <module>
+        from moose.moose import *
+      File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/moose.py", line 63, in <module>
+        from moose._moose import *
+    ImportError: libhdf5_cpp.so.102: cannot open shared object file: No such file or directory
+```
+- [ snippets/scriptGssaSolver.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/scriptGssaSolver.py)
+
+```
+      Traceback (most recent call last):
+        File "/home1/dilawars/Work/GITHUB/BhallaLab/moose-examples/tutorials/ChemicalOscillators/repressillator.py", line 11, in <module>
+          import moose
+        File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/__init__.py", line 6, in <module>
+          from moose.moose import *
+        File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/moose.py", line 63, in <module>
+          from moose._moose import *
+      ImportError: libhdf5_cpp.so.102: cannot open shared object file: No such file or directory
+```
+- [ tutorials/ChemicalOscillators/repressillator.py ](https://github.com/BhallaLab/moose-examples/blob/master/tutorials/ChemicalOscillators/repressillator.py)
+
+```
+        Traceback (most recent call last):
+          File "/home1/dilawars/Work/GITHUB/BhallaLab/moose-examples/tutorials/ChemicalOscillators/repressillator.py", line 11, in <module>
+            import moose
+          File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/__init__.py", line 6, in <module>
+            from moose.moose import *
+          File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/moose.py", line 63, in <module>
+            from moose._moose import *
+        ImportError: libhdf5_cpp.so.102: cannot open shared object file: No such file or directory
+```
+- [ neuroml/CA1PyramidalCell/CA1.py ](https://github.com/BhallaLab/moose-examples/blob/master/neuroml/CA1PyramidalCell/CA1.py)
+
+```
+  Traceback (most recent call last):
+    File "/home1/dilawars/Work/GITHUB/BhallaLab/moose-examples/tutorials/ChemicalBistables/doseResponse.py", line 5, in <module>
+      import moose
+    File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/__init__.py", line 6, in <module>
+      from moose.moose import *
+    File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/moose.py", line 63, in <module>
+      from moose._moose import *
+  ImportError: libhdf5_cpp.so.102: cannot open shared object file: No such file or directory
+```
+- [ snippets/cspaceSteadyState.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/cspaceSteadyState.py)
+
+```
+    Traceback (most recent call last):
+      File "/home1/dilawars/Work/GITHUB/BhallaLab/moose-examples/tutorials/ChemicalBistables/doseResponse.py", line 5, in <module>
+        import moose
+      File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/__init__.py", line 6, in <module>
+        from moose.moose import *
+      File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/moose.py", line 63, in <module>
+        from moose._moose import *
+    ImportError: libhdf5_cpp.so.102: cannot open shared object file: No such file or directory
+```
+- [ passive/passive_soma.py ](https://github.com/BhallaLab/moose-examples/blob/master/passive/passive_soma.py)
+
+```
+      Traceback (most recent call last):
+        File "/home1/dilawars/Work/GITHUB/BhallaLab/moose-examples/tutorials/ChemicalBistables/doseResponse.py", line 5, in <module>
+          import moose
+        File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/__init__.py", line 6, in <module>
+          from moose.moose import *
+        File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/moose.py", line 63, in <module>
+          from moose._moose import *
+      ImportError: libhdf5_cpp.so.102: cannot open shared object file: No such file or directory
+```
+- [ tutorials/ChemicalBistables/doseResponse.py ](https://github.com/BhallaLab/moose-examples/blob/master/tutorials/ChemicalBistables/doseResponse.py)
+
+```
+```
+- [ tutorials/ChemicalBistables/simpleBis.py ](https://github.com/BhallaLab/moose-examples/blob/master/tutorials/ChemicalBistables/simpleBis.py)
+- [ snippets/recurrentLIF.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/recurrentLIF.py)
+
+```
+  Traceback (most recent call last):
+    File "/home1/dilawars/Work/GITHUB/BhallaLab/moose-examples/snippets/helloMoose.py", line 10, in <module>
+      import moose
+    File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/__init__.py", line 6, in <module>
+      from moose.moose import *
+    File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/moose.py", line 63, in <module>
+      from moose._moose import *
+  ImportError: libhdf5_cpp.so.102: cannot open shared object file: No such file or directory
+  y
+```
+
+```
+    Traceback (most recent call last):
+      File "/home1/dilawars/Work/GITHUB/BhallaLab/moose-examples/snippets/helloMoose.py", line 10, in <module>
+        import moose
+      File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/__init__.py", line 6, in <module>
+        from moose.moose import *
+      File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/moose.py", line 63, in <module>
+        from moose._moose import *
+    ImportError: libhdf5_cpp.so.102: cannot open shared object file: No such file or directory
+    y
+```
+- [ snippets/helloMoose.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/helloMoose.py)
+
+```
+      Traceback (most recent call last):
+        File "/home1/dilawars/Work/GITHUB/BhallaLab/moose-examples/snippets/helloMoose.py", line 10, in <module>
+          import moose
+        File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/__init__.py", line 6, in <module>
+          from moose.moose import *
+        File "/home1/dilawars/Work/GITHUB/DILAWAR/moose-core/_build/python/moose/moose.py", line 63, in <module>
+          from moose._moose import *
+      ImportError: libhdf5_cpp.so.102: cannot open shared object file: No such file or directory
+      y
+```
+- [ snippets/loadKineticModel.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/loadKineticModel.py)
+
+```
+```
+- [ snippets/recurrentIntFire.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/recurrentIntFire.py)
+
+```
+```
+- [ snippets/gapjunction.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/gapjunction.py)
+
+```
+```
+- [ snippets/scriptKineticModel.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/scriptKineticModel.py)
+
+```
+```
+- [ snippets/convert_Genesis2Sbml.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/convert_Genesis2Sbml.py)
+
+```
+```
+- [ snippets/scriptKineticSolver.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/scriptKineticSolver.py)
+
+```
+```
+- [ tutorials/Electrophys/ephys1_cable.py ](https://github.com/BhallaLab/moose-examples/blob/master/tutorials/Electrophys/ephys1_cable.py)
+- [ snippets/tweakingParameters.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/tweakingParameters.py)
+- [ snippets/lifcomp.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/lifcomp.py)
+- [ snippets/vectors.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/vectors.py)
+
+```
+
+```
+    Traceback (most recent call last):
+      File "/home1/dilawars/Work/GITHUB/BhallaLab/moose-examples/snippets/vectors.py", line 51, in <module>
+        import moose
+      File "/home1/dilawars/.local/lib/python3.7/site-packages/moose/__init__.py", line 6, in <module>
+        from moose.moose import *
+      File "/home1/dilawars/.local/lib/python3.7/site-packages/moose/moose.py", line 63, in <module>
+        from moose._moose import *
+    ModuleNotFoundError: No module named 'moose._moose'
+    d 'moose._moose'
+```
+
+```
+      Traceback (most recent call last):
+        File "/home1/dilawars/Work/GITHUB/BhallaLab/moose-examples/snippets/vectors.py", line 51, in <module>
+          import moose
+        File "/home1/dilawars/.local/lib/python3.7/site-packages/moose/__init__.py", line 6, in <module>
+          from moose.moose import *
+        File "/home1/dilawars/.local/lib/python3.7/site-packages/moose/moose.py", line 63, in <module>
+          from moose._moose import *
+      ModuleNotFoundError: No module named 'moose._moose'
+      d 'moose._moose'
+```
+
+```
+        Traceback (most recent call last):
+          File "/home1/dilawars/Work/GITHUB/BhallaLab/moose-examples/snippets/vectors.py", line 51, in <module>
+            import moose
+          File "/home1/dilawars/.local/lib/python3.7/site-packages/moose/__init__.py", line 6, in <module>
+            from moose.moose import *
+          File "/home1/dilawars/.local/lib/python3.7/site-packages/moose/moose.py", line 63, in <module>
+            from moose._moose import *
+        ModuleNotFoundError: No module named 'moose._moose'
+        d 'moose._moose'
+```
+        Traceback (most recent call last):
+          File "/home1/dilawars/Work/GITHUB/BhallaLab/moose-examples/snippets/vectors.py", line 51, in <module>
+            import moose
+          File "/home1/dilawars/.local/lib/python3.7/site-packages/moose/__init__.py", line 6, in <module>
+            from moose.moose import *
+          File "/home1/dilawars/.local/lib/python3.7/site-packages/moose/moose.py", line 63, in <module>
+            from moose._moose import *
+        ModuleNotFoundError: No module named 'moose._moose'
+        d 'moose._moose'
+```
+- [ snippets/symcompartment.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/symcompartment.py)
+
+```
+- [ snippets/showclocks.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/showclocks.py)
+  Traceback (most recent call last):
+    File "/home1/dilawars/Work/GITHUB/BhallaLab/moose-examples/snippets/showclocks.py", line 4, in <module>
+      import moose
+    File "/home1/dilawars/.local/lib/python3.7/site-packages/moose/__init__.py", line 6, in <module>
+      from moose.moose import *
+    File "/home1/dilawars/.local/lib/python3.7/site-packages/moose/moose.py", line 63, in <module>
+      from moose._moose import *
+  ModuleNotFoundError: No module named 'moose._moose'
+  ose'
+```
+
+```
+- [ snippets/synapse.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/synapse.py)
+    Traceback (most recent call last):
+      File "/home1/dilawars/Work/GITHUB/BhallaLab/moose-examples/snippets/showclocks.py", line 4, in <module>
+        import moose
+      File "/home1/dilawars/.local/lib/python3.7/site-packages/moose/__init__.py", line 6, in <module>
+        from moose.moose import *
+      File "/home1/dilawars/.local/lib/python3.7/site-packages/moose/moose.py", line 63, in <module>
+        from moose._moose import *
+    ModuleNotFoundError: No module named 'moose._moose'
+    ose'
+```
+- [ snippets/startstop.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/startstop.py)
+
+```
+
+```
+      Traceback (most recent call last):
+        File "/home1/dilawars/Work/GITHUB/BhallaLab/moose-examples/snippets/showclocks.py", line 4, in <module>
+          import moose
+        File "/home1/dilawars/.local/lib/python3.7/site-packages/moose/__init__.py", line 6, in <module>
+          from moose.moose import *
+        File "/home1/dilawars/.local/lib/python3.7/site-packages/moose/moose.py", line 63, in <module>
+          from moose._moose import *
+      ModuleNotFoundError: No module named 'moose._moose'
+      ose'
+      Traceback (most recent call last):
+        File "/home1/dilawars/Work/GITHUB/BhallaLab/moose-examples/snippets/showclocks.py", line 4, in <module>
+          import moose
+        File "/home1/dilawars/.local/lib/python3.7/site-packages/moose/__init__.py", line 6, in <module>
+          from moose.moose import *
+        File "/home1/dilawars/.local/lib/python3.7/site-packages/moose/moose.py", line 63, in <module>
+          from moose._moose import *
+      ModuleNotFoundError: No module named 'moose._moose'
+      ose'
+```
+```
+- [ snippets/neuronFromDotp.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/neuronFromDotp.py)
+- [ unsorted/ksolve_with_heavy_load.py ](https://github.com/BhallaLab/moose-examples/blob/master/unsorted/ksolve_with_heavy_load.py)
+
+```
+  Traceback (most recent call last):
+    File "/home1/dilawars/Work/GITHUB/BhallaLab/moose-examples/tutorials/ChemicalBistables/strongBis.py", line 10, in <module>
+      import moose
+    File "/home1/dilawars/.local/lib/python3.7/site-packages/moose/__init__.py", line 6, in <module>
+      from moose.moose import *
+    File "/home1/dilawars/.local/lib/python3.7/site-packages/moose/moose.py", line 63, in <module>
+      from moose._moose import *
+  ModuleNotFoundError: No module named 'moose._moose'
+
+```
+```
+    Traceback (most recent call last):
+      File "/home1/dilawars/Work/GITHUB/BhallaLab/moose-examples/tutorials/ChemicalBistables/strongBis.py", line 10, in <module>
+        import moose
+      File "/home1/dilawars/.local/lib/python3.7/site-packages/moose/__init__.py", line 6, in <module>
+        from moose.moose import *
+      File "/home1/dilawars/.local/lib/python3.7/site-packages/moose/moose.py", line 63, in <module>
+        from moose._moose import *
+    ModuleNotFoundError: No module named 'moose._moose'
+```
+- [ snippets/savemodel.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/savemodel.py)
+- [ tutorials/ChemicalBistables/strongBis.py ](https://github.com/BhallaLab/moose-examples/blob/master/tutorials/ChemicalBistables/strongBis.py)
+
+```
+```
+
+```
+```
+- [ squid/squid_setup.py ](https://github.com/BhallaLab/moose-examples/blob/master/squid/squid_setup.py)
+
+```
+```
+- [ symcomp/symcomp_readcell.py ](https://github.com/BhallaLab/moose-examples/blob/master/symcomp/symcomp_readcell.py)
+
+```
+```
+- [ snippets/multicomp_lif.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/multicomp_lif.py)
+
+```
+```
+- [ squid/squid.py ](https://github.com/BhallaLab/moose-examples/blob/master/squid/squid.py)
+
+```
+```
+- [ snippets/ionchannel.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/ionchannel.py)
+
+```
+```
+- [ snippets/interpol2d.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/interpol2d.py)
+
+```
+```
+- [ snippets/hhcomp.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/hhcomp.py)
+
+```
+```
+- [ snippets/gssaCylinderDiffusion.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/gssaCylinderDiffusion.py)
+
+```
+```
+- [ snippets/singlemsgcross.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/singlemsgcross.py)
+
+```
+```
+- [ snippets/findChemSteadyState.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/findChemSteadyState.py)
+
+```
+```
+- [ snippets/diffusion_using_Gillespie.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/diffusion_using_Gillespie.py)
+
+```
+```
+- [ snippets/RandSpikeStats.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/RandSpikeStats.py)
+
+```
+```
+- [ rall_1964/rall64.py ](https://github.com/BhallaLab/moose-examples/blob/master/rall_1964/rall64.py)
+
+```
+```
+- [ parallelSolver/Fig2_v4.py ](https://github.com/BhallaLab/moose-examples/blob/master/parallelSolver/Fig2_v4.py)
+
+```
+```
+- [ neuroml/allChannelsCell/allChannelsCell.py ](https://github.com/BhallaLab/moose-examples/blob/master/neuroml/allChannelsCell/allChannelsCell.py)
+
+```
+```
+- [ neuroml/GranuleCell/Granule98_hsolve.py ](https://github.com/BhallaLab/moose-examples/blob/master/neuroml/GranuleCell/Granule98_hsolve.py)
+
+```
+```
+- [ cuda/testScript.py ](https://github.com/BhallaLab/moose-examples/blob/master/cuda/testScript.py)
+
+```
+```
+- [ cuda/testHsolve.py ](https://github.com/BhallaLab/moose-examples/blob/master/cuda/testHsolve.py)
+
+```
+```
+- [ tutorials/Electrophys/ephys2_Rall_law.py ](https://github.com/BhallaLab/moose-examples/blob/master/tutorials/Electrophys/ephys2_Rall_law.py)
+- [ snippets/diffEqSolution.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/diffEqSolution.py)
+
+```
+```
+
+```
+```
+- [ neuroml/GranuleCell/Granule98.py ](https://github.com/BhallaLab/moose-examples/blob/master/neuroml/GranuleCell/Granule98.py)
+
+```
+```
+- [ snippets/showmsg.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/showmsg.py)
+
+```
+```
+- [ tutorials/ChemicalOscillators/repressillator.py ](https://github.com/BhallaLab/moose-examples/blob/master/tutorials/ChemicalOscillators/repressillator.py)
+- [ snippets/scriptGssaSolver.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/scriptGssaSolver.py)
+
+```
+```
+
+```
+```
+- [ snippets/cspaceSteadyState.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/cspaceSteadyState.py)
+
+```
+```
+- [ tutorials/ChemicalBistables/doseResponse.py ](https://github.com/BhallaLab/moose-examples/blob/master/tutorials/ChemicalBistables/doseResponse.py)
+
+```
+```
+- [ neuroml/CA1PyramidalCell/CA1.py ](https://github.com/BhallaLab/moose-examples/blob/master/neuroml/CA1PyramidalCell/CA1.py)
+
+```
+```
+- [ passive/passive_soma.py ](https://github.com/BhallaLab/moose-examples/blob/master/passive/passive_soma.py)
+
+```
+```
+- [ tutorials/ChemicalBistables/simpleBis.py ](https://github.com/BhallaLab/moose-examples/blob/master/tutorials/ChemicalBistables/simpleBis.py)
+
+```
+```
+- [ snippets/recurrentLIF.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/recurrentLIF.py)
+
+```
+```
+- [ snippets/helloMoose.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/helloMoose.py)
+
+```
+```
+- [ snippets/loadKineticModel.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/loadKineticModel.py)
+
+```
+```
+- [ snippets/gapjunction.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/gapjunction.py)
+
+```
+```
+- [ snippets/recurrentIntFire.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/recurrentIntFire.py)
+
+```
+```
+- [ snippets/scriptKineticModel.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/scriptKineticModel.py)
+
+```
+```
+- [ snippets/convert_Genesis2Sbml.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/convert_Genesis2Sbml.py)
+
+```
+```
+- [ snippets/scriptKineticSolver.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/scriptKineticSolver.py)
+
+```
+```
+- [ izhikevich/demogui_qt.py ](https://github.com/BhallaLab/moose-examples/blob/master/izhikevich/demogui_qt.py)
+
+```
+  Traceback (most recent call last):
+    File "/home1/dilawars/Work/GITHUB/BhallaLab/moose-examples/izhikevich/demogui_qt.py", line 50, in <module>
+      import PyQt4.Qwt5 as Qwt
+  ModuleNotFoundError: No module named 'PyQt4.Qwt5'
+```
+- [ tutorials/ChemicalOscillators/relaxationOsc.py ](https://github.com/BhallaLab/moose-examples/blob/master/tutorials/ChemicalOscillators/relaxationOsc.py)
+
+```
+```
+- [ snippets/tabledemo.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/tabledemo.py)
+
+```
+```
+- [ symcomp/symcomp.py ](https://github.com/BhallaLab/moose-examples/blob/master/symcomp/symcomp.py)
+
+```
+```
+- [ snippets/chemDoseResponse.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/chemDoseResponse.py)
+
+```
+```
+- [ neuroml/lobster_pyloric/STG_net.py ](https://github.com/BhallaLab/moose-examples/blob/master/neuroml/lobster_pyloric/STG_net.py)
+
+```
+```
+- [ snippets/wildcard.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/wildcard.py)
+
+```
+```
+- [ snippets/loadSbmlmodel.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/loadSbmlmodel.py)
+
+```
+```
+- [ snippets/reacDiffConcGradient.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/reacDiffConcGradient.py)
+
+```
+```
+- [ snippets/stimtable.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/stimtable.py)
+
+```
+```
+- [ snippets/threading_demo.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/threading_demo.py)
+
+```
+```
+- [ snippets/crossComptOscillator.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/crossComptOscillator.py)
+
+```
+```
+- [ snippets/loadCspaceModel.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/loadCspaceModel.py)
+
+```
+```
+- [ snippets/switchKineticSolvers.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/switchKineticSolvers.py)
+
+```
+```
+- [ snippets/HsolveInstability.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/HsolveInstability.py)
+
+```
+```
+- [ snippets/pulsegen.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/pulsegen.py)
+
+```
+```
+- [ neuroml/CA1PyramidalCell/CA1_hsolve.py ](https://github.com/BhallaLab/moose-examples/blob/master/neuroml/CA1PyramidalCell/CA1_hsolve.py)
+
+```
+```
+- [ neuroml/lobster_pyloric/channels/ChannelTest.py ](https://github.com/BhallaLab/moose-examples/blob/master/neuroml/lobster_pyloric/channels/ChannelTest.py)
+
+```
+```
+- [ snippets/cylinderMotor.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/cylinderMotor.py)
+
+```
+```
+- [ tutorials/ChemicalBistables/findSteadyState.py ](https://github.com/BhallaLab/moose-examples/blob/master/tutorials/ChemicalBistables/findSteadyState.py)
+
+```
+```
 
 ## Broken scripts
 

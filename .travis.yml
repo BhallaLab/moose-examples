@@ -13,8 +13,8 @@ notifications:
             - hrani@ncbs.res.in
 
 script:
-    - pip install pymoose --pre
-    - pip install matplotlib python-libsbnl pyneuroml --upgrade
+    - pip install pymoose numpy --pre
+    - pip install matplotlib python-libsbml pyneuroml --upgrade
     - ./.travis_run.sh
 
 exclude: [vendor]
