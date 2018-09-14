@@ -7,16 +7,8 @@ notifications:
             - bhalla@ncbs.res.in
             - hrani@ncbs.res.in
 
-install:
-    - sudo ./.travis_prepare.sh
-
 script:
+    - pip install pymoose --user --pre
     - ./.travis_run.sh
 
 exclude: [vendor]
-
-deploy:
-  provider: pages
-  skip-cleanup: true
-  github-token: $GHI_TOKEN  #
-  keep-history: true
