@@ -85,9 +85,6 @@ def makeCylModel():
 def main():
     global vec
     makeDisplay()
-    updateDisplay()
-    print( "Hit 'enter' to exit" )
-    sys.stdin.read(1)
     quit()
 
 def updateRM(RM_):
@@ -163,10 +160,10 @@ def updateDisplay():
     for i in lines:
         moose.start( dt )
         #print( len(vecCyl), len(vecYdend), len(vecYbranch1), len(vecYbranch2) )
-        i.CylLines.set_ydata( [v.Vm for v in vecCyl] )
-        i.YdendLines.set_ydata( [v.Vm for v in vecYdend] )
-        i.Ybranch1Lines.set_ydata( [v.Vm for v in vecYbranch1] )
-        i.Ybranch2Lines.set_ydata( [v.Vm for v in vecYbranch2] )
+        i.CylLines.set_ydata( [v.Vm*1000 for v in vecCyl] )
+        i.YdendLines.set_ydata( [v.Vm*1000 for v in vecYdend] )
+        i.Ybranch1Lines.set_ydata( [v.Vm*1000 for v in vecYbranch1] )
+        i.Ybranch2Lines.set_ydata( [v.Vm*1000 for v in vecYbranch2] )
         dt = interval2
 
     moose.delete( '/model' )
@@ -183,26 +180,15 @@ def doQuit( event ):
     "RA = {} Ohms.m\n"
     "CM = {} Farads/m^2\n"
     "Your branch parameters were:\n"
-    "Length = {} microns\n"
-    "Diameter = {} microns\n"
-    "RM = {} Ohms.m^2\n"
-    "RA = {} Ohms.m\n"
-    "CM = {} Farads/m^2\n".format( 
+    "Length = {:.2f} microns\n"
+    "Diameter = {:.2f} microns\n"
+    "RM = {:.2f} Ohms.m^2\n"
+    "RA = {:.2f} Ohms.m\n"
+    "CM = {:.3f} Farads/m^2\n".format( 
         cylLength*1e6, dendDia*1e6, dendRM, dendRA, dendCM,
         length*1e6, dia*1e6, RM, RA, CM ) )
     print( "The branch point was at 1100 microns from the left" )
 
-    '''
-    tab = []
-    makeModel()
-    soma = moose.element( '/model/elec/soma' )
-    moose.reinit()
-    with open('output.txt', 'w') as file: 
-        file.write( "0.000  {:.2f}\n".format( soma.Vm * 1000 ) )
-        for t in np.arange( 0, 0.1, 0.001 ):
-            moose.start(0.001)
-            file.write( "{:.3f} {:.2f}\n".format( t+0.001, soma.Vm*1000 ) )
-    '''
     quit()
 
 def makeDisplay():
@@ -217,7 +203,7 @@ def makeDisplay():
     ax2 = fig.add_subplot(312)
     #ax.set_ylim( 0, 0.1 )
     plt.ylabel( 'Vm (mV)' )
-    plt.ylim( -0.07, 0.0 )
+    plt.ylim( -70, 0.0 )
     plt.xlabel( 'Position (microns)' )
     #ax2.autoscale( enable = True, axis = 'y' )
     plt.title( "Membrane potential as a function of position along cell." )
@@ -234,7 +220,6 @@ def makeDisplay():
                 np.zeros(numDendSeg*2+1), 'r-' )
         lines.append( lw )
 
-    plt.legend()
     ax = fig.add_subplot(313)
     plt.axis('off')
     axcolor = 'palegreen'
@@ -253,7 +238,7 @@ def makeDisplay():
     reset = Button( axReset, 'Reset', color = 'cyan' )
     q = Button( axQuit, 'Quit', color = 'pink' )
     RM = Slider( axRM, 'RM ( ohm.m^2 )', 0.1, 10, valinit=1.0 )
-    CM = Slider( axCM, 'CM ( Farad/m^2)', 0.001, 0.05, valinit=0.01 )
+    CM = Slider( axCM, 'CM ( Farad/m^2)', 0.001, 0.05, valinit=0.01, valfmt = '%0.3f' )
     RA = Slider( axRA, 'RA ( ohm.m', 0.1, 10, valinit=1.0 )
     length = Slider( axLen, 'Length of branches (mm)', 0.1, 10, valinit=2.0 )
     dia = Slider( axDia, 'Diameter of branches (um)', 0.1, 10, valinit=1.0 )
