@@ -3,27 +3,32 @@
 # Copyright (C) Upinder S. Bhalla NCBS 2018
 # Released under the terms of the GNU Public License V3.
 ########################################################################
-import moose
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 from matplotlib.widgets import Slider, Button
 import numpy as np
+import warnings
+import moose
 import rdesigneur as rd
 
 numDendSeg = 50
 interval = 0.005
 lines = []
+tplot = []
 RM = 1.0
 RA = 1.0
 CM = 0.01
 length = 0.002
 dia = 1e-6
 stimStr = "2e-10"
+runtime = 50e-3
+elecPlotDt = 0.001
 
 def makeModel():
     segLen = length / numDendSeg
     rdes = rd.rdesigneur(
         stealCellFromLibrary = True,
+        elecPlotDt = elecPlotDt,
         verbose = False,
         # cellProto syntax: ['ballAndStick', 'name', somaDia, somaLength, dendDia, dendLength, numDendSegments ]
         # The numerical arguments are all optional
@@ -31,15 +36,14 @@ def makeModel():
             [['ballAndStick', 'soma', dia, segLen, dia, length, numDendSeg]],
         passiveDistrib = [[ '#', 'RM', str(RM), 'CM', str(CM), 'RA', str(RA) ]],
         stimList = [['soma', '1', '.', 'inject', stimStr ]],
+        plotList = [['dend3,dend18,dend33,dend49', '1', '.', 'Vm' ]],
     )
     rdes.buildModel()
 
 def main():
     global vec
+    warnings.filterwarnings("ignore", category=UserWarning, module="matplotlib")
     makeDisplay()
-    updateDisplay()
-    print( "Hit 'enter' to exit" )
-    sys.stdin.read(1)
     quit()
 
 def updateRM(RM_):
@@ -86,26 +90,29 @@ class stimToggle():
             self.toggle.label.set_text( "Short Stim" )
             self.toggle.color = "orange"
             self.toggle.hovercolor = "orange"
-            stimStr = "10e-9*(t<0.001)-9e-9*(t>0.001&&t<0.002)"
+            stimStr = "1e-9*(t<0.001)"
+            #stimStr = "10e-9*(t<0.001)-9e-9*(t>0.001&&t<0.002)"
         updateDisplay()
-        #self.ax.update()
-        #self.ax.redraw_in_frame()
-        #self.ax.draw()
-
-def printSomaVm():
-    print("This is somaVm" )
 
 def updateDisplay():
     makeModel()
     vec = moose.wildcardFind( '/model/elec/#[ISA=CompartmentBase]' )
+    tabvec = moose.wildcardFind( '/model/graphs/plot#' )
     #vec[0].inject = 1e-10
     moose.reinit()
-    dt = 0.0001
+    initdt = 0.0001
+    dt = initdt
+    currtime = 0.0
     for i in lines:
         moose.start( dt )
-        i.set_ydata( [v.Vm for v in vec] )
+        currtime += dt
+        i.set_ydata( [v.Vm * 1000 for v in vec] )
         dt = interval
         #print( "inRunSim v0={}, v10={}".format( vec[0].Vm, vec[10].Vm ) )
+    moose.start( runtime - currtime )
+    for i,tab in zip( tplot, tabvec ):
+        i.set_ydata( tab.vector * 1000 )
+
     moose.delete( '/model' )
     moose.delete( '/library' )
     # Put in something here for the time-series on soma
@@ -123,27 +130,41 @@ def doQuit( event ):
     quit()
 
 def makeDisplay():
+    global tplot
     global lines
     #img = mpimg.imread( 'CableEquivCkt.png' )
-    img = mpimg.imread( 'SingleComptEquivCkt.png' )
+    img = mpimg.imread( 'CableInjectEquivCkt.png' )
     #plt.ion()
     fig = plt.figure( figsize=(10,12) )
-    png = fig.add_subplot(311)
+    png = fig.add_subplot(321)
     imgplot = plt.imshow( img )
     plt.axis('off')
+    ax1 = fig.add_subplot(322)
+    plt.ylabel( 'Vm (mV)' )
+    plt.ylim( -80, 40 )
+    plt.xlabel( 'time (ms)' )
+    plt.title( "Membrane potential vs time at 4 positions." )
+    t = np.arange( 0.0, runtime + elecPlotDt / 2.0, elecPlotDt ) * 1000 #ms
+    for i,col,name in zip( range( 4 ), ['b-', 'g-', 'r-', 'm-' ], ['a', 'b', 'c', 'd'] ):
+        ln, = ax1.plot( t, np.zeros(len(t)), col, label='pos= ' + name )
+        tplot.append(ln)
+    plt.legend()
+
     ax2 = fig.add_subplot(312)
+    #ax2.margins( 0.05 )
     #ax.set_ylim( 0, 0.1 )
     plt.ylabel( 'Vm (mV)' )
-    plt.ylim( -0.1, 0.02 )
+    plt.ylim( -80, 50 )
     plt.xlabel( 'Position (microns)' )
     #ax2.autoscale( enable = True, axis = 'y' )
-    plt.title( "Membrane potential as a function of position along cell." )
+    plt.title( "Membrane potential vs position, at 5 times." )
     t = np.arange( 0, numDendSeg+1, 1 ) #sec
     for i,col in zip( range( 5 ), ['k-', 'b-', 'g-', 'y-', 'm-' ] ):
-        ln, = ax2.plot( t, np.zeros(numDendSeg+1), col )
+        ln, = ax2.plot( t, np.zeros(numDendSeg+1), col, label="t={}".format(i*interval) )
         lines.append(ln)
     plt.legend()
     ax = fig.add_subplot(313)
+    #ax.margins( 0.05 )
     plt.axis('off')
     axcolor = 'palegreen'
     axStim = plt.axes( [0.02,0.05, 0.20,0.03], facecolor='green' )
@@ -181,7 +202,9 @@ def makeDisplay():
     RA.on_changed( updateRA )
     length.on_changed( updateLen )
     dia.on_changed( updateDia )
+    plt.tight_layout()
 
+    updateDisplay()
     plt.show()
 
 # Run the 'main' if this script is executed standalone.
