@@ -50,7 +50,7 @@ import numpy as np
     
 def run(nogui):
     
-    filename = 'test_files/passiveCell.nml'
+    filename = 'passiveCell.nml'
     print('Loading: %s'%filename)
     reader = moose.mooseReadNML2( filename )
     assert reader

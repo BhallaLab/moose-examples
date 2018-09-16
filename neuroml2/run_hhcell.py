@@ -44,9 +44,7 @@
 
 import moose
 import sys
-from reader import NML2Reader
 import numpy as np
-
 
 def test_channel_gates():
     """Creates prototype channels under `/library` and plots the time
@@ -94,26 +92,15 @@ def test_channel_gates():
 
 
 def run(nogui):
-    
-    reader = NML2Reader(verbose=True)
-
     filename = 'test_files/NML2_SingleCompHHCell.nml'
     print('Loading: %s'%filename)
-    reader.read(filename, symmetric=True)
-    
-    
+    reader = moose.mooseReadNML2(filename)
     msoma = reader.getComp(reader.doc.networks[0].populations[0].id,0,0)
     print(msoma)
-    
-    
     data = moose.Neutral('/data')
-    
     pg = reader.getInput('pulseGen1')
-    
     inj = moose.Table('%s/pulse' % (data.path))
     moose.connect(inj, 'requestOut', pg, 'getOutputValue')
-    
-    
     vm = moose.Table('%s/Vm' % (data.path))
     moose.connect(vm, 'requestOut', msoma, 'getVm')
     
@@ -160,8 +147,5 @@ def run(nogui):
         
     
 if __name__ == '__main__':
-    
     nogui = '-nogui' in sys.argv
-    
     run(nogui)
-    
