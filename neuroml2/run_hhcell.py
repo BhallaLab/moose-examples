@@ -92,7 +92,7 @@ def test_channel_gates():
 
 
 def run(nogui):
-    filename = 'test_files/NML2_SingleCompHHCell.nml'
+    filename = 'NML2_SingleCompHHCell.nml'
     print('Loading: %s'%filename)
     reader = moose.mooseReadNML2(filename)
     msoma = reader.getComp(reader.doc.networks[0].populations[0].id,0,0)
