@@ -35,8 +35,8 @@ Things to do:
 	the tau (time-constant) of the soma is according to equations when the 
 	L is very small, but deviates when it is longer. Use Rall's expression 
 	for L as a function of the time-courses of soma depolarization.
- 
 
+------------------------------------------------------------------------
 
 ephys2_Rall_law.py:
 
@@ -53,12 +53,33 @@ Things to do:
 
 Todo: - Stimuli in any end or both dend ends.
 
+------------------------------------------------------------------------
 Neuronal summation
         - Synaptic input at Y tips and branch point, both I and E.
-        - Vary weights
-        - Vary time since start for each.
-        - Vary taus of I.
-        - Have spiking soma, to set up thresholding as an option.
+        - Vary weights. We have 6 syns: 6 weights
+        - Vary time since start for each. Another 6 controls
+        - Vary taus of I. 2 controls.
+	- Vary threshold of soma. 1 control.
+	- Vary length of branches. 1 control
+	- Vary input freq and duration I and E separate. 4 controls.
+
+	I'll need a tab for the various controls.
+
+	- Show AND and OR
+	- Show somatic effects at different distances.
+	- Show different kinds of summation
+	- Show coincidence detection vs integration (change spiking props?)
+	- Show various EI summation effects.
+
+------------------------------------------------------------------------
+Spatio-temporal summation: Do with and without NMDAR, also toggle in HH chans.
+	- Vary time interval of stim
+	- Vary geometric spacing of stim/length of dend
+	- Vary amplitude
+	- Vary passive props of dend
+	- toggle direction or scatter.
+
+------------------------------------------------------------------------
 
 Channel mixer:
         - Modulate the conductance of battery of channels
