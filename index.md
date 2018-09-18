@@ -8,7 +8,8 @@ Examples, tutorial and demo scripts.
 
 These scripts ran successfully.
 
-- [ snippets/switchKineticSolvers.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/switchKineticSolvers.py)
+- [ neuroml2/run_hhcell.py ](https://github.com/BhallaLab/moose-examples/blob/master/neuroml2/run_hhcell.py)
+- [ neuroml2/run_cell.py ](https://github.com/BhallaLab/moose-examples/blob/master/neuroml2/run_cell.py)
 
 ## Failed scripts
 
@@ -16,72 +17,6 @@ These scripts failed to execute successfully on Travis.
 - [ izhikevich/demogui_qt.py ](https://github.com/BhallaLab/moose-examples/blob/master/izhikevich/demogui_qt.py)
 
 ```
-```
-- [ parallelSolver/Fig2_v4.py ](https://github.com/BhallaLab/moose-examples/blob/master/parallelSolver/Fig2_v4.py)
-
-```
-  09-18 10:40 matplotlib.font_manager DEBUG    findfont: Matching :family=sans-serif:style=normal:variant=normal:weight=normal:stretch=normal:size=10.0 to DejaVu Sans ('/usr/lib/python3.7/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf') with score of 0.050000
-       Using default temperature of 32.0 degree Celsius
-  09-18 10:40 moose.nml.neuroml DEBUG    Loading channels and synapses into MOOSE /library ...
-  09-18 10:40 moose.nml.neuroml DEBUG    Loading cell definitions into MOOSE /library ...
-  09-18 10:40 moose.nml.neuroml DEBUG    Loading individual cells into MOOSE root ... 
-  09-18 10:40 root         INFO     Reading morphology from /home1/dilawars/Work.SVN/GITHUB/BhallaLab/moose-examples/neuroml/allChannelsCell/cells_channels/Granule_98.morph.xml
-  09-18 10:40 root         INFO     Loading cell Granule_98 into /library .
-  09-18 10:40 root         INFO     readMorphML using combineSegments = False
-  09-18 10:40 root         INFO     Loading mechanism Gran_KDr_98 into library.
-  09-18 10:40 root         INFO     Loading mechanism Gran_H_98 into library.
-  09-18 10:40 root         INFO     Loading mechanism Gran_CaHVA_98 into library.
-  09-18 10:40 root         INFO     Loading mechanism Gran_KCa_98 into library.
-```
-- [ neuroml2/run_cell.py ](https://github.com/BhallaLab/moose-examples/blob/master/neuroml2/run_cell.py)
-
-```
-  Loading: passiveCell.nml
-  [INFO] [92mNML2 support is disabled because [0mlibneuroml[92m and 
-  [0mpyneuroml[92m modules are not found.
-       pip install pyneuroml libneuroml 
-   should fix it.
-   Actual error: No module named 'pyneuroml'  [0m
-  [WARN] [90mCould not load NML2 support. Doing nothing [0m
-  Traceback (most recent call last):
-    File "/home1/dilawars/Work/GITHUB/BhallaLab/moose-examples/neuroml2/run_cell.py", line 112, in <module>
-      run(nogui)
-    File "/home1/dilawars/Work/GITHUB/BhallaLab/moose-examples/neuroml2/run_cell.py", line 56, in run
-      assert reader
-  AssertionError
-           INFO     Loading cell AB_PD into /library .
-  09-18 10:40 root         INFO     readMorphML using combineSegments = False
-  09-18 10:40 root         INFO     Loading mechanism Na_STG into library.
-  09-18 10:40 root         INFO     Loading mechanism Kd_STG into library.
-  09-18 10:40 root         INFO     Loading mechanism KCa_STG into library.
-```
-- [ neuroml2/run_hhcell.py ](https://github.com/BhallaLab/moose-examples/blob/master/neuroml2/run_hhcell.py)
-
-```
-    Loading: passiveCell.nml
-    [INFO] [92mNML2 support is disabled because [0mlibneuroml[92m and 
-    [0mpyneuroml[92m modules are not found.
-         pip install pyneuroml libneuroml 
-     should fix it.
-     Actual error: No module named 'pyneuroml'  [0m
-    [WARN] [90mCould not load NML2 support. Doing nothing [0m
-    Traceback (most recent call last):
-      File "/home1/dilawars/Work/GITHUB/BhallaLab/moose-examples/neuroml2/run_cell.py", line 112, in <module>
-        run(nogui)
-      File "/home1/dilawars/Work/GITHUB/BhallaLab/moose-examples/neuroml2/run_cell.py", line 56, in run
-        assert reader
-    AssertionError
-             INFO     Loading cell AB_PD into /library .
-    09-18 10:40 root         INFO     readMorphML using combineSegments = False
-    09-18 10:40 root         INFO     Loading mechanism Na_STG into library.
-    09-18 10:40 root         INFO     Loading mechanism Kd_STG into library.
-    09-18 10:40 root         INFO     Loading mechanism KCa_STG into library.
-```
-- [ izhikevich/demogui_qt.py ](https://github.com/BhallaLab/moose-examples/blob/master/izhikevich/demogui_qt.py)
-
-```
-  [ERROR] Could not import PyQt4.Qwt5
-    Please install pyqwt5.
 ```
 - [ parallelSolver/Fig2_v4.py ](https://github.com/BhallaLab/moose-examples/blob/master/parallelSolver/Fig2_v4.py)
 
@@ -97,40 +32,6 @@ These scripts failed to execute successfully on Travis.
   INFO:root:Loading mechanism Gran_H_98 into library.
   INFO:root:Loading mechanism Gran_CaHVA_98 into library.
   INFO:root:Loading mechanism Gran_KCa_98 into library.
-```
-- [ neuroml2/run_cell.py ](https://github.com/BhallaLab/moose-examples/blob/master/neuroml2/run_cell.py)
-
-```
-  Loading: NML2_SingleCompHHCell.nml
-  Traceback (most recent call last):
-    File "/home1/dilawars/Work/GITHUB/BhallaLab/moose-examples/neuroml2/run_hhcell.py", line 151, in <module>
-      run(nogui)
-    File "/home1/dilawars/Work/GITHUB/BhallaLab/moose-examples/neuroml2/run_hhcell.py", line 97, in run
-      reader = moose.mooseReadNML2(filename)
-    File "/home1/dilawars/.local/lib/python3.7/site-packages/moose/moose.py", line 238, in mooseReadNML2
-      reader.read( modelpath )
-    File "/home1/dilawars/.local/lib/python3.7/site-packages/moose/neuroml2/reader.py", line 179, in read
-      self.importIonChannels(self.doc)
-    File "/home1/dilawars/.local/lib/python3.7/site-packages/moose/neuroml2/reader.py", line 619, in importIonChannels
-      self.nml_to_moose[chan] = mchan
-  TypeError: unhashable type: 'IonChannelHH'
-```
-- [ neuroml2/run_hhcell.py ](https://github.com/BhallaLab/moose-examples/blob/master/neuroml2/run_hhcell.py)
-
-```
-    Loading: NML2_SingleCompHHCell.nml
-    Traceback (most recent call last):
-      File "/home1/dilawars/Work/GITHUB/BhallaLab/moose-examples/neuroml2/run_hhcell.py", line 151, in <module>
-        run(nogui)
-      File "/home1/dilawars/Work/GITHUB/BhallaLab/moose-examples/neuroml2/run_hhcell.py", line 97, in run
-        reader = moose.mooseReadNML2(filename)
-      File "/home1/dilawars/.local/lib/python3.7/site-packages/moose/moose.py", line 238, in mooseReadNML2
-        reader.read( modelpath )
-      File "/home1/dilawars/.local/lib/python3.7/site-packages/moose/neuroml2/reader.py", line 179, in read
-        self.importIonChannels(self.doc)
-      File "/home1/dilawars/.local/lib/python3.7/site-packages/moose/neuroml2/reader.py", line 619, in importIonChannels
-        self.nml_to_moose[chan] = mchan
-    TypeError: unhashable type: 'IonChannelHH'
 ```
 
 ## Broken scripts

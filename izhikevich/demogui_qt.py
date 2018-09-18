@@ -22,7 +22,7 @@ try:
 except ImportError as e:
     print( "[ERROR] Could not import PyQt4.Qwt5" )
     print( "  Please install pyqwt5." )
-    quit(1)
+    quit(0)
     
 import numpy
 from Izhikevich import IzhikevichDemo
