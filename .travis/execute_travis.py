@@ -20,9 +20,11 @@ import re
 import glob
 import signal
 from collections import defaultdict
+import shutil
 
 sdir_       = os.path.dirname( os.path.realpath( __file__) )
 willNotRun_ = defaultdict(set)
+result_     = defaultdict(list)
 timeout_    = 30
 
 def renormalize_path( path ):
@@ -64,6 +66,23 @@ def print_ignored( ):
         print( '\n'.join(fs) )
         print( '\n\n' )
 
+def print_results( ):
+    global result_
+    for k in result_:
+        with open( "%s.txt" % k, 'w' ) as f:
+            for f, r in result_[k]:
+                f.write( '- %s\n' % f )
+                f.write( '```' )
+                f.write( r )
+                f.write( '```\n')
+        print("[INFO ] Wrote files with status %s to %s.txt " % (k,k))
+
+    for k in result_:
+        print( k )
+        for f, r in result_[k]:
+            print( f )
+        print( '' )
+
 def find_scripts_to_run( d ):
     print( "[INFO ] Searching for files in %s"  % d )
     files = []
@@ -77,27 +96,47 @@ def find_scripts_to_run( d ):
     return files
 
 def run_script( filename ):
-    import shutil
     global sdir_
+    global result_
     # Run the script in the directory of file.
     tgtdir = os.path.dirname( os.path.realpath( filename ) )
     # copy matplotlibrc file to this directory.
-    shutil.copy( os.path.join( sdir_, 'matplotlibrc' ), tgtdir )
-    res = subprocess.run( [ "python", filename ], cwd = tgtdir, timeout = timeout_
-            , stdout = subprocess.PIPE
-            , stderr = subprocess.PIPE
-            )
+    try:
+        shutil.copy( os.path.join( sdir_, 'matplotlibrc' ), tgtdir )
+    except Exception as  e:
+        pass
 
-    if res.returncode == 0:
-        print( "PASSED: %s" % filename )
+    status = 'FAILED'
+    res = None
+    try:
+        res = subprocess.run( [ "python", filename ], cwd = tgtdir, timeout = timeout_
+                , stdout = subprocess.PIPE
+                , stderr = subprocess.PIPE
+                , encoding = 'utf8'
+                )
+        if res.returncode == 0:
+            status = 'PASSED'
+            print( end = '.' )
+            sys.stdout.flush()
+        else:
+            status = 'FAILED'
+            print( end = 'F' )
+            sys.stdout.flush()
+    except subprocess.TimeoutExpired as e:
+        status = 'TIMEOUT'
+        print( end = 'T' )
+        sys.stdout.flush()
+
+    if res is not None:
+        result_[status].append( (filename,res.stdout+res.stderr) )
     else:
-        print( "FAILED: %s" % filename )
-        print( res.stderr )
+        result_[status].append( (filename,'UNKNOWN') )
 
 def init_worker( ):
     signal.signal( signal.SIGINT, signal.SIG_IGN )
 
 def run_all( scripts, workers = 2 ):
+    print( "[INFO ] Using %s workers" % workers )
     pool = multiprocessing.Pool( workers, init_worker )
     try:
         pool.map( run_script, scripts )
@@ -107,12 +146,15 @@ def run_all( scripts, workers = 2 ):
         pool.join()
     return True
 
+
 def main():
     scripts = find_scripts_to_run(os.path.join(sdir_, '..'))
     print( "[INFO ] Total %s scripts found" % len(scripts) )
     print_ignored( )
     print( '== Now running files' )
-    run_all( scripts )
+    workers = max( 2, multiprocessing.cpu_count() // 2 )
+    run_all( scripts, workers )
+    print_results()
 
 if __name__ == '__main__':
     main()
