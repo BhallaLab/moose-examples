@@ -15,8 +15,13 @@
 # Tuesday 18 September 2018 09:51:56 AM IST` 
 #           Qt Related changes.
 
-from PyQt4 import QtGui, QtCore
-from PyQt4.Qt import Qt
+try:
+    from PyQt4 import QtGui, QtCore
+    from PyQt4.Qt import Qt
+except ImportError as e:
+    print( 'No PyQt4 found. Doing nothing' )
+    quit()
+
 try:
     import PyQt4.Qwt5 as Qwt
 except ImportError as e:
