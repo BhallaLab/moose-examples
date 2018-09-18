@@ -138,7 +138,7 @@ def main():
     print_ignored( )
     print( '== Now running  %d files' % len(scripts) )
     for i, (x,t) in enumerate(scripts):
-        print( '%.2f%% - ' % (100.0*i/len(scripts)), end = '' )
+        print( '%3d/%d-' % (i,len(scripts)), end = '' )
         run_script( x, t )
     print_results()
 
