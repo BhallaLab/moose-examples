@@ -1,10 +1,5 @@
-#!/usr/bin/env python
-"""run_travis.py: 
+#!/usr/bin/env python3
 
-Run test on travis.
-
-"""
-    
 __author__           = "Dilawar Singh"
 __copyright__        = "Copyright 2017-, Dilawar Singh"
 __version__          = "1.0.0"
@@ -14,7 +9,10 @@ __status__           = "Development"
 
 import sys
 import os
-import subprocess32 as subprocess
+try:
+    import subprocess32 as subprocess
+except ImportError as e:
+    import subprocess
 import multiprocessing
 import re
 import glob
@@ -119,7 +117,6 @@ def run_script( filename ):
         res = subprocess.run( [ "python", filename ], cwd = tgtdir, timeout = timeout_
                 , stdout = subprocess.PIPE
                 , stderr = subprocess.PIPE
-                , encoding = 'utf8'
                 )
         if res.returncode == 0:
             status = 'PASSED'
