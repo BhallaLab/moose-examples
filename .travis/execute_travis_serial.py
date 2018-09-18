@@ -42,7 +42,7 @@ def filter_scripts( x ):
         willNotRun_['NO_MAIN'].add(filename)
         return False
 
-    if re.search( r'import PyQt(4|5)|from PyQt(4|5) import', txt):
+    if re.search( r'import\s+PyQt(4|5)|from\s+PyQt(4|5)\s+import', txt):
         willNotRun_['PYQT_REQUIRED'].add(filename)
         return False
 
