@@ -1,5 +1,5 @@
 ########################################################################
-# This example demonstrates a cable
+# This example demonstrates synaptic summation in a branched neuron.
 # Copyright (C) Upinder S. Bhalla NCBS 2018
 # Released under the terms of the GNU Public License V3.
 ########################################################################
