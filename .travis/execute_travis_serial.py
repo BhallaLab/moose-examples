@@ -21,6 +21,7 @@ import datetime
 import signal
 from collections import defaultdict
 import shutil
+import random
 
 sdir_       = os.path.dirname( os.path.realpath( __file__) )
 willNotRun_ = defaultdict(set)
@@ -39,6 +40,10 @@ def filter_scripts( x ):
 
     if not re.search( r'if\s+__name__\s+==\s+(\'|\")__main__(\'|\")\s*\:', txt):
         willNotRun_['NO_MAIN'].add(filename)
+        return False
+
+    if re.search( r'import PyQt(4|5)|from PyQt(4|5) import', txt):
+        willNotRun_['PYQT_REQUIRED'].add(filename)
         return False
 
     m = re.search( r'input\(\s*\)|raw_input\(\s*\)', txt)
@@ -83,7 +88,7 @@ def print_results( ):
             print( '```\n%s\n```\n' % r )
         quit(1)
 
-def find_scripts_to_run( d ):
+def find_scripts_to_run( d, total_scripts = -1 ):
     print( "[INFO ] Searching for files in %s"  % d )
     files = []
     for d, sd, fs in os.walk( d ):
@@ -99,7 +104,11 @@ def find_scripts_to_run( d ):
                 files.append( (fname,timeout) )
 
     files = list(filter(filter_scripts, files))
+    if total_scripts > 1:
+        files = random.sample( files, total_scripts )
+
     return files
+
 
 def run_script( filename, timeout = 30 ):
     global sdir_
@@ -136,7 +145,7 @@ def run_script( filename, timeout = 30 ):
         result_[status].append( (filename,'UNKNOWN') )
 
 def main():
-    scripts = find_scripts_to_run(os.path.join(sdir_, '..'))
+    scripts = find_scripts_to_run(os.path.join(sdir_, '..'), 50)
     print( "[INFO ] Total %s scripts found" % len(scripts) )
     print_ignored( )
     print( '== Now running  %d files' % len(scripts) )
