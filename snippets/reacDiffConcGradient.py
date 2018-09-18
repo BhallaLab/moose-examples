@@ -1,6 +1,6 @@
 #########################################################################
 # reacDiffConcGradinet.py
-# __BROKEN__ 
+# 
 # Filename:reacDiffConcGradinet.py
 # Author: Upinder S. Bhalla
 # Maintainer: 

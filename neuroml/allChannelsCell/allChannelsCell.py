@@ -23,13 +23,15 @@ runtime = 0.7 # s
 
 def loadGran98NeuroML_L123(filename):
     neuromlR = NeuroML()
-    populationDict, projectionDict = neuromlR.readNeuroMLFromFile(filename)
+    populationDict, projectionDict = \
+        neuromlR.readNeuroMLFromFile(filename)
     soma_path = populationDict['Gran'][1][0].path+'/Soma_0'
-    somaVm = setupTable('somaVm',moose.element(soma_path),'Vm')
-    somaCa = setupTable('somaCa',moose.element(soma_path+'/Gran_CaPool_98'),'Ca')
+    somaVm = setupTable('somaVm',moose.Compartment(soma_path),'Vm')
+    somaCa = setupTable('somaCa',moose.CaConc(soma_path+'/Gran_CaPool_98'),'Ca')
     somaIKC = setupTable('somaIKC',moose.element(soma_path+'/KC_CML'),'Gk')
     somaIKCa = setupTable('somaIKCa',moose.element(soma_path+'/Gran_KCa_98'),'Gk')
-    soma = moose.element(soma_path)
+    #KDrX = setupTable('ChanX',moose.element(soma_path+'/Gran_KDr_98'),'X')
+    soma = moose.Compartment(soma_path)
     print("Reinit MOOSE ... ")
     resetSim(['/elec','/cells'],simdt,plotdt) # from moose.utils
     print("Running ... ")

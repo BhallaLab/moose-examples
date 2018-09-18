@@ -7,7 +7,7 @@ mkdir -p $TEMPDIR
 # directory.
 ( 
     cd $TEMPDIR
-    cmake $REPODIR && make -j4 
+    cmake -DPYTHON_EXECUTABLE=/usr/bin/python $REPODIR && make -j4 
 
     echo "We did not run following scripts"
     if [[ -f SUCCEEDED ]]; then
