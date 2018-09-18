@@ -15,6 +15,7 @@ notifications:
 script:
     - pip install pymoose --pre
     - pip install subprocess32 --upgrade
+    - pip install libneuroml pyneuroml scipy matplotlib numpy --upgrade
     - cd ./.travis && ./execute_travis.py
 
 exclude: [vendor]
