@@ -48,7 +48,12 @@
 """Do a series of current steps on each celltype"""
 
 import numpy as np
-import h5py as h5
+try:
+    import h5py as h5
+except ImportError as e:
+    print( "[INFO ] h5py is not found. Quitting ..." )
+    quit()
+    
 from collections import defaultdict
 
 import moose

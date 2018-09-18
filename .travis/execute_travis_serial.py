@@ -76,7 +76,7 @@ def print_results( ):
                     r = r.decode( 'utf8' )
                 except Exception as e:
                     pass
-                f.write( r )
+                f.write( str(r) )
                 f.write( '```\n')
         print("[INFO ] Wrote files with status %s to %s.txt " % (k,k))
 
