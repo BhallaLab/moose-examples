@@ -117,13 +117,15 @@ def run_script( filename ):
                 )
         if res.returncode == 0:
             status = 'PASSED'
+            print( '%s| %s' % (status,filename) )
         else:
             status = 'FAILED'
+            print( '%s| %s' % (status,filename) )
             print( '- [ ] %s' % filename )
             print( '```\n %s \n```' % (res.stdout + res.stderr) )
     except subprocess.TimeoutExpired as e:
         status = 'TIMEOUT'
-        print( filename )
+        print( '%s| %s' % (status,filename) )
 
     if res is not None:
         result_[status].append( (filename,res.stdout+res.stderr) )
@@ -150,8 +152,7 @@ def main():
     print( "[INFO ] Total %s scripts found" % len(scripts) )
     print_ignored( )
     print( '== Now running files' )
-    workers = max( 2, multiprocessing.cpu_count() // 2 )
-    run_all( scripts, workers )
+    [ run_script(x) for x in scripts ]
     print_results()
 
 if __name__ == '__main__':
