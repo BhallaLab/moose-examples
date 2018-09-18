@@ -72,6 +72,10 @@ def print_results( ):
             for fl, r in result_[k]:
                 f.write( '- %s\n' % fl )
                 f.write( '```' )
+                try:
+                    r = r.decode( 'utf8' )
+                except Exception as e:
+                    pass
                 f.write( r )
                 f.write( '```\n')
         print("[INFO ] Wrote files with status %s to %s.txt " % (k,k))
@@ -103,7 +107,9 @@ def find_scripts_to_run( d ):
                     timeout = 5
                 files.append( (fname,timeout) )
 
-    files = list(filter(filter_scripts, files))
+    if os.environ.get('TRAVIS', ''):
+        print( "[INFO ] Ignoring some scripts on Travis." )
+        files = list(filter(filter_scripts, files))
     return files
 
 
@@ -146,7 +152,7 @@ def main():
     print( "[INFO ] Total %s scripts found" % len(scripts) )
     print_ignored( )
 
-    scripts = random.sample( files, 50 )
+    scripts = random.sample( scripts, 50 )
     print( '= Now running randomly selected %d files' % len(scripts) )
     for i, (x,t) in enumerate(scripts):
         print( '%3d/%d-' % (i,len(scripts)), end = '' )

@@ -9,6 +9,8 @@ notifications:
     email:
         recipients:
             - dilawar.s.rajput@gmail.com
+            - upi.bhalla@gmail.com
+            - hrani@ncbs.res.in
 
 before_script:
     - "export DISPLAY=:99.0"
