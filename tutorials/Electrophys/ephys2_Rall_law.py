@@ -1,5 +1,6 @@
 ########################################################################
-# This example demonstrates a cable
+# This example demonstrates Rall's Law. 
+# In memory of Will Rall, 1922-2018.
 # Copyright (C) Upinder S. Bhalla NCBS 2018
 # Released under the terms of the GNU Public License V3.
 ########################################################################
@@ -54,7 +55,7 @@ def makeYmodel():
     x = length
     y = 0.0
     dx = length / ( numDendSeg * np.sqrt(2.0) )
-    dy = 0.0
+    dy = dx
     prevc1 = moose.element( '/library/cellBase/dend{}'.format( numDendSeg-1 ) )
     prevc2 = prevc1
     for i in range( numDendSeg ):
