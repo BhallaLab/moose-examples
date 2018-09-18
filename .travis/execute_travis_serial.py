@@ -61,8 +61,8 @@ def print_results( ):
     global result_
     for k in result_:
         with open( "%s.txt" % k, 'w' ) as f:
-            for f, r in result_[k]:
-                f.write( '- %s\n' % f )
+            for fl, r in result_[k]:
+                f.write( '- %s\n' % fl )
                 f.write( '```' )
                 f.write( r )
                 f.write( '```\n')
