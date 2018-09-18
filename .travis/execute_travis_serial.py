@@ -135,8 +135,10 @@ def main():
     scripts = find_scripts_to_run(os.path.join(sdir_, '..'))
     print( "[INFO ] Total %s scripts found" % len(scripts) )
     print_ignored( )
-    print( '== Now running files' )
-    [ run_script(x) for x in scripts ]
+    print( '== Now running  %d files' % len(scripts) )
+    for i, x in enumerate(scripts):
+        print( '%.2f\% - ' % 100.0*i/x, end = '' )
+        run_script( x )
     print_results()
 
 if __name__ == '__main__':
