@@ -9,8 +9,6 @@ notifications:
     email:
         recipients:
             - dilawar.s.rajput@gmail.com
-            - bhalla@ncbs.res.in
-            - hrani@ncbs.res.in
 
 script:
     - pip install pymoose --pre
