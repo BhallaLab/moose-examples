@@ -13,6 +13,7 @@ import subprocess32 as subprocess
 import multiprocessing
 import re
 import glob
+import datetime
 import signal
 from collections import defaultdict
 import shutil
@@ -117,35 +118,18 @@ def run_script( filename ):
                 )
         if res.returncode == 0:
             status = 'PASSED'
-            print( '%s| %s' % (status,filename) )
         else:
             status = 'FAILED'
-            print( '%s| %s' % (status,filename) )
-            print( '- [ ] %s' % filename )
-            print( '```\n %s \n```' % (res.stdout + res.stderr) )
     except subprocess.TimeoutExpired as e:
         status = 'TIMEOUT'
-        print( '%s| %s' % (status,filename) )
+
+    stamp = datetime.datetime.now().isoformat()
+    print( '[%s] %10s %s' % (stamp, status,filename) )
 
     if res is not None:
         result_[status].append( (filename,res.stdout+res.stderr) )
     else:
         result_[status].append( (filename,'UNKNOWN') )
-
-def init_worker( ):
-    signal.signal( signal.SIGINT, signal.SIG_IGN )
-
-def run_all( scripts, workers = 2 ):
-    print( "[INFO ] Using %s workers" % workers )
-    pool = multiprocessing.Pool( workers, init_worker )
-    try:
-        pool.map( run_script, scripts )
-    except KeyboardInterrupt as e:
-        print( "[INFO ] Keyboard interrupt. Shutting down" )
-        pool.terminate()
-        pool.join()
-
-    print( '... DONE' )
 
 def main():
     scripts = find_scripts_to_run(os.path.join(sdir_, '..'))
