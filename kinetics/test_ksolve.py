@@ -205,7 +205,6 @@ def dumpPlots( outfile ):
     for x in moose.wildcardFind( '/graphs/##[TYPE=Table2]' ):
         records[x.name] = x
 
-    plt.figure(figsize=(10,10))
     for i, r in enumerate(records):
         print( '\t %d/%d %s' % (i, len(records), r) )
         plt.subplot(1+len(records)//3, 3, i+1 )
@@ -489,7 +488,7 @@ def testCubeMultiscale( method ):
     print( '[INFO] Using method %s' % ksolve.method )
     moose.reinit()
     t = time.time()
-    moose.start( 0.2 )
+    moose.start( 1e-6 )
     print( "Total time taken: %s sec "% (time.time()-t) )
     plotName = '%s_%s.png' % (sys.argv[0], ksolve.method )
     dumpPlots( plotName )
