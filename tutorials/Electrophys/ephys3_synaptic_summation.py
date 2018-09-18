@@ -12,8 +12,8 @@ import moose
 import rdesigneur as rd
 
 numDendSeg = 10 # Applies both to dend and to branches.
-interval1 = 0.020
-interval2 = 0.020
+interval1 = 0.015
+interval2 = 0.010
 lines = []
 tplot = []
 axes = []
@@ -324,15 +324,18 @@ def makeDisplay():
     #ax2.autoscale( enable = True, axis = 'y' )
     plt.title( "Membrane potential as a function of position along cell." )
     #for i,col in zip( range( 5 ), ['k', 'b', 'g', 'y', 'm' ] ):
-    for i,col in zip( range( 2 ), ['b', 'k' ] ):
+    lt = interval1
+    for i,col in zip( range( 3 ), ['g', 'b', 'k' ] ):
         lw = lineWrapper()
         lw.YdendLines, = ax2.plot( np.arange(0, numDendSeg+1, 1 ),
-                np.zeros(numDendSeg+1), col + '-' )
+                np.zeros(numDendSeg+1), col + '-', label = str(lt*1000) + " ms" )
         lw.Ybranch1Lines, = ax2.plot( np.arange(0, numDendSeg, 1) + numDendSeg + 1, 
                 np.zeros(numDendSeg), col + ':' )
         lw.Ybranch2Lines, = ax2.plot( np.arange(0, numDendSeg, 1) + numDendSeg + 1, 
                 np.zeros(numDendSeg) + numDendSeg + 1, col + '.' )
         lines.append( lw )
+        lt += interval2
+    plt.legend()
 
     ax = fig.add_subplot(313)
     plt.axis('off')

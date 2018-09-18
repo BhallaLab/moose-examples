@@ -54,22 +54,29 @@ Things to do:
 Todo: - Stimuli in any end or both dend ends.
 
 ------------------------------------------------------------------------
-Neuronal summation
-        * Synaptic input at Y tips and branch point, both I and E.
-        * Vary weights (chan cond) We have 6 syns: 6 weights
-        * Vary time since start for each. Another 6 controls
-        * Vary taus of I. 2 controls.
-	* Vary Reversal potentials.
-	x Vary threshold of soma. 1 control.
-		Put in spiking mechanism
-	* Vary length and dia of branches. 4 controls
-	* Vary input freq and duration I and E separate. 4 controls.
-	- Improve diagram.
 
+ephys3_synaptic_summation.py
 
-	- Show spatial summation of exc input
-	- Show sublinear summation and saturation of exc input
+This is a very general tutorial on neuronal summation. It implements a Y-branch
+neuron, with synaptic inputs at the end of each branch and on the junction.
+There are excitatory as well as inhibitory inputs, and many parameters of the
+synapses as well as of the cell can be modified.
+There are two plots built in: one is a time-series plot of membrane potential
+(Vm) for the soma, the junction, and the two branches. The other is a plot of
+Vm against position. 
+
+There are six modes for modifying parameters: Gbar, Onset, Tau, Duration,
+Freq and Elec. Each of these modes activates a set of six sliders, to specify
+the parameters of the model.
+There is a toggle for turning spiking on or off. The spiking is implemented as
+a full Hodgkin-Huxley type model with Na and K channels, but the channel
+kinetics are based on mammalian parameters.
+
+Here are just some of the things to try with the model:
+
 	- Show temporal summation of exc input with many spikes
+	- Show sublinear summation and saturation of exc input
+	- Show spatial summation of exc input
 	- Show temporal summation of exc input with 2 inputs at different times
 	- Show local inhibition
 	- Show efficacy of inhibition as function of time-course
