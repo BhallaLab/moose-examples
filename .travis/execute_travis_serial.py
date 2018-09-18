@@ -21,7 +21,6 @@ import shutil
 sdir_       = os.path.dirname( os.path.realpath( __file__) )
 willNotRun_ = defaultdict(set)
 result_     = defaultdict(list)
-timeout_    = 30
 
 def renormalize_path( path ):
     global sdir_
@@ -92,13 +91,19 @@ def find_scripts_to_run( d ):
     for d, sd, fs in os.walk( d ):
         for f in fs:
             fname = os.path.join(d, f)
+            if '.travis' in fname:
+                continue
             fname = renormalize_path(fname)
             if fname.split( '.' )[-1] == 'py':
-                files.append( fname )
+                timeout = 20
+                if 'traub_2015' in fname:
+                    timeout = 5
+                files.append( (fname,timeout) )
+
     files = list(filter(filter_scripts, files))
     return files
 
-def run_script( filename ):
+def run_script( filename, timeout = 30 ):
     global sdir_
     global result_
     # Run the script in the directory of file.
@@ -112,7 +117,8 @@ def run_script( filename ):
     status = 'FAILED'
     res = None
     try:
-        res = subprocess.run( [ "python", filename ], cwd = tgtdir, timeout = timeout_
+        res = subprocess.run( [ "python", filename ], cwd = tgtdir
+                , timeout = timeout
                 , stdout = subprocess.PIPE
                 , stderr = subprocess.PIPE
                 )
@@ -136,9 +142,9 @@ def main():
     print( "[INFO ] Total %s scripts found" % len(scripts) )
     print_ignored( )
     print( '== Now running  %d files' % len(scripts) )
-    for i, x in enumerate(scripts):
+    for i, (x,t) in enumerate(scripts):
         print( '%.2f\% - ' % 100.0*i/x, end = '' )
-        run_script( x )
+        run_script( x, t )
     print_results()
 
 if __name__ == '__main__':
