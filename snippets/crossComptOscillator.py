@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 # crossComptOscillator.py --- 
-# 
+# __BROKEN__ 
 # Filename:  crossComptOscillator.py
 # Author: Upinder S. Bhalla
 # Maintainer: 
