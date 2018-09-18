@@ -15,6 +15,7 @@ These scripts ran successfully.
 - [ snippets/startstop.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/startstop.py)
 - [ tutorials/ChemicalBistables/doseResponse.py ](https://github.com/BhallaLab/moose-examples/blob/master/tutorials/ChemicalBistables/doseResponse.py)
 - [ neuroml2/run_hhcell.py ](https://github.com/BhallaLab/moose-examples/blob/master/neuroml2/run_hhcell.py)
+- [ izhikevich/demogui_qt.py ](https://github.com/BhallaLab/moose-examples/blob/master/izhikevich/demogui_qt.py)
 
 ## Failed scripts
 
@@ -30,6 +31,18 @@ These scripts failed to execute successfully on Travis.
 - [ snippets/crossComptOscillator.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/crossComptOscillator.py)
 
 ```
+```
+- [ snippets/reacDiffConcGradient.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/reacDiffConcGradient.py)
+
+```
+```
+- [ snippets/crossComptOscillator.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/crossComptOscillator.py)
+
+```
+  Totals:    2.98096e+08    6.02214e+06    
+  gamma [2,5]((0.5,0.5,-0.5,1,0),(0,0,1,0,1))
+  Nr [3,5]((-1,-1,0,0,1),(0,-2,2,-1,1),(0,0,0,-1,1))
+  LU [5,10]((-1,-1,0,0,1,1,0,0,0,0),(0,-2,2,-1,1,1,1,0,0,0),(0,0,0,-1,1,0,0,1,0,0),(0,0,0,0,0,0.5,0.5,-0.5,1,0),(0,0,0,0,0,0,0,1,0,1))
 ```
 - [ snippets/reacDiffConcGradient.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/reacDiffConcGradient.py)
 
