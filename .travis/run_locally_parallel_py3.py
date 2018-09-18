@@ -24,7 +24,8 @@ def run_all( scripts, workers = 2 ):
     print( '... DONE' )
 
 def main():
-    scripts = find_scripts_to_run(os.path.join(sdir_, '..'))
+    scriptWithTimeout = find_scripts_to_run(os.path.join(sdir_, '..'))
+    scripts, timeouts = zip(*scriptWithTimeout)
     print( "[INFO ] Total %s scripts found" % len(scripts) )
     print_ignored( )
     print( '== Now running files' )
