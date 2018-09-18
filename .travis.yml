@@ -13,8 +13,8 @@ notifications:
             - hrani@ncbs.res.in
 
 script:
-    - pip install pymoose --user --pre
-    - pip install subprocess32 --user --upgrade
+    - pip install pymoose --pre
+    - pip install subprocess32 --upgrade
     - cd ./.travis && ./execute_travis.py
 
 exclude: [vendor]
