@@ -47,29 +47,26 @@ import moose
 import sys
 import numpy as np
 
-# NOTE: This script does not work with python3 
-# See https://github.com/NeuroML/NeuroML2/issues/116 . If this bug is fixed then
-# remove this code block.
-import neuroml as nml
-a = nml.nml.nml.IonChannel()
-try:
-    b = {a : 1 }
-except TypeError as e:
-    print( 'Failed due to https://github.com/NeuroML/NeuroML2/issues/116' ) 
-    quit( 0 )
     
 def run(nogui):
+    
     filename = 'passiveCell.nml'
     print('Loading: %s'%filename)
     reader = moose.mooseReadNML2( filename )
-    assert reader, "Failed to load NML"
+    assert reader
     reader.read(filename)
+    
     msoma = reader.getComp(reader.doc.networks[0].populations[0].id,0,0)
+    print(msoma)
+    
+    
     data = moose.Neutral('/data')
+    
     pg = reader.getInput('pulseGen1')
     
     inj = moose.Table('%s/pulse' % (data.path))
     moose.connect(inj, 'requestOut', pg, 'getOutputValue')
+    
     
     vm = moose.Table('%s/Vm' % (data.path))
     moose.connect(vm, 'requestOut', msoma, 'getVm')
@@ -77,8 +74,17 @@ def run(nogui):
     simdt = 1e-6
     plotdt = 1e-4
     simtime = 150e-3
-    moose.setClock( 8, plotdt )
-    moose.reinit()
+    
+    if (1):
+        #moose.showmsg( '/clock' )
+        for i in range(8):
+            moose.setClock( i, simdt )
+        moose.setClock( 8, plotdt )
+        moose.reinit()
+    else:
+        utils.resetSim([model.path, data.path], simdt, plotdt, simmethod='ee')
+        moose.showmsg( '/clock' )
+        
     moose.start(simtime)
     
     print("Finished simulation!")
@@ -87,6 +93,7 @@ def run(nogui):
     
     if not nogui:
         import matplotlib.pyplot as plt
+
         plt.subplot(211)
         plt.plot(t, vm.vector * 1e3, label='Vm (mV)')
         plt.legend()
