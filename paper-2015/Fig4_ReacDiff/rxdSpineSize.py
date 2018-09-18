@@ -15,10 +15,15 @@ import matplotlib.pyplot as plt
 import moose
 import sys
 import rdesigneur as rd
-from PyQt4 import QtGui
-import moogli
-import moogli.extensions.moose
 import matplotlib
+
+try:
+    from PyQt4 import QtGui
+    import moogli
+    import moogli.extensions.moose
+except ImportError as e:
+    print( "[INFO ] Could not import moogli. Quitting ..." )
+    
 
 doMoo = True
 PI = 3.141592653
