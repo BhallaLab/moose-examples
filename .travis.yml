@@ -10,6 +10,11 @@ notifications:
         recipients:
             - dilawar.s.rajput@gmail.com
 
+before_script:
+    - "export DISPLAY=:99.0"
+    - "sh -e /etc/init.d/xvfb start"
+    - sleep 2
+
 script:
     - pip install pymoose --pre
     - pip install subprocess32 --upgrade
