@@ -14,6 +14,7 @@ notifications:
 
 script:
     - pip install pymoose --user --pre
-    - ./.travis_run.sh
+    - pip install subprocess32 --user --upgrade
+    - cd ./.travis && ./execute_travis.py
 
 exclude: [vendor]

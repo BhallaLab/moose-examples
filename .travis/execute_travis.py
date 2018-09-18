@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 """run_travis.py: 
 
 Run test on travis.
@@ -14,7 +14,7 @@ __status__           = "Development"
 
 import sys
 import os
-import subprocess
+import subprocess32 as subprocess
 import multiprocessing
 import re
 import glob
@@ -67,6 +67,7 @@ def print_ignored( ):
         print( '\n\n' )
 
 def print_results( ):
+    print( "[INFO ] Printing results ..." )
     global result_
     for k in result_:
         with open( "%s.txt" % k, 'w' ) as f:
@@ -82,6 +83,12 @@ def print_results( ):
         for f, r in result_[k]:
             print( f )
         print( '' )
+
+    if len(result_['FAILED']) > 0:
+        for f, r in result_['FAILED']:
+            print( f )
+            print( '```\n%s\n```\n' % r )
+        quit(1)
 
 def find_scripts_to_run( d ):
     print( "[INFO ] Searching for files in %s"  % d )
@@ -144,8 +151,8 @@ def run_all( scripts, workers = 2 ):
         print( "[INFO ] Keyboard interrupt. Shutting down" )
         pool.terminate()
         pool.join()
-    return True
 
+    print( '... DONE' )
 
 def main():
     scripts = find_scripts_to_run(os.path.join(sdir_, '..'))
