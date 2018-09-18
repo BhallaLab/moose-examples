@@ -8,31 +8,23 @@ Examples, tutorial and demo scripts.
 
 These scripts ran successfully.
 
-- [ neuroml2/run_hhcell.py ](https://github.com/BhallaLab/moose-examples/blob/master/neuroml2/run_hhcell.py)
+- [ snippets/startstop.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/startstop.py)
+- [ snippets/chemDoseResponse.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/chemDoseResponse.py)
+- [ snippets/cspaceSteadyState.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/cspaceSteadyState.py)
 - [ neuroml2/run_cell.py ](https://github.com/BhallaLab/moose-examples/blob/master/neuroml2/run_cell.py)
+- [ tutorials/Electrophys/ephys2_Rall_law.py ](https://github.com/BhallaLab/moose-examples/blob/master/tutorials/Electrophys/ephys2_Rall_law.py)
+- [ izhikevich/demogui_qt.py ](https://github.com/BhallaLab/moose-examples/blob/master/izhikevich/demogui_qt.py)
+- [ neuroml2/run_hhcell.py ](https://github.com/BhallaLab/moose-examples/blob/master/neuroml2/run_hhcell.py)
+- [ tutorials/ChemicalBistables/doseResponse.py ](https://github.com/BhallaLab/moose-examples/blob/master/tutorials/ChemicalBistables/doseResponse.py)
+- [ snippets/hhcomp.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/hhcomp.py)
+- [ snippets/switchKineticSolvers.py ](https://github.com/BhallaLab/moose-examples/blob/master/snippets/switchKineticSolvers.py)
+- [ neuroml/allChannelsCell/allChannelsCell.py ](https://github.com/BhallaLab/moose-examples/blob/master/neuroml/allChannelsCell/allChannelsCell.py)
+- [ neuroml/lobster_pyloric/STG_net.py ](https://github.com/BhallaLab/moose-examples/blob/master/neuroml/lobster_pyloric/STG_net.py)
 
 ## Failed scripts
 
 These scripts failed to execute successfully on Travis.
-- [ izhikevich/demogui_qt.py ](https://github.com/BhallaLab/moose-examples/blob/master/izhikevich/demogui_qt.py)
 
-```
-```
-- [ parallelSolver/Fig2_v4.py ](https://github.com/BhallaLab/moose-examples/blob/master/parallelSolver/Fig2_v4.py)
-
-```
-  moose.nml.neuroml: INFO     Loading neuroml file allChannelsCell.net.xml 
-  INFO:moose.nml.neuroml:Loading neuroml file allChannelsCell.net.xml 
-  moose.nml.neuroml: INFO     Using default temperature of 32.0 degree Celsius
-  INFO:moose.nml.neuroml:Using default temperature of 32.0 degree Celsius
-  INFO:root:Reading morphology from /home1/dilawars/Work.SVN/GITHUB/BhallaLab/moose-examples/neuroml/allChannelsCell/cells_channels/Granule_98.morph.xml
-  INFO:root:Loading cell Granule_98 into /library .
-  INFO:root:readMorphML using combineSegments = False
-  INFO:root:Loading mechanism Gran_KDr_98 into library.
-  INFO:root:Loading mechanism Gran_H_98 into library.
-  INFO:root:Loading mechanism Gran_CaHVA_98 into library.
-  INFO:root:Loading mechanism Gran_KCa_98 into library.
-```
 
 ## Broken scripts
 
