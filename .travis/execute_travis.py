@@ -117,16 +117,13 @@ def run_script( filename ):
                 )
         if res.returncode == 0:
             status = 'PASSED'
-            print( end = '.' )
-            sys.stdout.flush()
         else:
             status = 'FAILED'
-            print( end = 'F' )
-            sys.stdout.flush()
+            print( '- [ ] %s' % filename )
+            print( '```\n %s \n```' % (res.stdout + res.stderr) )
     except subprocess.TimeoutExpired as e:
         status = 'TIMEOUT'
-        print( end = 'T' )
-        sys.stdout.flush()
+        print( filename )
 
     if res is not None:
         result_[status].append( (filename,res.stdout+res.stderr) )
