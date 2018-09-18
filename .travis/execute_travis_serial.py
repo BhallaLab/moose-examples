@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+from __future__ import print_function, division
 
 __author__           = "Dilawar Singh"
 __copyright__        = "Copyright 2017-, Dilawar Singh"
@@ -23,17 +24,11 @@ willNotRun_ = defaultdict(set)
 result_     = defaultdict(list)
 
 def renormalize_path( path ):
-    global sdir_
-    ps = []
-    for i, s in enumerate(path.split(os.sep)):
-        if s == '..':
-            ps.pop()
-            continue
-        ps.append(s)
-    return os.sep + os.path.join(*ps)
+    return os.path.normpath(path)
 
 
-def filter_scripts( filename ):
+def filter_scripts( x ):
+    filename, timeout = x 
     # filter scripts by criteria.
     global willNotRun_
     with open( filename, 'r' ) as f:
@@ -89,11 +84,11 @@ def find_scripts_to_run( d ):
     print( "[INFO ] Searching for files in %s"  % d )
     files = []
     for d, sd, fs in os.walk( d ):
+        d = renormalize_path(d)
+        if d == sdir_:
+            continue
         for f in fs:
-            fname = os.path.join(d, f)
-            if '.travis' in fname:
-                continue
-            fname = renormalize_path(fname)
+            fname = renormalize_path(os.path.join(d,f))
             if fname.split( '.' )[-1] == 'py':
                 timeout = 20
                 if 'traub_2015' in fname:
@@ -143,7 +138,7 @@ def main():
     print_ignored( )
     print( '== Now running  %d files' % len(scripts) )
     for i, (x,t) in enumerate(scripts):
-        print( '%.2f\% - ' % 100.0*i/x, end = '' )
+        print( '%.2f%% - ' % (100.0*i/len(scripts)), end = '' )
         run_script( x, t )
     print_results()
 
