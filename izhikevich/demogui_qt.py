@@ -10,44 +10,25 @@
 #           By: subha
 #     Update #: 318
 # URL: 
-# Keywords: 
-# Compatibility: 
-# 
-# 
-
-# Commentary: 
-# 
-# 
-# 
-# 
 
 # Change log:
-# 
-# 
-# 
-# 
-# This program is free software; you can redistribute it and/or
-# modify it under the terms of the GNU General Public License as
-# published by the Free Software Foundation; either version 3, or
-# (at your option) any later version.
-# 
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-# General Public License for more details.
-# 
-# You should have received a copy of the GNU General Public License
-# along with this program; see the file COPYING.  If not, write to
-# the Free Software Foundation, Inc., 51 Franklin Street, Fifth
-# Floor, Boston, MA 02110-1301, USA.
-# 
-# 
+# Tuesday 18 September 2018 09:51:56 AM IST` 
+#           Qt Related changes.
 
-# Code:
+try:
+    from PyQt4 import QtGui, QtCore
+    from PyQt4.Qt import Qt
+except ImportError as e:
+    print( 'No PyQt4 found. Doing nothing' )
+    quit()
 
-from PyQt4 import QtGui, QtCore
-from PyQt4.Qt import Qt
-import PyQt4.Qwt5 as Qwt
+try:
+    import PyQt4.Qwt5 as Qwt
+except ImportError as e:
+    print( "[ERROR] Could not import PyQt4.Qwt5" )
+    print( "  Please install pyqwt5." )
+    quit(0)
+    
 import numpy
 from Izhikevich import IzhikevichDemo
 

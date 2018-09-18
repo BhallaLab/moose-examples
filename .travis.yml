@@ -3,7 +3,6 @@ language: python
 python:
     - "2.7"
     - "3.6"
-    - "3.7"
 
 notifications:
     email:
@@ -13,7 +12,9 @@ notifications:
             - hrani@ncbs.res.in
 
 script:
-    - pip install pymoose --user --pre
+    - pip install pymoose numpy --pre
+    - pip install matplotlib scipy python-libsbml pyneuroml --upgrade
+    - pip install pyqt5 || echo "No pyqt5 for this version"
     - ./.travis_run.sh
 
 exclude: [vendor]

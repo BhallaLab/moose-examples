@@ -24,8 +24,6 @@ def singleCompt( name, params ):
     CaStim.expr += ' + x2 * (t > ' + str( runtime ) + ' ) * ( t < ' + str( runtime + steptime ) +  ' )'
     print(CaStim.expr)
     tab = moose.Table2( '/model/' + name + '/Atab' )
-    #for i in range( 10, 19 ):
-        #moose.setClock( i, 0.01 )
     ampl = moose.element( mod.path + '/ampl' )
     phase = moose.element( mod.path + '/phase' )
     moose.connect( tab, 'requestOut', A, 'getN' )
@@ -126,7 +124,7 @@ def runPanelCDEF( name, dist, seqDt, numSpine, seq, stimAmpl ):
     phase.nInit = 10000
     Z.nInit = 0
     for j in range( numSpine ):
-        k = blanks + j * stride
+        k = int(blanks + j * stride)
         Z[k].nInit = 1
         phase[k].nInit = preStim + seq[j] * seqDt
     moose.reinit()
@@ -167,19 +165,15 @@ def plotPanelCDEF( seq, row ):
     tLabel = chr( ord( 'A' ) + row - 1 )
     xLabel = chr( ord( 'C' ) + row - 1 )
     xplot = []
-    #dt, tplot, avec = runPanelCDEF( 'fhn', 15.0, 3.0, 5, seq, 0.4 )
     dt, tplot, avec = runPanelCDEF( 'fhn', 5.0, 0.5, 5, seq, 0.4 )
     xplot.append( avec )
-    #plotOnePanel( dt, 'B', tplot, 5, 1.5, 0.5 )
     t = np.arange( 0, len( tplot[0] ), 1.0 ) * dt
-    #ax = plotBoilerplate( tLabel, 1 + start )
     ax = plotBoilerplate( tLabel, 1 + start, 'Time (s)')
     for i in range( 5 ):
         plt.plot( t, tplot[i] )
     yl = ax.get_ylim()[1] 
     ax.yaxis.set_ticks( np.arange( 0, 4.0001, 1.0 ) )
 
-    #dt, tplot, avec = runPanelCDEF( 'bis', 5.0, 4.0, 5, seq, 1.0 )
     dt, tplot, avec = runPanelCDEF( 'bis', 15.0, 2.0, 5, seq, 1.0 )
     xplot.append( avec )
     t = np.arange( 0, len( tplot[0] ), 1.0 ) * dt
