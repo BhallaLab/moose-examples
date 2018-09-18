@@ -1,5 +1,5 @@
-# __DEPRECATED__ __BROKEN__
-
+# -*- coding: utf-8 -*-
+from __future__ import print_function, division
 # testSigNeur.py ---
 # Upi Bhalla, NCBS Bangalore 2013.
 #
