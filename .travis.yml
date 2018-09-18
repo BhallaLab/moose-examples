@@ -16,6 +16,8 @@ before_script:
     - sleep 2
 
 script:
+    - # We use python3.4 to run the travis scripts. Which requires subprocess32 modules.
+    - /usr/bin/python3 -m pip install subprocess32 --user
     - pip install pymoose --pre
     - pip install subprocess32 --upgrade
     - pip install libneuroml pyneuroml scipy matplotlib numpy --upgrade
