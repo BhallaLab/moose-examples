@@ -17,15 +17,16 @@ import sys
 import rdesigneur as rd
 import matplotlib
 
+doMoo = True
 try:
-    from PyQt4 import QtGui
     import moogli
     import moogli.extensions.moose
 except ImportError as e:
+    doMoo =  False
     print( "[INFO ] Could not import moogli. Quitting ..." )
     
+from PyQt4 import QtGui
 
-doMoo = True
 PI = 3.141592653
 ScalingForTesting = 10
 RM = 1.0 / ScalingForTesting
