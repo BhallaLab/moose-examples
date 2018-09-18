@@ -126,7 +126,7 @@ def runPanelCDEF( name, dist, seqDt, numSpine, seq, stimAmpl ):
     phase.nInit = 10000
     Z.nInit = 0
     for j in range( numSpine ):
-        k = blanks + j * stride
+        k = int(blanks + j * stride)
         Z[k].nInit = 1
         phase[k].nInit = preStim + seq[j] * seqDt
     moose.reinit()
