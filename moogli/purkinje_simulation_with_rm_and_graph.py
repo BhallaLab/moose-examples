@@ -5,7 +5,12 @@ rm values. The visualizers remain active while the simulation is running.
 Once the simulation finishes, a graph comes up, showing the soma vm values.
 """
 
-import moogli
+try:
+    import moogli
+except ImportError as e:
+    print( "[INFO ] Could not import moogli. Quitting..." )
+    quit()
+
 import moose
 from moose import neuroml
 from PyQt4 import Qt, QtCore, QtGui

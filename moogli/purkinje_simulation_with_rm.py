@@ -4,8 +4,12 @@ simultaneously update the visualizer. Also another viewer shows the compartment
 rm values. The visualizers remain active while the simulation is running.
 """
 
+try:
+    import moogli
+except ImportError as e:
+    print( "[INFO ] Could not import moogli. Quitting..." )
+    quit()
 
-import moogli
 import moose
 from moose import neuroml
 from PyQt4 import Qt, QtCore, QtGui
