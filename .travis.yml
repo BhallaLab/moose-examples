@@ -14,7 +14,7 @@ before_script:
     - "export DISPLAY=:99.0"
     - "sh -e /etc/init.d/xvfb start"
     - sleep 2
-    - sudo apt install -yy python-qt4 python3-pyqt4
+    - sudo apt install -yy python3-pip
 
 script:
     - # We use python3 to run the travis scripts. Which requires subprocess32 modules.
