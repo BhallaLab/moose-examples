@@ -46,6 +46,18 @@ import moose
 import sys
 import numpy as np
 
+# NOTE: This script does not work with python3 
+# See https://github.com/NeuroML/NeuroML2/issues/116 . If this bug is fixed then
+# remove this code block.
+import neuroml as nml
+a = nml.nml.nml.IonChannel()
+try:
+    b = {a : 1 }
+except TypeError as e:
+    print( 'Failed due to https://github.com/NeuroML/NeuroML2/issues/116' ) 
+    quit( 0 )
+    
+
 def test_channel_gates():
     """Creates prototype channels under `/library` and plots the time
     constants (tau) and activation (minf, hinf, ninf) parameters for the
