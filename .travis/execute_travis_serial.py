@@ -88,7 +88,7 @@ def print_results( ):
             print( '```\n%s\n```\n' % r )
         quit(1)
 
-def find_scripts_to_run( d, total_scripts = -1 ):
+def find_scripts_to_run( d ):
     print( "[INFO ] Searching for files in %s"  % d )
     files = []
     for d, sd, fs in os.walk( d ):
@@ -104,9 +104,6 @@ def find_scripts_to_run( d, total_scripts = -1 ):
                 files.append( (fname,timeout) )
 
     files = list(filter(filter_scripts, files))
-    if total_scripts > 1:
-        files = random.sample( files, total_scripts )
-
     return files
 
 
@@ -145,10 +142,12 @@ def run_script( filename, timeout = 30 ):
         result_[status].append( (filename,'UNKNOWN') )
 
 def main():
-    scripts = find_scripts_to_run(os.path.join(sdir_, '..'), 50)
+    scripts = find_scripts_to_run(os.path.join(sdir_, '..'))
     print( "[INFO ] Total %s scripts found" % len(scripts) )
     print_ignored( )
-    print( '== Now running  %d files' % len(scripts) )
+
+    scripts = random.sample( files, 50 )
+    print( '= Now running randomly selected %d files' % len(scripts) )
     for i, (x,t) in enumerate(scripts):
         print( '%3d/%d-' % (i,len(scripts)), end = '' )
         run_script( x, t )
