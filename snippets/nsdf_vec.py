@@ -26,7 +26,7 @@ except Expception as e:
     quit()
 
 try:
-    import h5py
+    import h5py as h5
 except ImportError as e:
     print( 'No module h5py. Please install it using pip' )
     quit()
