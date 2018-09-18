@@ -55,21 +55,33 @@ Todo: - Stimuli in any end or both dend ends.
 
 ------------------------------------------------------------------------
 Neuronal summation
-        - Synaptic input at Y tips and branch point, both I and E.
-        - Vary weights. We have 6 syns: 6 weights
-        - Vary time since start for each. Another 6 controls
-        - Vary taus of I. 2 controls.
-	- Vary threshold of soma. 1 control.
-	- Vary length of branches. 1 control
-	- Vary input freq and duration I and E separate. 4 controls.
+        * Synaptic input at Y tips and branch point, both I and E.
+        * Vary weights (chan cond) We have 6 syns: 6 weights
+        * Vary time since start for each. Another 6 controls
+        * Vary taus of I. 2 controls.
+	* Vary Reversal potentials.
+	x Vary threshold of soma. 1 control.
+		Put in spiking mechanism
+	* Vary length and dia of branches. 4 controls
+	* Vary input freq and duration I and E separate. 4 controls.
+	- Improve diagram.
 
-	I'll need a tab for the various controls.
 
-	- Show AND and OR
-	- Show somatic effects at different distances.
-	- Show different kinds of summation
+	- Show spatial summation of exc input
+	- Show sublinear summation and saturation of exc input
+	- Show temporal summation of exc input with many spikes
+	- Show temporal summation of exc input with 2 inputs at different times
+	- Show local inhibition
+	- Show efficacy of inhibition as function of time-course
+	- Show gating of excitation by junction inhibition
+	- Show shunting inhibition
+	- Turn on spiking and show AND and OR
+	- Turn on spiking and show how different freq inputs cross threshold.
 	- Show coincidence detection vs integration (change spiking props?)
-	- Show various EI summation effects.
+	- Change dend length and show somatic effects at different distances.
+	- Change dend dia and show somatic effects
+	- Show truncation of EPSP by inhib input arriving at diff times.
+	- Show EI balance and imbalance
 
 ------------------------------------------------------------------------
 Spatio-temporal summation: Do with and without NMDAR, also toggle in HH chans.
