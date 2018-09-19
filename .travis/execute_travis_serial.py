@@ -162,8 +162,6 @@ def main( ):
     print_results()
 
 if __name__ == '__main__':
-    global pypath_
     if len(sys.argv) > 1:
         pypath_ = sys.argv[1] 
     main(  )
-
