@@ -342,7 +342,7 @@ class ExcInhNetBase:
         plt.figure(1)
         
         ax = plt.subplot(221)
-        cleanAx( ax, 'B' )
+        #  cleanAx( ax, 'B' )
         plt.ylabel( 'Neuron #', fontsize = 16 )
         for i in range(0,self.NmaxExc):
             if i==0: label = 'Exc. spike trains'

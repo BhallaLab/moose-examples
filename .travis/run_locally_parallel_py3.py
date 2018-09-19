@@ -7,7 +7,12 @@ __maintainer__       = "Dilawar Singh"
 __email__            = "dilawars@ncbs.res.in"
 __status__           = "Development"
 
-from execute_travis_serial import ets
+import execute_travis_serial as ets
+import signal
+import multiprocessing
+import os
+
+sdir_ = os.path.dirname( __file__ )
 
 def init_worker( ):
     signal.signal( signal.SIGINT, signal.SIG_IGN )

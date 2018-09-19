@@ -206,7 +206,7 @@ class CellBase(moose.Neuron):
         
         moose.Neuron( path )
         moose.Neutral.__init__(self, path)
-        self.solver = moose.HSolve('{}/solver'.format(path, 'solver'))
+        self.solver = moose.HSolve('{}/solver'.format(path))
         self.solver.target = path
         self.solver.dt = config.simulationSettings.simulationDt
         

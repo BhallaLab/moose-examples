@@ -5,12 +5,19 @@ PYLINT="python3 -m pylint -E --disable=no-member --disable=no-name-in-module \
     --disable=import-error \
     "
 FILES=$(find . -type f -name "*.py" | shuf)
+i=0
+N=3
 for f in $FILES; do 
-    echo "Checking $f"
-    DIR=$(dirname $f)
-    SNAME=$(basename $f)
+    i=$((i+1))
+    if [ $i -eq $N ]; then
+        wait
+        i=0
+    fi
     ( 
+        echo "Checking $f"
+        DIR=$(dirname $f)
+        SNAME=$(basename $f)
         cd $DIR
         $PYLINT $@ $SNAME
-    )
+    ) &
 done

@@ -45,6 +45,7 @@
 import moose
 import sys
 import numpy as np
+import matplotlib.pyplot as plt
 
 
 # NOTE: This script does not work with python3 
@@ -64,8 +65,7 @@ def test_channel_gates():
     channel gates.
 
     """
-    import matplotlib.pyplot as plt
-    lib = moose.Neutral('/library')
+    lib = moose.element('/library') if moose.exists('/library') else moose.Neutral('/library')
     m = moose.element('/library[0]/naChan[0]/gateX')
     h = moose.element('/library[0]/naChan[0]/gateY')
     n = moose.element('/library[0]/kChan[0]/gateX')
@@ -119,15 +119,10 @@ def run(nogui):
     simdt = 1e-6
     plotdt = 1e-4
     simtime = 300e-3
-    if (1):
-        #moose.showmsg( '/clock' )
-        for i in range(8):
-            moose.setClock( i, simdt )
-        moose.setClock( 8, plotdt )
-        moose.reinit()
-    else:
-        utils.resetSim([model.path, data.path], simdt, plotdt, simmethod='ee')
-        moose.showmsg( '/clock' )
+    for i in range(8):
+        moose.setClock( i, simdt )
+    moose.setClock( 8, plotdt )
+    moose.reinit()
     moose.start(simtime)
     
     print("Finished simulation!")

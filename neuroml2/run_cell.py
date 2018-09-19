@@ -86,16 +86,10 @@ def run(nogui):
     plotdt = 1e-4
     simtime = 150e-3
     
-    if (1):
-        #moose.showmsg( '/clock' )
-        for i in range(8):
-            moose.setClock( i, simdt )
-        moose.setClock( 8, plotdt )
-        moose.reinit()
-    else:
-        mu.resetSim([model.path, data.path], simdt, plotdt, simmethod='ee')
-        moose.showmsg( '/clock' )
-        
+    for i in range(8):
+        moose.setClock( i, simdt )
+    moose.setClock( 8, plotdt )
+    moose.reinit()
     moose.start(simtime)
     
     print("Finished simulation!")
