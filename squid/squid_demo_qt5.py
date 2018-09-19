@@ -23,6 +23,7 @@ try:
     from PyQt5.QtWidgets import QCheckBox, QTabWidget, QComboBox, QWidget
     from PyQt5.QtWidgets import QVBoxLayout, QFrame, QHBoxLayout, QAction
     from PyQt5.QtWidgets import QToolButton, QScrollArea, QTextBrowser
+    from PyQt5.QtWidgets import QMessageBox
 except ImportError as e:
     print( '[INFO] PyQt5 not found. Quitting...' )
     quit()
