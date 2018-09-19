@@ -21,6 +21,7 @@ before_script:
 script:
     - # We use python3 to run the travis scripts. Which requires subprocess32 modules.
     - /usr/bin/python3 -m pip install subprocess32 --user
+    - /usr/bin/python3 -m pip pylint --user
     - pip install pymoose --pre --no-deps
     - pip install numpy --upgrade
     - pip install subprocess32
@@ -29,3 +30,4 @@ script:
     - pip install libneuroml pyneuroml scipy matplotlib
     - python -m compileall -q .
     - ./.travis/execute_travis_serial.py
+    - ./run_pylint.sh
