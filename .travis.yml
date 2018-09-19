@@ -25,6 +25,7 @@ script:
     - pip install numpy --upgrade
     - pip install subprocess32
     - pip install networkx 
+    - pip install brian2 
     - pip install libneuroml pyneuroml scipy matplotlib
     - python -m compileall -q .
     - ./.travis/execute_travis_serial.py

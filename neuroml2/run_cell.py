@@ -44,6 +44,7 @@
 # Code:
 
 import moose
+import moose.utils as mu
 import sys
 import numpy as np
 
@@ -92,7 +93,7 @@ def run(nogui):
         moose.setClock( 8, plotdt )
         moose.reinit()
     else:
-        utils.resetSim([model.path, data.path], simdt, plotdt, simmethod='ee')
+        mu.resetSim([model.path, data.path], simdt, plotdt, simmethod='ee')
         moose.showmsg( '/clock' )
         
     moose.start(simtime)

@@ -7,7 +7,7 @@ __maintainer__       = "Dilawar Singh"
 __email__            = "dilawars@ncbs.res.in"
 __status__           = "Development"
 
-from execute_travis_serial import *
+from execute_travis_serial import ets
 
 def init_worker( ):
     signal.signal( signal.SIGINT, signal.SIG_IGN )
@@ -16,7 +16,7 @@ def run_all( scripts, workers = 2 ):
     print( "[INFO ] Using %s workers" % workers )
     pool = multiprocessing.Pool( workers, init_worker )
     try:
-        pool.map( run_script, scripts )
+        pool.map( ets.run_script, scripts )
     except KeyboardInterrupt as e:
         print( "[INFO ] Keyboard interrupt. Shutting down" )
         pool.terminate()
@@ -24,10 +24,10 @@ def run_all( scripts, workers = 2 ):
     print( '... DONE' )
 
 def main():
-    scriptWithTimeout = find_scripts_to_run(os.path.join(sdir_, '..'))
+    scriptWithTimeout = ets.find_scripts_to_run(os.path.join(sdir_, '..'))
     scripts, timeouts = zip(*scriptWithTimeout)
     print( "[INFO ] Total %s scripts found" % len(scripts) )
-    print_ignored( )
+    ets.print_ignored( )
     print( '== Now running files' )
     workers = max( 2, multiprocessing.cpu_count() // 2 )
     run_all( scripts, workers )

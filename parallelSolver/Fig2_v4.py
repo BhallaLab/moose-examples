@@ -153,12 +153,13 @@ def makePassiveSoma( name, length, diameter ):
     dend.x = length
     return elecid
 
-def plotOnePanel( tLabel, dt, tplot, numSyn, plotRange, tick ):
-    t = np.arange( 0, len( tplot[0] ), 1.0 ) * dt
-    ax = plotBoilerplate( tLabel, 1 + start )
-    for i in range( 5 ):
-        plt.plot( t, tplot[i] )
-    ax.yaxis.set_ticks( np.arange( 0, plotRange, tick ) )
+## NOTE: In this function, `start` is missing. Disabling it else pylint gonna fail.
+#def plotOnePanel( tLabel, dt, tplot, numSyn, plotRange, tick ):
+#    t = np.arange( 0, len( tplot[0] ), 1.0 ) * dt
+#    ax = plotBoilerplate( tLabel, 1 + start )
+#    for i in range( 5 ):
+#        plt.plot( t, tplot[i] )
+#    ax.yaxis.set_ticks( np.arange( 0, plotRange, tick ) )
 
 
 def plotPanelCDEF( seq, row ):
