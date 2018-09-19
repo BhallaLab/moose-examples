@@ -12,12 +12,21 @@ import os
 from collections import defaultdict
 import time
 
-from PyQt5 import QtGui, QtCore
-from PyQt5.QtWidgets import QMainWindow, QApplication, QGroupBox, QSizePolicy
-from PyQt5.QtWidgets import QLabel, QLineEdit, QGridLayout, QDockWidget
-from PyQt5.QtWidgets import QCheckBox, QTabWidget, QComboBox, QWidget
-from PyQt5.QtWidgets import QVBoxLayout, QFrame, QHBoxLayout, QAction
-from PyQt5.QtWidgets import QToolButton, QScrollArea, QTextBrowser
+if sys.version_info[0] < 3:
+    print( "[INFO ] Requires python3 and PyQt5." )
+    quit()
+
+try:
+    from PyQt5 import QtGui, QtCore
+    from PyQt5.QtWidgets import QMainWindow, QApplication, QGroupBox, QSizePolicy
+    from PyQt5.QtWidgets import QLabel, QLineEdit, QGridLayout, QDockWidget
+    from PyQt5.QtWidgets import QCheckBox, QTabWidget, QComboBox, QWidget
+    from PyQt5.QtWidgets import QVBoxLayout, QFrame, QHBoxLayout, QAction
+    from PyQt5.QtWidgets import QToolButton, QScrollArea, QTextBrowser
+    from PyQt5.QtWidgets import QMessageBox
+except ImportError as e:
+    print( '[INFO] PyQt5 not found. Quitting...' )
+    quit()
 
 import numpy
 from matplotlib.figure import Figure

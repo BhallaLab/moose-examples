@@ -19,14 +19,14 @@ import getpass
 import moose
 try:
     a = moose.NSDFWriter( '/a' )
-except Expception as e:
+except Exception as e:
     print( '[WARN] This build does not have NSDF support.' )
     print( ' -- To build moose with NSDF support please see: \
             https://github.com/BhallaLab/moose-core/blob/master/INSTALL.md' )
     quit()
 
 try:
-    import h5py
+    import h5py as h5
 except ImportError as e:
     print( 'No module h5py. Please install it using pip' )
     quit()
