@@ -23,11 +23,12 @@ script:
     - /usr/bin/python3 -m pip install subprocess32 --user
     - /usr/bin/python3 -m pip pylint --user
     - pip install pymoose --pre --no-deps
+    - pip install pylint
     - pip install numpy --upgrade
     - pip install subprocess32
     - pip install networkx 
     - pip install brian2 
     - pip install libneuroml pyneuroml scipy matplotlib
-    - python -m compileall -q .
-    - ./.travis/execute_travis_serial.py
-    - ./run_pylint.sh
+    - pip install python-libsbml 
+    - ./.travis/execute_travis_serial.py `which python`
+

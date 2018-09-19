@@ -26,6 +26,7 @@ import random
 sdir_       = os.path.dirname( os.path.realpath( __file__) )
 willNotRun_ = defaultdict(set)
 result_     = defaultdict(list)
+pypath_     = sys.executable
 
 def renormalize_path( path ):
     return os.path.normpath(path)
@@ -116,6 +117,7 @@ def find_scripts_to_run( d ):
 def run_script( filename, timeout = 30 ):
     global sdir_
     global result_
+    global pypath_
     # Run the script in the directory of file.
     tgtdir = os.path.dirname( os.path.realpath( filename ) )
     # copy matplotlibrc file to this directory.
@@ -127,7 +129,7 @@ def run_script( filename, timeout = 30 ):
     status = 'FAILED'
     res = None
     try:
-        res = subprocess.run( [ "python", filename ], cwd = tgtdir
+        res = subprocess.run( [ pypath_, filename ], cwd = tgtdir
                 , timeout = timeout
                 , stdout = subprocess.PIPE
                 , stderr = subprocess.PIPE
@@ -147,7 +149,7 @@ def run_script( filename, timeout = 30 ):
     else:
         result_[status].append( (filename,'UNKNOWN') )
 
-def main():
+def main( ):
     scripts = find_scripts_to_run(os.path.join(sdir_, '..'))
     print( "[INFO ] Total %s scripts found" % len(scripts) )
     print_ignored( )
@@ -160,5 +162,8 @@ def main():
     print_results()
 
 if __name__ == '__main__':
-    main()
+    global pypath_
+    if len(sys.argv) > 1:
+        pypath_ = sys.argv[1] 
+    main(  )
 
