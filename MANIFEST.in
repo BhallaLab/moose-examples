@@ -1,19 +1,19 @@
-recursive-include cuda           *.png *.py *.xml *.g 
-recursive-include genesis        *.png *.py *.xml *.g
-recursive-include hopfield       *.png *.py *.xml *.g  
-recursive-include izhikevich     *.png *.py *.xml *.g
-recursive-include kinetics       *.png *.py *.xml *.g
-recursive-include moogli         *.png *.py *.xml *.g
-recursive-include neuroml        *.png *.py *.xml *.g
-recursive-include paper-2015     *.png *.py *.xml *.g
-recursive-include parallelSolver *.png *.py *.xml *.g
-recursive-include passive        *.png *.py *.xml *.g
-recursive-include rall_1964      *.png *.py *.xml *.g
-recursive-include snippets       *.png *.py *.xml *.g
-recursive-include squid          *.png *.py *.xml *.g
-recursive-include symcomp        *.png *.py *.xml *.g
-recursive-include tutorials      *.png *.py *.xml *.g
-recursive-include unsorted       *.png *.py *.xml *.g
-recursive-include util           *.png *.py *.xml *.g
-recursive-include traub_2005     *.png *.py *.xml *.g
-recursive-include neuroml2       *.png *.py *.xml *.g
+recursive-include cuda           *.py 
+recursive-include genesis             *.png  *.xml *.g
+recursive-include hopfield       *.py          
+recursive-include izhikevich     *.py 
+recursive-include kinetics       *.py
+recursive-include moogli         *.py 
+recursive-include neuroml        *.py *.png  *.xml 
+recursive-include paper-2015     *.py        *.xml *.g
+recursive-include parallelSolver *.py 
+recursive-include passive        *.py 
+recursive-include rall_1964      *.py 
+recursive-include snippets       *.py              *.g
+recursive-include squid          *.py
+recursive-include symcomp        *.py              *.g
+recursive-include tutorials      *.py *.png  *.xml *.g
+recursive-include unsorted       *.py 
+recursive-include util           *.py 
+recursive-include traub_2005     *.py 
+recursive-include neuroml2       *.py 

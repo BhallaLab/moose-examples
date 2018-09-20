@@ -14,7 +14,10 @@ import subprocess
 import os
 import datetime
 import sys
-from distutils.core import setup
+try:
+    from setuptools import setup
+except Exception as e:
+    from distutils.core import setup
 
 with open("README.md") as f:
     readme = f.read()
@@ -29,21 +32,16 @@ except Exception as e:
 VERSION = '%s%s' % (gitTag.strip(), stamp)
 print( "[INFO ] Version: %s" % VERSION )
 
-
-classifiers = [
-    'Operating System :: OS Independent',
-    'Programming Language :: Python'
-    ]
-
 setup(
     name = "pymoose-examples",
     version = VERSION,
     description = "Example, demo and tutorials",
     long_description = readme,
+    packages = [ 'moose.examples' ],
+    package_dir = { 'moose.examples' : '.' },
     install_requires = [ 'pymoose' ],
     author = "See AUTHORS.md file.",
     author_email = "bhalla@ncbs.res.in",
     url = "http://github.com/BhallaLab/moose-examples",
     license='GPLv3',
-    classifiers=classifiers,
 )
