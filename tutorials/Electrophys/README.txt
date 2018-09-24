@@ -91,12 +91,22 @@ Here are just some of the things to try with the model:
 	- Show EI balance and imbalance
 
 ------------------------------------------------------------------------
-Spatio-temporal summation: Do with and without NMDAR, also toggle in HH chans.
-	- Vary time interval of stim
-	- Vary geometric spacing of stim/length of dend
-	- Vary amplitude
-	- Vary passive props of dend
-	- toggle direction or scatter.
+
+ephys4_seq_summation.py
+
+This tutorial illustrates summation in space and time, specifically successive
+inputs along a dendrite. It is designed to replicate Rall's analysis of
+passive sequence selectivity (ref). There is also a trial implementation of
+Branco et al's analysis of sequence selectivity as amplified by NMDA receptors.
+As usual, there are two plots: a time-plot and a space plot.
+Some things to try:
+
+	- Establish delays and peak amplitude for individual synaptic inputs
+	- Figure out how to line them up by adjusting onset delays
+	- Come up with an estimate of selectivity. Hint: Define selectivity
+		in terms of something easily measured in the graphs.
+	- Examine how selectivity varies with dendritic geometry
+	- Examine how selectivity changes when you add NMDAR.
 
 ------------------------------------------------------------------------
 
