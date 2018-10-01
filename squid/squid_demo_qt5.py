@@ -12,10 +12,6 @@ import os
 from collections import defaultdict
 import time
 
-if sys.version_info[0] < 3:
-    print( "[INFO ] Requires python3 and PyQt5." )
-    quit()
-
 try:
     from PyQt5 import QtGui, QtCore
     from PyQt5.QtWidgets import QMainWindow, QApplication, QGroupBox, QSizePolicy
