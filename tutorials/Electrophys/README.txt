@@ -110,11 +110,19 @@ Some things to try:
 
 ------------------------------------------------------------------------
 
+ephys5_channel_mixer.py
+
+- Channels on sliders: Na, K_DR, K_AHP, Ca, KCa [KIR to come]
+	When doing these sliders, the system does two sims: one at zero chan,
+		and one with specified level of chan. Plots both.
+- Other terms: Ca-vol, Ca-pump tau, Inject current, run duration
+
 Channel mixer:
         - Modulate the conductance of battery of channels
         - Modulate Ca_conc tau
         - Plot Ca and Vm
         - Set different stim pulse amplitude and duration.
+------------------------------------------------------------------------
 
 NMDA receptor and associativity:
         - Plot Vm and Ca
