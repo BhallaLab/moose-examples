@@ -91,29 +91,88 @@ Here are just some of the things to try with the model:
 	- Show EI balance and imbalance
 
 ------------------------------------------------------------------------
-Spatio-temporal summation: Do with and without NMDAR, also toggle in HH chans.
-	- Vary time interval of stim
-	- Vary geometric spacing of stim/length of dend
-	- Vary amplitude
-	- Vary passive props of dend
-	- toggle direction or scatter.
+
+ephys4_seq_summation.py
+
+This tutorial illustrates summation in space and time, specifically successive
+inputs along a dendrite. It is designed to replicate Rall's analysis of
+passive sequence selectivity (ref). There is also a trial implementation of
+Branco et al's analysis of sequence selectivity as amplified by NMDA receptors.
+As usual, there are two plots: a time-plot and a space plot.
+Some things to try:
+
+	- Establish delays and peak amplitude for individual synaptic inputs
+	- Figure out how to line them up by adjusting onset delays
+	- Come up with an estimate of selectivity. Hint: Define selectivity
+		in terms of something easily measured in the graphs.
+	- Examine how selectivity varies with dendritic geometry
+	- Examine how selectivity changes when you add NMDAR.
 
 ------------------------------------------------------------------------
 
-Channel mixer:
-        - Modulate the conductance of battery of channels
-        - Modulate Ca_conc tau
-        - Plot Ca and Vm
-        - Set different stim pulse amplitude and duration.
+ephys5_channel_mixer.py
+
+This demo illustrates how different classes  of ion channels affect neuronal 
+spiking behaviour. The model consists of a single compartment spherical soma, 
+with Na and K_DR set at a default level to get spiking.  The top graph shows 
+the membrane potential, and the second graph shows the calcium concentration 
+at the soma. The current injection begins at 50 ms, and lasts for 500 ms.
+In each graph the solid blue plot indicates the current calculated response of 
+the model to the specified channel modulation and current injection.  The red 
+dotted plot indicates what would have happened had the modulated channel not 
+been there at all.
+
+The default channel density for all channels is 100 Mho/m^2, except K_AHP where
+ the default is 10 Mho/m^2. There are sliders for modulating the levels of 
+each of the channels.  The slider lets you modulate this channel density in a 
+range from zero to 10x the default density.
+There are two terms to modulate for the Calcium dynamics: the Ca_tau is the 
+time-course for the pump to expel calcium influx, and the Ca_thickness is the 
+thickness of the calcium shell. The maximum thickness is, of course, the 
+radius of the soma, which is 5 microns. If we have a smaller value than this 
+it means that the calcium flux only comes into a cylindrical shell and 
+therefore gives rise to higher concentrations.
+
+The simulation starts with nominal values for the Na and K_DR channels of 
+100 Mho/m^2, and all other channels modulated down to zero.
+
+Things to do:
+    - Examine what each channel does on its own
+    - Examine how to control the calcium influx
+    - Once calcium influx is present, examine how it affects the K_Ca and 
+	K_AHP channels, and how in turn the cell dynamics are affected by 
+	calcium dynamics.
+    - Can you get it to fire a burst of APs starting around 400ms?
+    - Can you get it to fire just one action potential around 100 ms?
+    - Can you get it to fire just one action potential around 400 ms?
+    - Can you get it to fire with adaptation, that is, rate gets slower?
+    - Can you get it to fire with facilitation, that is, rate gets faster?
+    - It is a bit fiddly, as the simulation only runs 500 ms, but can you 
+	get it to do a couple of bursts?
+
+------------------------------------------------------------------------
+Channel builder:
+	- voltage step series
+	- Set # of gates, powers
+	- Set equations for alpha, beta or tau and minf
+	- Show plots for minf and tau, alpha and beta
+	- Optionally read in expt points for minf, tau or voltage step series.
+	- Sliders for up to six params in each of these
+	- Sample of effect on standard cell with Na and Kdr if chan added
+	- Dump MOOSE prototype Python file, and ChannelML file.
+
+------------------------------------------------------------------------
 
 NMDA receptor and associativity:
         - Plot Vm and Ca
         - Give glu and NMDA input different time and different ampl
+------------------------------------------------------------------------
 
 AP propagation:
         - Vary dia
         - Vary RM, CM, RA
         - Vary channel densities
+------------------------------------------------------------------------
 
 Squid demo:
         - Already have it.
