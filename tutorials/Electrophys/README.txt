@@ -151,6 +151,12 @@ Things to do:
 	get it to do a couple of bursts?
 
 ------------------------------------------------------------------------
+Divisive normalization
+	- Better display.
+	* print peak in text box
+	- Fix up toggles, including capacity for spiking
+	- toggles for saving plots and for saving tabulated output
+------------------------------------------------------------------------
 Channel builder:
 	- voltage step series
 	- Set # of gates, powers
