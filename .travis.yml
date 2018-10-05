@@ -21,15 +21,7 @@ notifications:
             - hrani@ncbs.res.in
 
 before_script:
-    - "export DISPLAY=:99.0"
-    - "sh -e /etc/init.d/xvfb start"
-    - sleep 2
-    - if [[ $TRAVIS_OS_NAME == "linux" ]]; then; sudo apt install -yy python3-pip python3-setuptools python3-dev; fi
-
-script:
-    - # We use python3 to run the travis scripts. Which requires subprocess32 modules.
-    - if [[ $TRAVIS_OS_NAME == "linux" ]]; then; /usr/bin/python3 -m pip install subprocess32 --user; fi
-    - if [[ $TRAVIS_OS_NAME == "linux" ]]; then; /usr/bin/python3 -m pip install pylint --user; fi
+    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./.travis_setup_linux.sh ; fi
     - pip install pymoose --pre --no-deps
     - pip install pylint
     - pip install numpy --upgrade
