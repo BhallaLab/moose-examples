@@ -5,9 +5,13 @@ os:
     - linux
     - osx
 
-python:
-    - "2.7"
-    - "3.7"
+matrix:
+    include:
+        - os: linux
+          python:
+           - "2.7"
+           - "3.7"
+        - os: osx
 
 notifications:
     email:
@@ -20,12 +24,12 @@ before_script:
     - "export DISPLAY=:99.0"
     - "sh -e /etc/init.d/xvfb start"
     - sleep 2
-    - sudo apt install -yy python3-pip python3-setuptools python3-dev
+    - if [[ $TRAVIS_OS_NAME == "linux" ]]; then; sudo apt install -yy python3-pip python3-setuptools python3-dev; fi
 
 script:
     - # We use python3 to run the travis scripts. Which requires subprocess32 modules.
-    - /usr/bin/python3 -m pip install subprocess32 --user
-    - /usr/bin/python3 -m pip install pylint --user
+    - if [[ $TRAVIS_OS_NAME == "linux" ]]; then; /usr/bin/python3 -m pip install subprocess32 --user; fi
+    - if [[ $TRAVIS_OS_NAME == "linux" ]]; then; /usr/bin/python3 -m pip install pylint --user; fi
     - pip install pymoose --pre --no-deps
     - pip install pylint
     - pip install numpy --upgrade
