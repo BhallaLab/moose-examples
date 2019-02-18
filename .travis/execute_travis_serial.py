@@ -1,5 +1,4 @@
-#!/usr/bin/env python
-from __future__ import print_function, division
+#!/usr/bin/env python3
 
 __author__           = "Dilawar Singh"
 __copyright__        = "Copyright 2017-, Dilawar Singh"
@@ -10,15 +9,8 @@ __status__           = "Development"
 
 import sys
 import os
-try:
-    import subprocess32 as subprocess
-except ImportError as e:
-    import subprocess
-import multiprocessing
 import re
-import glob
 import datetime
-import signal
 from collections import defaultdict
 import shutil
 import random
