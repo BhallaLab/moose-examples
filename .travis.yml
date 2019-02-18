@@ -13,6 +13,10 @@ matrix:
            - "3.7"
         - os: osx
 
+addons:
+    apt:
+        update: true
+
 notifications:
     email:
         recipients:
