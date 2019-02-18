@@ -12,10 +12,6 @@ import os
 from collections import defaultdict
 import time
 
-if sys.version_info[0] < 3:
-    print( "[INFO ] Requires python3 and PyQt5." )
-    quit()
-
 try:
     from PyQt5 import QtGui, QtCore
     from PyQt5.QtWidgets import QMainWindow, QApplication, QGroupBox, QSizePolicy
@@ -240,18 +236,15 @@ class SquidGui( QMainWindow ):
         self._stateplot_xvar_label = QLabel('Variable on X-axis')
         self._stateplot_xvar_combo = QComboBox()
         self._stateplot_xvar_combo.addItems(['V', 'm', 'n', 'h'])
-        self._stateplot_xvar_combo.setCurrentIndex(0)
+        self._stateplot_xvar_combo.setCurrentText('V')
         self._stateplot_xvar_combo.setEditable(False)
-        #  self.connect(self._stateplot_xvar_combo,
-                     #  QtCore.SIGNAL('currentIndexChanged(const QString&)'),
-                     #  self._statePlotXSlot)
-        self._stateplot_xvar_combo.currentIndexChanged.connect( self._statePlotXSlot )
+        self._stateplot_xvar_combo.currentIndexChanged[str].connect( self._statePlotXSlot )
         self._stateplot_yvar_label = QLabel('Variable on Y-axis')
         self._stateplot_yvar_combo = QComboBox()
         self._stateplot_yvar_combo.addItems(['V', 'm', 'n', 'h'])
         self._stateplot_yvar_combo.setCurrentIndex(2)
         self._stateplot_yvar_combo.setEditable(False)
-        self._stateplot_yvar_combo.currentIndexChanged.connect(self._statePlotYSlot)
+        self._stateplot_yvar_combo.currentIndexChanged[str].connect(self._statePlotYSlot)
         self._statePlotNavigator = NavigationToolbar(self._statePlotCanvas, self._statePlotWidget)
         frame = QFrame()
         frame.setFrameStyle(QFrame.StyledPanel + QFrame.Raised)
@@ -359,7 +352,7 @@ class SquidGui( QMainWindow ):
         elif name == 'n':
             data = self.squid_setup.n_table.vector
         else:
-            raise ValueError('Unrecognized selection: %s' % (name))
+            raise ValueError('Unrecognized selection: %s' % name )
         return numpy.asarray(data)
     
     def _statePlotYSlot(self, selectedItem):
