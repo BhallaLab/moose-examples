@@ -4,6 +4,7 @@
 ######################################################################
 
 import moose
+import time
 import pylab
 import re
 import rdesigneur as rd
@@ -26,16 +27,20 @@ rdes = rd.rdesigneur(
     ]
 )
 rdes.buildModel()
-
-rdes.displayMoogli( 1, 2, rotation = 0, azim = -np.pi/2, elev = 0.0, block = False )
+#  rdes.displayMoogli( 1, 2, rotation = 0, azim = -np.pi/2, elev = 0.0, block = False )
+moose.start(2)
 av = moose.vec( '/model/chem/dend/A' )
 for i in range(10):
     av[i].concInit = 1
 moose.reinit()
 plist = []
+t0 = time.time()
 for i in range( 20 ):
     plist.append( av.conc[:200] )
     moose.start( 2 )
+print( "[INFO ] Time taken %f" % (time.time()-t0) )
+quit()
+
 fig = plt.figure( figsize = ( 10, 12 ) )
 plist = np.array( plist ).T
 plt.plot( range( 0, 200 ), plist )
