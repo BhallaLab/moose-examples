@@ -2,7 +2,12 @@
 
 Examples, tutorial and demo scripts.
 
-# Status of scripts tested by Travis.
+# How to run
 
-Check [THIS PAGE](https://bhallalab.github.io/moose-examples).
+First install `pymoose` from PyPI using `pip`.
 
+     $ pip install pymoose --pre --user # get the latest version
+    
+Make sure that you have `matplotlib`, and `scipy` (optional) installed as well.
+
+Some scripts might require `PyQt4` or `PyQt5` as well.
