@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 from __future__ import print_function, division
 
 __author__           = "Dilawar Singh"
@@ -10,10 +10,7 @@ __status__           = "Development"
 
 import sys
 import os
-try:
-    import subprocess32 as subprocess
-except ImportError as e:
-    import subprocess
+import subprocess32 as subprocess
 import multiprocessing
 import re
 import glob

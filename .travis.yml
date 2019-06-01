@@ -1,17 +1,9 @@
 sudo : required 
 language: python
 
-os:
-    - linux
-    - osx
-
-matrix:
-    include:
-        - os: linux
-          python:
-           - "2.7"
-           - "3.7"
-        - os: osx
+python:
+    - "3.6"
+    - "nightly"
 
 addons:
     apt:
@@ -25,14 +17,19 @@ notifications:
             - hrani@ncbs.res.in
 
 before_script:
-    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./.travis_setup_linux.sh ; fi
+    - "export DISPLAY=:99.0"
+    - "sh -e /etc/init.d/xvfb start"
+    - sleep 2
+
+script:
+    - # We use python3 to run the travis scripts. Which requires subprocess32 modules.
     - pip install pymoose --pre --no-deps
-    - pip install pylint
+    - pip install pylint subprocess32
     - pip install numpy --upgrade
     - pip install subprocess32
     - pip install networkx 
     - pip install brian2 
     - pip install libneuroml pyneuroml scipy matplotlib
     - pip install python-libsbml 
-    - ./.travis/execute_travis_serial.py $(which python)
+    -  $(which python) ./.travis/execute_travis_serial.py `which python`
 

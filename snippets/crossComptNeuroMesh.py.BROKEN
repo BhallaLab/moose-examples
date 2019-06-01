@@ -142,13 +142,6 @@ def makeModel():
     stoich1 = moose.Stoich( '/model/compt1/stoich' )
     stoich2 = moose.Stoich( '/model/compt2/stoich' )
 
-    try:
-        ksolve0.numThread = 10
-        ksolve1.numThread = 10
-        ksolve2.numThread = 10
-    except Exception as e:
-        pass
-
     # Configure solvers
     stoich0.compartment = compt0
     stoich1.compartment = compt1

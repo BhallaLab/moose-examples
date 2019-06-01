@@ -1,6 +1,6 @@
 import moose
+import time
 import numpy as np
-import pylab
 import rdesigneur as rd
 rdes = rd.rdesigneur(
     turnOffElec = True,
@@ -18,5 +18,9 @@ bv = moose.vec( '/model/chem/dend/b' )
 bv[0].concInit *= 2
 bv[-1].concInit *= 2
 moose.reinit()
+t0 = time.time()
+moose.start( 400 )
+print( "[INFO ] Time taken %f" % (time.time() - t0) )
 
-rdes.displayMoogli( 1, 400, rotation = 0, azim = np.pi/2, elev = 0.0 )
+
+#rdes.displayMoogli( 1, 400, rotation = 0, azim = np.pi/2, elev = 0.0 )
