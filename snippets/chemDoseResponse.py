@@ -11,6 +11,8 @@ import math
 import pylab
 import numpy
 import moose
+print( "[INFO ] Using moose from %s" % moose.__file__ )
+
 
 def main():
     """
