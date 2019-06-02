@@ -170,6 +170,7 @@ def assign_depths(cell, depthdict, leveldict):
         z = float(depth)
         complist = leveldict[level]
         for comp_number in complist:
+            assert cell.path
             comp = moose.element('%s/comp_%s' % (cell.path, comp_number))
             comp.z = z
 
@@ -204,15 +205,15 @@ class CellBase(moose.Neuron):
             path_tokens = path.rpartition('/')
             moose.copy(self.prototype, path_tokens[0], path_tokens[-1])
         
-        moose.Neuron( path )
-        moose.Neutral.__init__(self, path)
+        moose.element( path )
         self.solver = moose.HSolve('{}/solver'.format(path))
         self.solver.target = path
         self.solver.dt = config.simulationSettings.simulationDt
         
     def comp(self, number):
-        path = '%s/comp_%d' % (self.path, number)
-        return moose.element(path)
+        assert self.path.strip()
+        path = '%scomp_%d' % (self.path, number)
+        return moose.element(path) if moose.exists(path) else moose.Compartment(path)
 
     @property
     def soma(self):

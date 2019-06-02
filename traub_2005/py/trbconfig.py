@@ -29,7 +29,10 @@
 # Code:
 
 from datetime import datetime
-import configparser as configparser
+try:
+    import configparser as configparser
+except Exception as e:
+    import ConfigParser  as configparser
 import logging
 import numpy
 import os
@@ -81,15 +84,16 @@ channel_names = ['AR',
 ############################################
 # Parse configuration file
 ############################################
-_parser = configparser.SafeConfigParser()
+sdir = os.path.dirname( __file__ )
+_parser = configparser.ConfigParser()
 _parser.optionxform = str
-_parser.read(['defaults.ini', 'custom.ini'])
+_parser.read([os.path.join(sdir,'defaults.ini'), os.path.join(sdir,'custom.ini')])
 
 # seed for random number generator in MOOSE
-moose_rngseed = _parser.get('numeric', 'moose_rngseed')
+moose_rngseed = 10 #_parser.get('numeric', 'moose_rngseed')
 
 # seed for random number generator in numpy
-numpy_rngseed = _parser.get('numeric', 'numpy_rngseed')
+numpy_rngseed = 12 # _parser.get('numeric', 'numpy_rngseed')
 # flag if the simulation uses stochastic synchans
 stochastic = _parser.get('numeric', 'stochastic') in ['Yes', 'yes', 'True', 'true', '1']
 reseed = _parser.get('numeric', 'reseed') in ['Yes', 'yes', 'True', 'true', '1']
@@ -101,11 +105,10 @@ plotdt = float(_parser.get('scheduling', 'plotdt'))
 ######################################################################
 # configuration for saving simulation data
 ######################################################################
-datadir = os.path.join(_parser.get('directories', 'data'),
-                       timestamp.strftime('%Y_%m_%d'))
+datadir = '/tmp'
 if not os.access(datadir, os.F_OK):
     os.makedirs(datadir)
-protodir = _parser.get('directories', 'proto')
+rotodir = '/tmp'
 datafileprefix = 'data'
 netfileprefix = 'network'
 filesuffix = '_%s_%d' % (timestamp.strftime('%Y%m%d_%H%M%S'), mypid)
@@ -117,7 +120,7 @@ netfilepath = os.path.join(datadir, netfileprefix + filesuffix + '.h5')
 #####################################################################
 logfileprefix = 'traub2005'
 logfilename = os.path.join(datadir, logfileprefix + filesuffix + '.log')
-loglevel = int(_parser.get('logging', 'level'))
+loglevel = 1
 logger = logging.getLogger(logfileprefix)
 logging.basicConfig(filename=logfilename,
                     level=loglevel,
@@ -128,7 +131,7 @@ logging.basicConfig(filename=logfilename,
                     %(funcName)s: \
                     %(message)s',
                     filemode='w')
-benchmark = int(_parser.get('logging', 'benchmark'))
+benchmark = 1
 benchmarker = logging.getLogger(logfileprefix + '.benchmark')
 benchmarker.setLevel(logging.DEBUG)
 

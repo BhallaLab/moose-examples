@@ -1,6 +1,7 @@
 import numpy
 import pylab
 import moose
+print( 'Using moose from %s' % moose.__file__ )
 import time
 
 '''
@@ -64,4 +65,3 @@ print(("Time = ", time.time() - t1))
 pylab.ylim( 0, 1.05 )
 pylab.legend()
 pylab.show()
-
