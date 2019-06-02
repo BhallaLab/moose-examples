@@ -10,7 +10,7 @@ __status__           = "Development"
 
 import sys
 import os
-import subprocess32 as subprocess
+import subprocess
 import multiprocessing
 import re
 import glob
