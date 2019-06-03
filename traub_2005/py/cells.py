@@ -131,6 +131,7 @@ def read_prototype(celltype, cdict):
     for handler in logger.handlers:
         handler.flush()
     proto = moose.loadModel(filename, cellpath)
+    assert proto
     # If prototype files do not have absolute compartment positions,
     # set the compartment postions to origin. This will avoid
     # incorrect assignemnt of position when the x/y/z values in
