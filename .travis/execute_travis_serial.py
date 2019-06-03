@@ -101,8 +101,8 @@ def find_scripts_to_run( d ):
             if fname.split( '.' )[-1] == 'py':
                 files.append(fname)
 
-    if os.environ.get('TRAVIS', ''):
-        print( "[INFO ] Ignoring some scripts on Travis." )
+    if os.environ.get('TRAVIS', '') or (not args.run_all):
+        print( "[INFO ] Running filters to exclude some files." )
         files = [ f for f in files if filter_scripts(f)]
     return files
 
@@ -174,6 +174,10 @@ if __name__ == '__main__':
     parser.add_argument( '--strict', '-s'
         , action = 'store_true', default = False
         , help = 'Stop at first failure.'
+        )
+    parser.add_argument( '--run-all', '-a'
+        , action = 'store_true', default = False
+        , help = 'Run all scripts dont run filter'
         )
     class Args: pass 
     args = Args()
