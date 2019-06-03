@@ -29,8 +29,7 @@ def renormalize_path( path ):
     return os.path.normpath(path)
 
 
-def filter_scripts( x ):
-    filename, timeout = x 
+def filter_scripts(filename):
     # filter scripts by criteria.
     global willNotRun_
     with open( filename, 'r' ) as f:
@@ -104,7 +103,7 @@ def find_scripts_to_run( d ):
 
     if os.environ.get('TRAVIS', ''):
         print( "[INFO ] Ignoring some scripts on Travis." )
-        files = list(filter(filter_scripts, files))
+        files = [ f for f in files if filter_scripts(f)]
     return files
 
 def execute(cmd, cwd, timeout=10):

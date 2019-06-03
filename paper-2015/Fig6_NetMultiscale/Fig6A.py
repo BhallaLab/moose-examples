@@ -34,7 +34,12 @@ from numpy import random as nprand
 from moose.neuroml.NeuroML import NeuroML
 import sys
 import rdesigneur as rd
-import moogli
+try:
+    import moogli
+except ImportError as e:
+    print( 'Moogli not found. To install '
+     ' https://build.opensuse.org/package/show/home:moose/moogli')
+    quit(0)
 cellname = "./cells_channels/CA1_nochans.morph.xml"
 fname = "fig6bcde"
 
