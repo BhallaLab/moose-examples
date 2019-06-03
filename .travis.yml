@@ -25,5 +25,5 @@ script:
     - echo $(which python)
     - pip install pymoose --pre --upgrade
     - pip install -r .travis/requirements.txt 
-    -  $(which python) ./.travis/execute_travis_serial.py --python $(which python) -n 100
+    -  $(which python) ./.travis/execute_travis_serial.py --python $(which python) -n 60
 
