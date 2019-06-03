@@ -18,7 +18,6 @@ Currently, simtime and dt are modified to compare across MOOSE, Brian1 and Brian
 # matplot like commands into the namespace, further
 # also can use np. for numpy and mpl. for matplotlib
 from brian2 import *  
-prefs.codegen.target='weave'
 import random
 import time
 import matplotlib.pyplot as plt
@@ -118,11 +117,11 @@ for i in range(0,N):
     ## connect these presynaptically to i-th post-synaptic neuron
     ## choose the synapses object based on whether post-syn nrn is exc or inh
     if i<NE:
-        con_ee.connect(preIdxsE,i)
-        con_ei.connect(preIdxsI,i)
+        con_ee.connect(preIdxsE ==i)
+        con_ei.connect(preIdxsI ==i)
     else:
-        con_ie.connect(preIdxsE,i-NE)
-        con_ii.connect(preIdxsI,i-NE)
+        con_ie.connect(preIdxsE == i-NE)
+        con_ii.connect(preIdxsI == i-NE)
 con_ee.delay = taudelay
 con_ie.delay = taudelay
 con_ei.delay = taudelay
@@ -141,7 +140,7 @@ popm_e = PopulationRateMonitor(Pe)
 popm_i = PopulationRateMonitor(Pi)
 
 # voltage monitor
-sm_e_vm = StateMonitor(Pe,'v',record=list(range(10)))
+sm_e_vm = StateMonitor(Pe, variables=['v'],record=list(range(10)))
 
 # ###########################################
 # Simulate
