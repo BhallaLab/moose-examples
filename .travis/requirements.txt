@@ -5,3 +5,4 @@ networkx
 matplotlib
 subprocess32
 brian2
+scipy
