@@ -160,6 +160,10 @@ def main(args):
         run_script( f, args )
     print_results()
 
+    # if there is any FAILED script. Fail the build.
+    if result_.get('FAILED',[]):
+        quit(1)
+
 if __name__ == '__main__':
     import argparse
     # Argument parser.
