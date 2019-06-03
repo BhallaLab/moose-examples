@@ -1,4 +1,6 @@
 pyneuroml
-libsbml-python
+python-libsbml
 networkx
 matplotlib
+subprocess32
+brian2

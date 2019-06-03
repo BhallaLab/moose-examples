@@ -9,8 +9,9 @@ __status__           = "Development"
 
 import sys
 import os
-import subprocess
+import subprocess32 as subprocess
 import multiprocessing
+import threading
 import re
 import glob
 import datetime
@@ -99,26 +100,17 @@ def find_scripts_to_run( d ):
         for f in fs:
             fname = renormalize_path(os.path.join(d,f))
             if fname.split( '.' )[-1] == 'py':
-                timeout = 20
-                if 'traub_2015' in fname:
-                    timeout = 5
-                files.append( (fname,timeout) )
+                files.append(fname)
 
     if os.environ.get('TRAVIS', ''):
         print( "[INFO ] Ignoring some scripts on Travis." )
         files = list(filter(filter_scripts, files))
     return files
 
-def execute(cmd):
+def execute(cmd, cwd, timeout=10):
     command = ' '.join(cmd)
-    p = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-    while True:
-        line = p.stdout.readline()
-        if not line:
-            break
-        print( '\t|| ' + line.decode('utf8') )
-    return p
-
+    s = subprocess.run(cmd, timeout = timeout, cwd = cwd)
+    return s
 
 def run_script( filename, args):
     global sdir_
@@ -130,25 +122,25 @@ def run_script( filename, args):
     try:
         shutil.copy( os.path.join( sdir_, 'matplotlibrc' ), tgtdir )
     except Exception as  e:
-        pass
+        print(e)
 
     status = 'FAILED'
     stamp = datetime.datetime.now().isoformat()
     command = [ args.python, filename ]
+    print('\t Executing %s' % filename)
     try:
-        p = execute(command)
+        p = execute(command, tgtdir, args.timeout)
         if p.returncode == 0:
             status = 'SUCCESS'
         else:
-            status = 'FAILED'
+            status = 'FAILED' 
     except subprocess.TimeoutExpired as e:
         status = 'TIMEOUT'
     print('[%s] %s' % (status, filename) )
-
+    result_[status].append(filename)
     if status == 'FAILED':
         if args.strict:
             quit(1)
-
 
 def main(args):
     scripts = find_scripts_to_run(os.path.join(sdir_, '..'))
@@ -157,9 +149,9 @@ def main(args):
 
     scripts = random.sample( scripts, args.howmany )
     print( '= Now running randomly selected %d files' % len(scripts) )
-    for i, (x,t) in enumerate(scripts):
+    for i, f in enumerate(scripts):
         print( '%3d/%d-' % (i,len(scripts)), end = '' )
-        run_script( x, args )
+        run_script( f, args )
     print_results()
 
 if __name__ == '__main__':
