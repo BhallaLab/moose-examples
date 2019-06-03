@@ -108,7 +108,10 @@ def find_scripts_to_run( d ):
 
 def execute(cmd, cwd, timeout=10):
     command = ' '.join(cmd)
-    s = subprocess.run(cmd, timeout = timeout, cwd = cwd)
+    s = subprocess.run(cmd, timeout = timeout, cwd = cwd
+            , stdout = subprocess.PIPE
+            , stderr = subprocess.STDOUT
+            )
     return s
 
 def run_script( filename, args):
@@ -126,17 +129,19 @@ def run_script( filename, args):
     status = 'FAILED'
     stamp = datetime.datetime.now().isoformat()
     command = [ args.python, filename ]
+    r = ''
     print('\t Executing %s' % filename)
     try:
         p = execute(command, tgtdir, args.timeout)
+        r = p.stdout.decode('utf8')
         if p.returncode == 0:
             status = 'SUCCESS'
         else:
             status = 'FAILED' 
     except subprocess.TimeoutExpired as e:
         status = 'TIMEOUT'
-    print('[%s] %s' % (status, filename) )
-    result_[status].append(filename)
+    print('[%s] %s' % (status, filename))
+    result_[status].append((filename,r))
     if status == 'FAILED':
         if args.strict:
             quit(1)
@@ -146,7 +151,9 @@ def main(args):
     print( "[INFO ] Total %s scripts found" % len(scripts) )
     print_ignored( )
 
-    scripts = random.sample( scripts, args.howmany )
+    if not args.run_all:
+        scripts = random.sample( scripts, args.howmany )
+
     print( '= Now running randomly selected %d files' % len(scripts) )
     for i, f in enumerate(scripts):
         print( '%3d/%d-' % (i,len(scripts)), end = '' )
