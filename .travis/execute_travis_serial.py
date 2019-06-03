@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-from __future__ import print_function, division
 
 __author__           = "Dilawar Singh"
 __copyright__        = "Copyright 2017-, Dilawar Singh"
@@ -12,6 +11,7 @@ import sys
 import os
 import subprocess32 as subprocess
 import multiprocessing
+import threading
 import re
 import glob
 import datetime
@@ -29,8 +29,7 @@ def renormalize_path( path ):
     return os.path.normpath(path)
 
 
-def filter_scripts( x ):
-    filename, timeout = x 
+def filter_scripts(filename):
     # filter scripts by criteria.
     global willNotRun_
     with open( filename, 'r' ) as f:
@@ -100,18 +99,22 @@ def find_scripts_to_run( d ):
         for f in fs:
             fname = renormalize_path(os.path.join(d,f))
             if fname.split( '.' )[-1] == 'py':
-                timeout = 20
-                if 'traub_2015' in fname:
-                    timeout = 5
-                files.append( (fname,timeout) )
+                files.append(fname)
 
-    if os.environ.get('TRAVIS', ''):
-        print( "[INFO ] Ignoring some scripts on Travis." )
-        files = list(filter(filter_scripts, files))
+    if os.environ.get('TRAVIS', '') or (not args.run_all):
+        print( "[INFO ] Running filters to exclude some files." )
+        files = [ f for f in files if filter_scripts(f)]
     return files
 
+def execute(cmd, cwd, timeout=10):
+    command = ' '.join(cmd)
+    s = subprocess.run(cmd, timeout = timeout, cwd = cwd
+            , stdout = subprocess.PIPE
+            , stderr = subprocess.STDOUT
+            )
+    return s
 
-def run_script( filename, timeout = 30 ):
+def run_script( filename, args):
     global sdir_
     global result_
     global pypath_
@@ -121,44 +124,73 @@ def run_script( filename, timeout = 30 ):
     try:
         shutil.copy( os.path.join( sdir_, 'matplotlibrc' ), tgtdir )
     except Exception as  e:
-        pass
+        print(e)
 
     status = 'FAILED'
-    res = None
+    stamp = datetime.datetime.now().isoformat()
+    command = [ args.python, filename ]
+    r = ''
+    print('\t Executing %s' % filename)
     try:
-        res = subprocess.run( [ pypath_, filename ], cwd = tgtdir
-                , timeout = timeout
-                , stdout = subprocess.PIPE
-                , stderr = subprocess.PIPE
-                )
-        if res.returncode == 0:
-            status = 'PASSED'
+        p = execute(command, tgtdir, args.timeout)
+        r = p.stdout.decode('utf8')
+        if p.returncode == 0:
+            status = 'SUCCESS'
         else:
-            status = 'FAILED'
+            status = 'FAILED' 
     except subprocess.TimeoutExpired as e:
         status = 'TIMEOUT'
+    print('[%s] %s' % (status, filename))
+    result_[status].append((filename,r))
+    if status == 'FAILED':
+        if args.strict:
+            quit(1)
 
-    stamp = datetime.datetime.now().isoformat()
-    print( '[%s] %10s %s' % (stamp, status,filename) )
-
-    if res is not None:
-        result_[status].append( (filename,res.stdout+res.stderr) )
-    else:
-        result_[status].append( (filename,'UNKNOWN') )
-
-def main( ):
+def main(args):
     scripts = find_scripts_to_run(os.path.join(sdir_, '..'))
     print( "[INFO ] Total %s scripts found" % len(scripts) )
     print_ignored( )
 
-    scripts = random.sample( scripts, 50 )
+    if not args.run_all:
+        scripts = random.sample( scripts, args.howmany )
+
     print( '= Now running randomly selected %d files' % len(scripts) )
-    for i, (x,t) in enumerate(scripts):
+    for i, f in enumerate(scripts):
         print( '%3d/%d-' % (i,len(scripts)), end = '' )
-        run_script( x, t )
+        run_script( f, args )
     print_results()
 
+    # if there is any FAILED script. Fail the build.
+    if result_.get('FAILED',[]):
+        quit(1)
+
 if __name__ == '__main__':
-    if len(sys.argv) > 1:
-        pypath_ = sys.argv[1] 
-    main(  )
+    import argparse
+    # Argument parser.
+    description = '''Run tests.'''
+    parser = argparse.ArgumentParser(description=description)
+    parser.add_argument('--python', '-p'
+        , required = False , help = 'Python executable to run scripts.'
+        , default = sys.executable
+        )
+    parser.add_argument('--howmany', '-n'
+        , required = False, default = 50, type = int
+        , help = 'How many test to run. Default 50 (randomly sampled)'
+        )
+    parser.add_argument( '--timeout', '-t'
+        , required = False, default = 10
+        , type = float
+        , help = ' Timeout at running tests.'
+        )
+    parser.add_argument( '--strict', '-s'
+        , action = 'store_true', default = False
+        , help = 'Stop at first failure.'
+        )
+    parser.add_argument( '--run-all', '-a'
+        , action = 'store_true', default = False
+        , help = 'Run all scripts dont run filter'
+        )
+    class Args: pass 
+    args = Args()
+    parser.parse_args(namespace=args)
+    main(args)

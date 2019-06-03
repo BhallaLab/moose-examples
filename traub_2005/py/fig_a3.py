@@ -64,7 +64,8 @@ def setup_model(root='/', hsolve=True):
     model = moose.Neutral('model')
     data = moose.Neutral('data')
     cell = SpinyStellate('%s/spinystellate' % (model.path))
-    soma = moose.element('%s/comp_1' % (cell.path))
+    p = '%s/comp_1'%cell.path
+    soma = moose.element(p) if moose.exists(p) else moose.Compartment(p)
 
     if hsolve:
         solver = moose.HSolve('%s/solve' % (cell.path))
@@ -92,9 +93,7 @@ def do_sim(pulsegen, amp):
     
 
 def main():
-    amps = [0.167e-9,
-            0.25e-9,
-            0.333e-9]
+    amps = [0.167e-9, 0.25e-9, 0.333e-9]
     model_dict = setup_model()
     for ii, a in enumerate(amps):
         do_sim(model_dict['stimulus'], a)   

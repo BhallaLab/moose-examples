@@ -22,13 +22,8 @@ before_script:
 
 script:
     - # We use python3 to run the travis scripts. Which requires subprocess32 modules.
-    - pip install pymoose --pre --no-deps
-    - pip install pylint subprocess32
-    - pip install numpy --upgrade
-    - pip install subprocess32
-    - pip install networkx 
-    - pip install brian2 
-    - pip install libneuroml pyneuroml scipy matplotlib
-    - pip install python-libsbml 
-    -  $(which python) ./.travis/execute_travis_serial.py `which python`
+    - echo $(which python)
+    - pip install pymoose --pre --upgrade
+    - pip install -r .travis/requirements.txt 
+    -  $(which python) ./.travis/execute_travis_serial.py --python $(which python) -n 60
 

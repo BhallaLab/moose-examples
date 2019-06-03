@@ -74,7 +74,8 @@ def cell_to_graph(cell, label=False):
     the topology of the compartments
 
     """
-    soma = moose.element('%s/comp_1' % (cell.path))
+    p = '%s/comp_1' % cell.path
+    soma = moose.element(p) if moose.exists(p) else moose.Compartment(p)
     if len(soma.neighbors['axialOut']) > 0:
         msg = 'raxialOut'
     elif len(soma.neighbors['distalOut']) > 0:
