@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-from __future__ import print_function, division
 
 __author__           = "Dilawar Singh"
 __copyright__        = "Copyright 2017-, Dilawar Singh"
@@ -110,8 +109,18 @@ def find_scripts_to_run( d ):
         files = list(filter(filter_scripts, files))
     return files
 
+def execute(cmd):
+    command = ' '.join(cmd)
+    p = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    while True:
+        line = p.stdout.readline()
+        if not line:
+            break
+        print( '\t|| ' + line.decode('utf8') )
+    return p
 
-def run_script( filename, timeout = 30 ):
+
+def run_script( filename, args):
     global sdir_
     global result_
     global pypath_
@@ -124,41 +133,58 @@ def run_script( filename, timeout = 30 ):
         pass
 
     status = 'FAILED'
-    res = None
+    stamp = datetime.datetime.now().isoformat()
+    command = [ args.python, filename ]
     try:
-        res = subprocess.run( [ pypath_, filename ], cwd = tgtdir
-                , timeout = timeout
-                , stdout = subprocess.PIPE
-                , stderr = subprocess.PIPE
-                )
-        if res.returncode == 0:
-            status = 'PASSED'
+        p = execute(command)
+        if p.returncode == 0:
+            status = 'SUCCESS'
         else:
             status = 'FAILED'
     except subprocess.TimeoutExpired as e:
         status = 'TIMEOUT'
+    print('[%s] %s' % (status, filename) )
 
-    stamp = datetime.datetime.now().isoformat()
-    print( '[%s] %10s %s' % (stamp, status,filename) )
+    if status == 'FAILED':
+        if args.strict:
+            quit(1)
 
-    if res is not None:
-        result_[status].append( (filename,res.stdout+res.stderr) )
-    else:
-        result_[status].append( (filename,'UNKNOWN') )
 
-def main( ):
+def main(args):
     scripts = find_scripts_to_run(os.path.join(sdir_, '..'))
     print( "[INFO ] Total %s scripts found" % len(scripts) )
     print_ignored( )
 
-    scripts = random.sample( scripts, 50 )
+    scripts = random.sample( scripts, args.howmany )
     print( '= Now running randomly selected %d files' % len(scripts) )
     for i, (x,t) in enumerate(scripts):
         print( '%3d/%d-' % (i,len(scripts)), end = '' )
-        run_script( x, t )
+        run_script( x, args )
     print_results()
 
 if __name__ == '__main__':
-    if len(sys.argv) > 1:
-        pypath_ = sys.argv[1] 
-    main(  )
+    import argparse
+    # Argument parser.
+    description = '''Run tests.'''
+    parser = argparse.ArgumentParser(description=description)
+    parser.add_argument('--python', '-p'
+        , required = False , help = 'Python executable to run scripts.'
+        , default = sys.executable
+        )
+    parser.add_argument('--howmany', '-n'
+        , required = False, default = 50, type = int
+        , help = 'How many test to run. Default 50 (randomly sampled)'
+        )
+    parser.add_argument( '--timeout', '-t'
+        , required = False, default = 10
+        , type = float
+        , help = ' Timeout at running tests.'
+        )
+    parser.add_argument( '--strict', '-s'
+        , action = 'store_true', default = False
+        , help = 'Stop at first failure.'
+        )
+    class Args: pass 
+    args = Args()
+    parser.parse_args(namespace=args)
+    main(args)
