@@ -27,7 +27,7 @@ rdes = rd.rdesigneur(
     ]
 )
 rdes.buildModel()
-#  rdes.displayMoogli( 1, 2, rotation = 0, azim = -np.pi/2, elev = 0.0, block = False )
+rdes.displayMoogli( 1, 2, rotation = 0, azim = -np.pi/2, elev = 0.0, block = False )
 moose.start(2)
 av = moose.vec( '/model/chem/dend/A' )
 for i in range(10):
