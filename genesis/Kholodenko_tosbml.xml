@@ -130,7 +130,7 @@
         </notes>
         <annotation>
           <moose:ModelAnnotation>
-            <moose:xCord>210.526315789</moose:xCord>
+            <moose:xCord>210.52631578947367</moose:xCord>
             <moose:yCord>600.0</moose:yCord>
             <moose:bgColor>30</moose:bgColor>
             <moose:textColor>yellow</moose:textColor>
@@ -147,7 +147,7 @@
         </notes>
         <annotation>
           <moose:ModelAnnotation>
-            <moose:xCord>421.052631579</moose:xCord>
+            <moose:xCord>421.05263157894734</moose:xCord>
             <moose:yCord>650.0</moose:yCord>
             <moose:bgColor>51</moose:bgColor>
             <moose:textColor>yellow</moose:textColor>
@@ -164,7 +164,7 @@
         </notes>
         <annotation>
           <moose:ModelAnnotation>
-            <moose:xCord>210.526315789</moose:xCord>
+            <moose:xCord>210.52631578947367</moose:xCord>
             <moose:yCord>300.0</moose:yCord>
             <moose:bgColor>blue</moose:bgColor>
             <moose:textColor>yellow</moose:textColor>
@@ -181,7 +181,7 @@
         </notes>
         <annotation>
           <moose:ModelAnnotation>
-            <moose:xCord>210.526315789</moose:xCord>
+            <moose:xCord>210.52631578947367</moose:xCord>
             <moose:yCord>0.0</moose:yCord>
             <moose:bgColor>1</moose:bgColor>
             <moose:textColor>yellow</moose:textColor>
@@ -198,7 +198,7 @@
         </notes>
         <annotation>
           <moose:ModelAnnotation>
-            <moose:xCord>421.052631579</moose:xCord>
+            <moose:xCord>421.05263157894734</moose:xCord>
             <moose:yCord>350.0</moose:yCord>
             <moose:bgColor>5</moose:bgColor>
             <moose:textColor>yellow</moose:textColor>
@@ -215,7 +215,7 @@
         </notes>
         <annotation>
           <moose:ModelAnnotation>
-            <moose:xCord>421.052631579</moose:xCord>
+            <moose:xCord>421.05263157894734</moose:xCord>
             <moose:yCord>50.0</moose:yCord>
             <moose:bgColor>55</moose:bgColor>
             <moose:textColor>yellow</moose:textColor>
@@ -232,7 +232,7 @@
         </notes>
         <annotation>
           <moose:ModelAnnotation>
-            <moose:xCord>631.578947368</moose:xCord>
+            <moose:xCord>631.578947368421</moose:xCord>
             <moose:yCord>300.0</moose:yCord>
             <moose:bgColor>2</moose:bgColor>
             <moose:textColor>yellow</moose:textColor>
@@ -249,7 +249,7 @@
         </notes>
         <annotation>
           <moose:ModelAnnotation>
-            <moose:xCord>631.578947368</moose:xCord>
+            <moose:xCord>631.578947368421</moose:xCord>
             <moose:yCord>0.0</moose:yCord>
             <moose:bgColor>17</moose:bgColor>
             <moose:textColor>yellow</moose:textColor>
@@ -266,7 +266,7 @@
         </notes>
         <annotation>
           <moose:ModelAnnotation>
-            <moose:xCord>736.842105263</moose:xCord>
+            <moose:xCord>736.8421052631578</moose:xCord>
             <moose:yCord>800.0</moose:yCord>
             <moose:bgColor>11</moose:bgColor>
             <moose:textColor>yellow</moose:textColor>
@@ -300,7 +300,7 @@
         </notes>
         <annotation>
           <moose:ModelAnnotation>
-            <moose:xCord>842.105263158</moose:xCord>
+            <moose:xCord>842.1052631578947</moose:xCord>
             <moose:yCord>350.0</moose:yCord>
             <moose:bgColor>0</moose:bgColor>
             <moose:textColor>yellow</moose:textColor>
@@ -317,7 +317,7 @@
         </notes>
         <annotation>
           <moose:ModelAnnotation>
-            <moose:xCord>842.105263158</moose:xCord>
+            <moose:xCord>842.1052631578947</moose:xCord>
             <moose:yCord>50.0</moose:yCord>
             <moose:bgColor>58</moose:bgColor>
             <moose:textColor>yellow</moose:textColor>
@@ -343,8 +343,8 @@
           </moose:ModelAnnotation>
         </annotation>
         <listOfReactants>
-          <speciesReference species="MAPK_PP_508_0_" stoichiometry="1" constant="false"/>
           <speciesReference species="Ras_MKKKK_494_0_" stoichiometry="1" constant="false"/>
+          <speciesReference species="MAPK_PP_508_0_" stoichiometry="1" constant="false"/>
         </listOfReactants>
         <listOfProducts>
           <speciesReference species="inactiveRas_MKKK_498_0_" stoichiometry="1" constant="false"/>
@@ -352,7 +352,7 @@
         <kineticLaw>
           <notes>
             <body xmlns="http://www.w3.org/1999/xhtml">
-		kinetics_449_0_ * Neg_feedback_500_0__Kf * MAPK_PP_508_0_*Ras_MKKKK_494_0_-kinetics_449_0_ * Neg_feedback_500_0__Kb * inactiveRas_MKKK_498_0_
+		kinetics_449_0_ * Neg_feedback_500_0__Kf * Ras_MKKKK_494_0_*MAPK_PP_508_0_-kinetics_449_0_ * Neg_feedback_500_0__Kb * inactiveRas_MKKK_498_0_
  	 </body>
           </notes>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -362,8 +362,8 @@
                 <times/>
                 <ci> kinetics_449_0_ </ci>
                 <ci> Neg_feedback_500_0__Kf </ci>
-                <ci> MAPK_PP_508_0_ </ci>
                 <ci> Ras_MKKKK_494_0_ </ci>
+                <ci> MAPK_PP_508_0_ </ci>
               </apply>
               <apply>
                 <times/>
@@ -387,7 +387,7 @@
         </notes>
         <annotation>
           <moose:EnzymaticReaction>
-            <moose:xCord>210.526315789</moose:xCord>
+            <moose:xCord>210.52631578947367</moose:xCord>
             <moose:yCord>650.0</moose:yCord>
             <moose:bgColor>red</moose:bgColor>
             <moose:textColor>30</moose:textColor>
@@ -405,7 +405,7 @@
         <kineticLaw>
           <notes>
             <body xmlns="http://www.w3.org/1999/xhtml">
-		kinetics_449_0_ * ( kcat * MKKK_P_468_0_ * int1_464_0_ / ( Km + MKKK_P_468_0_))
+		kinetics_449_0_ * ( kcat * MKKK_P_468_0_ * int1_464_0_/(Km + MKKK_P_468_0_))
  	 </body>
           </notes>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -442,7 +442,7 @@
         </notes>
         <annotation>
           <moose:EnzymaticReaction>
-            <moose:xCord>210.526315789</moose:xCord>
+            <moose:xCord>210.52631578947367</moose:xCord>
             <moose:yCord>500.0</moose:yCord>
             <moose:bgColor>red</moose:bgColor>
             <moose:textColor>51</moose:textColor>
@@ -460,7 +460,7 @@
         <kineticLaw>
           <notes>
             <body xmlns="http://www.w3.org/1999/xhtml">
-		kinetics_449_0_ * ( kcat * MKK_462_0_ * MKKK_P_468_0_ / ( Km + MKK_462_0_))
+		kinetics_449_0_ * ( kcat * MKK_462_0_ * MKKK_P_468_0_/(Km + MKK_462_0_))
  	 </body>
           </notes>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -497,7 +497,7 @@
         </notes>
         <annotation>
           <moose:EnzymaticReaction>
-            <moose:xCord>631.578947368</moose:xCord>
+            <moose:xCord>631.578947368421</moose:xCord>
             <moose:yCord>500.0</moose:yCord>
             <moose:bgColor>red</moose:bgColor>
             <moose:textColor>51</moose:textColor>
@@ -515,7 +515,7 @@
         <kineticLaw>
           <notes>
             <body xmlns="http://www.w3.org/1999/xhtml">
-		kinetics_449_0_ * ( kcat * MKK_P_482_0_ * MKKK_P_468_0_ / ( Km + MKK_P_482_0_))
+		kinetics_449_0_ * ( kcat * MKK_P_482_0_ * MKKK_P_468_0_/(Km + MKK_P_482_0_))
  	 </body>
           </notes>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -552,7 +552,7 @@
         </notes>
         <annotation>
           <moose:EnzymaticReaction>
-            <moose:xCord>210.526315789</moose:xCord>
+            <moose:xCord>210.52631578947367</moose:xCord>
             <moose:yCord>350.0</moose:yCord>
             <moose:bgColor>red</moose:bgColor>
             <moose:textColor>blue</moose:textColor>
@@ -570,7 +570,7 @@
         <kineticLaw>
           <notes>
             <body xmlns="http://www.w3.org/1999/xhtml">
-		kinetics_449_0_ * ( kcat * MKK_P_482_0_ * int3_474_0_ / ( Km + MKK_P_482_0_))
+		kinetics_449_0_ * ( kcat * MKK_P_482_0_ * int3_474_0_/(Km + MKK_P_482_0_))
  	 </body>
           </notes>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -607,7 +607,7 @@
         </notes>
         <annotation>
           <moose:EnzymaticReaction>
-            <moose:xCord>210.526315789</moose:xCord>
+            <moose:xCord>210.52631578947367</moose:xCord>
             <moose:yCord>50.0</moose:yCord>
             <moose:bgColor>red</moose:bgColor>
             <moose:textColor>1</moose:textColor>
@@ -625,7 +625,7 @@
         <kineticLaw>
           <notes>
             <body xmlns="http://www.w3.org/1999/xhtml">
-		kinetics_449_0_ * ( kcat * MAPK_P_484_0_ * int5_478_0_ / ( Km + MAPK_P_484_0_))
+		kinetics_449_0_ * ( kcat * MAPK_P_484_0_ * int5_478_0_/(Km + MAPK_P_484_0_))
  	 </body>
           </notes>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -662,7 +662,7 @@
         </notes>
         <annotation>
           <moose:EnzymaticReaction>
-            <moose:xCord>631.578947368</moose:xCord>
+            <moose:xCord>631.578947368421</moose:xCord>
             <moose:yCord>350.0</moose:yCord>
             <moose:bgColor>red</moose:bgColor>
             <moose:textColor>2</moose:textColor>
@@ -680,7 +680,7 @@
         <kineticLaw>
           <notes>
             <body xmlns="http://www.w3.org/1999/xhtml">
-		kinetics_449_0_ * ( kcat * MKK_PP_502_0_ * int2_486_0_ / ( Km + MKK_PP_502_0_))
+		kinetics_449_0_ * ( kcat * MKK_PP_502_0_ * int2_486_0_/(Km + MKK_PP_502_0_))
  	 </body>
           </notes>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -717,7 +717,7 @@
         </notes>
         <annotation>
           <moose:EnzymaticReaction>
-            <moose:xCord>631.578947368</moose:xCord>
+            <moose:xCord>631.578947368421</moose:xCord>
             <moose:yCord>50.0</moose:yCord>
             <moose:bgColor>red</moose:bgColor>
             <moose:textColor>17</moose:textColor>
@@ -735,7 +735,7 @@
         <kineticLaw>
           <notes>
             <body xmlns="http://www.w3.org/1999/xhtml">
-		kinetics_449_0_ * ( kcat * MAPK_PP_508_0_ * int4_490_0_ / ( Km + MAPK_PP_508_0_))
+		kinetics_449_0_ * ( kcat * MAPK_PP_508_0_ * int4_490_0_/(Km + MAPK_PP_508_0_))
  	 </body>
           </notes>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -772,7 +772,7 @@
         </notes>
         <annotation>
           <moose:EnzymaticReaction>
-            <moose:xCord>210.526315789</moose:xCord>
+            <moose:xCord>210.52631578947367</moose:xCord>
             <moose:yCord>800.0</moose:yCord>
             <moose:bgColor>red</moose:bgColor>
             <moose:textColor>11</moose:textColor>
@@ -790,7 +790,7 @@
         <kineticLaw>
           <notes>
             <body xmlns="http://www.w3.org/1999/xhtml">
-		kinetics_449_0_ * ( kcat * MKKK_460_0_ * Ras_MKKKK_494_0_ / ( Km + MKKK_460_0_))
+		kinetics_449_0_ * ( kcat * MKKK_460_0_ * Ras_MKKKK_494_0_/(Km + MKKK_460_0_))
  	 </body>
           </notes>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -827,7 +827,7 @@
         </notes>
         <annotation>
           <moose:EnzymaticReaction>
-            <moose:xCord>210.526315789</moose:xCord>
+            <moose:xCord>210.52631578947367</moose:xCord>
             <moose:yCord>200.0</moose:yCord>
             <moose:bgColor>red</moose:bgColor>
             <moose:textColor>0</moose:textColor>
@@ -845,7 +845,7 @@
         <kineticLaw>
           <notes>
             <body xmlns="http://www.w3.org/1999/xhtml">
-		kinetics_449_0_ * ( kcat * MAPK_458_0_ * MKK_PP_502_0_ / ( Km + MAPK_458_0_))
+		kinetics_449_0_ * ( kcat * MAPK_458_0_ * MKK_PP_502_0_/(Km + MAPK_458_0_))
  	 </body>
           </notes>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -882,7 +882,7 @@
         </notes>
         <annotation>
           <moose:EnzymaticReaction>
-            <moose:xCord>631.578947368</moose:xCord>
+            <moose:xCord>631.578947368421</moose:xCord>
             <moose:yCord>200.0</moose:yCord>
             <moose:bgColor>red</moose:bgColor>
             <moose:textColor>0</moose:textColor>
@@ -900,7 +900,7 @@
         <kineticLaw>
           <notes>
             <body xmlns="http://www.w3.org/1999/xhtml">
-		kinetics_449_0_ * ( kcat * MAPK_P_484_0_ * MKK_PP_502_0_ / ( Km + MAPK_P_484_0_))
+		kinetics_449_0_ * ( kcat * MAPK_P_484_0_ * MKK_PP_502_0_/(Km + MAPK_P_484_0_))
  	 </body>
           </notes>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -936,7 +936,7 @@
           <moose:GroupAnnotation>
             <moose:Compartment>kinetics_449_0_</moose:Compartment>
             <moose:Parent>kinetics_449_0_</moose:Parent>
-            <moose:bgColor>yellow</moose:bgColor>
+            <moose:bgColor>#FFFF00</moose:bgColor>
             <moose:Notes>This is the oscillatory MAPK model from Kholodenko 2000 Eur J. Biochem 267:1583-1588 The original model is formulated in terms of idealized Michaelis-Menten enzymes and the enzyme-substrate complex concentrations are therefore assumed negligible. The current implementation of the model uses explicit enzyme reactions involving substrates and is therefore an approximation to the Kholodenko model. The approximation is greatly improved if the enzyme is flagged as Available which is an option in Kinetikit. This flag means that the enzyme protein concentration is not reduced even when it is involved in a complex. However, the substrate protein continues to participate in enzyme-substrate complexes and its concentration is therefore affected. Overall, this model works almost the same as the Kholodenko model but the peak MAPK-PP amplitudes are a little reduced and the period of oscillations is about 10% longer. If the enzymes are not flagged as Available then the oscillations commence only when the Km for enzyme 1 is set to 0.1 uM.</moose:Notes>
           </moose:GroupAnnotation>
         </annotation>

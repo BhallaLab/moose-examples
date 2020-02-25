@@ -112,6 +112,8 @@ def execute(cmd, cwd, timeout=10):
             , stdout = subprocess.PIPE
             , stderr = subprocess.STDOUT
             )
+    if s.returncode:
+        print('\t' + str(s.stdout))
     return s
 
 def run_script( filename, args):
