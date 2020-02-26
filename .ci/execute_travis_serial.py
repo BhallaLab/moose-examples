@@ -2,14 +2,13 @@
 
 __author__ = "Dilawar Singh"
 __copyright__ = "Copyright 2017-, Dilawar Singh"
-__version__ = "1.0.0"
 __maintainer__ = "Dilawar Singh"
 __email__ = "dilawars@ncbs.res.in"
 __status__ = "Development"
 
 import sys
 import os
-import subprocess32 as subprocess
+import subprocess
 import multiprocessing
 import threading
 import re
@@ -33,7 +32,7 @@ def renormalize_path(path):
 def filter_scripts(filename):
     # filter scripts by criteria.
     global willNotRun_
-    with open(filename, 'r') as f:
+    with open(filename, mode='r', encoding='utf-8') as f:
         txt = f.read()
 
     if not re.search(r'if\s+__name__\s+==\s+(\'|\")__main__(\'|\")\s*\:', txt):
@@ -138,7 +137,7 @@ def run_script(filename, args):
 
     status = 'FAILED'
     stamp = datetime.datetime.now().isoformat()
-    command = [args.python, filename]
+    command = [sys.executable, filename]
     r = ''
     print('\t Executing %s' % filename)
     try:
@@ -196,7 +195,7 @@ if __name__ == '__main__':
     parser.add_argument('--timeout',
                         '-t',
                         required=False,
-                        default=10,
+                        default=30,
                         type=float,
                         help=' Timeout at running tests.')
     parser.add_argument('--strict',

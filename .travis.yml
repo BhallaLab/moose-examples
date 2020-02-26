@@ -3,11 +3,6 @@ dist: bionic
 services:
     - xvfb 
 
-language: python
-python:
-    - "3.6"
-    - "nightly"
-
 addons:
     apt:
         update: true
@@ -23,8 +18,7 @@ script:
     - # We use python3 to run the travis scripts. Which requires subprocess32 modules.
     - sudo apt install -y python3-pip python3-dev python3-matplotlib python3-scipy
     - sudo apt install -y graphviz python3-networkx
-    - echo $(which python)
-    - pip3 wheel pymoose --pre --upgrade
-    - pip3 wheel -r .travis/requirements.txt 
-    -  $(which python) ./.travis/execute_travis_serial.py --python $(which python) -n 60
-
+    - python3 -m pip install pymoose --pre --upgrade 
+    - python3 -m pip install -r .ci/requirements.txt 
+    - python3 -m pip install numpy --upgrade
+    - python3 ./.ci/execute_travis_serial.py -n 60
