@@ -23,7 +23,7 @@ before_script:
 script:
     - # We use python3 to run the travis scripts. Which requires subprocess32 modules.
     - echo $(which python)
-    - pip install pymoose --pre --upgrade
-    - pip install -r .travis/requirements.txt 
+    - pip wheel pymoose --pre --upgrade
+    - pip wheel -r .travis/requirements.txt 
     -  $(which python) ./.travis/execute_travis_serial.py --python $(which python) -n 60
 
