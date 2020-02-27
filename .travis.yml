@@ -15,10 +15,11 @@ notifications:
             - hrani@ncbs.res.in
 
 script:
-    - # We use python3 to run the travis scripts. Which requires subprocess32 modules.
-    - sudo apt install -y python3-pip python3-dev python3-matplotlib python3-scipy
+    - sudo apt install -y python3-pip python3-setuptools 
+    - sudo apt install -y python3-matplotlib python3-scipy
     - sudo apt install -y graphviz python3-networkx
-    - python3 -m pip install pymoose --pre --upgrade 
-    - python3 -m pip install -r .ci/requirements.txt 
-    - python3 -m pip install numpy --upgrade
+    - python3 -m pip install pip setuptools wheel --upgrade --user
+    - python3 -m pip install pymoose --pre --upgrade --user
+    - python3 -m pip install -r .ci/requirements.txt  --user
+    - python3 -m pip install numpy --upgrade --user
     - python3 ./.ci/execute_travis_serial.py -n 60
