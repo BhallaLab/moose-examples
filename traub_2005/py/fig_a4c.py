@@ -133,9 +133,12 @@ def run_model():
     cell = TuftedIB('/model/TuftedIB')
     stim = alpha_stimulus('/model/stim', 1.0e-9, 15e-3, 20e-3, simtime, simdt)
     stim.startTime = 1e9
-    comp_d1 = moose.element('%s/%s' % (cell.path, d1))
-    comp_d2 = moose.element('%s/%s' % (cell.path, d2))
-    comp_soma = moose.element('%s/%s' % (cell.path, 'comp_1'))
+    p1 = cell.path +'/' + d1
+    p2 = cell.path + '/'+ d2
+    comp_d1 = moose.element(p1) if moose.exists(p1) else moose.Compartment(p1)
+    comp_d2 = moose.element(p2) if moose.exists(p2) else moose.Compartment(p2)
+    s = '%s/%s' % (cell.path, 'comp_1')
+    comp_soma = moose.element(s) if moose.exists(s) else moose.Compartment(s)
     comp_soma.inject = -0.2e-9
     moose.connect(stim, 'output', comp_d1, 'injectMsg')
     tab_d1 = moose.Table('%s/d1_Vm' % (data.path))

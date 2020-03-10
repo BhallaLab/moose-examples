@@ -33,9 +33,7 @@
 from datetime import datetime
 import time
 import os
-os.environ['NUMPTHREADS'] = '1'
 import sys
-sys.path.append('../../../python')
 import uuid
 import unittest
 import numpy as np

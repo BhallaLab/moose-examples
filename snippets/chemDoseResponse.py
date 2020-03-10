@@ -124,7 +124,6 @@ def main():
     pylab.legend()
     pylab.show()
 
-    quit()
 
 def makeModel():
     """ This function creates a bistable reaction system using explicit

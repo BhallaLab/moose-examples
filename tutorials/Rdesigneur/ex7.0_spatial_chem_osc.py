@@ -21,6 +21,4 @@ moose.reinit()
 t0 = time.time()
 moose.start( 400 )
 print( "[INFO ] Time taken %f" % (time.time() - t0) )
-
-
-#rdes.displayMoogli( 1, 400, rotation = 0, azim = np.pi/2, elev = 0.0 )
+rdes.displayMoogli( 1, 400, rotation = 0, azim = np.pi/2, elev = 0.0 )

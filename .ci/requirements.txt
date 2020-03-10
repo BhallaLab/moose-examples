@@ -1,0 +1,8 @@
+numpy
+pyneuroml
+python-libsbml
+networkx
+matplotlib
+subprocess32
+brian2
+scipy

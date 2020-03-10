@@ -1,9 +1,7 @@
 sudo : required 
-language: python
-
-os:
-    - linux
-    - osx
+dist: bionic
+services:
+    - xvfb 
 
 addons:
     apt:
@@ -16,19 +14,12 @@ notifications:
             - upi.bhalla@gmail.com
             - hrani@ncbs.res.in
 
-before_script:
-    - "export DISPLAY=:99.0"
-    - "sh -e /etc/init.d/xvfb start"
-    - sleep 2
-
 script:
-    - # We use python3 to run the travis scripts. Which requires subprocess32 modules.
-    - python3 -m pip install pymoose --pre --no-deps
-    - python3 -m pip install pylint subprocess32
-    - python3 -m pip install numpy --upgrade
-    - python3 -m pip install networkx 
-    - python3 -m pip install brian2 
-    - python3 -m pip install libneuroml pyneuroml scipy matplotlib
-    - python3 -m pip install python-libsbml 
-    -  $(which python3) ./.travis/execute_travis_serial.py `which python3`
-
+    - sudo apt install -y python3-pip python3-setuptools 
+    - sudo apt install -y python3-matplotlib python3-scipy
+    - sudo apt install -y graphviz python3-networkx
+    - python3 -m pip install pip setuptools wheel --upgrade --user
+    - python3 -m pip install pymoose --pre --upgrade --user
+    - python3 -m pip install -r .ci/requirements.txt  --user
+    - python3 -m pip install numpy --upgrade --user
+    - python3 ./.ci/execute_travis_serial.py -n 60

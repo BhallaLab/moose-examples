@@ -420,11 +420,11 @@ class ExcInhNetBase:
         # Build in the LTP stimulus
         offset = Iinject * 0.5
         injBaseline = np.repeat( self.Iinject, self.T )
-        start = np.ceil( simtime / (interTetInterval * dt) )
+        start = int(np.ceil( simtime / (interTetInterval * dt)))
         for i in range( 3 ):
-            end = start + np.ceil( 0.5 / dt )
+            end = int(start + np.ceil(0.5/dt))
             injBaseline[ start:end ] += offset
-            start = start + np.ceil( interTetInterval / dt )
+            start = int(start + np.ceil( interTetInterval / dt))
 
         for i in range(self.N):
             if noiseInj:
@@ -433,10 +433,10 @@ class ExcInhNetBase:
                 ## will multiply it by dt.
                 ## See the Euler-Maruyama method, numerical integration in 
                 ## http://www.scholarpedia.org/article/Stochastic_dynamical_systems
-                self.noiseTables.vec[i].vector = injBaseline + \
-                    np.random.normal( \
-                        scale=self.noiseInjSD*np.sqrt(self.Rm*self.Cm/self.dt), \
-                        size=self.T ) # scale = SD
+                self.noiseTables.vec[i].vector = injBaseline + np.random.normal(
+                        scale=self.noiseInjSD*np.sqrt(self.Rm*self.Cm/self.dt),
+                        size=int(self.T)
+                        ) # scale = SD
                 self.noiseTables.vec[i].stepSize = 0    # use current time 
                                                         # as x value for interpolation
 

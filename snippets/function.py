@@ -107,7 +107,7 @@ def example():
     function = moose.Function('/model/function')
     function.c['c0'] = 1.0
     function.c['c1'] = 2.0
-    function.x.num = 1
+    #function.x.num = 1
     function.expr = 'c0 * exp(c1*x0) * cos(y0) + sin(t)'
     # mode 0 - evaluate function value, derivative and rate
     # mode 1 - just evaluate function value,

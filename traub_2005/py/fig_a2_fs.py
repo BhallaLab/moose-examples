@@ -68,7 +68,8 @@ def setup_model(root='/', hsolve=True):
     model = moose.Neutral('model')
     data = moose.Neutral('data')
     cell = DeepBasket('%s/deepbasket' % (model.path))
-    soma = moose.element('%s/comp_1' % (cell.path))
+    p = '%s/comp_1' % cell.path
+    soma = moose.element(p) if moose.exists(p) else moose.Compartment(p)
     if hsolve:
         solver = moose.HSolve('%s/solve' % (cell.path))
         solver.dt = simdt
