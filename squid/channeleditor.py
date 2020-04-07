@@ -29,51 +29,51 @@
 # Code:
 
 import sys
-from PyQt4 import QtGui, QtCore
+from PyQt5 import QtGui, QtCore, QtWidgets
 from numpy import *
 import ast
 
-class GateEditor(QtGui.QWidget):
+class GateEditor(QtWidgets.QWidget):
     """Utility to edit gate equations.
     
     It provides two line edits to enter the alpha and beta equations
     directly.
     """
     def __init__(self, *args):
-        QtGui.QWidget.__init__(self, *args)
-        self.useVButton = QtGui.QRadioButton('Use V', self)
+        QtWidgets.QWidget.__init__(self, *args)
+        self.useVButton = QtWidgets.QRadioButton('Use V', self)
         self.useVButton.setChecked(True)
-        self.useCaButton = QtGui.QRadioButton('Use Ca', self)
+        self.useCaButton = QtWidgets.QRadioButton('Use Ca', self)
         self.useCaButton.setChecked(False)
-        self.symbolGroup = QtGui.QGroupBox(self)
-        layout = QtGui.QHBoxLayout()        
+        self.symbolGroup = QtWidgets.QGroupBox(self)
+        layout = QtWidgets.QHBoxLayout()        
         # self.symbolGroup.setExclusive(True)
         layout.addWidget(self.useVButton)
         layout.addWidget(self.useCaButton)
         self.symbolGroup.setLayout(layout)
-        self.inputPanel = QtGui.QFrame(self)
-        self.minVLabel = QtGui.QLabel('Minimum', self)
-        self.maxVLabel = QtGui.QLabel('Maximum', self)
-        self.divsVLabel = QtGui.QLabel('Number of divisions', self)
-        self.minVEdit = QtGui.QLineEdit(self)
-        self.maxVEdit = QtGui.QLineEdit(self)
-        self.divsVEdit = QtGui.QLineEdit(self)
+        self.inputPanel = QtWidgets.QFrame(self)
+        self.minVLabel = QtWidgets.QLabel('Minimum', self)
+        self.maxVLabel = QtWidgets.QLabel('Maximum', self)
+        self.divsVLabel = QtWidgets.QLabel('Number of divisions', self)
+        self.minVEdit = QtWidgets.QLineEdit(self)
+        self.maxVEdit = QtWidgets.QLineEdit(self)
+        self.divsVEdit = QtWidgets.QLineEdit(self)
         self.equation = '(A + B * V) / (C + exp((V + D)/F))'
-        self.alphaText = 'Equation for forward rate  \\u03B1 '
-        self.betaText = 'Equation for backward rate \\u03B2 '
-        self.minfText = 'Equation for m\\u221E '
-        self.taumText = 'Equation for \\u03C4m '
-        self.alphaLabel = QtGui.QLabel(self.minfText, self)
-        self.betaLabel = QtGui.QLabel(self.taumText, self)
-        self.alphaEdit = QtGui.QLineEdit(self)
-        self.betaEdit =  QtGui.QLineEdit(self)
-        self.formCombo = QtGui.QComboBox(self)
-        self.formCombo.addItem('m\\u221E - \\u03C4m')
-        self.formCombo.addItem('\\u03B1 - \\u03B2')
-        self.okButton = QtGui.QPushButton('OK', self)
-        layout = QtGui.QGridLayout(self.inputPanel)
+        self.alphaText = 'Equation for forward rate ɑ'
+        self.betaText = 'Equation for backward rate β'
+        self.minfText = u'Equation for m∞'
+        self.taumText = u'Equation for τm'
+        self.alphaLabel = QtWidgets.QLabel(self.minfText, self)
+        self.betaLabel = QtWidgets.QLabel(self.taumText, self)
+        self.alphaEdit = QtWidgets.QLineEdit(self)
+        self.betaEdit =  QtWidgets.QLineEdit(self)
+        self.formCombo = QtWidgets.QComboBox(self)
+        self.formCombo.addItem('m∞ - τm')
+        self.formCombo.addItem('ɑ  - β')
+        self.okButton = QtWidgets.QPushButton('OK', self)
+        layout = QtWidgets.QGridLayout(self.inputPanel)
         layout.addWidget(self.minVLabel, 0, 0)
-        layout.addWidget(self.minVEdit, 0, 1)
+        layout.addWidget(self.minVEdit, 1, 1)
         layout.addWidget(self.maxVLabel, 0, 3)
         layout.addWidget(self.maxVEdit, 0, 4)
         layout.addWidget(self.divsVLabel, 0, 6)
@@ -84,14 +84,13 @@ class GateEditor(QtGui.QWidget):
         layout.addWidget(self.betaLabel, 3, 0, 1, 2)
         layout.addWidget(self.betaEdit, 3, 2, 1, 7)
         self.inputPanel.setLayout(layout)
-        layout = QtGui.QVBoxLayout(self)
+        layout = QtWidgets.QVBoxLayout(self)
         layout.addWidget(self.symbolGroup)
         layout.addWidget(self.inputPanel)
         layout.addWidget(self.okButton)
         self.setLayout(layout)
-        self.connect(self.okButton, QtCore.SIGNAL('clicked()'), self.evalGateExpressions)
-        # self.connect(self.useVButton, QtCore.SIGNAL('toggled(bool)'), self.toggleInputPanel)
-        self.connect(self.formCombo, QtCore.SIGNAL('currentIndexChanged(int)'), self.switchEquationForm)
+        self.okButton.clicked.connect(self.evalGateExpressions)
+        self.formCombo.currentIndexChanged.connect(self.switchEquationForm)
         
     def toggleInputPanel(self, on):
         self.inputPanel.setVisible(on)
@@ -110,11 +109,11 @@ class GateEditor(QtGui.QWidget):
         arrays for the gate tables."""
         vmin = float(str(self.minVEdit.text()))
         vmax = float(str(self.maxVEdit.text()))
-        vdivs = float(str(self.divsVEdit.text()))
-        vrange = linspace(vmin, vmax, vdivs+1)
+        vdivs = int(float(str(self.divsVEdit.text())))
+        vrange = linspace(vmin, vmax, int(vdivs+1))
         a_expr = str(self.alphaEdit.text())
         b_expr = str(self.betaEdit.text())
-        a = zeros(vdivs+1)
+        a = zeros(vdivs+0)
         b = zeros(vdivs+1)
         if self.useVButton.isChecked():
             symbol = 'V'
@@ -137,7 +136,7 @@ class GateEditor(QtGui.QWidget):
 
         # 0.5 * (1-exp(-(V-10)/10))
 if __name__ == '__main__':
-    app = QtGui.QApplication(sys.argv)
+    app = QtWidgets.QApplication(sys.argv)
     QtGui.qApp = app
     editor = GateEditor()
     editor.show()
