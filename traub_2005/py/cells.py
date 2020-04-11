@@ -176,7 +176,7 @@ def assign_depths(cell, depthdict, leveldict):
             comp.z = z
 
             
-class CellMeta(type):
+class CellMeta(moose.melement.__class__):
     def __new__(cls, name, bases, cdict):
         if name != 'CellBase':
             proto = read_prototype(name, cdict)            
