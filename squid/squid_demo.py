@@ -518,7 +518,12 @@ class SquidGui( QMainWindow ):
         vm = numpy.asarray(self.squid_setup.vm_table.vector)
         cmd = numpy.asarray(self.squid_setup.cmd_table.vector)
         ik = numpy.asarray(self.squid_setup.ik_table.vector)
+
+        #  tab = self.squid_setup.ina_table
+        #  print(moose.showmsg(tab))
+
         ina = numpy.asarray(self.squid_setup.ina_table.vector)
+
         iclamp = numpy.asarray(self.squid_setup.iclamp_table.vector)
         vclamp = numpy.asarray(self.squid_setup.vclamp_table.vector)
         gk = numpy.asarray(self.squid_setup.gk_table.vector)

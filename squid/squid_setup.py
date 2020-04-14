@@ -61,7 +61,9 @@ class SquidSetup(object):
         self.n_table = moose.Table('/data/n')
         moose.connect(self.n_table, 'requestOut', self.squid_axon.K_channel, 'getX')
         self.ina_table = moose.Table('/data/INa')
+
         moose.connect(self.ina_table, 'requestOut', self.squid_axon.Na_channel, 'getIk')
+
         self.ik_table = moose.Table('/data/IK')
         moose.connect(self.ik_table, 'requestOut', self.squid_axon.K_channel, 'getIk')
         self.gna_table = moose.Table('/data/GNa')
