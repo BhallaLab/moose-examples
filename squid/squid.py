@@ -39,7 +39,7 @@ class IonChannel(object):
         """
         self.path = "%s/%s" % (compartment.path, name)
         self.chan = moose.HHChannel(self.path)
-        self.chan.Gbar = specific_gbar * compartment.area
+        self.chan.Gbar = specific_gbar * compartment.area()
         self.chan.Ek = e_rev
         self.chan.Xpower = Xpower
         self.chan.Ypower = Ypower
@@ -82,12 +82,12 @@ class IonChannel(object):
         ])
         return True
 
-    def alpha_m(self):
+    def get_alpha_m(self):
         if self.chan.Xpower == 0:
             return np.array([])
         return np.array(moose.element("%s/gateX" % (self.path)).tableA)
 
-    def beta_m(self):
+    def get_beta_m(self):
         if self.chan.Xpower == 0:
             return np.array([])
         return np.array(moose.element("%s/gateX" %
@@ -95,12 +95,12 @@ class IonChannel(object):
                                           moose.element("%s/gateX" %
                                                         (self.path)).tableA)
 
-    def alpha_h(self):
+    def get_alpha_h(self):
         if self.chan.Ypower == 0:
             return np.array([])
         return np.array(moose.element("%s/gateY" % (self.path)).tableA)
 
-    def beta_h(self):
+    def get_beta_h(self):
         if self.chan.Ypower == 0:
             return np.array([])
         return np.array(moose.element("%s/gateY" %
@@ -189,6 +189,7 @@ class SquidAxon(object):
         self.compt.diameter = SquidAxon.defaults["diameter"]
         self.compt.Em = SquidAxon.defaults["Em"]
         self.compt.initVm = SquidAxon.defaults["initVm"]
+
         self.specific_cm = SquidAxon.defaults["specific_cm"]
         self.specific_gl = SquidAxon.defaults["specific_gl"]
         self.specific_ra = SquidAxon.defaults["specific_ra"]
@@ -196,16 +197,21 @@ class SquidAxon(object):
         self.Na_channel = IonChannel("Na",
                                      self,
                                      0.0,
-                                     self.VNa,
+                                     self.get_VNa(),
                                      Xpower=3.0,
                                      Ypower=1.0)
+
         self.Na_channel.setupAlpha("X", SquidAxon.Na_m_params, SquidAxon.VDIVS,
                                    SquidAxon.VMIN, SquidAxon.VMAX)
+
         self.Na_channel.setupAlpha("Y", SquidAxon.Na_h_params, SquidAxon.VDIVS,
                                    SquidAxon.VMIN, SquidAxon.VMAX)
-        self.K_channel = IonChannel("K", self, 0.0, self.VK, Xpower=4.0)
+
+        self.K_channel = IonChannel("K", self, 0.0, self.get_VK(), Xpower=4.0)
+
         self.K_channel.setupAlpha("X", SquidAxon.K_n_params, SquidAxon.VDIVS,
                                   SquidAxon.VMIN, SquidAxon.VMAX)
+
         self.specific_gNa = SquidAxon.defaults["specific_gNa"]
         self.specific_gK = SquidAxon.defaults["specific_gK"]
 
@@ -217,92 +223,84 @@ class SquidAxon(object):
              70.0 + cls.EREST_ACT)
         return v
 
-    @property
     def xarea(self):
         """Area of cross section in cm^2 when length and diameter are in um"""
         return 1e-8 * np.pi * self.compt.diameter * self.compt.diameter / 4.0  # cm^2
 
-    @property
     def area(self):
         """Area in cm^2 when length and diameter are in um"""
         return 1e-8 * self.compt.length * np.pi * self.compt.diameter  # cm^2
 
-    @property
-    def specific_ra(self):
-        return self.compt.Ra * self.xarea / self.compt.length
+    def get_specific_ra(self):
+        return self.compt.Ra * self.xarea() / self.compt.length
 
-    @specific_ra.setter
-    def specific_ra(self, value):
-        self.compt.Ra = value * self.compt.length / self.xarea
+    def set_specific_ra(self, value):
+        self.compt.Ra = value * self.compt.length / self.xarea()
 
-    @property
-    def specific_cm(self):
-        return self.compt.Cm / self.area
+    specific_ra = property(get_specific_ra, set_specific_ra)
 
-    @specific_cm.setter
-    def specific_cm(self, value):
-        self.compt.Cm = value * self.area
+    def get_specific_cm(self):
+        return self.compt.Cm / self.area()
 
-    @property
-    def specific_gl(self):
-        return 1.0 / (self.compt.Rm * self.area)
+    def set_specific_cm(self, value):
+        self.compt.Cm = value * self.area()
 
-    @specific_gl.setter
-    def specific_gl(self, value):
-        self.compt.Rm = 1.0 / (value * self.area)
+    specific_cm = property(get_specific_cm, set_specific_cm)
 
-    @property
-    def specific_rm(self):
-        return self.compt.Rm * self.area
+    def get_specific_gl(self):
+        return 1.0 / (self.compt.Rm * self.area())
 
-    @specific_rm.setter
-    def specific_rm(self, value):
-        self.compt.Rm = value / self.area
+    def set_specific_gl(self, value):
+        self.compt.Rm = 1.0 / (value * self.area())
 
-    @property
-    def specific_gNa(self):
-        return self.Na_channel.Gbar / self.area
+    specific_gl = property(get_specific_gl, set_specific_gl)
 
-    @specific_gNa.setter
-    def specific_gNa(self, value):
-        self.Na_channel.Gbar = value * self.area
+    def get_specific_rm(self):
+        return self.compt.Rm * self.area()
 
-    @property
-    def specific_gK(self):
-        return self.K_channel.Gbar / self.area
+    def set_specific_rm(self, value):
+        self.compt.Rm = value / self.area()
 
-    @specific_gK.setter
-    def specific_gK(self, value):
-        self.K_channel.Gbar = value * self.area
+    specific_rm = property(get_specific_rm, set_specific_rm)
 
-    @property
-    def VK(self):
+    def get_specific_gNa(self):
+        return self.Na_channel.Gbar / self.area()
+
+    def set_specific_gNa(self, value):
+        self.Na_channel.Gbar = value * self.area()
+
+    specific_gNa = property(get_specific_gNa, set_specific_gNa)
+
+
+    def get_specific_gK(self):
+        return self.K_channel.Gbar / self.area()
+
+    def set_specific_gK(self, value):
+        self.K_channel.Gbar = value * self.area()
+
+    specific_gK = property(get_specific_gK, set_specific_gK)
+
+    def get_VK(self):
         """Reversal potential of K+ channels"""
-        return SquidAxon.reversal_potential(self.temperature, self.K_out,
-                                            self.K_in)
+        return SquidAxon.reversal_potential(self.temperature, self.K_out, self.K_in)
 
-    @property
-    def VNa(self):
+    def get_VNa(self):
         """Reversal potential of Na+ channels"""
         return SquidAxon.reversal_potential(self.temperature, self.Na_out,
                                             self.Na_in)
 
     def updateEk(self):
         """Update the channels' Ek"""
-        self.Na_channel.Ek = self.VNa
-        self.K_channel.Ek = self.VK
+        self.Na_channel.Ek = self.get_VNa()
+        self.K_channel.Ek = self.get_VK()
 
-    @property
-    def celsius(self):
+    def get_celsius(self):
         return self.temperature - CELSIUS_TO_KELVIN
 
-    @celsius.setter
-    def celsius(self, celsius):
+    def set_celsius(self, celsius):
         self.temperature = celsius + CELSIUS_TO_KELVIN
 
-    def use_defaults(self):
-        for field, value in list(SquidAxon.defaults.items()):
-            setattr(self, field, value)
+    celsius = property(get_celsius, set_celsius)
 
 
 class SquidModel:
@@ -333,22 +331,6 @@ class SquidModel:
         self.squid.updateEk()
         moose.reinit()
         moose.start(runtime)
-
-    def save_data(self):
-        self.Vm_table.xplot("Vm.dat", "Vm")
-        print("Vm saved to Vm.dat")
-        if hasattr(self, "gK_table"):
-            self.gK_table.xplot("gK.dat", "gK")
-            np.savetxt("K_alpha_n.dat", self.squid.K_channel.alpha_m)
-            np.savetxt("K_beta_n.dat", self.squid.K_channel.beta_m)
-            print("K conductance saved to gK.dat")
-        if hasattr(self, "gNa_table"):
-            self.gNa_table.xplot("gNa.dat", "gNa")
-            np.savetxt("Na_alpha_m.dat", self.squid.Na_channel.alpha_m)
-            np.savetxt("Na_beta_m.dat", self.squid.Na_channel.beta_m)
-            np.savetxt("Na_alpha_h.dat", self.squid.Na_channel.alpha_h)
-            np.savetxt("Na_beta_h.dat", self.squid.Na_channel.beta_h)
-            print("Na conductance saved to gNa.dat")
 
     def plot_data(self):
         import matplotlib.pyplot as plt
