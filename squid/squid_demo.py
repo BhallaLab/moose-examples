@@ -296,23 +296,23 @@ class SquidGui( QMainWindow ):
         self._kConductanceToggle = QCheckBox('Block K+ channel', self._channelCtrlBox)
         self._kConductanceToggle.setToolTip('<html>%s</html>' % (tooltip_KChan))
         self._kOutLabel = QLabel('[K+]out (mM)', self._channelCtrlBox)
-        self._kOutEdit = QLineEdit('%g' % (self.squid_setup.squid_axon.K_out), 
+        self._kOutEdit = QLineEdit('%g' % (self.squid_setup.axon.K_out), 
                                          self._channelCtrlBox)
         self._kOutLabel.setToolTip('<html>%s</html>' % (tooltip_Nernst))
         self._kOutEdit.setToolTip('<html>%s</html>' % (tooltip_Nernst))
         set_default_line_edit_size(self._kOutEdit)
         self._naOutLabel = QLabel('[Na+]out (mM)', self._channelCtrlBox)
-        self._naOutEdit = QLineEdit('%g' % (self.squid_setup.squid_axon.Na_out), 
+        self._naOutEdit = QLineEdit('%g' % (self.squid_setup.axon.Na_out), 
                                          self._channelCtrlBox)
         self._naOutLabel.setToolTip('<html>%s</html>' % (tooltip_Nernst))
         self._naOutEdit.setToolTip('<html>%s</html>' % (tooltip_Nernst))
         set_default_line_edit_size(self._naOutEdit)
         self._kInLabel = QLabel('[K+]in (mM)', self._channelCtrlBox)
-        self._kInEdit = QLineEdit('%g' % (self.squid_setup.squid_axon.K_in), 
+        self._kInEdit = QLineEdit('%g' % (self.squid_setup.axon.K_in), 
                                          self._channelCtrlBox)
         self._kInEdit.setToolTip(tooltip_Nernst)
         self._naInLabel = QLabel('[Na+]in (mM)', self._channelCtrlBox)
-        self._naInEdit = QLineEdit('%g' % (self.squid_setup.squid_axon.Na_in), 
+        self._naInEdit = QLineEdit('%g' % (self.squid_setup.axon.Na_in), 
                                          self._channelCtrlBox)
         self._naInEdit.setToolTip('<html>%s</html>' % (tooltip_Nernst))
         self._temperatureLabel = QLabel('Temperature (C)', self._channelCtrlBox)
@@ -518,7 +518,12 @@ class SquidGui( QMainWindow ):
         vm = numpy.asarray(self.squid_setup.vm_table.vector)
         cmd = numpy.asarray(self.squid_setup.cmd_table.vector)
         ik = numpy.asarray(self.squid_setup.ik_table.vector)
+
+        #  tab = self.squid_setup.ina_table
+        #  print(moose.showmsg(tab))
+
         ina = numpy.asarray(self.squid_setup.ina_table.vector)
+
         iclamp = numpy.asarray(self.squid_setup.iclamp_table.vector)
         vclamp = numpy.asarray(self.squid_setup.vclamp_table.vector)
         gk = numpy.asarray(self.squid_setup.gk_table.vector)
@@ -636,19 +641,19 @@ class SquidGui( QMainWindow ):
                                                     secondLevel=secondLevel,
                                                     singlePulse=singlePulse)
         if self._kConductanceToggle.isChecked():
-            self.squid_setup.squid_axon.specific_gK = 0.0
+            self.squid_setup.axon.specific_gK = 0.0
         else:
-            self.squid_setup.squid_axon.specific_gK = SquidAxon.defaults['specific_gK']
+            self.squid_setup.axon.specific_gK = SquidAxon.defaults['specific_gK']
         if self._naConductanceToggle.isChecked():
-            self.squid_setup.squid_axon.specific_gNa = 0.0
+            self.squid_setup.axon.specific_gNa = 0.0
         else:
-            self.squid_setup.squid_axon.specific_gNa = SquidAxon.defaults['specific_gNa']
-        self.squid_setup.squid_axon.celsius = self.getFloatInput(self._temperatureEdit, self._temperatureLabel.text())
-        self.squid_setup.squid_axon.K_out = self.getFloatInput(self._kOutEdit, self._kOutLabel.text())
-        self.squid_setup.squid_axon.Na_out = self.getFloatInput(self._naOutEdit, self._naOutLabel.text())
-        self.squid_setup.squid_axon.K_in = self.getFloatInput(self._kInEdit, self._kInLabel.text())
-        self.squid_setup.squid_axon.Na_in = self.getFloatInput(self._naInEdit, self._naInLabel.text())
-        self.squid_setup.squid_axon.updateEk()
+            self.squid_setup.axon.specific_gNa = SquidAxon.defaults['specific_gNa']
+        self.squid_setup.axon.celsius = self.getFloatInput(self._temperatureEdit, self._temperatureLabel.text())
+        self.squid_setup.axon.K_out = self.getFloatInput(self._kOutEdit, self._kOutLabel.text())
+        self.squid_setup.axon.Na_out = self.getFloatInput(self._naOutEdit, self._naOutLabel.text())
+        self.squid_setup.axon.K_in = self.getFloatInput(self._kInEdit, self._kInLabel.text())
+        self.squid_setup.axon.Na_in = self.getFloatInput(self._naInEdit, self._naInLabel.text())
+        self.squid_setup.axon.updateEk()
         self.squid_setup.schedule(self._simdt, self._plotdt, clampMode)
         # The following line is for use with Qthread
         self.squid_setup.run(self._runtime)
