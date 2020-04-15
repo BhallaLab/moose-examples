@@ -206,6 +206,7 @@ class CellBase(object):
             path_tokens = path.rpartition('/')
             moose.copy(self.prototype, path_tokens[0], path_tokens[-1])
         
+        self.name = path.split('/')[-1]
         self.solver = moose.HSolve('{}/solver'.format(path))
         self.solver.target = path
         self.solver.dt = config.simulationSettings.simulationDt
