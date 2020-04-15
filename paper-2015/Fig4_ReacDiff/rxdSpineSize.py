@@ -25,7 +25,7 @@ except ImportError as e:
     doMoo =  False
     print( "[INFO ] Could not import moogli. Quitting ..." )
     
-from PyQt4 import QtGui
+from PyQt5 import QtGui
 
 PI = 3.141592653
 ScalingForTesting = 10

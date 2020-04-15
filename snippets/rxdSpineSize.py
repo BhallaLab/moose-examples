@@ -23,7 +23,6 @@ import numpy
 import matplotlib.pyplot as plt
 import moose
 import sys
-sys.path.append( '../util' )
 import rdesigneur as rd
 import matplotlib
 
