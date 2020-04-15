@@ -31,7 +31,7 @@
 import numpy
 import moose
 
-class ClampCircuit(moose.Neutral):
+class ClampCircuit(object):
     """Container for a Voltage-Clamp/Current clamp circuit."""
     defaults = {
         'level1': 25.0,
@@ -41,8 +41,9 @@ class ClampCircuit(moose.Neutral):
         'trigMode': 0,
         'delay3': 1e9
         }
-    def __init__(self, path, compartment):
-        moose.Neutral.__init__(self, path)        
+    def __init__(self, path, squid):
+        self.path = path
+        moose.Neutral(path)        
         self.pulsegen = moose.PulseGen(path+"/pulse") # holding voltage/current generator
         self.pulsegen.count = 2
         self.pulsegen.firstLevel = 25.0
@@ -71,15 +72,15 @@ class ClampCircuit(moose.Neutral):
         self.pid.saturation = 1e10
         # Connect current clamp circuitry
         moose.connect(self.pulsegen, "output", self.iclamp, "plusIn")
-        moose.connect(self.iclamp, "output", compartment, "injectMsg")
+        moose.connect(self.iclamp, "output", squid.C, "injectMsg")
         # Connect voltage clamp circuitry
         moose.connect(self.pulsegen, "output", self.lowpass, "injectIn")
         moose.connect(self.lowpass, "output", self.vclamp, "plusIn")
         moose.connect(self.vclamp, "output", self.pid, "commandIn")
-        moose.connect(compartment, "VmOut", self.pid, "sensedIn")
-        moose.connect(self.pid, "output", compartment, "injectMsg")
+        moose.connect(squid.C, "VmOut", self.pid, "sensedIn")
+        moose.connect(self.pid, "output", squid.C, "injectMsg")
         current_table = moose.Table("/data/Im")
-        moose.connect(current_table, "requestOut", compartment, "getIm")
+        moose.connect(current_table, "requestOut", squid.C, "getIm")
 
     def configure_pulses(self, baseLevel=0.0, firstLevel=0.1, firstDelay=5.0, firstWidth=40.0, secondLevel=0.0, secondDelay=1e6, secondWidth=0.0, singlePulse=True):
         """Set up the pulse generator."""        

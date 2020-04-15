@@ -61,7 +61,7 @@ class IonChannel(object):
         self.chan.Xpower = Xpower
         self.chan.Ypower = Ypower
         self.chan.Zpower = Zpower
-        moose.connect(self.chan, 'channel', compartment, 'channel')
+        moose.connect(self.chan, 'channel', compartment.C, 'channel')
         
     def setupAlpha(self, gate, params, vdivs, vmin, vmax):
         """Setup alpha and beta parameters of specified gate.
@@ -118,7 +118,7 @@ class IonChannel(object):
         return numpy.array(moose.element('%s/gateY' % (self.path)).tableB) \
                 - numpy.array(moose.element('%s/gateY' % (self.path)).tableA)
 
-class SquidAxon(moose.Compartment):
+class SquidAxon(object):
     EREST_ACT = 0.0 # can be -70 mV if not following original HH convention
     VMIN = -30.0
     VMAX = 120.0
@@ -175,7 +175,9 @@ class SquidAxon(moose.Compartment):
     """Compartment class enhanced with specific values of passive
     electrical properties set and calculated using dimensions."""
     def __init__(self, path):
-        moose.Compartment.__init__(self, path)
+        #  moose.Compartment.__init__(self, path)
+        self.path = path
+        self.C = moose.Compartment(self.path)
         self.temperature = SquidAxon.defaults['temperature']
         self.K_out = SquidAxon.defaults['K_out']
         self.Na_out = SquidAxon.defaults['Na_out']
@@ -187,10 +189,11 @@ class SquidAxon(moose.Compartment):
         self.Cl_out = SquidAxon.defaults['Cl_out']
         self.Cl_in = SquidAxon.defaults['Cl_in']
 
-        self.length = SquidAxon.defaults['length']
-        self.diameter = SquidAxon.defaults['diameter']
-        self.Em = SquidAxon.defaults['Em']
-        self.initVm = SquidAxon.defaults['initVm']
+        self.C.length = SquidAxon.defaults['length']
+        self.C.diameter = SquidAxon.defaults['diameter']
+        self.C.Em = SquidAxon.defaults['Em']
+        self.C.initVm = SquidAxon.defaults['initVm']
+
         self.specific_cm = SquidAxon.defaults['specific_cm']
         self.specific_gl = SquidAxon.defaults['specific_gl']
         self.specific_ra = SquidAxon.defaults['specific_ra']
@@ -229,40 +232,43 @@ class SquidAxon(moose.Compartment):
     @property
     def xarea(self):
         """Area of cross section in cm^2 when length and diameter are in um"""
-        return 1e-8 * numpy.pi * self.diameter * self.diameter / 4.0 # cm^2
+        return 1e-8 * numpy.pi * self.C.diameter * self.C.diameter / 4.0 # cm^2
 
     @property
     def area(self):
         """Area in cm^2 when length and diameter are in um"""
-        return 1e-8 * self.length * numpy.pi * self.diameter # cm^2
+        return 1e-8 * self.C.length * numpy.pi * self.C.diameter # cm^2
     
     @property
     def specific_ra(self):
-        return self.Ra * self.xarea / self.length
+        return self.C.Ra * self.xarea / self.C.length
     @specific_ra.setter
     def specific_ra(self, value):
-        self.Ra = value * self.length / self.xarea
+        self.C.Ra = value * self.C.length / self.xarea
         
     @property
     def specific_cm(self):
-        return self.Cm / self.area
+        return self.C.Cm / self.area
+
     @specific_cm.setter
     def specific_cm(self, value):
-        self.Cm = value * self.area
+        self.C.Cm = value * self.area
 
     @property
     def specific_gl(self):
-        return 1.0/(self.Rm * self.area)
+        return 1.0/(self.C.Rm * self.area)
+
     @specific_gl.setter
     def specific_gl(self, value):
-        self.Rm = 1.0/(value * self.area)
+        self.C.Rm = 1.0/(value * self.area)
 
     @property
     def specific_rm(self):
-        return self.Rm * self.area
+        return self.C.Rm * self.area
+
     @specific_rm.setter
     def specific_rm(self, value):
-        self.Rm = value / self.area
+        self.C.Rm = value / self.area
 
     @property
     def specific_gNa(self):
@@ -308,10 +314,11 @@ class SquidAxon(moose.Compartment):
         for field, value in list(SquidAxon.defaults.items()):
             setattr(self, field, value)
 
-class SquidModel(moose.Neutral):
+class SquidModel(object):
     """Container for squid demo."""
     def __init__(self, path):
-        moose.Neutral.__init__(self, path)
+        self.path = path
+        moose.Neutral(self.path)
         self.squid_axon = SquidAxon(path+'/squid_axon')
         print((self.squid_axon.Na_channel.chan.Gbar, self.squid_axon.K_channel.chan.Gbar))
         self.current_clamp = moose.PulseGen(path+'/pulsegen')
@@ -319,10 +326,10 @@ class SquidModel(moose.Neutral):
         self.current_clamp.firstWidth = 40 # ms
         self.current_clamp.firstLevel = 0.1 # uA
         self.current_clamp.secondDelay = 1e9
-        print(('Current clamp connected:', moose.connect(self.current_clamp, 'output', self.squid_axon, 'injectMsg')))
+        moose.connect(self.current_clamp, 'output', self.squid_axon.C, 'injectMsg')
 
         self.Vm_table = moose.Table('%s/Vm' % (self.path))
-        moose.connect(self.Vm_table, 'requestOut', self.squid_axon, 'getVm')
+        moose.connect(self.Vm_table, 'requestOut', self.squid_axon.C, 'getVm')
         self.gK_table = moose.Table('%s/gK' % (self.path))
         moose.connect(self.gK_table, 'requestOut',
                 self.squid_axon.K_channel.chan, 'getGk')
