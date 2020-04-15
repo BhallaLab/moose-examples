@@ -35,7 +35,7 @@ GAS_CONSTANT = 8.314
 FARADAY = 9.65e4
 CELSIUS_TO_KELVIN = 273.15
 
-class IonChannel(moose.HHChannel):
+class IonChannel(object):
     """Enhanced version of HHChannel with setupAlpha that takes a dict
     of parameters."""
     def __init__(self, name, compartment, specific_gbar, e_rev, Xpower, Ypower=0.0, Zpower=0.0):
@@ -53,13 +53,15 @@ class IonChannel(moose.HHChannel):
 
         Ypower -- exponent for the second gatinmg component.
         """
-        moose.HHChannel.__init__(self, '%s/%s' % (compartment.path, name))
-        self.Gbar = specific_gbar * compartment.area
-        self.Ek = e_rev
-        self.Xpower = Xpower
-        self.Ypower = Ypower
-        self.Zpower = Zpower
-        moose.connect(self, 'channel', compartment, 'channel')
+        self.path = "%s/%s" % (compartment.path, name)
+        #  moose.HHChannel.__init__(self, '%s/%s' % (compartment.path, name))
+        self.chan = moose.HHChannel(self.path)
+        self.chan.Gbar = specific_gbar * compartment.area
+        self.chan.Ek = e_rev
+        self.chan.Xpower = Xpower
+        self.chan.Ypower = Ypower
+        self.chan.Zpower = Zpower
+        moose.connect(self.chan, 'channel', compartment, 'channel')
         
     def setupAlpha(self, gate, params, vdivs, vmin, vmax):
         """Setup alpha and beta parameters of specified gate.
@@ -74,9 +76,9 @@ class IonChannel(moose.HHChannel):
 
         vmax -- maximum voltage value for the alpha/beta lookup tables.
         """
-        if gate == 'X' and self.Xpower > 0:
+        if gate == 'X' and self.chan.Xpower > 0:
             gate = moose.HHGate(self.path + '/gateX')
-        elif gate == 'Y' and self.Ypower > 0:
+        elif gate == 'Y' and self.chan.Ypower > 0:
             gate = moose.HHGate(self.path + '/gateY')
         else:
             return False
@@ -95,23 +97,23 @@ class IonChannel(moose.HHChannel):
     
     @property
     def alpha_m(self):
-        if self.Xpower == 0:
+        if self.chan.Xpower == 0:
             return numpy.array([])        
         return numpy.array(moose.element('%s/gateX' % (self.path)).tableA)
     @property
     def beta_m(self):
-        if self.Xpower == 0:
+        if self.chan.Xpower == 0:
             return numpy.array([])        
         return numpy.array(moose.element('%s/gateX' % (self.path)).tableB) - \
                 numpy.array(moose.element('%s/gateX' % (self.path)).tableA)
     @property
     def alpha_h(self):
-        if self.Ypower == 0:
+        if self.chan.Ypower == 0:
             return numpy.array([])        
         return numpy.array(moose.element('%s/gateY' % (self.path)).tableA)
     @property
     def beta_h(self):
-        if self.Ypower == 0:
+        if self.chan.Ypower == 0:
             return numpy.array([])        
         return numpy.array(moose.element('%s/gateY' % (self.path)).tableB) \
                 - numpy.array(moose.element('%s/gateY' % (self.path)).tableA)
@@ -264,19 +266,19 @@ class SquidAxon(moose.Compartment):
 
     @property
     def specific_gNa(self):
-        return self.Na_channel.Gbar / self.area
+        return self.Na_channel.chan.Gbar / self.area
 
     @specific_gNa.setter
     def specific_gNa(self, value):
-        self.Na_channel.Gbar = value * self.area
+        self.Na_channel.chan.Gbar = value * self.area
 
     @property
     def specific_gK(self):
-        return self.K_channel.Gbar / self.area
+        return self.K_channel.chan.Gbar / self.area
 
     @specific_gK.setter
     def specific_gK(self, value):
-        self.K_channel.Gbar = value * self.area
+        self.K_channel.chan.Gbar = value * self.area
 
     @property
     def VK(self):
@@ -290,8 +292,8 @@ class SquidAxon(moose.Compartment):
 
     def updateEk(self):
         """Update the channels' Ek"""
-        self.Na_channel.Ek = self.VNa
-        self.K_channel.Ek = self.VK
+        self.Na_channel.chan.Ek = self.VNa
+        self.K_channel.chan.Ek = self.VK
         
 
     @property
@@ -311,7 +313,7 @@ class SquidModel(moose.Neutral):
     def __init__(self, path):
         moose.Neutral.__init__(self, path)
         self.squid_axon = SquidAxon(path+'/squid_axon')
-        print((self.squid_axon.Na_channel.Gbar, self.squid_axon.K_channel.Gbar))
+        print((self.squid_axon.Na_channel.chan.Gbar, self.squid_axon.K_channel.chan.Gbar))
         self.current_clamp = moose.PulseGen(path+'/pulsegen')
         self.current_clamp.firstDelay = 5.0 # ms
         self.current_clamp.firstWidth = 40 # ms
@@ -322,9 +324,11 @@ class SquidModel(moose.Neutral):
         self.Vm_table = moose.Table('%s/Vm' % (self.path))
         moose.connect(self.Vm_table, 'requestOut', self.squid_axon, 'getVm')
         self.gK_table = moose.Table('%s/gK' % (self.path))
-        moose.connect(self.gK_table, 'requestOut', self.squid_axon.K_channel, 'getGk')
+        moose.connect(self.gK_table, 'requestOut',
+                self.squid_axon.K_channel.chan, 'getGk')
         self.gNa_table = moose.Table('%s/gNa' % (self.path))
-        moose.connect(self.gNa_table, 'requestOut', self.squid_axon.Na_channel, 'getGk')
+        moose.connect(self.gNa_table, 'requestOut',
+                self.squid_axon.Na_channel.chan, 'getGk')
         self.clocks_assigned = False
         
     def run(self, runtime, simdt=1e-6):
