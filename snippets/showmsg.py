@@ -13,6 +13,9 @@ def main():
     synapse = syn.synapse.vec
     mid = moose.connect(net, 'spikeOut', synapse, 'addSpike', 'Sparse') # This creates a `Sparse` message from `spikeOut` source of net to `addSpike` destination on synapse.
     msg = moose.element(mid)
+    print(msg.setRandomConnectivity,'xx')
+    msg.setRandomConnectivity(connectionProbability, 5)
+    quit()
     msg.setRandomConnectivity(connectionProbability, 5)
     for n in net.vec:
         print(('Messages from %s.spikeOut' % (n.path)))

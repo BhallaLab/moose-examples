@@ -1,34 +1,10 @@
-# squid.py --- 
-# 
 # Filename: squid.py
-# Description: 
+# Description:
 # Author: Subhasis Ray
-# Maintainer: 
-# Created: Mon Feb 13 11:35:11 2012 (+0530)
-# Version: 
-# Last-Updated: Thu Sep 20 14:05:27 2012 (+0530)
-#           By: subha
-#     Update #: 771
-# URL: 
-# Keywords: 
-# Compatibility: 
-# 
-# 
+# Maintainer: Dilawar Singh
 
-# Commentary: 
-# 
-# Rewrite of the squid demo for new moose.
-# 
-# 
-
-# Change log:
-# 
-# 
-# 
-
-# Code:
 import sys
-import numpy
+import numpy as np
 import moose
 
 GAS_CONSTANT = 8.314
@@ -38,7 +14,14 @@ CELSIUS_TO_KELVIN = 273.15
 class IonChannel(object):
     """Enhanced version of HHChannel with setupAlpha that takes a dict
     of parameters."""
-    def __init__(self, name, compartment, specific_gbar, e_rev, Xpower, Ypower=0.0, Zpower=0.0):
+    def __init__(self,
+                 name,
+                 compartment,
+                 specific_gbar,
+                 e_rev,
+                 Xpower,
+                 Ypower=0.0,
+                 Zpower=0.0):
         """Instantuate an ion channel.
 
         name -- name of the channel.
@@ -82,17 +65,21 @@ class IonChannel(object):
             gate = moose.HHGate(self.path + '/gateY')
         else:
             return False
-        gate.setupAlpha([params['A_A'],
-                         params['A_B'],
-                         params['A_C'],
-                         params['A_D'],
-                         params['A_F'],
-                         params['B_A'],
-                         params['B_B'],
-                         params['B_C'],
-                         params['B_D'],
-                         params['B_F'],
-                         vdivs, vmin, vmax])
+        gate.setupAlpha([
+            params["A_A"],
+            params["A_B"],
+            params["A_C"],
+            params["A_D"],
+            params["A_F"],
+            params["B_A"],
+            params["B_B"],
+            params["B_C"],
+            params["B_D"],
+            params["B_F"],
+            vdivs,
+            vmin,
+            vmax,
+        ])
         return True
     
     @property
@@ -124,54 +111,60 @@ class SquidAxon(object):
     VMAX = 120.0
     VDIVS = 150
     defaults = {
-        'temperature': CELSIUS_TO_KELVIN + 6.3,
-        'K_out': 10.0,
-        'Na_out': 460.0,
-        'K_in': 301.4,
-        'Na_in': 70.96,
-        'Cl_out': 540.0,        
-        'Cl_in': 100.0,
-        'length': 500, # um
-        'diameter': 500, # um
-        'Em': EREST_ACT + 10.613,
-        'initVm': EREST_ACT,  
-        'specific_cm': 1.0, # uF/cm^2
-        'specific_gl':  0.3, # mmho/cm^2
-        'specific_ra': 0.030, # kohm-cm
-        'specific_gNa': 120.0, # mmho/cm^2
-        'specific_gK': 36.0 # mmho/cm^2
+        "temperature": CELSIUS_TO_KELVIN + 6.3,
+        "K_out": 10.0,
+        "Na_out": 460.0,
+        "K_in": 301.4,
+        "Na_in": 70.97,
+        "Cl_out": 540.0,
+        "Cl_in": 100.0,
+        "length": 500.0,  # um
+        "diameter": 500.0,  # um
+        "Em": EREST_ACT + 10.613,
+        "initVm": EREST_ACT,
+        "specific_cm": 1.0,  # uF/cm^2
+        "specific_gl": 0.3,  # mmho/cm^2
+        "specific_ra": 0.030,  # kohm-cm
+        "specific_gNa": 120.0,  # mmho/cm^2
+        "specific_gK": 36.0,  # mmho/cm^2
     }
-    
-    Na_m_params = {'A_A':0.1 * (25.0 + EREST_ACT),
-                   'A_B': -0.1,
-                   'A_C': -1.0,
-                   'A_D': -25.0 - EREST_ACT,
-                   'A_F':-10.0,
-                   'B_A': 4.0,
-                   'B_B': 0.0,
-                   'B_C': 0.0,
-                   'B_D': 0.0 - EREST_ACT,
-                   'B_F': 18.0}
-    Na_h_params = {'A_A': 0.07,
-                   'A_B': 0.0,
-                   'A_C': 0.0,
-                   'A_D': 0.0 - EREST_ACT,
-                   'A_F': 20.0,
-                   'B_A': 1.0,
-                   'B_B': 0.0,
-                   'B_C': 1.0,
-                   'B_D': -30.0 - EREST_ACT,
-                   'B_F': -10.0}
-    K_n_params = {'A_A': 0.01*(10.0 + EREST_ACT),
-                  'A_B': -0.01,
-                  'A_C': -1.0,
-                  'A_D': -10.0 - EREST_ACT,
-                  'A_F': -10.0,
-                  'B_A': 0.125,
-                  'B_B': 0.0,
-                  'B_C': 0.0,
-                  'B_D': 0.0 - EREST_ACT,
-                  'B_F': 80.0}
+
+    Na_m_params = {
+        "A_A": 0.1 * (25.0 + EREST_ACT),
+        "A_B": -0.1,
+        "A_C": -1.0,
+        "A_D": -25.0 - EREST_ACT,
+        "A_F": -10.0,
+        "B_A": 4.0,
+        "B_B": 0.0,
+        "B_C": 0.0,
+        "B_D": 0.0 - EREST_ACT,
+        "B_F": 18.0,
+    }
+    Na_h_params = {
+        "A_A": 0.07,
+        "A_B": 0.0,
+        "A_C": 0.0,
+        "A_D": 0.0 - EREST_ACT,
+        "A_F": 20.0,
+        "B_A": 1.0,
+        "B_B": 0.0,
+        "B_C": 1.0,
+        "B_D": -30.0 - EREST_ACT,
+        "B_F": -10.0,
+    }
+    K_n_params = {
+        "A_A": 0.01 * (10.0 + EREST_ACT),
+        "A_B": -0.01,
+        "A_C": -1.0,
+        "A_D": -10.0 - EREST_ACT,
+        "A_F": -10.0,
+        "B_A": 0.125,
+        "B_B": 0.0,
+        "B_C": 0.0,
+        "B_D": 0.0 - EREST_ACT,
+        "B_F": 80.0,
+    }
     """Compartment class enhanced with specific values of passive
     electrical properties set and calculated using dimensions."""
     def __init__(self, path):
@@ -200,41 +193,36 @@ class SquidAxon(object):
         
         self.Na_channel = IonChannel('Na', self,
                                      0.0,
-                                     self.VNa,
+                                     self.get_VNa(),
                                      Xpower=3.0,
                                      Ypower=1.0)
-        self.Na_channel.setupAlpha('X', SquidAxon.Na_m_params,
-                                   SquidAxon.VDIVS,
-                                   SquidAxon.VMIN,
-                                   SquidAxon.VMAX)
-        self.Na_channel.setupAlpha('Y', SquidAxon.Na_h_params,
-                                   SquidAxon.VDIVS,
-                                   SquidAxon.VMIN,
-                                   SquidAxon.VMAX)
-        self.K_channel = IonChannel('K', self,
-                                    0.0,
-                                    self.VK,
-                                    Xpower=4.0)
-        self.K_channel.setupAlpha('X', SquidAxon.K_n_params,
-                                  SquidAxon.VDIVS,
-                                  SquidAxon.VMIN,
-                                  SquidAxon.VMAX)
-        self.specific_gNa = SquidAxon.defaults['specific_gNa']
-        self.specific_gK = SquidAxon.defaults['specific_gK']
-        
+
+        self.Na_channel.setupAlpha("X", SquidAxon.Na_m_params, SquidAxon.VDIVS,
+                                   SquidAxon.VMIN, SquidAxon.VMAX)
+
+        self.Na_channel.setupAlpha("Y", SquidAxon.Na_h_params, SquidAxon.VDIVS,
+                                   SquidAxon.VMIN, SquidAxon.VMAX)
+
+        self.K_channel = IonChannel("K", self, 0.0, self.get_VK(), Xpower=4.0)
+
+        self.K_channel.setupAlpha("X", SquidAxon.K_n_params, SquidAxon.VDIVS,
+                                  SquidAxon.VMIN, SquidAxon.VMAX)
+
+        self.specific_gNa = SquidAxon.defaults["specific_gNa"]
+        self.specific_gK = SquidAxon.defaults["specific_gK"]
+
     @classmethod
     def reversal_potential(cls, temp, c_out, c_in):
         """Compute the reversal potential based on Nernst equation."""
         # NOTE the 70 mV added for compatibility with original HH
-        return (GAS_CONSTANT * temp / FARADAY) * 1000.0 * numpy.log(c_out/c_in) + 70.0 + cls.EREST_ACT
+        v = ((GAS_CONSTANT * temp / FARADAY) * 1000.0 * np.log(c_out / c_in) +
+             70.0 + cls.EREST_ACT)
+        return v
 
-        
-    @property
     def xarea(self):
         """Area of cross section in cm^2 when length and diameter are in um"""
         return 1e-8 * numpy.pi * self.C.diameter * self.C.diameter / 4.0 # cm^2
 
-    @property
     def area(self):
         """Area in cm^2 when length and diameter are in um"""
         return 1e-8 * self.C.length * numpy.pi * self.C.diameter # cm^2
@@ -290,11 +278,11 @@ class SquidAxon(object):
     def VK(self):
         """Reversal potential of K+ channels"""
         return SquidAxon.reversal_potential(self.temperature, self.K_out, self.K_in)
-    
-    @property
-    def VNa(self):
+
+    def get_VNa(self):
         """Reversal potential of Na+ channels"""
-        return SquidAxon.reversal_potential(self.temperature, self.Na_out, self.Na_in)
+        return SquidAxon.reversal_potential(self.temperature, self.Na_out,
+                                            self.Na_in)
 
     def updateEk(self):
         """Update the channels' Ek"""
@@ -302,17 +290,14 @@ class SquidAxon(object):
         self.K_channel.chan.Ek = self.VK
         
 
-    @property
-    def celsius(self):
+    def get_celsius(self):
         return self.temperature - CELSIUS_TO_KELVIN
 
-    @celsius.setter
-    def celsius(self, celsius):
+    def set_celsius(self, celsius):
         self.temperature = celsius + CELSIUS_TO_KELVIN
 
-    def use_defaults(self):
-        for field, value in list(SquidAxon.defaults.items()):
-            setattr(self, field, value)
+    celsius = property(get_celsius, set_celsius)
+
 
 class SquidModel(object):
     """Container for squid demo."""
@@ -337,7 +322,7 @@ class SquidModel(object):
         moose.connect(self.gNa_table, 'requestOut',
                 self.squid_axon.Na_channel.chan, 'getGk')
         self.clocks_assigned = False
-        
+
     def run(self, runtime, simdt=1e-6):
         self.squid_axon.updateEk()
         moose.reinit()
@@ -372,16 +357,10 @@ class SquidModel(object):
             
         
 def test(runtime=100.0, simdt=1e-2):
-    model = SquidModel('model')
+    model = SquidModel("/model")
     model.run(runtime, simdt)
     # model.save_data()
     model.plot_data()
 
-if __name__ == '__main__':
-    # unittest.main()
+if __name__ == "__main__":
     test()
-    
-                                                                             
-    
-# 
-# squid.py ends here

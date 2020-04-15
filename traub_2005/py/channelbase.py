@@ -108,7 +108,7 @@ def get_class_field(name, cdict, bases, fieldname, default=None):
     return default
             
 
-class ChannelMeta(type):
+class ChannelMeta(moose.melement.__class__):
     def __new__(cls, name, bases, cdict):     
         global prototypes
         # classes that set absract=True will be
@@ -170,7 +170,3 @@ class ChannelBase(moose.HHChannel):
     abstract = True
     def __init__(self, path, xpower=1, ypower=0, Ek=0.0):
         moose.HHChannel.__init__(self, path)
-
-
-# 
-# trbchan.py ends here
