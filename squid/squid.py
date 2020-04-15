@@ -329,17 +329,6 @@ class SquidModel(moose.Neutral):
         
     def run(self, runtime, simdt=1e-6):
         self.squid_axon.updateEk()
-        moose.setClock(0, simdt)
-        moose.setClock(1, simdt)
-        moose.setClock(2, simdt)
-        moose.setClock(3, simdt)
-        if not self.clocks_assigned:
-            moose.useClock(0, '%s/#[TYPE=Compartment]' % (self.path), 'init')
-            moose.useClock(0, '%s/#[TYPE=PulseGen]' % (self.path), 'process')
-            moose.useClock(1, '%s/#[TYPE=Compartment]' % (self.path), 'process')
-            moose.useClock(2, '%s/#[TYPE=HHChannel]' % (self.squid_axon.path), 'process')
-            moose.useClock(3, '%s/#[TYPE=Table]' % (self.path), 'process')
-            self.clocks_assigned = True
         moose.reinit()
         moose.start(runtime)
 
@@ -359,12 +348,23 @@ class SquidModel(moose.Neutral):
             numpy.savetxt('Na_beta_h.dat', self.squid_axon.Na_channel.beta_h)
             print('Na conductance saved to gNa.dat')
 
+    def plot_data(self):
+        import matplotlib.pyplot as plt
+        ax11 = plt.subplot(221)
+        ax12 = plt.subplot(222)
+        ax21 = plt.subplot(223)
+        ax22 = plt.subplot(224)
+        ax11.plot(self.Vm_table.vector)
+        ax12.plot(self.gNa_table.vector)
+        ax12.plot(self.gK_table.vector)
+        plt.show()
             
         
 def test(runtime=100.0, simdt=1e-2):
     model = SquidModel('model')
     model.run(runtime, simdt)
-    model.save_data()
+    # model.save_data()
+    model.plot_data()
 
 if __name__ == '__main__':
     # unittest.main()
