@@ -53,12 +53,12 @@ import moose
 from moose import utils
 # import cells
 
-def vclamptest(compartment, vclamp, duration=50e-3, delay=150e-3, solver='ee', vhold=None, mc=None, dc=None, simdt=1e-5, plotdt=0.25e-3):
-    """Do a series of voltage clamp experiemnts on compartment.
+def vclamptest(axon, vclamp, duration=50e-3, delay=150e-3, solver='ee', vhold=None, mc=None, dc=None, simdt=1e-5, plotdt=0.25e-3):
+    """Do a series of voltage clamp experiemnts on axon.
 
     parameters:
     
-    compartment: Compartment object to be voltage clamped
+    axon: Compartment object to be voltage clamped
 
     vclamp: array of clamping voltage values.
 
@@ -67,26 +67,26 @@ def vclamptest(compartment, vclamp, duration=50e-3, delay=150e-3, solver='ee', v
     delay: delay between successive application of clamping voltages
 
     vhold: holding voltage, If None, the Em of the
-    compartment is used.
+    axon is used.
 
     mc: model container, the vclamp object will be created inside
-    mc/electronics. If None, we use compartment.parent.parent
+    mc/electronics. If None, we use axon.parent.parent
 
     dc: data container, the data recording tables will be created
-    inside it. If None, we use compartment.parent.parent
+    inside it. If None, we use axon.parent.parent
     """
     if vhold is None:
-        vhold = compartment.Em
+        vhold = axon.C.Em
     if mc is None:
-        mc = compartment.parent.parent
+        mc = axon.C.parent.parent
     if dc is None:
-        dc = compartment.parent.parent
+        dc = axon.C.parent.parent
     electronics = moose.Neutral('%s/electronics' % (mc.path))
     command = moose.PulseGen('%s/command_source' % (electronics.path))
     clamp = moose.VClamp('%s/vclamp' % (electronics.path))
     moose.connect(command, 'output', clamp, 'commandIn')
-    moose.connect(compartment, 'VmOut', clamp, 'sensedIn')
-    moose.connect(clamp, 'currentOut', compartment, 'injectMsg')
+    moose.connect(axon.C, 'VmOut', clamp, 'sensedIn')
+    moose.connect(clamp, 'currentOut', axon.C, 'injectMsg')
     simtime = 0
     command.count = len(vclamp)
     command.baseLevel = vhold
@@ -100,7 +100,7 @@ def vclamptest(compartment, vclamp, duration=50e-3, delay=150e-3, solver='ee', v
     voltage = moose.Table('%s/Vcommand' % (dc.path))
     moose.connect(voltage, 'requestOut', command, 'getOutputValue')
     vm = moose.Table('%s/Vm' % (dc.path))
-    moose.connect(vm, 'requestOut', compartment, 'getVm')
+    moose.connect(vm, 'requestOut', axon.C, 'getVm')
     utils.resetSim([mc.path, dc.path], simdt, plotdt, simmethod=solver)
     moose.start(simtime)
     ivec = np.asarray(injected.vector)
