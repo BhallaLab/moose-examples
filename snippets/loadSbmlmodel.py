@@ -5,8 +5,8 @@
 # Maintainer:
 # Created: Fri Jan 29 11:43:15 2016 (+0530)
 # Version:
-# Last-Updated:
-#           By:
+# Last-Updated: Wed Sep 09 01:32:12 2020 (+0530)
+#           By: HarshaRani
 #     Update #: 0
 # URL:
 # Keywords:
@@ -21,6 +21,7 @@
 #
 
 # Change log:
+# updated function calls
 #
 #
 #
@@ -77,14 +78,14 @@ If someone wants to load anyother file then
         runtime = float(sys.argv[2])
     sbmlId = moose.element('/')
     # Loading the sbml file into MOOSE, models are loaded in path/model
-    sbmlId = moose.mooseReadSBML(filepath,'/sbml')
+    sbmlId = moose.readSBML(filepath,'/sbml')[0]
     if isinstance(sbmlId, (list, tuple)):
         print(sbmlId)
 
     elif sbmlId.path != '/':
 
-        s1 = moose.element('/sbml/model/compartment/S1')
-        s2= moose.element('/sbml/model/compartment/S2')
+        s1 = moose.element('/sbml/compartment/S1')
+        s2 = moose.element('/sbml/compartment/S2')
 
         # Creating MOOSE Table, Table2 is for the chemical model
         graphs = moose.Neutral( '/sbml/graphs' )
@@ -96,7 +97,7 @@ If someone wants to load anyother file then
         moose.connect( outputs2,'requestOut', s2, 'getConc' );
 
         # gsl solver is added, default is ee
-        moose.mooseAddChemSolver(sbmlId.path,"ee")
+        moose.addChemSolver(sbmlId.path,"ee")
 
         # Reset and Run
         moose.reinit()
