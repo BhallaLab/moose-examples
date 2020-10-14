@@ -176,7 +176,7 @@ def assign_depths(cell, depthdict, leveldict):
             comp.z = z
 
             
-class CellMeta(type):
+class CellMeta(moose.melement.__class__):
     def __new__(cls, name, bases, cdict):
         if name != 'CellBase':
             proto = read_prototype(name, cdict)            
@@ -198,15 +198,15 @@ class CellMeta(type):
 
     
 @metafix.with_metaclass(CellMeta)
-class CellBase(moose.Neuron):
-    # __metaclass__ = CellMeta  # This is incompatible with Python3
+class CellBase(object):
     annotation = {'cno': 'cno_0000020'}
     def __init__(self, path):
-        if not moose.exists(path):
+        self.path = path
+        if not moose.exists(self.path):
             path_tokens = path.rpartition('/')
             moose.copy(self.prototype, path_tokens[0], path_tokens[-1])
         
-        moose.element( path )
+        self.name = path.split('/')[-1]
         self.solver = moose.HSolve('{}/solver'.format(path))
         self.solver.target = path
         self.solver.dt = config.simulationSettings.simulationDt
