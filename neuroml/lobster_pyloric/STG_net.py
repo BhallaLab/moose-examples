@@ -78,12 +78,13 @@ def loadRunSTGNeuroML_L123(filename):
     for child in soma2.children:
         print((child.className, child.path))
     if graded_syn:
-        syn_path = soma2_path+'/DoubExpSyn_Ach__cells-0-_AB_PD_0-0-_Soma_0'
+        #  syn_path = soma2_path+'/DoubExpSyn_Ach__cells-0-_AB_PD_0-0-_Soma_0' #  # version < 3.2
+        syn_path = soma2_path+'/DoubExpSyn_Ach__cells_AB_PD_0_Soma_0' # version 3.2 +
         syn = moose.element(syn_path)
     else:
         syn_path = soma2_path+'/DoubExpSyn_Ach'
         syn = moose.element(syn_path)
-    syn_Ik = setupTable('DoubExpSyn_Ach_Ik',syn,'Ik')
+    syn_Ik = setupTable('DoubExpSyn_Ach_Ik', syn, 'Ik')
 
     print("Reinit MOOSE ... ")
     resetSim(['/elec',cells_path], simdt, plotdt, simmethod='hsolve')

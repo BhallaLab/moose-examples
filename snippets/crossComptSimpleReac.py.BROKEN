@@ -51,7 +51,7 @@ def makeModel():
     compt0.y0 += side
     compt2.x1 += side
     compt2.x0 += side
-    print(('Volumes = ', compt0.volume, compt1.volume, compt2.volume))
+    print('Volumes = ', compt0.volume, compt1.volume, compt2.volume)
 
     # create molecules and reactions
     a = moose.Pool( '/model/compt0/a' )
@@ -101,9 +101,9 @@ def makeModel():
     stoich0.ksolve = ksolve0
     stoich1.ksolve = ksolve1
     stoich2.ksolve = ksolve2
-    stoich0.path = '/model/compt0/#'
-    stoich1.path = '/model/compt1/#'
-    stoich2.path = '/model/compt2/#'
+    stoich0.reacSystemPath = '/model/compt0/#'
+    stoich1.reacSystemPath = '/model/compt1/#'
+    stoich2.reacSystemPath = '/model/compt2/#'
     stoich1.buildXreacs( stoich0 )
     stoich1.buildXreacs( stoich2 )
     stoich0.filterXreacs()
