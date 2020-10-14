@@ -164,7 +164,7 @@ class SingleCellCurrentStepTest(unittest.TestCase):
         moose.reinit()
         config.logger.info('Finished reinit')
         ts = datetime.now()
-        mutils.stepRun(simtime, simtime/10.0, verbose=True, logger=config.logger)
+        mutils.stepRun(simtime, simtime/10.0, verbose=True)
         # The sleep is required to get all threads to end 
         while moose.isRunning():
             time.sleep(0.1)

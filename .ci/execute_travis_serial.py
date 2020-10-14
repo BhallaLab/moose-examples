@@ -70,7 +70,7 @@ def print_results():
     for k in result_:
         with open("%s.txt" % k, 'w') as f:
             for fl, r in result_[k]:
-                f.write('- %s\n' % fl)
+                f.write('- [ ] %s\n' % fl)
                 f.write('```')
                 try:
                     r = r.decode('utf8')

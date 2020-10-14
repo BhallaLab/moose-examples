@@ -38,8 +38,8 @@ class SquidSetup(object):
         self.scheduled = False        
         self.model_container = moose.Neutral('/model')
         self.data_container = moose.Neutral('/data')
-        self.squid_axon = SquidAxon('/model/squid_axon')
-        self.clamp_ckt = ClampCircuit('/model/electronics', self.squid_axon)
+        self.axon = SquidAxon('/model/axon')
+        self.clamp_ckt = ClampCircuit('/model/electronics', self.axon)
         self.simdt = 0.0
         self.plotdt = 0.0
         self.setup_recording()
@@ -47,7 +47,7 @@ class SquidSetup(object):
     def setup_recording(self):
         # Setup data collection
         self.vm_table = moose.Table('/data/Vm')
-        moose.connect(self.vm_table, 'requestOut', self.squid_axon, 'getVm')
+        moose.connect(self.vm_table, 'requestOut', self.axon.C, 'getVm')
         self.cmd_table = moose.Table('/data/command')
         moose.connect(self.cmd_table, 'requestOut', self.clamp_ckt.vclamp, 'getOutputValue')
         self.iclamp_table = moose.Table('/data/Iclamp')
@@ -55,19 +55,19 @@ class SquidSetup(object):
         self.vclamp_table = moose.Table('/data/Vclamp')
         moose.connect(self.vclamp_table, 'requestOut', self.clamp_ckt.pid, 'getOutputValue')
         self.m_table = moose.Table('/data/m')
-        moose.connect(self.m_table, 'requestOut', self.squid_axon.Na_channel, 'getX')
+        moose.connect(self.m_table, 'requestOut', self.axon.Na_channel.chan, 'getX')
         self.h_table = moose.Table('/data/h')
-        moose.connect(self.h_table, 'requestOut', self.squid_axon.Na_channel, 'getY')
+        moose.connect(self.h_table, 'requestOut', self.axon.Na_channel.chan, 'getY')
         self.n_table = moose.Table('/data/n')
-        moose.connect(self.n_table, 'requestOut', self.squid_axon.K_channel, 'getX')
+        moose.connect(self.n_table, 'requestOut', self.axon.K_channel.chan, 'getX')
         self.ina_table = moose.Table('/data/INa')
-        moose.connect(self.ina_table, 'requestOut', self.squid_axon.Na_channel, 'getIk')
+        moose.connect(self.ina_table, 'requestOut', self.axon.Na_channel.chan, 'getIk')
         self.ik_table = moose.Table('/data/IK')
-        moose.connect(self.ik_table, 'requestOut', self.squid_axon.K_channel, 'getIk')
+        moose.connect(self.ik_table, 'requestOut', self.axon.K_channel.chan, 'getIk')
         self.gna_table = moose.Table('/data/GNa')
-        moose.connect(self.gna_table, 'requestOut', self.squid_axon.Na_channel, 'getGk')
+        moose.connect(self.gna_table, 'requestOut', self.axon.Na_channel.chan, 'getGk')
         self.gk_table = moose.Table('/data/GK')
-        moose.connect(self.gk_table, 'requestOut', self.squid_axon.K_channel, 'getGk')
+        moose.connect(self.gk_table, 'requestOut', self.axon.K_channel.chan, 'getGk')
         
     def schedule(self, simdt, plotdt, clampmode):
         self.simdt = simdt
@@ -85,7 +85,7 @@ class SquidSetup(object):
             moose.useClock(0, '%s/#[TYPE=Compartment]' % (self.model_container.path), 'init')
             moose.useClock(0, '%s/##' % (self.clamp_ckt.path), 'process')
             moose.useClock(1, '%s/#[TYPE=Compartment]' % (self.model_container.path), 'process')
-            moose.useClock(2, '%s/#[TYPE=HHChannel]' % (self.squid_axon.path), 'process')
+            moose.useClock(2, '%s/#[TYPE=HHChannel]' % (self.axon.path), 'process')
             moose.useClock(3, '%s/#[TYPE=Table]' % (self.data_container.path), 'process')
             self.scheduled = True
         moose.reinit()
@@ -95,7 +95,7 @@ class SquidSetup(object):
 
     def save_data(self):
         for child in self.data_container.children:
-            tab = moose.Table(child)
+            tab = moose.element(child)
             tab.xplot('%s.dat' % (tab.name), tab.name)
 
 import sys            

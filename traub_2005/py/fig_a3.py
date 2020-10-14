@@ -60,7 +60,7 @@ simdt = 2e-5
 plotdt=1e-4
 
 def setup_model(root='/', hsolve=True):
-    moose.ce(root)
+    moose.setCwe(root)
     model = moose.Neutral('model')
     data = moose.Neutral('data')
     cell = SpinyStellate('%s/spinystellate' % (model.path))
