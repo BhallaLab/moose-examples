@@ -120,7 +120,7 @@ def main():
     compt = moose.element( '/model/compartment' );
     stoich.compartment = compt
     stoich.ksolve = gsolve
-    stoich.path = "/model/compartment/##"
+    stoich.reacSystemPath = "/model/compartment/##"
     #moose.setClock( 5, 1.0 ) # clock for the solver
     #moose.useClock( 5, '/model/compartment/gsolve', 'process' )
     a = moose.element( '/model/compartment/a' )

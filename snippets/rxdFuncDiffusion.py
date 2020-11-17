@@ -44,7 +44,7 @@ def main():
     stoich.ksolve = ksolve
     stoich.dsolve = dsolve
     stoich.compartment = compt
-    stoich.path = '/cylinder/##'
+    stoich.reacSystemPath = '/cylinder/##'
 
     #initialize
     x = numpy.arange( 0, compt.x1, compt.diffLength )
