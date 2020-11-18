@@ -57,7 +57,7 @@ def main():
     file using moose 
     """
     model = moose.loadModel(os.path.join( cwd, '../genesis/reaction.g'), '/model')
-    written = moose.mooseWriteKkit('/model', 'testsave.g')
+    written = moose.writeKkit('/model', 'testsave.g')
     print( written )
 if __name__ == '__main__':
     main()
