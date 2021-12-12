@@ -30,12 +30,13 @@ rdes = rd.rdesigneur(
     stimList = [
         ['head0', '0.5', 'glu', 'periodicsyn', '1 + 40*(t>5 && t<6)'],
         ['head0', '0.5', 'NMDA', 'periodicsyn', '1 + 40*(t>5 && t<6)'],
-        ['dend#',  'g>10e-6 && g<=31e-6', 'dend/IP3', 'conc', '0.0006' ],
+        ['dend#',  'g>10e-6 && g<=31e-6', 'dend/IP3', 'conc', '0.0008' ],
         ],
     plotList = [
         ['head#', '1', 'spine/Ca', 'conc', 'Spine Ca conc'],
         ['dend#', '1', 'dend/Ca', 'conc', 'Dend Ca conc'],
         ['dend#', '1', 'dend/Ca', 'conc', 'Dend Ca conc', 'wave'],
+        ['dend#', '1', 'dend/IP3', 'conc', 'Dend IP3 conc', 'wave'],
         ['dend#', '1', 'dend_endo/CaER', 'conc', 'ER Ca conc', 'wave'],
         ['soma', '1', '.', 'Vm', 'Memb potl'],
     ],

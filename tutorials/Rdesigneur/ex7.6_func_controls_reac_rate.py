@@ -26,13 +26,13 @@ import rdesigneur as rd
 def makeFuncRate():
     model = moose.Neutral( '/library' )
     model = moose.Neutral( '/library/chem' )
-    compt = moose.CubeMesh( '/library/chem/compt' )
+    compt = moose.CubeMesh( '/library/chem/kinetics' )
     compt.volume = 1e-15
-    A = moose.Pool( '/library/chem/compt/A' )
-    B = moose.Pool( '/library/chem/compt/B' )
-    C = moose.Pool( '/library/chem/compt/C' )
-    reac = moose.Reac( '/library/chem/compt/reac' )
-    func = moose.Function( '/library/chem/compt/reac/func' )
+    A = moose.Pool( '/library/chem/kinetics/A' )
+    B = moose.Pool( '/library/chem/kinetics/B' )
+    C = moose.Pool( '/library/chem/kinetics/C' )
+    reac = moose.Reac( '/library/chem/kinetics/reac' )
+    func = moose.Function( '/library/chem/kinetics/reac/func' )
     func.x.num = 1
     func.expr = "(x0/1e8)^2"
     moose.connect( C, 'nOut', func.x[0], 'input' )

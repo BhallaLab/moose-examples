@@ -42,7 +42,7 @@ rdes = rd.rdesigneur(
     ],
     adaptorList = [
         [ 'psd/chan_p', 'n', 'glu', 'modulation', 0.1, 1.0 ],
-        [ 'Ca_conc', 'Ca', 'spine/Ca', 'conc', 0.00008, 8 ]
+        [ 'Ca_conc', 'Ca', 'spine/Ca', 'conc', 0.00008, 0.8 ]
     ],
     # Syn input basline 1 Hz, and 40Hz burst for 1 sec at t=20. Syn weight
     # is 0.5, specified in 2nd argument as a special case stimLists. 

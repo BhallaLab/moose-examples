@@ -48,7 +48,7 @@ def makeModel():
     stoich0.compartment = compt0
     stoich0.ksolve = ksolve0
     stoich0.dsolve = dsolve0
-    stoich0.path = '/model/chem/compt0/#'
+    stoich0.reacSystemPath = '/model/chem/compt0/#'
     assert( stoich0.numVarPools == 3 )
     assert( stoich0.numProxyPools == 0 )
     assert( stoich0.numRates == 4 )
@@ -81,7 +81,7 @@ def makeDisplay():
     layout.set_ylim( -20, 25 )
     compt = moose.element( '/model/chem/compt0' )
     pos = compt.voxelMidpoint
-    i = len( pos ) / 3
+    i = round(len( pos ) / 3 )
     r2 = numpy.sqrt( 0.5 )
     yp = [ -r2 * pos[j] * 1e6 for j in range( i ) ]
     xp = pos[i:2*i] * 1e6 - yp
