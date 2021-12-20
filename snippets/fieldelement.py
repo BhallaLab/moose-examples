@@ -146,6 +146,6 @@ except IndexError as e:
 else:
     print('Expected an IndexError. Length of synapse=', len(d.synapse))
 # The fieldIndex should change, not dataId
-x = moose.element(a.vec, 0, 1)
-y = moose.element(a.vec, 1, 2)
+x = moose.element(a.vec)
+y = moose.element(a.vec)
 print(x, y)

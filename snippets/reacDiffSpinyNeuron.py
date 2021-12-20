@@ -67,9 +67,9 @@ def makeModel():
     stoich0.dsolve = dsolve0
     stoich1.dsolve = dsolve1
     stoich2.dsolve = dsolve2
-    stoich0.path = '/model/chem/compt0/#'
-    stoich1.path = '/model/chem/compt1/#'
-    stoich2.path = '/model/chem/compt2/#'
+    stoich0.reacSystemPath = '/model/chem/compt0/#'
+    stoich1.reacSystemPath = '/model/chem/compt1/#'
+    stoich2.reacSystemPath = '/model/chem/compt2/#'
     assert( stoich0.numVarPools == 3 )
     assert( stoich0.numProxyPools == 0 )
     assert( stoich0.numRates == 4 )

@@ -111,7 +111,7 @@ linearly.
     stoich.compartment = compartment
     stoich.ksolve = ksolve
     #ksolve.stoich = stoich
-    stoich.path = "/model/compartment/##"
+    stoich.reacSystemPath = "/model/compartment/##"
     state = moose.SteadyState( '/model/compartment/state' )
 
     moose.reinit()

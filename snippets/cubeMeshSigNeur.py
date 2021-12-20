@@ -284,11 +284,12 @@ def testCubeMultiscale( useSolver ):
     '''
     if ( useSolver ):
         ksolve = moose.Ksolve( '/n/ksolve' )
+        ksolve.method = 'rk5'
+        
         stoich = moose.Stoich( '/n/stoich' )
         stoich.compartment = moose.element( '/n/chem/neuroMesh' )
         stoich.ksolve = ksolve
-        stoich.path = '/n/##'
-        ksolve.method = 'rk5'
+        stoich.reacSystemPath = '/n/##'
         #moose.useClock( 5, '/n/ksolve', 'process' )
         hsolve = moose.HSolve( '/n/hsolve' )
         #moose.useClock( 1, '/n/hsolve', 'process' )

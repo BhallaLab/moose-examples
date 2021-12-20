@@ -97,7 +97,7 @@ def main():
                 else:
                     ksolve = moose.Ksolve( '/model/compartment/ksolve' )
                     stoich.ksolve = ksolve
-                stoich.path = "/model/compartment/##"
+                stoich.reacSystemPath = "/model/compartment/##"
                 moose.setClock( 5, 1.0 ) # clock for the solver
                 moose.useClock( 5, '/model/compartment/ksolve', 'process' )
                 runSim()

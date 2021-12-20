@@ -111,7 +111,7 @@ def main():
     stoich = moose.Stoich( '/model/lotka/stoich' )
     stoich.compartment = compt
     stoich.ksolve = ksolve
-    stoich.path = '/model/lotka/##'
+    stoich.reacSystemPath = '/model/lotka/##'
     moose.reinit()
     moose.start( runtime ) # Run the model
 

@@ -64,7 +64,7 @@ def makeModel():
     stoich = moose.Stoich( '/model/compartment/stoich' )
     stoich.compartment = compartment
     stoich.ksolve = gsolve
-    stoich.path = '/model/compartment/##'
+    stoich.reacSystemPath = '/model/compartment/##'
     '''
     '''
 
