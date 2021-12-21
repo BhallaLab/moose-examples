@@ -416,3 +416,5 @@ def main():
 
 #
 # compartment_net_no_array.py ends here
+if __name__ == '__main__':
+    main()
