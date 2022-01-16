@@ -391,7 +391,7 @@ def makeSolvers( elecDt ):
     stoich = moose.Stoich( '/model/stoich' )
     stoich.compartment = moose.element( '/model/chem/neuroMesh' )
     stoich.ksolve = ksolve
-    stoich.path = '/model/chem/##'
+    stoich.reacSystemPath = '/model/chem/##'
     #stoich.method = 'rk5'
     moose.useClock( 5, '/model/ksolve', 'init' )
     moose.useClock( 6, '/model/ksolve', 'process' )
