@@ -43,8 +43,8 @@ rdes = rd.rdesigneur(
     adaptorList = [
         # This scales the psdArea of the spine by # of chan_p. Note that 
         # the cross-section area of the spine head is identical to psdArea.
-        [ 'psd/chan_p', 'n', 'spine', 'psdArea', 0.1e-12, 0.01e-12 ],
-        [ 'Ca_conc', 'Ca', 'spine/Ca', 'conc', 0.00008, 8 ]
+        [ 'psd/chan_p', 'n', 'spine', 'psdArea', 0.1e-12, 0.005e-12 ],
+        [ 'Ca_conc', 'Ca', 'spine/Ca', 'conc', 0.00008, 0.8 ]
     ],
     # Syn input basline 1 Hz, and 40Hz burst for 1 sec at t=20. Syn wt=10
     stimList = [['head#', '10','glu', 'periodicsyn', '1 + 40*(t>10 && t<11)']],

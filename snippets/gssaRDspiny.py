@@ -14,6 +14,8 @@ import numpy
 import matplotlib.pyplot as plt
 import moose
 
+#diffConst = 10e-12 # m^2/sec
+diffConst = 0.0
 def makeModel():
     model = moose.Neutral( '/model' )
     # Make neuronal model. It has no channels, just for geometry
@@ -22,7 +24,6 @@ def makeModel():
     for i in moose.wildcardFind( '/model/cell/##' ):
         i.tick = -1
 
-    diffConst = 0.0
     # create container for model
     model = moose.element( '/model' )
     chem = moose.Neutral( '/model/chem' )
@@ -43,16 +44,16 @@ def makeModel():
 
     compt0.diffLength = 2e-6 # This will be over 100 compartments.
     # This is the magic command that configures the diffusion compartments.
-    compt0.subTreePath = cell.path + "/#"
+    compt0.subTreePath = cell.path + "/##"
     moose.showfields( compt0 )
 
     # Build the solvers. No need for diffusion in this version.
     ksolve0 = moose.Ksolve( '/model/chem/compt0/ksolve' )
-    ksolve1 = moose.Ksolve( '/model/chem/compt1/ksolve' )
-    ksolve2 = moose.Ksolve( '/model/chem/compt2/ksolve' )
-    dsolve0 = moose.Dsolve( '/model/chem/compt0/dsolve' )
-    dsolve1 = moose.Dsolve( '/model/chem/compt1/dsolve' )
-    dsolve2 = moose.Dsolve( '/model/chem/compt2/dsolve' )
+    ksolve1 = moose.Gsolve( '/model/chem/compt1/ksolve' )
+    ksolve2 = moose.Gsolve( '/model/chem/compt2/ksolve' )
+    #dsolve0 = moose.Dsolve( '/model/chem/compt0/dsolve' )
+    #dsolve1 = moose.Dsolve( '/model/chem/compt1/dsolve' )
+    #dsolve2 = moose.Dsolve( '/model/chem/compt2/dsolve' )
     stoich0 = moose.Stoich( '/model/chem/compt0/stoich' )
     stoich1 = moose.Stoich( '/model/chem/compt1/stoich' )
     stoich2 = moose.Stoich( '/model/chem/compt2/stoich' )
@@ -64,9 +65,9 @@ def makeModel():
     stoich0.ksolve = ksolve0
     stoich1.ksolve = ksolve1
     stoich2.ksolve = ksolve2
-    stoich0.dsolve = dsolve0
-    stoich1.dsolve = dsolve1
-    stoich2.dsolve = dsolve2
+    #stoich0.dsolve = dsolve0
+    #stoich1.dsolve = dsolve1
+    #stoich2.dsolve = dsolve2
     stoich0.reacSystemPath = '/model/chem/compt0/#'
     stoich1.reacSystemPath = '/model/chem/compt1/#'
     stoich2.reacSystemPath = '/model/chem/compt2/#'
@@ -75,26 +76,22 @@ def makeModel():
     assert( stoich0.numRates == 4 )
     assert( stoich1.numVarPools == 3 )
     assert( stoich1.numProxyPools == 0 )
-    assert( stoich1.numRates == 4 )
+    #assert( stoich1.numRates == 4 )
     assert( stoich2.numVarPools == 3 )
     assert( stoich2.numProxyPools == 0 )
-    assert( stoich2.numRates == 4 )
-    dsolve0.buildNeuroMeshJunctions( dsolve1, dsolve2 )
-    '''
-    stoich0.buildXreacs( stoich1 )
-    stoich1.buildXreacs( stoich2 )
-    stoich0.filterXreacs()
-    stoich1.filterXreacs()
-    stoich2.filterXreacs()
-    '''
+    #assert( stoich2.numRates == 4 )
+    #dsolve0.buildNeuroMeshJunctions( dsolve1, dsolve2 )
+    #stoich0.buildXreacs( stoich1 )
+    #stoich1.buildXreacs( stoich2 )
+    #stoich0.filterXreacs()
+    #stoich1.filterXreacs()
+    #stoich2.filterXreacs()
+
     moose.element( '/model/chem/compt2/a[0]' ).concInit *= 1.5
 
     # Create the output tables
     num = compt0.numDiffCompts - 1
     graphs = moose.Neutral( '/model/graphs' )
-    moose.le( '/model/chem/compt1' )
-    a = moose.element( '/model/chem/compt1' )
-    print((a.voxelVolume))
     makeTab( 'a_soma', '/model/chem/compt0/a[0]' )
     makeTab( 'b_soma', '/model/chem/compt0/b[0]' )
     makeTab( 'a_apical', '/model/chem/compt0/a[' + str( num ) + ']' )
@@ -158,21 +155,24 @@ def makeDisplay():
     return ( timeSeries, dend, spine, psd, fig, line1, line2, line3, line4, line5, line6, timeLabel )
 
 def updateDisplay( plotlist ):
-        a = moose.vec( '/model/chem/compt0/a' )
-        b = moose.vec( '/model/chem/compt0/b' )
-        plotlist[5].set_ydata( a.conc )
-        plotlist[6].set_ydata( b.conc )
+    a = moose.vec( '/model/chem/compt0/a' )
+    b = moose.vec( '/model/chem/compt0/b' )
+    plotlist[5].set_ydata( a.conc )
+    plotlist[6].set_ydata( b.conc )
+    print(('compt0:', min(a.n), max(a.n), min(b.n), max(b.n)))
 
-        a = moose.vec( '/model/chem/compt1/a' )
-        b = moose.vec( '/model/chem/compt1/b' )
-        plotlist[7].set_ydata( a.conc )
-        plotlist[8].set_ydata( b.conc )
+    a = moose.vec( '/model/chem/compt1/a' )
+    b = moose.vec( '/model/chem/compt1/b' )
+    plotlist[7].set_ydata( a.conc )
+    plotlist[8].set_ydata( b.conc )
+    print(('compt1:', min(a.n), max(a.n), min(b.n), max(b.n)))
 
-        a = moose.vec( '/model/chem/compt2/a' )
-        b = moose.vec( '/model/chem/compt2/b' )
-        plotlist[9].set_ydata( a.conc )
-        plotlist[10].set_ydata( b.conc )
-        plotlist[4].canvas.draw()
+    a = moose.vec( '/model/chem/compt2/a' )
+    b = moose.vec( '/model/chem/compt2/b' )
+    plotlist[9].set_ydata( a.conc )
+    plotlist[10].set_ydata( b.conc )
+    plotlist[4].canvas.draw()
+    print(('compt2:', min(a.n), max(a.n), min(b.n), max(b.n)))
 
 
 def finalizeDisplay( plotlist, cPlotDt ):
@@ -180,27 +180,27 @@ def finalizeDisplay( plotlist, cPlotDt ):
         pos = numpy.arange( 0, x.vector.size, 1 ) * cPlotDt
         line1, = plotlist[0].plot( pos, x.vector, label=x.name )
     plotlist[4].canvas.draw()
-    print( "Hit '0' to exit" )
-    eval(str(input()))
+    print( "Hit any key to exit" )
+    try:
+        raw_input( )
+    except NameError as e:
+        input( )
 
 def makeChemModel( compt ):
     """
-This function setus up a simple oscillatory chemical system within
-the script. The reaction system is::
+    This function setus up a simple oscillatory chemical system within
+    the script. The reaction system is::
 
-    s ---a---> a  // s goes to a, catalyzed by a.
-    s ---a---> b  // s goes to b, catalyzed by a.
-    a ---b---> s  // a goes to s, catalyzed by b.
-    b -------> s  // b is degraded irreversibly to s.
+        s ---a---> a  // s goes to a, catalyzed by a.
+        s ---a---> b  // s goes to b, catalyzed by a.
+        a ---b---> s  // a goes to s, catalyzed by b.
+        b -------> s  // b is degraded irreversibly to s.
 
-in sum, **a** has a positive feedback onto itself and also forms **b**.
-**b** has a negative feedback onto **a**.
-Finally, the diffusion constant for **a** is 1/10 that of **b**.
-
+    in sum, **a** has a positive feedback onto itself and also forms **b**.
+    **b** has a negative feedback onto **a**.
+    Finally, the diffusion constant for **a** is 1/10 that of **b**.
     """
     # create container for model
-    diffConst = 10e-12 # m^2/sec
-    motorRate = 1e-6 # m/sec
     concA = 1 # millimolar
 
     # create molecules and reactions
@@ -246,37 +246,38 @@ Finally, the diffusion constant for **a** is 1/10 that of **b**.
 
 def main():
     """
-This example illustrates how to define a kinetic model embedded in
-the branching pseudo-1-dimensional geometry of a neuron. The model
-oscillates in space and time due to a Turing-like reaction-diffusion
-mechanism present in all compartments. For the sake of this demo,
-the initial conditions are set up slightly different on the PSD
-compartments, so as to break the symmetry and initiate oscillations
-in the spines.
-This example uses an external electrical model file with basal
-dendrite and three branches on
-the apical dendrite. One of those branches has a dozen or so spines.
-In this example we build an identical model in each compartment, using
-the makeChemModel function. One could readily define a system with
-distinct reactions in each compartment.
-The model is set up to run using the Ksolve for integration and the
-Dsolve for handling diffusion.
-The display has four parts:
+    This example illustrates how to define a kinetic model embedded in
+    the branching pseudo-1-dimensional geometry of a neuron. The model
+    oscillates in space and time due to a Turing-like reaction-diffusion
+    mechanism present in all compartments. For the sake of this demo,
+    the initial conditions are set up slightly different on the PSD
+    compartments, so as to break the symmetry and initiate oscillations
+    in the spines.
+    This example uses an external electrical model file with basal
+    dendrite and three branches on
+    the apical dendrite. One of those branches has a dozen or so spines.
+    In this example we build an identical model in each compartment, using
+    the makeChemModel function. One could readily define a system with
+    distinct reactions in each compartment.
+    The model is set up to run using the Ksolve for integration and the
+    Dsolve for handling diffusion.
+    The display has four parts:
 
-    a. animated line plot of concentration against main compartment#.
-    b. animated line plot of concentration against spine compartment#.
-    c. animated line plot of concentration against psd compartment#.
-    d. time-series plot that appears after the simulation has
-       ended. The plot is for the last (rightmost) compartment.
+        a. animated line plot of concentration against main compartment#.
+        b. animated line plot of concentration against spine compartment#.
+        c. animated line plot of concentration against psd compartment#.
+        d. time-series plot that appears after the simulation has
+           ended. The plot is for the last (rightmost) compartment.
 
     """
     chemdt = 0.1 # Tested various dts, this is reasonable.
     diffdt = 0.01
     plotdt = 1
     animationdt = 5
-    runtime = 800
+    runtime = 200
 
     makeModel()
+
     plotlist = makeDisplay()
 
     # Schedule the whole lot - autoscheduling already does this.
@@ -287,6 +288,7 @@ The display has four parts:
     moose.setClock( 18, plotdt ) # for the output tables.
     '''
     moose.reinit()
+
     for i in range( 0, runtime, animationdt ):
         moose.start( animationdt )
         plotlist[11].set_text( "time = %d" % i )
@@ -296,4 +298,4 @@ The display has four parts:
 
 # Run the 'main' if this script is executed standalone.
 if __name__ == '__main__':
-        main()
+    main()

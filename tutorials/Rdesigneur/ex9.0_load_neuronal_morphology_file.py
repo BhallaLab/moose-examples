@@ -1,13 +1,11 @@
-import os
 import sys
 import moose
 import rdesigneur as rd
-sdir = os.path.dirname(__file__)
 
 if len( sys.argv ) > 1:
     fname = sys.argv[1]
 else:
-    fname = os.path.join(sdir, './cells/h10.CNG.swc')
+    fname = './cells/h10.CNG.swc'
 rdes = rd.rdesigneur(
     cellProto = [[fname, 'elec']],
     stimList = [['soma', '1', '.', 'inject', 't * 25e-9' ]],

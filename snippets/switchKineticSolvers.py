@@ -41,7 +41,7 @@ def switchSolvers(solver):
         stoich = moose.Stoich('/model/kinetics/stoich')
         stoich.compartment = compt
         stoich.ksolve = ksolve
-        stoich.path = "/model/kinetics/##"
+        stoich.reacSystemPath = "/model/kinetics/##"
 
 def main():
     """

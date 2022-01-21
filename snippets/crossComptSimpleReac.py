@@ -9,14 +9,15 @@
 # Version:
 # Last-Updated: May 16 2017
 #           By: Upinder S. Bhalla
-#     Update #:
+#     Update #:Dec 14 2021
+#           By: HarshaRani G.V
 # URL:
 # Keywords:
 # Compatibility:
 #
 #
-# Commentary:
-#    __BROKEN__
+# Commentary: set solver over cross compartment has changed
+# 
 #
 # Change log:
 ## This program is part of 'MOOSE', the
@@ -33,6 +34,7 @@ import math
 import matplotlib.pyplot as plt
 import numpy as np
 import moose
+from moose.fixXreacs import fixXreacs
 
 def makeModel():
     # create container for model
@@ -93,7 +95,7 @@ def makeModel():
     stoich0 = moose.Stoich( '/model/compt0/stoich0' )
     stoich1 = moose.Stoich( '/model/compt1/stoich1' )
     stoich2 = moose.Stoich( '/model/compt2/stoich2' )
-
+    fixXreacs('/model')
     # Configure solvers
     stoich0.compartment = compt0
     stoich1.compartment = compt1
@@ -101,15 +103,16 @@ def makeModel():
     stoich0.ksolve = ksolve0
     stoich1.ksolve = ksolve1
     stoich2.ksolve = ksolve2
-    stoich0.path = '/model/compt0/#'
-    stoich1.path = '/model/compt1/#'
-    stoich2.path = '/model/compt2/#'
+    stoich0.reacSystemPath = '/model/compt0/#'
+    stoich1.reacSystemPath = '/model/compt1/#'
+    stoich2.reacSystemPath = '/model/compt2/#'
+    '''
     stoich1.buildXreacs( stoich0 )
     stoich1.buildXreacs( stoich2 )
     stoich0.filterXreacs()
     stoich1.filterXreacs()
     stoich2.filterXreacs()
-
+    '''
 
 def main():
     """

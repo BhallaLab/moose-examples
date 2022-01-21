@@ -76,7 +76,7 @@ def makeModel():
     stoich.ksolve = ksolve
     stoich.dsolve = dsolve
     os.kill( PID, signal.SIGUSR1 )
-    stoich.path = "/model/compartment/##"
+    stoich.reacSystemPath = "/model/compartment/##"
 
     print((dsolve.numPools))
     assert( dsolve.numPools == 4 )

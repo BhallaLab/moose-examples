@@ -54,7 +54,7 @@ def main():
     stoich.compartment = compt
     stoich.ksolve = ksolve
     stoich.dsolve = dsolve
-    stoich.path = '/cylinder/##'
+    stoich.reacSystemPath = '/cylinder/##'
     for i in range( 10, 18 ):
         moose.setClock( i, dt )
 

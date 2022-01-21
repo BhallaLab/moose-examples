@@ -70,7 +70,7 @@ def setup_solvers( ):
     k = moose.Ksolve( '%s/ksolve' % compt_.path )
     s.ksolve = k
     s.compartment = compt_
-    s.path = '%s/##' % compt_.path 
+    s.reacSystemPath = '%s/##' % compt_.path 
 
 
 def main( ):

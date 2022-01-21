@@ -14,7 +14,7 @@ def setupSteadyState(simdt,plotDt):
 
     stoich.ksolve = ksolve
     #ksolve.stoich = stoich
-    stoich.path = "/model/kinetics/##"
+    stoich.reacSystemPath = "/model/kinetics/##"
     state = moose.SteadyState( '/model/kinetics/state' )
    
     #### Set clocks here

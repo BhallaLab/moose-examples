@@ -32,6 +32,7 @@ import math
 import pylab
 import numpy
 import moose
+from moose.fixXreacs import fixXreacs
 
 diffConst = 1e-12
 
@@ -97,7 +98,7 @@ def makeModel():
     moose.connect( outputA0, 'requestOut', a0, 'getConc' );
     moose.connect( outputA1, 'requestOut', a1, 'getConc' );
     moose.connect( outputA2, 'requestOut', a2, 'getConc' );
-
+    fixXreacs('/model')
     # Build the solvers. No need for diffusion in this version.
     ksolve0 = moose.Ksolve( '/model/compt0/ksolve0' )
     ksolve1 = moose.Ksolve( '/model/compt1/ksolve1' )
@@ -119,16 +120,16 @@ def makeModel():
     stoich0.dsolve = dsolve0
     stoich1.dsolve = dsolve1
     stoich2.dsolve = dsolve2
-    stoich0.path = '/model/compt0/#'
-    stoich1.path = '/model/compt1/#'
-    stoich2.path = '/model/compt2/#'
-    dsolve1.buildMeshJunctions( dsolve0 )
-    dsolve1.buildMeshJunctions( dsolve2 )
-    stoich1.buildXreacs( stoich0 )
-    stoich1.buildXreacs( stoich2 )
-    stoich0.filterXreacs()
-    stoich1.filterXreacs()
-    stoich2.filterXreacs()
+    stoich0.reacSystemPath = '/model/compt0/#'
+    stoich1.reacSystemPath = '/model/compt1/#'
+    stoich2.reacSystemPath = '/model/compt2/#'
+    #dsolve1.buildMeshJunctions( dsolve0 )
+    #dsolve1.buildMeshJunctions( dsolve2 )
+    #stoich1.buildXreacs( stoich0 )
+    #stoich1.buildXreacs( stoich2 )
+    #stoich0.filterXreacs()
+    #stoich1.filterXreacs()
+    #stoich2.filterXreacs()
 
 
 

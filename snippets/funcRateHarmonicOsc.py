@@ -87,7 +87,7 @@ def main():
     stoich = moose.Stoich( '/model/harmonic/stoich' )
     stoich.compartment = compt
     stoich.ksolve = ksolve
-    stoich.path = '/model/harmonic/##'
+    stoich.reacSystemPath = '/model/harmonic/##'
     for i in range( 11, 18 ):
         moose.setClock( i, 0.1 )
     moose.reinit()

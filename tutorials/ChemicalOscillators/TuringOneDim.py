@@ -105,7 +105,7 @@ def makeModel():
     stoich.compartment = compartment
     stoich.ksolve = ksolve
     stoich.dsolve = dsolve
-    stoich.path = "/model/compartment/##"
+    stoich.reacSystemPath = "/model/compartment/##"
     assert( dsolve.numPools == 3 )
     a.vec.concInit = [0.1]*num
     a.vec[0].concInit *= 1.2 # slight perturbation at one end.

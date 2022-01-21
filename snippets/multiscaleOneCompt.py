@@ -52,7 +52,7 @@ def loadChem():
     ksolve = moose.Ksolve( '/model/chem/kinetics/ksolve' )
     stoich.compartment = moose.element( '/model/chem/kinetics' )
     stoich.ksolve = ksolve
-    stoich.path = "/model/chem/##"
+    stoich.reacSystemPath = "/model/chem/##"
 
 def makeModel():
     loadElec()

@@ -9,13 +9,14 @@
 # Version: 
 # Last-Updated: May 16 2017
 #           By: Upinder S. Bhalla
-#     Update #: 
+#     Update #: Dec 14 2021
+#           By: HarshaRani .G.V
 # URL: 
 # Keywords: 
 # Compatibility: 
 # 
 # Commentary: 
-#           __BROKEN__ 
+#           set solver over cross compartment has updated
 # 
 # Change log: 
 # This program is part of 'MOOSE', the
@@ -29,6 +30,7 @@ import math
 import pylab
 import numpy
 import moose
+from moose.fixXreacs import fixXreacs
 
 def makeModel():
     # create container for model
@@ -81,7 +83,7 @@ def makeModel():
     moose.connect( outputA, 'requestOut', a, 'getConc' );
     moose.connect( outputB, 'requestOut', b, 'getConc' );
     moose.connect( outputC, 'requestOut', c, 'getConc' );
-
+    fixXreacs('/model')
     # Build the solvers. No need for diffusion in this version.
     ksolve0 = moose.Gsolve( '/model/compt0/ksolve0' )
     ksolve1 = moose.Gsolve( '/model/compt1/ksolve1' )
@@ -97,15 +99,16 @@ def makeModel():
     stoich0.ksolve = ksolve0
     stoich1.ksolve = ksolve1
     stoich2.ksolve = ksolve2
-    stoich0.path = '/model/compt0/#'
-    stoich1.path = '/model/compt1/#'
-    stoich2.path = '/model/compt2/#'
+    stoich0.reacSystemPath = '/model/compt0/#'
+    stoich1.reacSystemPath = '/model/compt1/#'
+    stoich2.reacSystemPath = '/model/compt2/#'
+    '''
     stoich1.buildXreacs( stoich0 )
     stoich1.buildXreacs( stoich2 )
     stoich0.filterXreacs()
     stoich1.filterXreacs()
     stoich2.filterXreacs()
-
+    '''
 
 
 def main():

@@ -127,12 +127,12 @@ def create_network(size=2):
     pulse.width[0] = 40e-3
     pulse.delay[1] = 1e9
     data = moose.Neutral('/data')
-    vm_a = moose.Table('/data/Vm_A', n=size)
+    vm_a = moose.Table('/data/Vm_A')
     moose.connect(pulse, 'output', pop_a['compartment'], 'injectMsg', 'OneToAll')
     moose.connect(vm_a, 'requestOut', pop_a['compartment'], 'getVm', 'OneToOne')
     vm_b = moose.Table('/data/Vm_B', size)
     moose.connect(vm_b, 'requestOut', pop_b['compartment'], 'getVm', 'OneToOne')
-    gksyn_b = moose.Table('/data/Gk_syn_b', n=size)
+    gksyn_b = moose.Table('/data/Gk_syn_b')
     moose.connect(gksyn_b, 'requestOut', pop_b['synchan'], 'getGk', 'OneToOne')
     pulsetable = moose.Table('/data/pulse')
     pulsetable.connect('requestOut', pulse, 'getOutputValue')
@@ -179,3 +179,5 @@ def main():
 
 #
 # compartment_net.py ends here
+if __name__ == '__main__':
+    main()

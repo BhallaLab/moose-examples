@@ -100,7 +100,7 @@ def makeModel():
                 stoich.compartment = compartment
                 stoich.ksolve = ksolve
                 stoich.dsolve = dsolve
-                stoich.path = "/model/kinetics/##"
+                stoich.reacSystemPath = "/model/kinetics/##"
                 b.vec[num-1].concInit *= 1.01 # Break symmetry.
 
 def main():
@@ -146,7 +146,8 @@ def main():
                     fig.canvas.draw()
 
                 plt.title( 'Swapping concs of b and c in the left half the cylinder. Boundary slowly moves right due to taper.')
-                for i in range( b.numData/2 ):
+                
+                for i in range( int(b.numData/2) ):
                     temp = b.vec[i].conc
                     b.vec[i].conc = c.vec[i].conc
                     c.vec[i].conc = temp
