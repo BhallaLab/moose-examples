@@ -59,5 +59,3 @@ moose.seed( 1234 ) # Random number seed. Response details change with this.
 rdes.buildModel() # Assemble the model from prototypes.
 moose.reinit()
 rdes.displayMoogli( 0.001, runtime, rotation = 0.00, mergeDisplays=True )
-#moose.start( runtime )
-#rdes.display()
