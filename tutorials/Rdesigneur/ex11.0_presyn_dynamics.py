@@ -26,12 +26,12 @@ rdes = rd.rdesigneur(
     useGssa = True,    
 
     # cellProto syntax: ['ballAndStick', 'name', somaDia, somaLength, dendDia, dendLength, numDendSeg]
-    # 10x10 micron soma, 2x60 micron dendrite, 1 segment dendrite.
-    cellProto = [['ballAndStick', 'soma',  10e-6, 10e-6, 2e-6, 60e-6, 1]],
+    # 8x8 micron soma, 1.5x20 micron dendrite, 1 segment dendrite.
+    cellProto = [['ballAndStick', 'soma',  6e-6, 6e-6, 1.5e-6, 20e-6, 1]],
     chemProto = [['./chem/echem.g', 'chem']],
     spineProto = [['makeActiveSpine()', 'spine']],
     spineDistrib = [
-        ['spine', 'dend#', '20e-6', '-1e-6']  # Put 3 spines, 20 um apart
+        ['spine', 'dend#', '5e-6', '-1e-6']  # Put 4 spines, 5 um apart
     ],
     chemDistrib = [ # Put presynaptic bouton compartments next to each spine
         ['kinetics', 'head#', 'presyn_spine', '1', 0.7, 0 ],
@@ -49,6 +49,10 @@ rdes = rd.rdesigneur(
         ['#', '1', 'kinetics/glu/Ca_ext', 'conc', 'Input to bouton'],
         ['#', '1', 'kinetics/glu/glu', 'n', '# of glu vesicles released'],
         ['soma', '1', '.', 'Vm', 'Membrane potential'],
+    ],
+    moogList = [
+        ['#', '1', '.', 'Vm', 'Membrane potential', -65.0, -55.0],
+        ['#', '1', 'kinetics/glu/Ca', 'conc', 'Ca conc', 0.0, 1.0]
     ]
 )
 
@@ -56,5 +60,4 @@ moose.seed( 1234 ) # Random number seed. Response details change with this.
 moose.element( '/library/spine/head/glu' ).Gbar *= 0.1 # Tweak conductance
 rdes.buildModel() # Assemble the model from prototypes.
 moose.reinit()
-moose.start( runtime )
-rdes.display()
+rdes.displayMoogli( 0.001, runtime, rotation = 0.00, mergeDisplays=True )
