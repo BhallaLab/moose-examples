@@ -36,6 +36,11 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 # General Public License for more details.
 #
+try:
+    import sbml
+except Exception as e:
+    print( "[INFO ] Failed to import sbml. Quitting.. \nThis module can be installed by using `pip` in terminal:\n\t $ pip install python-libsbml --user" )
+    quit()
 import sys
 import os.path
 
