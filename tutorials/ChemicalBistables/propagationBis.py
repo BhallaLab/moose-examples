@@ -100,7 +100,7 @@ def makeModel():
                 stoich.compartment = compartment
                 stoich.ksolve = ksolve
                 stoich.dsolve = dsolve
-                stoich.path = "/model/kinetics/##"
+                stoich.reacSystemPath = "/model/kinetics/##"
                 b.vec[num-1].concInit *= 1.01 # Break symmetry.
 
 def main():
@@ -125,7 +125,7 @@ def main():
                 imgplot = plt.imshow( img )
                 plt.axis('off')
                 ax = fig.add_subplot(212)
-                ax.set_ylim( 0, 0.1 )
+                ax.set_ylim( 0, 0.001 )
                 plt.ylabel( 'Conc (mM)' )
                 plt.xlabel( 'Position along cylinder (microns)' )
                 plt.title( "Initial condition is at b==c, with small stimulus on the right of cylinder. State change propagates rapidly along cylinder" )
@@ -143,10 +143,11 @@ def main():
                     line2.set_ydata( b.vec.conc )
                     line3.set_ydata( c.vec.conc )
                     timeLabel.set_text( "time = %d" % t )
-                    fig.canvas.draw()
+                    #fig.canvas.draw()
+                    fig.canvas.flush_events()
 
                 plt.title( 'Swapping concs of b and c in the left half the cylinder. Boundary slowly moves right due to taper.')
-                for i in range( b.numData/2 ):
+                for i in range( b.numData//2 ):
                     temp = b.vec[i].conc
                     b.vec[i].conc = c.vec[i].conc
                     c.vec[i].conc = temp
@@ -158,7 +159,8 @@ def main():
                     line2.set_ydata( b.vec.conc )
                     line3.set_ydata( c.vec.conc )
                     timeLabel.set_text( "time = %d" % (t + runtime) )
-                    fig.canvas.draw()
+                    #fig.canvas.draw()
+                    fig.canvas.flush_events()
 
                 print( "Hit 'enter' to exit" )
                 try:

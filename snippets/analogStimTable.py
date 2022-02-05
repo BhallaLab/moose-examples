@@ -42,7 +42,7 @@ def analogStimTable():
     """
     simtime = 150
     simdt = 0.1
-    model = moose.Neutral('/model')
+    model = moose.CubeMesh('/model')
     data = moose.Neutral('/data')
     # This is the stimulus generator
     stimtable = moose.StimulusTable('/model/stim')
@@ -58,9 +58,17 @@ def analogStimTable():
     moose.connect(aPlot, 'requestOut', a, 'getConc')
     bPlot = moose.Table('/data/bPlot')
     moose.connect(bPlot, 'requestOut', b, 'getConc')
-    moose.setClock( stimtable.tick, simdt )
-    moose.setClock( a.tick, simdt )
-    moose.setClock( aPlot.tick, simdt )
+    s = moose.Stoich( '/model/stoich' )
+    k = moose.Ksolve( '/model/ksolve' )
+    s.compartment = model
+    s.ksolve = k
+    s.reacSystemPath = "/model/##"
+    #moose.setClock( stimtable.tick, simdt )
+    #moose.setClock( a.tick, simdt )
+    #moose.setClock( aPlot.tick, simdt )
+    for i in range( 20 ):
+        #moose.setClock( k.tick, simdt )
+        moose.setClock( i, simdt )
 
     ####################################################
     # Here we set up the stimulus table. It is half a sine-wave.

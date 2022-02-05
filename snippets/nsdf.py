@@ -15,16 +15,8 @@
 #
 #
 
-# Commentary:
-# __BROKEN__
-#
-#
-#
-
 # Change log:
-#
-#
-#
+#   Jan 2022: Upi made many fixes and enhancements to functionality.
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License as
@@ -95,17 +87,20 @@ http://nsdf.readthedocs.org/en/latest/
 
 """
 
+import sys
 import numpy as np
 from datetime import datetime
 import getpass
 
 import moose
+'''
 try:
-    nsdf = moose.NSDFWriter('/test')
+    check_for_nsdf = moose.NSDFWriter('/test')
 except AttributeError as e:
     print( "[INFO ] This build is not built with NSDFWriter." )
     print( '\tPlease see https://github.com/BhallaLab/moose-core' )
     quit()
+'''
 
 
 def setup_model():
@@ -131,9 +126,10 @@ def setup_model():
     nsdf.filename = 'nsdf_demo.h5'
     nsdf.mode = 2 #overwrite existing file
     nsdf.flushLimit = 100
+    nsdf.modelFileNames = "nsdf.py" # Save this script in the nsdf file.
     moose.connect(nsdf, 'requestOut', pulse, 'getOutputValue')
-    print(('event input', nsdf.eventInput, nsdf.eventInput.num))
-    print(nsdf)
+    #print(('event input', nsdf.eventInput, nsdf.eventInput.num))
+    #print(nsdf)
 
     nsdf.eventInput.num = 1
     ei = nsdf.eventInput[0]
@@ -145,11 +141,13 @@ def setup_model():
     for ii in range(32):
         moose.setClock(ii, dt)
     moose.connect(pulse, 'output', tab, 'spike')
+
     print(('Starting simulation at:', datetime.now().isoformat()))
     moose.reinit()
     moose.start(simtime)
     print(('Finished simulation at:', datetime.now().isoformat()))
     np.savetxt('nsdf.txt', tab.vector)
+
     ###################################
     # Set the environment attributes
     ###################################
@@ -160,7 +158,8 @@ use a SpikeGen to detect the threshold crossing events of rising
 edges. We store the pulsegen output as Uniform data and the threshold
 crossing times as Event data. '''
     nsdf.stringAttr['creator'] = getpass.getuser()
-    nsdf.stringVecAttr['software'] = ['python2.7', 'moose3' ]
+    nsdf.stringAttr['python'] = sys.version.split(' ')[0]
+    nsdf.stringVecAttr['software'] = ["python"+sys.version.split(' ')[0], "moose"+moose.version() ]
     nsdf.stringVecAttr['method'] = ['']
     nsdf.stringAttr['rights'] = ''
     nsdf.stringAttr['license'] = 'CC-BY-NC'
@@ -168,10 +167,12 @@ crossing times as Event data. '''
     # unit attibutes on individual datasets
     nsdf.stringAttr['/data/uniform/PulseGen/outputValue/tunit'] = 's'
     nsdf.stringAttr['/data/uniform/PulseGen/outputValue/unit'] = 'A'
-    eventDataPath = '/data/event/SpikeGen/spikeOut/{}_{}_{}/unit'.format(t_lead.vec.value,
-                                                                         t_lead.getDataIndex(),
-                                                                         t_lead.fieldIndex)
+    #eventDataPath = '/data/event/SpikeGen/spikeOut/{}_{}_{}/unit'.format(int(t_lead.lastSpikeTime), t_lead.getDataIndex(), t_lead.fieldIndex)
+    idVal = t_lead.idValue
+    eventDataPath = '/data/event/SpikeGen/spikeOut/{}_{}_{}/unit'.format( idVal, t_lead.getDataIndex(), t_lead.fieldIndex)
     nsdf.stringAttr[eventDataPath] = 's'
+
+    nsdf.close()
 
 def main():
     setup_model()
