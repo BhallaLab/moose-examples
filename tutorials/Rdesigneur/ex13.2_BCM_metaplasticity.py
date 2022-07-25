@@ -5,11 +5,9 @@
 # We have two spines with different synaptic input weights but the same
 # time-course of stimulus.
 # The stimulus is a ramp of synaptic input rate from 0 to 20 Hz.
-# Note that this version incorrectly models metaplasticity. It is an
-# excellent illustration of how 'obvious' model abstractions may give 
-# completely incorrect behaviour. See ex13.2_metaplasticity.py for the 
-# correct version, using exactly the same model but better use of model
-# details.
+# This version exhibits the correct metaplasticity properties, because it
+# models the stronger synapse at the chemical rather than the electrical 
+# level.
 # 
 # Copyright (C) Upinder S. Bhalla NCBS 2022
 # Released under the terms of the GNU Public License V3.
@@ -17,9 +15,11 @@
 import moose
 import pylab
 import rdesigneur as rd
-RUNTIME = 40.0      # Seconds
+RUNTIME = 120.0      # Seconds
+SETTLE = 50.0       # We need a longish settle time because of low competing
+                    # enzymes at basal levels of calcium
 MaxStimFreq = 20.0  # Hz
-stimStr = "{}*t/{}".format( MaxStimFreq, RUNTIME )
+stimStr = "{}*max(t-{}, 0)/{}".format( MaxStimFreq, SETTLE, RUNTIME )
 
 rdes = rd.rdesigneur(
     turnOffElec = False,
@@ -44,8 +44,8 @@ rdes = rd.rdesigneur(
     stimList = [
         ['head0', '0.5', 'glu', 'periodicsyn', stimStr],
         ['head0', '0.1', 'NMDA', 'periodicsyn', stimStr],
-        ['head1', '0.2', 'glu', 'periodicsyn', stimStr],
-        ['head1', '0.05', 'NMDA', 'periodicsyn', stimStr],
+        ['head1', '0.5', 'glu', 'periodicsyn', stimStr],
+        ['head1', '0.1', 'NMDA', 'periodicsyn', stimStr],
         ],
     plotList = [
         ['soma', '1', '.', 'Vm', 'Soma Memb potl'],
@@ -60,6 +60,9 @@ rdes = rd.rdesigneur(
 
 moose.seed( 1234 )
 rdes.buildModel()
+# Shift some CaMKII over to the baseline active pool
+moose.element( '/model/chem/SPINE/CaMKII[0]' ).concInit -= 0.4e-3
+moose.element( '/model/chem/SPINE/baseline_CaMKII[0]' ).concInit += 0.4e-3
 moose.reinit()
 moose.start( RUNTIME )
 rdes.display()

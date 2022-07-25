@@ -1,7 +1,7 @@
 //genesis
 // kkit Version 11 flat dumpfile
  
-// Saved on Sun Jul 24 15:28:21 2022
+// Saved on Mon Jul 25 11:14:36 2022
  
 include kkit {argv 1}
  
@@ -129,10 +129,6 @@ simundump kpool /kinetics/SPINE/p_AMPAR 0 0 0.4 0.4 400 400 0 0 1000 0 \
 simundump text /kinetics/SPINE/p_AMPAR/notes 0 ""
 call /kinetics/SPINE/p_AMPAR/notes LOAD \
 ""
-simundump kreac /kinetics/SPINE/baseline 0 0.4 1.6 "" white black 0 -5 0
-simundump text /kinetics/SPINE/baseline/notes 0 ""
-call /kinetics/SPINE/baseline/notes LOAD \
-""
 simundump kpool /kinetics/SPINE/Ca_input 0 0 0 0 0 0 0 0 1000 4 \
   /kinetics/geometry blue yellow 4 3 0
 simundump text /kinetics/SPINE/Ca_input/notes 0 ""
@@ -141,6 +137,21 @@ call /kinetics/SPINE/Ca_input/notes LOAD \
 simundump kreac /kinetics/SPINE/Ca_stim 0 10 10 "" white yellow 2 5 0
 simundump text /kinetics/SPINE/Ca_stim/notes 0 ""
 call /kinetics/SPINE/Ca_stim/notes LOAD \
+""
+simundump kpool /kinetics/SPINE/baseline_CaMKII 0 0 0 0 0 0 0 0 1000 0 \
+  /kinetics/geometry 27 yellow 3 -6 0
+simundump text /kinetics/SPINE/baseline_CaMKII/notes 0 ""
+call /kinetics/SPINE/baseline_CaMKII/notes LOAD \
+""
+simundump kenz /kinetics/SPINE/baseline_CaMKII/baseline_ph 0 0 0 0 0 1000 \
+  0.02 16 4 0 0 "" red 27 "" 1 -5 0
+simundump text /kinetics/SPINE/baseline_CaMKII/baseline_ph/notes 0 ""
+call /kinetics/SPINE/baseline_CaMKII/baseline_ph/notes LOAD \
+""
+simundump kreac /kinetics/SPINE/baseline_reac 0 0.4 1.6 "" white yellow -1 -5 \
+  0
+simundump text /kinetics/SPINE/baseline_reac/notes 0 ""
+call /kinetics/SPINE/baseline_reac/notes LOAD \
 ""
 simundump group /kinetics/DEND 0 15 black x 0 0 "" DEND defaultfile.g 0 0 0 \
   -6 -7 0
@@ -206,15 +217,20 @@ addmsg /kinetics/SPINE/act_CaMKII /kinetics/SPINE/act_CaMKII/ph_AMPAR ENZYME n
 addmsg /kinetics/SPINE/AMPAR /kinetics/SPINE/act_CaMKII/ph_AMPAR SUBSTRATE n 
 addmsg /kinetics/SPINE/Ca2_CaN/deph_AMPAR /kinetics/SPINE/AMPAR MM_PRD pA 
 addmsg /kinetics/SPINE/act_CaMKII/ph_AMPAR /kinetics/SPINE/AMPAR REAC sA B 
-addmsg /kinetics/SPINE/baseline /kinetics/SPINE/AMPAR REAC A B 
+addmsg /kinetics/SPINE/baseline_CaMKII/baseline_ph /kinetics/SPINE/AMPAR REAC sA B 
+addmsg /kinetics/SPINE/baseline_reac /kinetics/SPINE/AMPAR REAC A B 
 addmsg /kinetics/SPINE/Ca2_CaN/deph_AMPAR /kinetics/SPINE/p_AMPAR REAC sA B 
 addmsg /kinetics/SPINE/act_CaMKII/ph_AMPAR /kinetics/SPINE/p_AMPAR MM_PRD pA 
-addmsg /kinetics/SPINE/baseline /kinetics/SPINE/p_AMPAR REAC B A 
-addmsg /kinetics/SPINE/AMPAR /kinetics/SPINE/baseline SUBSTRATE n 
-addmsg /kinetics/SPINE/p_AMPAR /kinetics/SPINE/baseline PRODUCT n 
+addmsg /kinetics/SPINE/baseline_CaMKII/baseline_ph /kinetics/SPINE/p_AMPAR MM_PRD pA 
+addmsg /kinetics/SPINE/baseline_reac /kinetics/SPINE/p_AMPAR REAC B A 
 addmsg /kinetics/SPINE/Ca_stim /kinetics/SPINE/Ca_input REAC A B 
 addmsg /kinetics/SPINE/Ca_input /kinetics/SPINE/Ca_stim SUBSTRATE n 
 addmsg /kinetics/SPINE/Ca /kinetics/SPINE/Ca_stim PRODUCT n 
+addmsg /kinetics/SPINE/baseline_CaMKII/baseline_ph /kinetics/SPINE/baseline_CaMKII REAC eA B 
+addmsg /kinetics/SPINE/baseline_CaMKII /kinetics/SPINE/baseline_CaMKII/baseline_ph ENZYME n 
+addmsg /kinetics/SPINE/AMPAR /kinetics/SPINE/baseline_CaMKII/baseline_ph SUBSTRATE n 
+addmsg /kinetics/SPINE/AMPAR /kinetics/SPINE/baseline_reac SUBSTRATE n 
+addmsg /kinetics/SPINE/p_AMPAR /kinetics/SPINE/baseline_reac PRODUCT n 
 addmsg /kinetics/SPINE/Ca /graphs/conc1/Ca.Co PLOT Co *Ca.Co *62 
 addmsg /kinetics/SPINE/Ca2_CaN /graphs/conc1/Ca2_CaN.Co PLOT Co *Ca2_CaN.Co *4 
 addmsg /kinetics/SPINE/p_AMPAR /graphs/conc1/p_AMPAR.Co PLOT Co *p_AMPAR.Co *48 
