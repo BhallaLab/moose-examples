@@ -56,6 +56,7 @@ def vclamp_demo(simtime=50.0, dt=1e-2):
     """
     Demonstration of voltage clamping in a neuron.
     """
+    print("##")
     ## It is good practice to modularize test elements inside a container
     container = moose.Neutral('/vClampDemo')
     ## Create a compartment with properties of a squid giant axon
@@ -76,7 +77,9 @@ def vclamp_demo(simtime=50.0, dt=1e-2):
     command.delay[1] = 1e9
     moose.connect(command, 'output', clamp, 'commandIn')
     ## Connect the Voltage Clamp to the compartemnt
+    print("##",clamp, "c",moose.element(comp))
     moose.connect(clamp, 'currentOut', comp, 'injectMsg')
+    print("comp ",comp,"E#",clamp)
     moose.connect(comp, 'VmOut', clamp, 'sensedIn')
     ## setup stimulus recroding - this is the command pulse
     stimtab = moose.Table('/vClampDemo/vclamp_command')
@@ -116,6 +119,7 @@ def vclamp_demo(simtime=50.0, dt=1e-2):
     xlabel('Time (ms)')
     ylabel('Voltage (mV)')
     legend()
+    print("##@@#")
     # print len(commandtab.vector)
     subplot(212)
     title('Current through clamp circuit')
@@ -135,3 +139,5 @@ This snippet is to demonstrate modelling of voltage clamping.
 
 #
 # vclamp.py ends here
+if __name__ == '__main__':
+    main()

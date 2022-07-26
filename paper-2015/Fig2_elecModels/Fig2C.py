@@ -17,7 +17,7 @@ import time
 import pylab
 import moose
 from moose import neuroml
-from PyQt4 import Qt, QtCore, QtGui
+from PyQt5 import Qt, QtCore, QtGui
 import matplotlib.pyplot as plt
 import sys
 import os

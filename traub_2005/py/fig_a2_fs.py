@@ -64,11 +64,12 @@ simdt = 2e-5
 plotdt=1e-4
 
 def setup_model(root='/', hsolve=True):
-    moose.ce(root)
+    moose.setCwe(root)
     model = moose.Neutral('model')
     data = moose.Neutral('data')
     cell = DeepBasket('%s/deepbasket' % (model.path))
-    soma = moose.element('%s/comp_1' % (cell.path))
+    p = '%s/comp_1' % cell.path
+    soma = moose.element(p) if moose.exists(p) else moose.Compartment(p)
     if hsolve:
         solver = moose.HSolve('%s/solve' % (cell.path))
         solver.dt = simdt
@@ -98,6 +99,7 @@ def main():
     model_dict = setup_model()
     do_sim(model_dict['stimulus'], amp)   
     config.logger.info('##### %d' % (model_dict['tab_vm'].size))
+    print(model_dict['tab_vm'].vector, '111')
     vm = model_dict['tab_vm'].vector * 1e3
     inject = model_dict['tab_stim'].vector.copy()
     t = np.linspace(0, simtime, len(vm))

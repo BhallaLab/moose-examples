@@ -14,33 +14,34 @@ import matplotlib.pyplot as plt
 import sys
 
 
-def runAndSavePlots( name ):
+def runAndSavePlots(name):
     runtime = 20.0
     moose.reinit()
-    moose.start( runtime )
-    pa = moose.Neutral( '/model/graphs/' + name )
-    for x in moose.wildcardFind( '/model/#graphs/conc#/#' ):
-        if ( x.tick != -1 ):
+    moose.start(runtime)
+    pa = moose.Neutral('/model/graphs/' + name)
+    for x in moose.wildcardFind('/model/#graphs/conc#/#'):
+        if (x.tick != -1):
             tabname = '/model/graphs/' + name + '/' + x.name + '.' + name
-            y = moose.Table( tabname )
+            y = moose.Table(tabname)
             y.vector = x.vector
             y.tick = -1
 
+
 # Takes args ee, gsl, or gssa
-def switchSolvers( solver ):
-        if ( moose.exists( 'model/kinetics/stoich' ) ):
-            moose.delete( '/model/kinetics/stoich' )
-            moose.delete( '/model/kinetics/ksolve' )
-        compt = moose.element( '/model/kinetics' )
-        if ( solver == 'gsl' ):
-            ksolve = moose.Ksolve( '/model/kinetics/ksolve' )
-        if ( solver == 'gssa' ):
-            ksolve = moose.Gsolve( '/model/kinetics/ksolve' )
-        if ( solver != 'ee' ):
-            stoich = moose.Stoich( '/model/kinetics/stoich' )
-            stoich.compartment = compt
-            stoich.ksolve = ksolve
-            stoich.path = "/model/kinetics/##"
+def switchSolvers(solver):
+    if (moose.exists('model/kinetics/stoich')):
+        moose.delete('/model/kinetics/stoich')
+        moose.delete('/model/kinetics/ksolve')
+    compt = moose.element('/model/kinetics')
+    if (solver == 'gsl'):
+        ksolve = moose.Ksolve('/model/kinetics/ksolve')
+    if (solver == 'gssa'):
+        ksolve = moose.Gsolve('/model/kinetics/ksolve')
+    if (solver != 'ee'):
+        stoich = moose.Stoich('/model/kinetics/stoich')
+        stoich.compartment = compt
+        stoich.ksolve = ksolve
+        stoich.reacSystemPath = "/model/kinetics/##"
 
 def main():
     """
@@ -80,52 +81,57 @@ def main():
     as well.
 
     """
-
     solver = "gsl"  # Pick any of gsl, gssa, ee..
     mfile = '../genesis/kkit_objects_example.g'
-    modelId = moose.loadModel( mfile, 'model', solver )
+    modelId = moose.loadModel(mfile, 'model', solver)
     # Increase volume so that the stochastic solver gssa
     # gives an interesting output
-    compt = moose.element( '/model/kinetics' )
+    compt = moose.element('/model/kinetics')
     compt.volume = 1e-19
-    runAndSavePlots( 'gsl' )
+    runAndSavePlots('gsl')
+    print('Successfully simulated with GSL solver')
+
     #########################################################
-    switchSolvers( 'ee' )
-    runAndSavePlots( 'ee' )
+    switchSolvers('ee')
+    runAndSavePlots('ee')
+    print('Successfully simulated with EE solver')
     #########################################################
-    switchSolvers( 'gsl' )
-    runAndSavePlots( 'gsl2' )
+    switchSolvers('gsl')
+    runAndSavePlots('gsl2')
+    print('Successfully simulated with GSL solver')
     #########################################################
-    switchSolvers( 'gssa' )
-    runAndSavePlots( 'gssa' )
+    switchSolvers('gssa')
+    runAndSavePlots('gssa')
+    print('Successfully simulated with GSSA solver')
     #########################################################
-    switchSolvers( 'gsl' )
-    runAndSavePlots( 'gsl3' )
+    switchSolvers('gsl')
+    runAndSavePlots('gsl3')
+    print('Successfully simulated with GSL solver')
     #########################################################
 
     # Display all plots.
-    fig = plt.figure( figsize = (12, 10) )
-    orig = fig.add_subplot( 511 )
-    gsl = fig.add_subplot( 512 )
-    ee = fig.add_subplot( 513 )
-    gsl2 = fig.add_subplot( 514 )
-    gssa = fig.add_subplot( 515 )
-    plotdt = moose.element( '/clock' ).tickDt[18]
-    for x in moose.wildcardFind( '/model/#graphs/conc#/#' ):
-        t = numpy.arange( 0, x.vector.size, 1 ) * plotdt
-        orig.plot( t, x.vector, label=x.name )
-    for x in moose.wildcardFind( '/model/graphs/gsl/#' ):
-        t = numpy.arange( 0, x.vector.size, 1 ) * plotdt
-        gsl.plot( t, x.vector, label=x.name )
-    for x in moose.wildcardFind( '/model/graphs/ee/#' ):
-        t = numpy.arange( 0, x.vector.size, 1 ) * plotdt
-        ee.plot( t, x.vector, label=x.name )
-    for x in moose.wildcardFind( '/model/graphs/gsl2/#' ):
-        t = numpy.arange( 0, x.vector.size, 1 ) * plotdt
-        gsl2.plot( t, x.vector, label=x.name )
-    for x in moose.wildcardFind( '/model/graphs/gssa/#' ):
-        t = numpy.arange( 0, x.vector.size, 1 ) * plotdt
-        gssa.plot( t, x.vector, label=x.name )
+    fig = plt.figure(figsize=(12, 10))
+    orig = fig.add_subplot(511)
+    gsl = fig.add_subplot(512)
+    ee = fig.add_subplot(513)
+    gsl2 = fig.add_subplot(514)
+    gssa = fig.add_subplot(515)
+    plotdt = moose.element('/clock').tickDt[18]
+    for x in moose.wildcardFind('/model/#graphs/conc#/#'):
+        t = numpy.arange(0, x.vector.size, 1) * plotdt
+        orig.plot(t, x.vector, label=x.name)
+    for x in moose.wildcardFind('/model/graphs/gsl/#'):
+        t = numpy.arange(0, x.vector.size, 1) * plotdt
+        gsl.plot(t, x.vector, label=x.name)
+    for x in moose.wildcardFind('/model/graphs/ee/#'):
+        t = numpy.arange(0, x.vector.size, 1) * plotdt
+        ee.plot(t, x.vector, label=x.name)
+    for x in moose.wildcardFind('/model/graphs/gsl2/#'):
+        t = numpy.arange(0, x.vector.size, 1) * plotdt
+        gsl2.plot(t, x.vector, label=x.name)
+    for x in moose.wildcardFind('/model/graphs/gssa/#'):
+        t = numpy.arange(0, x.vector.size, 1) * plotdt
+        gssa.plot(t, x.vector, label=x.name)
     plt.legend()
 
     pylab.show()
@@ -134,4 +140,4 @@ def main():
 
 # Run the 'main' if this script is executed standalone.
 if __name__ == '__main__':
-        main()
+    main()

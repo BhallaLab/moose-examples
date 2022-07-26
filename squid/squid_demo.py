@@ -282,8 +282,8 @@ class SquidGui( QMainWindow ):
         layout.addWidget(self._runTimeEdit, 0, 1)
         layout.addWidget(self._simTimeStepLabel, 1, 0)
         layout.addWidget(self._simTimeStepEdit, 1, 1)
-        layout.setColumnStretch(2, 1.0)
-        layout.setRowStretch(2, 1.0)
+        layout.setColumnStretch(2, 1)
+        layout.setRowStretch(2, 1)
         self._runControlBox.setLayout(layout)
         self._runControlDock = QDockWidget('Simulation', self)
         self._runControlDock.setWidget(self._runControlBox)
@@ -336,7 +336,7 @@ class SquidGui( QMainWindow ):
         layout.addWidget(self._kInEdit, 5, 1)
         layout.addWidget(self._temperatureLabel, 6, 0)
         layout.addWidget(self._temperatureEdit, 6, 1)
-        layout.setRowStretch(7, 1.0)
+        layout.setRowStretch(7, 1)
         self._channelCtrlBox.setLayout(layout)
         self._channelControlDock.setWidget(self._channelCtrlBox)
         return self._channelCtrlBox        
@@ -414,7 +414,7 @@ class SquidGui( QMainWindow ):
         layout.addWidget(self._clampVEdit, 4, 1)
         layout.addWidget(self._clampTimeLabel, 5, 0)
         layout.addWidget(self._clampTimeEdit, 5, 1)
-        layout.setRowStretch(6, 1.0)
+        layout.setRowStretch(6, 1)
         vClampPanel.setLayout(layout)
         return self._vClampCtrlBox
 

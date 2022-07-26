@@ -50,7 +50,7 @@ Display channel properties graphically
 """
 
 from datetime import datetime
-from PyQt4 import QtCore, QtGui
+from PyQt5 import QtCore, QtWidgets
 from matplotlib import mlab
 # in stead of "from matplotlib.figure import Figure" do -
 # from matplotlib.pyplot import figure as Figure
@@ -77,11 +77,11 @@ cmap = cm.jet
 simdt = 0.025e-3
 plotdt = 1e-4
 
-class HHChanView(QtGui.QWidget):
+class HHChanView(QtWidgets.QWidget):
     def __init__(self, *args, **kwargs):
-        QtGui.QWidget.__init__(self, *args, **kwargs)
+        QtWidgets.QWidget.__init__(self, *args, **kwargs)
         self.channels = {}
-        self.setLayout(QtGui.QHBoxLayout())
+        self.setLayout(QtWidgets.QHBoxLayout())
         self.layout().addWidget(self.getControlPanel())
         self.layout().addWidget(self.plotActInact())        
 
@@ -89,12 +89,12 @@ class HHChanView(QtGui.QWidget):
         try:
             return self.controlPanel
         except AttributeError:
-            self.controlPanel = QtGui.QWidget()
-            layout = QtGui.QVBoxLayout()
+            self.controlPanel = QtWidgets.QWidget()
+            layout = QtWidgets.QVBoxLayout()
             self.controlPanel.setLayout(layout)
-            self.rootEdit = QtGui.QLineEdit('/library')        
+            self.rootEdit = QtWidgets.QLineEdit('/library')        
             self.rootEdit.returnPressed.connect(self.getUpdatedChannelListWidget)
-            self.plotButton = QtGui.QPushButton('Plot selected channels')
+            self.plotButton = QtWidgets.QPushButton('Plot selected channels')
             self.plotButton.clicked.connect(self.plotActInact)
             layout.addWidget(self.getUpdatedChannelListWidget())
             layout.addWidget(self.rootEdit)
@@ -112,8 +112,8 @@ class HHChanView(QtGui.QWidget):
             self.channelListWidget.clear()
             self.channels = {}
         except AttributeError:            
-            self.channelListWidget = QtGui.QListWidget(self)
-            self.channelListWidget.setSelectionMode( QtGui.QAbstractItemView.ExtendedSelection)
+            self.channelListWidget = QtWidgets.QListWidget(self)
+            self.channelListWidget.setSelectionMode( QtWidgets.QAbstractItemView.ExtendedSelection)
         root = str(self.rootEdit.text())
         for chan in list(self.getChannels(root).values()):
             self.channelListWidget.addItem(chan.name)
@@ -145,8 +145,8 @@ class HHChanView(QtGui.QWidget):
             self.figure = Figure()
             self.canvas = FigureCanvas(self.figure)
             self.nav = NavigationToolbar(self.canvas, self)
-            self.plotWidget = QtGui.QWidget()
-            layout = QtGui.QVBoxLayout()
+            self.plotWidget = QtWidgets.QWidget()
+            layout = QtWidgets.QVBoxLayout()
             self.plotWidget.setLayout(layout)
             layout.addWidget(self.canvas)
             layout.addWidget(self.nav)
@@ -174,10 +174,10 @@ class HHChanView(QtGui.QWidget):
 
 from display_morphology import *
 
-class NetworkXWidget(QtGui.QWidget):
+class NetworkXWidget(QtWidgets.QWidget):
     def __init__(self, *args, **kwargs):
-        QtGui.QWidget.__init__(self, *args, **kwargs)
-        layout = QtGui.QVBoxLayout()
+        QtWidgets.QWidget.__init__(self, *args, **kwargs)
+        layout = QtWidgets.QVBoxLayout()
         self.setLayout(layout)
         self.figure = Figure()
         self.canvas = FigureCanvas(self.figure)
@@ -196,8 +196,8 @@ class NetworkXWidget(QtGui.QWidget):
         if len(sizes) == 0:
             print('Empty graph for cell. Make sure proto file has `*asymmetric` on top. I cannot handle symmetric compartmental connections')
             return
-        weights = np.array([g.edge[e[0]][e[1]]['weight'] for e in g.edges()])
-        pos = nx.graphviz_layout(g, prog='twopi')
+        weights = np.array([g[e[0]][e[1]]['weight'] for e in g.edges()])
+        pos = nx.drawing.nx_pydot.graphviz_layout(g, prog='twopi')
         xmin, ymin, xmax, ymax = 1e9, 1e9, -1e9, -1e9
         for p in list(pos.values()):
             if xmin > p[0]:
@@ -218,11 +218,11 @@ class NetworkXWidget(QtGui.QWidget):
             nx.draw_spectral(g, ax=self.axes, node_color=node_colors, lw=lw, with_labels=False, )
 
 
-class CellView(QtGui.QWidget):
+class CellView(QtWidgets.QWidget):
     def __init__(self, *args, **kwargs):
-        QtGui.QWidget.__init__(self, *args, **kwargs)
+        QtWidgets.QWidget.__init__(self, *args, **kwargs)
         self.cells = {}
-        layout = QtGui.QGridLayout()
+        layout = QtWidgets.QGridLayout()
         self.setLayout(layout)
         layout.addWidget(self.getControlPanel(), 0, 0, 2, 1)
         layout.addWidget(self.getCellMorphologyWidget(), 0, 1, 1, 1)
@@ -232,12 +232,12 @@ class CellView(QtGui.QWidget):
         try:
             return self.controlPanel
         except AttributeError:
-            self.controlPanel = QtGui.QWidget()
-            layout = QtGui.QGridLayout()
+            self.controlPanel = QtWidgets.QWidget()
+            layout = QtWidgets.QGridLayout()
             self.controlPanel.setLayout(layout)
-            self.simtimeLabel = QtGui.QLabel('Simulate for (ms)')
-            self.simtimeEdit = QtGui.QLineEdit('100')
-            self.plotButton = QtGui.QPushButton('Simulate selected cell model')
+            self.simtimeLabel = QtWidgets.QLabel('Simulate for (ms)')
+            self.simtimeEdit = QtWidgets.QLineEdit('100')
+            self.plotButton = QtWidgets.QPushButton('Simulate selected cell model')
             self.plotButton.clicked.connect(self.simulateSelected)
             layout.addWidget(self.getCellListWidget(), 0, 0, 1, 2)
             layout.addWidget(self.getCurrentClampWidget(), 1, 0, 1, 2)
@@ -259,9 +259,9 @@ class CellView(QtGui.QWidget):
             self.cellListWidget.clear()
             self.cells = {}
         except AttributeError:            
-            self.cellListWidget = QtGui.QListWidget(self)
+            self.cellListWidget = QtWidgets.QListWidget(self)
             self.cellListWidget.itemSelectionChanged.connect(self.displaySelected)
-            # self.cellListWidget.setSelectionMode( QtGui.QAbstractItemView.ExtendedSelection)
+            # self.cellListWidget.setSelectionMode( QtWidgets.QAbstractItemView.ExtendedSelection)
         # root = str(self.rootEdit.text())
         for cell in self.getCells():
             self.cellListWidget.addItem(cell)     
@@ -279,19 +279,19 @@ class CellView(QtGui.QWidget):
         try:
             return self.currentClampWidget
         except AttributeError:
-            self.currentClampWidget = QtGui.QWidget()
-            self.delayLabel = QtGui.QLabel('Delay (ms)')
-            self.delayText = QtGui.QLineEdit('20')
-            self.widthLabel = QtGui.QLabel('Duration (ms)')
-            self.widthText = QtGui.QLineEdit('50')
-            self.ampMinLabel = QtGui.QLabel('Starting amplitude (pA)')
-            self.ampMinText = QtGui.QLineEdit('0')
-            self.ampMaxLabel = QtGui.QLabel('Maximum amplitude (pA)')
-            self.ampMaxText = QtGui.QLineEdit('100')
-            self.ampStepLabel = QtGui.QLabel('Amplitude steps (pA)')
-            self.ampStepText = QtGui.QLineEdit('10')
-            title = QtGui.QLabel('Current pulse')
-            layout = QtGui.QGridLayout()
+            self.currentClampWidget = QtWidgets.QWidget()
+            self.delayLabel = QtWidgets.QLabel('Delay (ms)')
+            self.delayText = QtWidgets.QLineEdit('20')
+            self.widthLabel = QtWidgets.QLabel('Duration (ms)')
+            self.widthText = QtWidgets.QLineEdit('50')
+            self.ampMinLabel = QtWidgets.QLabel('Starting amplitude (pA)')
+            self.ampMinText = QtWidgets.QLineEdit('0')
+            self.ampMaxLabel = QtWidgets.QLabel('Maximum amplitude (pA)')
+            self.ampMaxText = QtWidgets.QLineEdit('100')
+            self.ampStepLabel = QtWidgets.QLabel('Amplitude steps (pA)')
+            self.ampStepText = QtWidgets.QLineEdit('10')
+            title = QtWidgets.QLabel('Current pulse')
+            layout = QtWidgets.QGridLayout()
             layout.addWidget(title, 0, 0, 1, 2)
             layout.addWidget(self.delayLabel, 1, 0, 1, 1)
             layout.addWidget(self.delayText, 1, 1, 1, 1)
@@ -412,8 +412,8 @@ class CellView(QtGui.QWidget):
         try:
             return self.plotWidget
         except AttributeError:
-            self.plotWidget = QtGui.QWidget()
-            layout = QtGui.QVBoxLayout()
+            self.plotWidget = QtWidgets.QWidget()
+            layout = QtWidgets.QVBoxLayout()
             self.plotFigure = Figure()
             self.plotCanvas = FigureCanvas(self.plotFigure)
             self.nav = NavigationToolbar(self.plotCanvas, self)
@@ -431,7 +431,7 @@ class CellView(QtGui.QWidget):
 
 
 if __name__ == '__main__':
-    app = QtGui.QApplication([])
+    app = QtWidgets.QApplication([])
     win1 = HHChanView()
     win = CellView()
     win1.show()

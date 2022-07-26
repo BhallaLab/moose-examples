@@ -11,6 +11,8 @@ import math
 import pylab
 import numpy
 import moose
+print( "[INFO ] Using moose from %s" % moose.__file__ )
+
 
 def main():
     """
@@ -63,7 +65,7 @@ def main():
     stoich = moose.Stoich( '/model/compartment/stoich' )
     stoich.compartment = compartment
     stoich.ksolve = ksolve
-    stoich.path = "/model/compartment/##"
+    stoich.reacSystemPath = "/model/compartment/##"
     state = moose.SteadyState( '/model/compartment/state' )
 
     moose.reinit()
@@ -122,7 +124,6 @@ def main():
     pylab.legend()
     pylab.show()
 
-    quit()
 
 def makeModel():
     """ This function creates a bistable reaction system using explicit

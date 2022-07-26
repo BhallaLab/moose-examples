@@ -95,7 +95,7 @@ def main():
     stoich = moose.Stoich( '/model/compartment/stoich' )
     stoich.compartment = moose.element( '/model/compartment' )
     stoich.ksolve = ksolve
-    stoich.path = "/model/compartment/##"
+    stoich.reacSystemPath = "/model/compartment/##"
     #solver.method = "rk5"
     #mesh = moose.element( "/model/compartment/mesh" )
     #moose.connect( mesh, "remesh", solver, "remesh" )

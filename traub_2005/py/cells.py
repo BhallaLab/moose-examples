@@ -131,6 +131,7 @@ def read_prototype(celltype, cdict):
     for handler in logger.handlers:
         handler.flush()
     proto = moose.loadModel(filename, cellpath)
+    assert proto
     # If prototype files do not have absolute compartment positions,
     # set the compartment postions to origin. This will avoid
     # incorrect assignemnt of position when the x/y/z values in
@@ -170,11 +171,12 @@ def assign_depths(cell, depthdict, leveldict):
         z = float(depth)
         complist = leveldict[level]
         for comp_number in complist:
+            assert cell.path
             comp = moose.element('%s/comp_%s' % (cell.path, comp_number))
             comp.z = z
 
             
-class CellMeta(type):
+class CellMeta(moose.melement.__class__):
     def __new__(cls, name, bases, cdict):
         if name != 'CellBase':
             proto = read_prototype(name, cdict)            
@@ -196,23 +198,23 @@ class CellMeta(type):
 
     
 @metafix.with_metaclass(CellMeta)
-class CellBase(moose.Neuron):
-    # __metaclass__ = CellMeta  # This is incompatible with Python3
+class CellBase(object):
     annotation = {'cno': 'cno_0000020'}
     def __init__(self, path):
-        if not moose.exists(path):
+        self.path = path
+        if not moose.exists(self.path):
             path_tokens = path.rpartition('/')
             moose.copy(self.prototype, path_tokens[0], path_tokens[-1])
         
-        moose.Neuron( path )
-        moose.Neutral.__init__(self, path)
+        self.name = path.split('/')[-1]
         self.solver = moose.HSolve('{}/solver'.format(path))
         self.solver.target = path
         self.solver.dt = config.simulationSettings.simulationDt
         
     def comp(self, number):
-        path = '%s/comp_%d' % (self.path, number)
-        return moose.element(path)
+        assert self.path.strip()
+        path = '%scomp_%d' % (self.path, number)
+        return moose.element(path) if moose.exists(path) else moose.Compartment(path)
 
     @property
     def soma(self):

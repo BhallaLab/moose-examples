@@ -36,7 +36,7 @@ import numpy
 import matplotlib.pyplot as plt
 import sys
 import moose
-
+from moose.fixXreacs import fixXreacs
 print(( '[INFO] Using moose from %s' % moose.__file__ ))
 
 def makeCompt( name, parent, dx, dy, dia ):
@@ -141,14 +141,7 @@ def makeModel():
     stoich0 = moose.Stoich( '/model/compt0/stoich' )
     stoich1 = moose.Stoich( '/model/compt1/stoich' )
     stoich2 = moose.Stoich( '/model/compt2/stoich' )
-
-    try:
-        ksolve0.numThread = 10
-        ksolve1.numThread = 10
-        ksolve2.numThread = 10
-    except Exception as e:
-        pass
-
+    fixXreacs('/model')
     # Configure solvers
     stoich0.compartment = compt0
     stoich1.compartment = compt1
@@ -156,9 +149,9 @@ def makeModel():
     stoich0.ksolve = ksolve0
     stoich1.ksolve = ksolve1
     stoich2.ksolve = ksolve2
-    stoich0.path = '/model/compt0/#'
-    stoich1.path = '/model/compt1/#'
-    stoich2.path = '/model/compt2/#'
+    stoich0.reacSystemPath = '/model/compt0/#'
+    stoich1.reacSystemPath = '/model/compt1/#'
+    stoich2.reacSystemPath = '/model/compt2/#'
     assert( stoich0.numVarPools == 1 )
     assert( stoich0.numProxyPools == 1 )
     assert( stoich0.numRates == 1 )
@@ -168,12 +161,13 @@ def makeModel():
     assert( stoich2.numVarPools == 1 )
     assert( stoich2.numProxyPools == 0 )
     assert( stoich2.numRates == 0 )
+    '''
     stoich0.buildXreacs( stoich1 )
     stoich1.buildXreacs( stoich2 )
     stoich0.filterXreacs()
     stoich1.filterXreacs()
     stoich2.filterXreacs()
-
+    '''
 
     print((a.vec.volume, b.vec.volume, c.vec.volume))
     a.vec.concInit = list(range( numSeg + 1, 0, -1))

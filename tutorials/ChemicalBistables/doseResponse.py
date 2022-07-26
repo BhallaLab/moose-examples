@@ -8,8 +8,8 @@ from matplotlib import pyplot as plt
 
 def setupSteadyState(simdt,plotDt):
 
-    ksolve = moose.Ksolve( '/model/kinetics/ksolve' )
     stoich = moose.Stoich( '/model/kinetics/stoich' )
+    ksolve = moose.Ksolve( '/model/kinetics/ksolve' )
     stoich.compartment = moose.element('/model/kinetics')
 
     stoich.ksolve = ksolve

@@ -5,7 +5,6 @@ import rdesigneur as rd
 moogList = []
 ### Remove comment from line below if you want to display the 3-d cell view.
 moogList = [['#', '1', '.', 'Vm', 'Membrane potential', -65, -55], ['dend#,branch#', '1', 'dend/Ca', 'conc', 'Dend conc', 0, 4]]
-
 rdes = rd.rdesigneur(
     turnOffElec = False,
     chemDt = 0.002,
@@ -56,4 +55,3 @@ if len(moogList) == 0:
     rdes.display()
 else:
     rdes.displayMoogli( 0.1, 20, 0.0 )
-

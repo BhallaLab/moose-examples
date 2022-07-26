@@ -112,6 +112,7 @@ def finalizeDisplay( plotlist, cPlotDt ):
         line1, = plotlist[0].plot( pos, x.vector, label=x.name )
     plt.legend()
     plotlist[1].canvas.draw()
+    plt.show()
     print( "Hit any key to exit" )
     try:
         a = raw_input( )

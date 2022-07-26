@@ -33,6 +33,11 @@ import math
 import pylab
 import numpy
 import moose
+print( "[INFO ] Using moose from %s" % moose.__file__ )
+
+# This is required if boost solver used.
+moose.seed( 13 )
+
 
 def displayPlots():
     for x in moose.wildcardFind( '/model/graphs/#' ):
@@ -106,7 +111,7 @@ linearly.
     stoich.compartment = compartment
     stoich.ksolve = ksolve
     #ksolve.stoich = stoich
-    stoich.path = "/model/compartment/##"
+    stoich.reacSystemPath = "/model/compartment/##"
     state = moose.SteadyState( '/model/compartment/state' )
 
     moose.reinit()

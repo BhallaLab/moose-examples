@@ -100,7 +100,7 @@ def main():
     """
 
     makeModel()
-    moose.seed()
+    moose.seed(10)
 
     moose.reinit()
     moose.start( 50.0 ) # Run the model for 100 seconds.

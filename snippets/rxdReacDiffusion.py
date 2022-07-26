@@ -17,8 +17,8 @@ def main():
     # define the geometry
     compt = moose.CylMesh( '/cylinder' )
     compt.r0 = compt.r1 = 1
-    compt.x1 = 100
     compt.diffLength = 0.2
+    compt.x1 = 100
     assert( compt.numDiffCompts == compt.x1/compt.diffLength )
 
     #define the molecule. Its geometry is defined by its parent volume, cylinder
@@ -54,7 +54,7 @@ def main():
     stoich.compartment = compt
     stoich.ksolve = ksolve
     stoich.dsolve = dsolve
-    stoich.path = '/cylinder/##'
+    stoich.reacSystemPath = '/cylinder/##'
     for i in range( 10, 18 ):
         moose.setClock( i, dt )
 

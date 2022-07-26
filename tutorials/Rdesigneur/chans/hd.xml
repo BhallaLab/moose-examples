@@ -41,7 +41,7 @@
         </meta:modelDBref>
         
         <parameters>
-              <parameter name="vhalfl" value ="-81"/>  
+              <parameter name="vhalfl" value ="-73"/>  
         </parameters>
         
         <current_voltage_relation cond_law="ohmic" ion="hd" default_gmax="0.05" default_erev="-30">

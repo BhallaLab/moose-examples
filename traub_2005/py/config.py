@@ -119,7 +119,7 @@ timestamp = datetime.now()
 mypid = os.getpid()
 data_dir_prefix = os.path.join(mydir, 'data')
 if not os.access(data_dir_prefix, os.W_OK):
-    data_dir_prefix = '/tmp/traub2005_data'
+    data_dir_prefix = '/tmp/'
 if not os.access(data_dir_prefix, os.F_OK):
     os.makedirs(data_dir_prefix)
 data_dir = os.path.join(data_dir_prefix, timestamp.strftime('%Y_%m_%d'))

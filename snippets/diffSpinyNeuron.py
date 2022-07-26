@@ -1,3 +1,4 @@
+# 
 #########################################################################
 ## This program is part of 'MOOSE', the
 ## Messaging Object Oriented Simulation Environment.
@@ -8,6 +9,7 @@
 #########################################################################
 
 
+import os
 import math
 import time
 import pylab
@@ -23,10 +25,13 @@ animationdt = 0.01
 runtime = 1
 useGssa = True
 
+sdir = os.path.dirname( __file__ )
+
 def makeModel():
     model = moose.Neutral( '/model' )
     # Make neuronal model. It has no channels, just for geometry
-    cell = moose.loadModel( './spinyNeuron.p', '/model/cell', 'Neutral' )
+    cell = moose.loadModel( os.path.join(sdir,'./spinyNeuron.p'), '/model/cell', 'Neutral' )
+    print(cell)
     # We don't want the cell to do any calculations. Disable everything.
     for i in moose.wildcardFind( '/model/cell/##' ):
         i.tick = -1
@@ -79,9 +84,9 @@ def makeModel():
     stoich0.dsolve = dsolve0
     stoich1.dsolve = dsolve1
     stoich2.dsolve = dsolve2
-    stoich0.path = '/model/chem/compt0/#'
-    stoich1.path = '/model/chem/compt1/#'
-    stoich2.path = '/model/chem/compt2/#'
+    stoich0.reacSystemPath = '/model/chem/compt0/#'
+    stoich1.reacSystemPath = '/model/chem/compt1/#'
+    stoich2.reacSystemPath = '/model/chem/compt2/#'
     assert( stoich0.numVarPools == 1 )
     assert( stoich0.numProxyPools == 0 )
     assert( stoich0.numRates == 1 )
@@ -96,11 +101,11 @@ def makeModel():
     assert( stoich2.numVarPools == 1 )
     assert( stoich2.numProxyPools == 0 )
     dsolve0.buildNeuroMeshJunctions( dsolve1, dsolve2 )
-    stoich0.buildXreacs( stoich1 )
-    stoich1.buildXreacs( stoich2 )
-    stoich0.filterXreacs()
-    stoich1.filterXreacs()
-    stoich2.filterXreacs()
+    #stoich0.buildXreacs( stoich1 )
+    #stoich1.buildXreacs( stoich2 )
+    #stoich0.filterXreacs()
+    #stoich1.filterXreacs()
+    #stoich2.filterXreacs()
 
     Ca_input_dend = moose.vec( '/model/chem/compt0/Ca_input' )
     print(len( Ca_input_dend ))
