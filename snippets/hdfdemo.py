@@ -32,6 +32,8 @@ def example():
     hdfwriter.filename = 'output_hdfdemo.h5'
     hdfwriter.compressor = 'zlib'
     hdfwriter.compression = 7
+    #moose.reinit()
+    #moose.showfield( '/model/c' )
 
     # Flush data from memory to disk after accumulating every 1K entries.
     hdfwriter.flushLimit = 1024
@@ -42,14 +44,26 @@ def example():
 
     # All paths are taken relative to the root. The last token is the name
     # of the attribute.
-    hdfwriter.doubleAttr['{}/vm/a_double_attribute'.format(comp.path)] = 3.141592
+    sys.stdout.flush()
+    hdfwriter.doubleAttr['dbl_one'] = 99999.9
+    print( "should have done the dbl_one" )
+    sys.stdout.flush()
+    hdfwriter.doubleAttr['dbl_one'] = 11111.9
+    print( "Repeat of dbl_one" )
+    sys.stdout.flush()
+    #temp = '{}[0]/vm/bargle'.format(comp.path)
+    #temp = 'model[0]_xxxx_vm_bargle'.format(comp.path)
+    #print( "temp = ", temp )
+    #sys.stdout.flush()
+    #hdfwriter.doubleAttr[temp] = 1234.5
+    hdfwriter.doubleAttr['{}[0]/vm/a_double_attribute'.format(comp.path)] = 3.141592
     hdfwriter.longAttr['an_int_attribute'] = 8640
 
     # In addition, vectors of string, long and double can also be stored
     # as attributes.
     hdfwriter.stringVecAttr['stringvec'] = ['I wonder', 'why', 'I wonder']
-    hdfwriter.doubleVecAttr['{}/dvec'.format(comp.path)] = [3.141592, 2.71828]
-    hdfwriter.longVecAttr['{}/lvec'.format(comp.path)] = [3, 14, 1592, 271828]
+    hdfwriter.doubleVecAttr['{}[0]/dvec'.format(comp.path)] = [3.141592, 2.71828]
+    hdfwriter.longVecAttr['{}[0]/lvec'.format(comp.path)] = [3, 14, 1592, 271828]
 
     vm_tab = moose.Table('Vm')
     moose.connect(vm_tab, 'requestOut', comp, 'getVm')

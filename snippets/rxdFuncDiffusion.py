@@ -18,8 +18,8 @@ def main():
 
     # define the geometry
     compt = moose.CylMesh( '/cylinder' )
-    compt.r0 = compt.r1 = 1
     compt.diffLength = 0.2
+    compt.r0 = compt.r1 = 1
     compt.x1 = 100
     assert( compt.numDiffCompts == compt.x1/compt.diffLength )
 

@@ -1,7 +1,7 @@
 //genesis
 // kkit Version 11 flat dumpfile
  
-// Saved on Fri Mar 29 19:34:16 2019
+// Saved on Fri Dec 10 16:29:36 2021
  
 include kkit {argv 1}
  
@@ -66,7 +66,7 @@ simundump group /kinetics/compt 0 blue green x 0 0 "" defaultfile \
 simundump text /kinetics/compt/notes 0 ""
 call /kinetics/compt/notes LOAD \
 ""
-simundump kpool /kinetics/CaCyt 0 1e-13 0.079999 0.079999 149.35 149.35 0 0 \
+simundump kpool /kinetics/CaCyt 0 1e-11 0.079999 0.079999 149.35 149.35 0 0 \
   1866.9 0 /kinetics/geometry 23 black 7 4 0
 simundump text /kinetics/CaCyt/notes 0 ""
 call /kinetics/CaCyt/notes LOAD \
@@ -204,7 +204,7 @@ simundump xplot /graphs/conc2/CaER.Co 3 524288 \
   "delete_plot.w <s> <d>; edit_plot.D <w>" 0 0 0 1
 simundump xgraph /moregraphs/conc3 0 0 100 0 1 0
 simundump xgraph /moregraphs/conc4 0 0 100 0 1 0
-simundump xcoredraw /edit/draw 0 -1.5666 11.334 -1.8008 10.24
+simundump xcoredraw /edit/draw 0 -3 11 -3 11
 simundump xtree /edit/draw/tree 0 \
   /kinetics/#[],/kinetics/#[]/#[],/kinetics/#[]/#[]/#[][TYPE!=proto],/kinetics/#[]/#[]/#[][TYPE!=linkinfo]/##[] \
   "edit_elm.D <v>; drag_from_edit.w <d> <S> <x> <y> <z>" auto 0.6

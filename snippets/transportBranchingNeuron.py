@@ -104,7 +104,7 @@ def makeDisplay():
         aConc.set_xlim( -5, 75 )
         aConc.set_ylim( -20, 40 )
         pos = compt.voxelMidpoint
-        i = int(len( pos ) / 3)
+        i = round(len( pos ) / 3)
         r2 = numpy.sqrt( 0.5 )
         yp = [ -r2 * pos[j] * 1e6 for j in range( i ) ]
         xp = pos[i:2*i] * 1e6 - yp

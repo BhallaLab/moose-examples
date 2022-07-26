@@ -38,10 +38,13 @@ rdes = rd.rdesigneur(
         ['dend#', '1', 'dend/Ca', 'conc', 'Dend Ca conc', 'wave'],
         ['soma', '1', '.', 'Vm', 'Soma membrane potential'],
     ],
-    #moogList = [['#', '1', 'dend/Ca', 'conc','Ca Conc', 0, 2]],
-    moogList = [['#', '1', '.', 'Vm','Membrane potential', -65, -57]],
+    moogList = [
+        ['#', '1', '.', 'Vm','Membrane potential', -65, -57],
+        ['#', '1', 'spine/Ca', 'conc','Ca Conc', 0, 25],
+        ['#', '1', 'dend/Ca', 'conc','Ca Conc', 0, 1],
+    ],
 )
 moose.seed( 1234 )
 rdes.buildModel()
 moose.reinit()
-rdes.displayMoogli(0.1, 16, 0.0 )
+rdes.displayMoogli(0.1, 16, 0.0, mergeDisplays = True )

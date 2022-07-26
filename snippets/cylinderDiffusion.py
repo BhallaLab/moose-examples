@@ -77,7 +77,7 @@ def makeModel():
     stoich.reacSystemPath = "/model/compartment/##"
 
     print((dsolve.numPools))
-    assert( dsolve.numPools == 3 )
+    assert( dsolve.numPools == 4 )
     a.vec[0].concInit = concA
     b.vec[0].concInit = concA
     c.vec[0].concInit = concA
@@ -117,7 +117,8 @@ def updatePlots( plotlist, time ):
     plotlist[4].set_ydata( b.conc )
     plotlist[5].set_ydata( c.conc )
     plotlist[6].set_ydata( d.conc )
-    plotlist[0].canvas.draw()
+    #plotlist[0].canvas.draw()
+    plotlist[0].canvas.flush_events()
 
 
 def main():
@@ -184,6 +185,9 @@ def main():
     print((atot2/atot, btot2/btot, ctot2/ctot, dtot2/dtot))
     print(('Initial to final (b+c)=', (btot2 + ctot2) / (btot + ctot )))
     print("\nHit '0' to exit")
+
+    plt.show()
+
     try:
         raw_input( )
     except NameError as e: # python3

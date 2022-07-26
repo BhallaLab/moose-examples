@@ -27,11 +27,11 @@ rdes = rd.rdesigneur(
     stimList = [['soma', '1', '.', 'inject', '(t>0.02) * 1e-9' ]],
     plotList = [['#', '1', '.', 'Vm', 'Membrane potential'],
             ['#', '1', 'Ca_conc', 'Ca', 'Ca conc (uM)']],
-    moogList = [['#', '1', 'Ca_conc', 'Ca', 'Calcium conc (uM)', 0, 120],
-        ['#', '1', '.', 'Vm', 'Soma potential']]
+    moogList = [['#', '1', 'Ca_conc', 'Ca', 'Ca conc (uM)', 0, 120],
+        ['#', '1', '.', 'Vm', 'Memb. potl. (mV)']]
 )
 
 rdes.buildModel()
 
 moose.reinit()
-rdes.displayMoogli( 0.0002, 0.052 )
+rdes.displayMoogli( 0.0002, 0.052, mergeDisplays = False )

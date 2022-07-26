@@ -63,8 +63,8 @@ params = {
     'CaPsdScale': 0.08,    # Adaptor scale from psd elec Ca to chem conc.
     'Em': -60.0e-3,     #   Resting potential of neuron
     'refractoryPeriod':0.010,  # 10 ms refractory time.
-    'cellModel': 'VHC-neuron.CNG.swc',  # Cell morphology file
-    'chemModel': 'NN_mapk15.g',  # Chemical model file.
+    'cellModel': './cells/VHC-neuron.CNG.swc',  # Cell morphology file
+    'chemModel': './chem/NN_mapk16.g',  # Chemical model file.
     'fnumber': 0,  # Output file index
     'seed': 1234,   # Seeds random numbers
     'seqDx': 4.0e-6,    # Sequence spatial interval
@@ -96,7 +96,7 @@ def main():
     diffusionLength = params['diffusionLength']
     library = moose.Neutral( '/library' )
 
-    chanpath = os.path.dirname( os.path.realpath(__file__)) + '/proto21.'
+    chanpath = os.path.dirname( os.path.realpath(__file__)) + '/chans/proto22.'
     moose.seed( params['seed'] )
     rdes = rd.rdesigneur(
         useGssa = False,

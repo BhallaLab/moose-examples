@@ -95,7 +95,6 @@ class SquidSetup(object):
 
     def save_data(self):
         for child in self.data_container.children:
-            
             tab = moose.Table(moose.element(child))
             tab.xplot('%s.dat' % (tab.name), tab.name)
 
