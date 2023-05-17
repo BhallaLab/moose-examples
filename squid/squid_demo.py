@@ -4,7 +4,7 @@
 # Maintainer:  Dilawar Singh <dilawars@ncbs.res.in>
 # Created: Mon Jul  9 18:23:55 2012 (+0530)
 # Version: 
-# Last-Updated: Wednesday 12 September 2018 04:23:52 PM IST
+# Last-Updated: Wed May 17 09:39:12 2023 (+0530)
 #       PyQt5 version
 
 import sys
@@ -26,8 +26,12 @@ except ImportError as e:
 
 import numpy
 from matplotlib.figure import Figure
-from matplotlib.backends.backend_qt4agg import FigureCanvasQTAgg as FigureCanvas
-from matplotlib.backends.backend_qt4agg import NavigationToolbar2QT as NavigationToolbar
+try:
+    from matplotlib.backends.backend_qt4agg import FigureCanvasQTAgg as FigureCanvas
+    from matplotlib.backends.backend_qt4agg import NavigationToolbar2QT as NavigationToolbar
+except ModuleNotFoundError:
+    from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
+    from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
 
 import moose
 
@@ -457,7 +461,7 @@ class SquidGui( QMainWindow ):
         layout.addWidget(self._secondPulseWidthLabel, 6, 0)
         layout.addWidget(self._secondPulseWidthEdit, 6, 1)
         layout.addWidget(self._pulseMode, 7, 0, 1, 2)
-        layout.setRowStretch(8, 1.0)        
+        layout.setRowStretch(8, 1)        
         # layout.setSizeConstraint(QLayout.SetFixedSize)
         iClampPanel.setLayout(layout)
         return self._iClampCtrlBox
@@ -584,6 +588,7 @@ class SquidGui( QMainWindow ):
         else:
             self._statePlotAxes.set_ylim(0, 1)
         self._activationParamAxes.set_xlim(0, self._runtime)
+        self._activationParamAxes.set_ylim(0, 1.0)
         m = self.__get_stateplot_data('m')
         n = self.__get_stateplot_data('n')
         h = self.__get_stateplot_data('h')
@@ -595,6 +600,7 @@ class SquidGui( QMainWindow ):
         self._n_plot.set_data(time_series, n)
         if self._autoscaleAction.isChecked():
             for axis in self._statePlotFigure.axes:
+                print(axis)
                 axis.relim()
                 axis.set_autoscale_on(True)
                 axis.autoscale_view(True)
@@ -783,8 +789,7 @@ class SquidGui( QMainWindow ):
             zoom = 1.0
         if zoom != 0.0:
             self._plotNavigator.push_current()
-            axes.get_xaxis().zoom(zoom)
-            axes.get_yaxis().zoom(zoom)        
+            axes.zoom(zoom)
         self._plotCanvas.draw()
 
     def closeEvent(self, event):
