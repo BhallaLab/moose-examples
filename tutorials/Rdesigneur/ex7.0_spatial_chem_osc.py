@@ -19,4 +19,4 @@ bv[0].concInit *= 2
 bv[-1].concInit *= 2
 moose.reinit()
 
-rdes.displayMoogli( 1, 400, rotation = 0, azim = np.pi/2, elev = 0.0 )
+rdes.displayMoogli( 1, 400, rotation = 0.0015, center = [200e-6, 0, 0] )

@@ -155,7 +155,7 @@ def makeDisplay():
     #ax.set_ylim( 0, 0.1 )
     plt.ylabel( 'Vm (mV)' )
     plt.ylim( -80, 50 )
-    plt.xlabel( 'Position (microns)' )
+    plt.xlabel( 'Position (compartments)' )
     #ax2.autoscale( enable = True, axis = 'y' )
     plt.title( "Membrane potential vs position, at 5 times." )
     t = np.arange( 0, numDendSeg+1, 1 ) #sec

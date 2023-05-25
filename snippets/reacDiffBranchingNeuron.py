@@ -81,9 +81,8 @@ def makeDisplay():
     layout.set_ylim( -20, 25 )
     compt = moose.element( '/model/chem/compt0' )
     pos = compt.voxelMidpoint
-    i = int(len( pos ) / 3)
+    i = round(len( pos ) / 3 )
     r2 = numpy.sqrt( 0.5 )
-    print("i ",i,r2)
     yp = [ -r2 * pos[j] * 1e6 for j in range( i ) ]
     xp = pos[i:2*i] * 1e6 - yp
     #xp = [ pos[i + j] for j in range( i ) ]

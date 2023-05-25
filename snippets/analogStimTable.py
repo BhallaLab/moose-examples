@@ -94,6 +94,3 @@ def analogStimTable():
 
 if __name__ == '__main__':
     analogStimTable()
-
-#
-# stimtable.py ends here

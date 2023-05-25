@@ -157,7 +157,9 @@ def main():
         line1.set_ydata( a.vec.conc )
         line2.set_ydata( b.vec.conc )
         timeLabel.set_text( "time = %d" % t )
-        fig.canvas.draw()
+        # draw() doesn't work for matplotlib 3.3. Use flush_events instead.
+        #fig.canvas.draw() 
+        fig.canvas.flush_events()
 
     print( "Hit 'enter' to exit" )
     try:

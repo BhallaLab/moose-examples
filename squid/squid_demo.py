@@ -457,7 +457,7 @@ class SquidGui( QMainWindow ):
         layout.addWidget(self._secondPulseWidthLabel, 6, 0)
         layout.addWidget(self._secondPulseWidthEdit, 6, 1)
         layout.addWidget(self._pulseMode, 7, 0, 1, 2)
-        layout.setRowStretch(8, 1)        
+        layout.setRowStretch(8, 1.0)        
         # layout.setSizeConstraint(QLayout.SetFixedSize)
         iClampPanel.setLayout(layout)
         return self._iClampCtrlBox
