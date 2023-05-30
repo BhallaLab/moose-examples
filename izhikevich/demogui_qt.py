@@ -1,93 +1,104 @@
-# demo_gui.py --- 
-# 
+# demo_gui.py ---
+#
 # Filename: demo_gui.py
-# Description: 
+# Description:
 # Author: Subhasis Ray
-# Maintainer: 
+# Maintainer:
 # Created: Wed Jun 16 05:41:58 2010 (+0530)
-# Version: 
-# Last-Updated: Tue Sep 11 14:26:13 2012 (+0530)
-#           By: subha
-#     Update #: 318
-# URL: 
+# Version:
+# Last-Updated: Tue May 30 15:19:52 2023 (+0530)
+#           By: Subhasis Ray
+#     Update #: 487
+# URL:
 
 # Change log:
-# Tuesday 18 September 2018 09:51:56 AM IST` 
+# Tuesday 18 September 2018 09:51:56 AM IST`
 #           Qt Related changes.
 
-try:
-    from PyQt4 import QtGui, QtCore
-    from PyQt4.Qt import Qt
-except ImportError as e:
-    print( 'PyQt4 is not found. Doing nothing' )
-    quit()
+import matplotlib.pyplot as plt
+import numpy
 
 try:
-    import PyQt4.Qwt5 as Qwt
+    from PyQt5.QtWidgets import (
+        QMainWindow,
+        QFrame,
+        QPushButton,
+        QLabel,
+        QGridLayout,
+        QSizePolicy,
+        QVBoxLayout,
+        QApplication,
+    )
+
+    from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
+    from matplotlib.backends.backend_qt5agg import (
+        NavigationToolbar2QT as NavigationToolbar,
+    )
 except ImportError as e:
-    print( 'PyQt4.Qwt5 not found. Doing nothing' )
+    print('PyQt5 is not found. Doing nothing')
     quit()
-    
-import numpy
+
+
 from Izhikevich import IzhikevichDemo
 
 
-class IzhikevichGui(QtGui.QMainWindow):
+class IzhikevichGui(QMainWindow):
     """This is a Qt version of the GUI"""
+
     def __init__(self, *args):
-        QtGui.QMainWindow.__init__(self, *args)
+        QMainWindow.__init__(self, *args)
         self.demo = IzhikevichDemo()
-        self.signalMapper = QtCore.QSignalMapper(self)
-        self.demoFrame = QtGui.QFrame(self)
-        self.controlPanel = QtGui.QFrame(self.demoFrame)
-        self.figureNo = {}
-        self.buttons = {}
-        for key, value in list(IzhikevichDemo.parameters.items()):
-            button = QtGui.QPushButton(key, self.controlPanel)
-            self.figureNo[value[0]] = key
-            self.buttons[key] = button
-        keys = list(self.figureNo.keys())
-        keys.sort()
-        length = len(keys)
+        self.demoFrame = QFrame(self)
+        self.controlPanel = QFrame(self.demoFrame)
+        # Map figlabels A-T from Izhi paper to params
+        # i.e., 'F' -> 'spike_freq_adapt'
+        self.label_title = {
+            value[0]: key for key, value in IzhikevichDemo.parameters.items()
+        }
+        labels = sorted(self.label_title.keys())
+        length = len(labels)
         rows = int(numpy.rint(numpy.sqrt(length)))
         cols = int(numpy.ceil(length * 1.0 / rows))
-        layout = QtGui.QGridLayout()
-        for ii in range(rows):
-            for jj in range(cols):
-                index = ii * cols + jj
-                if  index < length:
-                    key = self.figureNo[keys[index]]
-                    button = self.buttons[key]
-                    button.setToolTip(self.tr(IzhikevichDemo.documentation[key]))
-                    layout.addWidget(button, ii, jj)
-                    self.connect(button, QtCore.SIGNAL('clicked()'), self.signalMapper, QtCore.SLOT('map()'))
-                    self.signalMapper.setMapping(button, key)
+        layout = QGridLayout()
+        for ii, label in enumerate(labels):
+            row = ii // cols
+            col = ii % cols
+            title = self.label_title[label]
+            button = QPushButton(title, self)
+            button.setToolTip(self.tr(IzhikevichDemo.documentation[title]))
+            layout.addWidget(button, row, col)
+            # NOTE: There is a trick here:
+            # button.clicked(checked=False) sends a boolean param, but
+            # we need to ignore that, while storing the associated
+            # `title` local to the lambda, which is done via the
+            # keyword param
+            button.clicked.connect(
+                lambda checked, key=title: self._simulateAndPlot(key)
+            )
+            print('connected', title)
 
-        self.connect(self.signalMapper, QtCore.SIGNAL('mapped(const QString &)'), self._simulateAndPlot)         
         self.controlPanel.setLayout(layout)
-        self.plotPanel = QtGui.QFrame(self.demoFrame)
-        self.VmPlot = Qwt.QwtPlot(self.plotPanel)
-        self.VmPlot.setAxisTitle(Qwt.QwtPlot.xBottom, 'time (ms)')
-        self.VmPlot.setAxisTitle(Qwt.QwtPlot.yLeft, 'Vm (mV)')
-        self.VmPlot.replot()
-        self.ImPlot = Qwt.QwtPlot(self.plotPanel)
-        self.ImPlot.setAxisTitle(Qwt.QwtPlot.xBottom, 'time (ms)')
-        self.ImPlot.setAxisTitle(Qwt.QwtPlot.yLeft, 'Im (nA)')
-        self.vmPlotZoomer = self._make_zoomer(self.VmPlot)
-        self.imPlotZoomer = self._make_zoomer(self.ImPlot)
-        self.descriptionWidget = QtGui.QLabel('Click any of the buttons to simulate and plot the corresponding neuron.')
-        self.descriptionWidget.setFrameStyle(QtGui.QFrame.Panel | QtGui.QFrame.Sunken)
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Expanding)
+        self.figure = plt.figure()
+        self.plotPanel = FigureCanvas(self.figure)
+        self.navbar = NavigationToolbar(self.plotPanel, self)
+        self.VmPlot = self.figure.add_subplot(211)
+        (self.VmCurve,) = self.VmPlot.plot([], [], label='Vm (mV)')
+        self.VmPlot.set_xlabel('time (ms)')
+        self.VmPlot.set_ylabel('Vm (mV)')
+        self.ImPlot = self.figure.add_subplot(212)
+        (self.ImCurve,) = self.ImPlot.plot([], [], label='Im (nA)')
+        self.ImPlot.set_xlabel('time (ms)')
+        self.ImPlot.set_ylabel('Im (nA)')
+        self.descriptionWidget = QLabel(
+            'Click any of the buttons to simulate and plot the corresponding neuron.'
+        )
+        self.descriptionWidget.setFrameStyle(QFrame.Panel | QFrame.Sunken)
+        sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         self.descriptionWidget.setSizePolicy(sizePolicy)
-        self.VmPlot.setSizePolicy(sizePolicy)
-        self.ImPlot.setSizePolicy(sizePolicy)
-        layout = QtGui.QVBoxLayout()
-        layout.addWidget(self.VmPlot)
-        layout.addWidget(self.ImPlot)
-        layout.addWidget(self.descriptionWidget)
-        self.plotPanel.setLayout(layout)
-        layout = QtGui.QVBoxLayout()
+        layout = QVBoxLayout()
         layout.addWidget(self.plotPanel)
+        layout.addWidget(self.navbar)
+        layout.addWidget(self.descriptionWidget)
         layout.addWidget(self.controlPanel)
         self.demoFrame.setLayout(layout)
         self.setCentralWidget(self.demoFrame)
@@ -98,52 +109,37 @@ class IzhikevichGui(QtGui.QMainWindow):
         doc = IzhikevichDemo.documentation[key].replace('\n', '<br/>')
         text = '<b>%s:</b> %s<p><b>Equation:</b><br/> %s' % (key, doc, equationText)
         self.descriptionWidget.setText(self.tr(text))
-#         if key == 'accommodation':
-#             mbox = QtGui.QMessageBox(self)
-#             mbox.setText(self.tr('Accommodation cannot be shown with regular Izhikevich model.'))
-#             mbox.setDetailedText(self.tr('\
-# Equation for u for the accommodating neuron is: \
-# u\' = a * b * (V + 65)\n Which is different from \
-# the regular equation u\' = a * (b*V - u) and cannot \
-# be obtained from the latter by any choice of a and b.'))
-#             mbox.show()
-#             return
+        #         if key == 'accommodation':
+        #             mbox = QtGui.QMessageBox(self)
+        #             mbox.setText(self.tr('Accommodation cannot be shown with regular Izhikevich model.'))
+        #             mbox.setDetailedText(self.tr('\
+        # Equation for u for the accommodating neuron is: \
+        # u\' = a * b * (V + 65)\n Which is different from \
+        # the regular equation u\' = a * (b*V - u) and cannot \
+        # be obtained from the latter by any choice of a and b.'))
+        #             mbox.show()
+        #             return
         (time, Vm, Im) = self.demo.simulate(key)
         Vm = numpy.array(Vm.vector) * 1e3
         Im = numpy.array(Im.vector) * 1e9
-        self.VmPlot.clear()
-        self.ImPlot.clear()
-        curve = Qwt.QwtPlotCurve(self.tr(key + '_Vm'))
-        curve.setPen(QtCore.Qt.red)
-        curve.setData(time, numpy.array(Vm))
-        curve.attach(self.VmPlot)
-        curve = Qwt.QwtPlotCurve(self.tr(key + '_Im'))
-        curve.setPen(QtCore.Qt.blue)
-        curve.setData(time, Im)
-        curve.attach(self.ImPlot)
-        self.imPlotZoomer.setZoomBase()
-        self.vmPlotZoomer.setZoomBase()
-        self.ImPlot.replot()
-        self.VmPlot.replot()
-        
+        self.VmCurve.set_data(time, Vm)
+        self.ImCurve.set_data(time, Im)
+        self.VmPlot.relim()  # Recalculate limits
+        self.VmPlot.autoscale_view(True, True, True)  # Autoscale
+        self.ImPlot.relim()  # Recalculate limits
+        self.ImPlot.autoscale_view(True, True, True)  # Autoscale
+        print('#######', key, Vm)
+        self.plotPanel.draw()
+        self.demoFrame.repaint()
 
-    def _make_zoomer(self, plot):
-        zoomer = Qwt.QwtPlotZoomer(Qwt.QwtPlot.xBottom,
-                                   Qwt.QwtPlot.yLeft,
-                                   Qwt.QwtPicker.DragSelection,
-                                   Qwt.QwtPicker.AlwaysOn,
-                                   plot.canvas())
-        zoomer.setRubberBandPen(QtGui.QPen(QtCore.Qt.white))
-        zoomer.setTrackerPen(QtGui.QPen(QtCore.Qt.cyan))
-        return zoomer
-        
 
 import sys
+
 if __name__ == '__main__':
-    app = QtGui.QApplication(sys.argv)
+    app = QApplication(sys.argv)
     mainWin = IzhikevichGui()
     mainWin.show()
     sys.exit(app.exec_())
 
-# 
+#
 # demo_gui.py ends here
