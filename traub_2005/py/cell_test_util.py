@@ -6,9 +6,9 @@
 # Maintainer: 
 # Created: Mon Oct 15 15:03:09 2012 (+0530)
 # Version: 
-# Last-Updated: Sun Jun 25 16:04:13 2017 (-0400)
-#           By: subha
-#     Update #: 309
+# Last-Updated: Tue May 30 16:31:58 2023 (+0530)
+#           By: Subhasis Ray
+#     Update #: 318
 # URL: 
 # Keywords: 
 # Compatibility: 
@@ -40,11 +40,10 @@ import numpy as np
 from matplotlib import pyplot as plt
 import pylab
 import moose
-from moose import utils as mutils
 import config
 import cells
 import testutils
-from testutils import compare_cell_dump, setup_clocks, assign_clocks, step_run
+from testutils import compare_cell_dump, step_run
 
 
 def setup_current_step_model(model_container, 
@@ -145,10 +144,10 @@ class SingleCellCurrentStepTest(unittest.TestCase):
             self.hsolve = moose.HSolve('%s/solver' % (self.cell.path))
             self.hsolve.dt = simdt
             self.hsolve.target = self.cell.path
-        mutils.setDefaultDt(elecdt=simdt, plotdt2=plotdt)
-        mutils.assignDefaultTicks(modelRoot=self.model_container.path, 
-                                 dataRoot=self.data_container.path, 
-                                 solver=self.solver)        
+        # setDefaultDt(elecdt=simdt, plotdt2=plotdt)
+        # assignDefaultTicks(modelRoot=self.model_container.path, 
+        #                          dataRoot=self.data_container.path, 
+        #                          solver=self.solver)        
 
     def runsim(self, simtime, stepsize=0.1, pulsearray=None):
         """Run the simulation for `simtime`. Save the data at the

@@ -6,9 +6,9 @@
 # Maintainer:
 # Created: Wed Jun 16 05:41:58 2010 (+0530)
 # Version:
-# Last-Updated: Tue May 30 15:19:52 2023 (+0530)
+# Last-Updated: Tue May 30 15:23:07 2023 (+0530)
 #           By: Subhasis Ray
-#     Update #: 487
+#     Update #: 489
 # URL:
 
 # Change log:
@@ -75,7 +75,6 @@ class IzhikevichGui(QMainWindow):
             button.clicked.connect(
                 lambda checked, key=title: self._simulateAndPlot(key)
             )
-            print('connected', title)
 
         self.controlPanel.setLayout(layout)
         self.figure = plt.figure()
@@ -128,7 +127,6 @@ class IzhikevichGui(QMainWindow):
         self.VmPlot.autoscale_view(True, True, True)  # Autoscale
         self.ImPlot.relim()  # Recalculate limits
         self.ImPlot.autoscale_view(True, True, True)  # Autoscale
-        print('#######', key, Vm)
         self.plotPanel.draw()
         self.demoFrame.repaint()
 
