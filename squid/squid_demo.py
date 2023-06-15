@@ -4,7 +4,7 @@
 # Maintainer:  Dilawar Singh <dilawars@ncbs.res.in>
 # Created: Mon Jul  9 18:23:55 2012 (+0530)
 # Version: 
-# Last-Updated: Tue May 30 13:56:13 2023 (+0530)
+# Last-Updated: Thu Jun 15 15:15:58 2023 (+0530)
 #       PyQt5 version
 
 import sys
@@ -27,8 +27,7 @@ except ImportError as e:
 import numpy
 from matplotlib.figure import Figure
 try:
-    from matplotlib.backends.backend_
-    qt5agg import FigureCanvasQTAgg as FigureCanvas
+    from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
     from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
 except ModuleNotFoundError:
     print( '[INFO] PyQt5 matplotlib backend not found. Quitting...' )

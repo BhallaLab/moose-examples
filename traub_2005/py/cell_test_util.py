@@ -6,9 +6,9 @@
 # Maintainer: 
 # Created: Mon Oct 15 15:03:09 2012 (+0530)
 # Version: 
-# Last-Updated: Tue May 30 16:31:58 2023 (+0530)
+# Last-Updated: Wed Jun  7 11:41:35 2023 (+0530)
 #           By: Subhasis Ray
-#     Update #: 318
+#     Update #: 322
 # URL: 
 # Keywords: 
 # Compatibility: 
@@ -44,6 +44,48 @@ import config
 import cells
 import testutils
 from testutils import compare_cell_dump, step_run
+
+
+def step_run(simtime, steptime, verbose=True, logger=None):
+    """Run the simulation in steps of `steptime` for `simtime`."""
+    clock = moose.Clock('/clock')
+    if verbose:
+        msg = 'Starting simulation for %g' % (simtime)
+        if logger is None:
+            print(msg)
+        else:
+            logger.info(msg)
+    ts = datetime.now()
+    while clock.currentTime < simtime - steptime:
+        ts1 = datetime.now()
+        moose.start(steptime)
+        te = datetime.now()
+        td = te - ts1
+        if verbose:
+            msg = 'Simulated till %g. Left: %g. %g of simulation took: %g s' % (clock.currentTime, simtime - clock.currentTime, steptime, td.days * 86400 + td.seconds + 1e-6 * td.microseconds)
+            if logger is None:
+                print(msg)
+            else:
+                logger.info(msg)
+
+    remaining = simtime - clock.currentTime
+    if remaining > 0:
+        if verbose:
+            msg = 'Running the remaining %g.' % (remaining)
+            if logger is None:
+                print(msg)
+            else:
+                logger.info(msg)
+        moose.start(remaining)
+    te = datetime.now()
+    td = te - ts
+    dt = min([t for t in moose.element('/clock').dts if t > 0.0])
+    if verbose:
+        msg = 'Finished simulation of %g with minimum dt=%g in %g s' % (simtime, dt, td.days * 86400 + td.seconds + 1e-6 * td.microseconds)
+        if logger is None:
+            print(msg)
+        else:
+            logger.info(msg)
 
 
 def setup_current_step_model(model_container, 
@@ -163,7 +205,7 @@ class SingleCellCurrentStepTest(unittest.TestCase):
         moose.reinit()
         config.logger.info('Finished reinit')
         ts = datetime.now()
-        mutils.stepRun(simtime, simtime/10.0, verbose=True)
+        step_run(simtime, simtime/10.0, verbose=True)
         # The sleep is required to get all threads to end 
         while moose.isRunning():
             time.sleep(0.1)

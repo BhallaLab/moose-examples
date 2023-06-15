@@ -6,9 +6,9 @@
 # Maintainer: 
 # Created: Mon Jul 16 16:12:55 2012 (+0530)
 # Version: 
-# Last-Updated: Thu Nov  8 18:33:56 2012 (+0530)
-#           By: subha
-#     Update #: 516
+# Last-Updated: Wed Jun  7 11:39:13 2023 (+0530)
+#           By: Subhasis Ray
+#     Update #: 517
 # URL: 
 # Keywords: 
 # Compatibility: 
@@ -33,7 +33,7 @@ import unittest
 from cell_test_util import SingleCellCurrentStepTest
 import testutils
 import cells
-from moose import utils
+
 
 simdt = 5e-6
 plotdt = 0.25e-3
