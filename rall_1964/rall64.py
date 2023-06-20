@@ -6,9 +6,9 @@
 # Maintainer:
 # Created: Fri May 23 16:33:43 2014 (+0530)
 # Version:
-# Last-Updated: Wed Jun  7 11:44:31 2023 (+0530)
+# Last-Updated: Tue Jun 20 21:21:13 2023 (+0530)
 #           By: Subhasis Ray
-#     Update #: 2
+#     Update #: 10
 # URL:
 # Keywords:
 # Compatibility:
@@ -144,11 +144,11 @@ def insert_Vm_probe(probename, comp):
 
 # Scheduling
 def schedule():
-    moose.setClock(0, dt)
-    moose.setClock(1, dt)
-    moose.setClock(2, dt)
-    moose.setClock(3, dt)
-    moose.useClock(0, '/model/##[ISA=Compartment]', 'init')
+    # moose.setClock(0, dt)
+    # moose.setClock(1, dt)
+    # moose.setClock(2, dt)
+    # moose.setClock(3, dt)
+    moose.useClock(0, '/model/##[ISA=CompartmentBase]', 'init')
     moose.useClock(1, '/model/##', 'process')
     moose.useClock(3, '/data/##', 'process')
     moose.reinit()
@@ -186,11 +186,11 @@ def setup_model_fig6():
 def run_model_fig6():
     """Do a simulation for fig6 and plot data."""
     for ch in moose.wildcardFind('/model/##[ISA=ChanBase]'):
-        ch.Gk = 1.0 / Rm
+        ch.Gbar = 1.0 / Rm
     print('Starting for', inject_time)
     moose.start(inject_time)
     for ch in moose.wildcardFind('/model/##[ISA=ChanBase]'):
-        ch.Gk = 0.0
+        ch.Gbar = 0.0
     moose.start(simtime - inject_time)
 
 
@@ -246,7 +246,7 @@ def setup_model_fig7():
     for ii in range(1, 9):
         chan = insert_channel(cable_3[ii])
         chans_3.append(chan)
-        # chan.Gk = 0.25 / Rm
+        # chan.Gbar = 0.25 / Rm
     soma_Vm_1 = insert_Vm_probe('ABCD', cable_1[0])
     soma_Vm_2 = insert_Vm_probe('DCBA', cable_2[0])
     soma_Vm_3 = insert_Vm_probe('control', cable_3[0])
@@ -259,12 +259,12 @@ def run_model_fig7(chans_1, chans_2, chans_3):
     for ii in range(0, len(chans_1), 2):
         print(ii)
         print('-----------------')
-        chans_1[ii].Gk = 1 / Rm
-        chans_1[ii + 1].Gk = 1 / Rm
-        chans_2[-ii - 1].Gk = 1 / Rm
-        chans_2[-ii - 2].Gk = 1 / Rm
+        chans_1[ii].Gbar = 1 / Rm
+        chans_1[ii + 1].Gbar = 1 / Rm
+        chans_2[-ii - 1].Gbar = 1 / Rm
+        chans_2[-ii - 2].Gbar = 1 / Rm
         for chan in chans_3:
-            chan.Gk = 0.25 / Rm
+            chan.Gbar = 0.25 / Rm
 
         for chan in chans_1:
             print(chan.Gk, end=' ')
@@ -274,12 +274,12 @@ def run_model_fig7(chans_1, chans_2, chans_3):
         print()
         moose.start(delta_t)
         for chan in chans_1:
-            chan.Gk = 0.0
+            chan.Gbar = 0.0
         for chan in chans_2:
-            chan.Gk = 0.0
+            chan.Gbar = 0.0
         to_run = to_run - delta_t
     for chan in chans_3:
-        chan.Gk = 0.0
+        chan.Gbar = 0.0
     moose.start(to_run)
 
 
@@ -312,7 +312,7 @@ def simulate_fig7():
 
 
 if __name__ == '__main__':
-    # simulate_fig6()
+    simulate_fig6()
     simulate_fig7()
 
 #
