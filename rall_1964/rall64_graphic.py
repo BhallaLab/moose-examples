@@ -6,9 +6,9 @@
 # Maintainer: 
 # Created: Thu May 29 13:18:12 2014 (+0530)
 # Version: 
-# Last-Updated: 
-#           By: 
-#     Update #: 0
+# Last-Updated: Tue Jun 20 21:22:57 2023 (+0530)
+#           By: Subhasis Ray
+#     Update #: 1
 # URL: 
 # Keywords: 
 # Compatibility: 
@@ -98,18 +98,18 @@ def update(xx):
             patch.set_facecolor(active_colors[2])
             patch.set_edgecolor('y')            
         if clock.currentTime < stim_t * (stim_no + 1):
-            chan_list[0][2 * stim_no].Gk = 1 / Rm
-            chan_list[0][2 * stim_no + 1].Gk = 1 / Rm
-            chan_list[1][- 2 * stim_no - 1].Gk = 1 / Rm
-            chan_list[1][- 2 * stim_no - 2].Gk = 1 / Rm
+            chan_list[0][2 * stim_no].Gbar = 1 / Rm
+            chan_list[0][2 * stim_no + 1].Gbar = 1 / Rm
+            chan_list[1][- 2 * stim_no - 1].Gbar = 1 / Rm
+            chan_list[1][- 2 * stim_no - 2].Gbar = 1 / Rm
             for chan in chan_list[2]:
-                chan.Gk = 0.25 / Rm
+                chan.Gbar = 0.25 / Rm
             moose.start(update_dt)
         else:
             stim_no += 1
             for chans in chan_list:
                 for ch in chans:
-                    ch.Gk = 0.0
+                    ch.Gbar = 0.0
             for ii in range(len(cables)):
                 for patch in cables[ii]:
                     patch.set_color(colors[ii])

@@ -6,9 +6,9 @@
 # Maintainer: 
 # Created: Fri Jul 12 11:53:50 2013 (+0530)
 # Version: 
-# Last-Updated: Thu Aug 11 17:21:24 2016 (-0400)
+# Last-Updated: Tue May 30 16:38:54 2023 (+0530)
 #           By: Subhasis Ray
-#     Update #: 781
+#     Update #: 814
 # URL: 
 # Keywords: 
 # Compatibility: 
@@ -60,8 +60,8 @@ from matplotlib.figure import Figure
 from matplotlib import patches
 from pylab import cm
 
-from matplotlib.backends.backend_qt4agg import FigureCanvasQTAgg as FigureCanvas
-from matplotlib.backends.backend_qt4agg import NavigationToolbar2QT as NavigationToolbar
+from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
+from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
 
 import networkx as nx
 import numpy as np
@@ -70,12 +70,13 @@ from cells import *
 from cell_test_util import setup_current_step_model
 import matplotlib.gridspec as gridspec
 import moose
-from moose import utils as mutils
 
 cmap = cm.jet
 
 simdt = 0.025e-3
 plotdt = 1e-4
+
+
 
 class HHChanView(QtWidgets.QWidget):
     def __init__(self, *args, **kwargs):
@@ -174,6 +175,7 @@ class HHChanView(QtWidgets.QWidget):
 
 from display_morphology import *
 
+
 class NetworkXWidget(QtWidgets.QWidget):
     def __init__(self, *args, **kwargs):
         QtWidgets.QWidget.__init__(self, *args, **kwargs)
@@ -210,18 +212,21 @@ class NetworkXWidget(QtWidgets.QWidget):
                 ymax = p[1]        
         edge_widths = 10.0 * weights / max(weights)
         node_colors = ['k' if x in axon else 'gray' for x in g.nodes()]
-        lw = [1 if n.endswith('comp_1') else 0 for n in g.nodes()]
+        lw = [2 if n.endswith('comp_1') else 1 for n in g.nodes()]
         self.axes.clear()
         try:
-            nx.draw_graphviz(g, ax=self.axes, prog='twopi', node_color=node_colors, lw=lw)
+            nx.draw_graphviz(g, ax=self.axes, prog='twopi', node_color=node_colors, width=lw)
         except (NameError, AttributeError) as e:
-            nx.draw_spectral(g, ax=self.axes, node_color=node_colors, lw=lw, with_labels=False, )
-
+            nx.draw_spectral(g, ax=self.axes, node_color=node_colors, width=lw, with_labels=False, )
+        self.canvas.draw()
 
 class CellView(QtWidgets.QWidget):
     def __init__(self, *args, **kwargs):
         QtWidgets.QWidget.__init__(self, *args, **kwargs)
         self.cells = {}
+        self.controlPanel = None
+        self.cellListWidget = None
+        self.cellMorphologyWidget = None
         layout = QtWidgets.QGridLayout()
         self.setLayout(layout)
         layout.addWidget(self.getControlPanel(), 0, 0, 2, 1)
@@ -229,9 +234,9 @@ class CellView(QtWidgets.QWidget):
         layout.addWidget(self.getPlotWidget(), 1, 1, 1, 1)
 
     def getControlPanel(self):
-        try:
+        if self.controlPanel is not None:
             return self.controlPanel
-        except AttributeError:
+        else:
             self.controlPanel = QtWidgets.QWidget()
             layout = QtWidgets.QGridLayout()
             self.controlPanel.setLayout(layout)
@@ -270,9 +275,9 @@ class CellView(QtWidgets.QWidget):
         return self.cellListWidget
 
     def getCellListWidget(self):
-        try:
+        if self.cellListWidget is not None:
             return self.cellListWidget
-        except AttributeError:
+        else:
             return self.getUpdatedCellListWidget()
 
     def getCurrentClampWidget(self):
@@ -307,15 +312,15 @@ class CellView(QtWidgets.QWidget):
         return self.currentClampWidget
 
     def getCellMorphologyWidget(self):
-        try:
+        if self.cellMorphologyWidget is not None:
             return self.cellMorphologyWidget
-        except AttributeError:
+        else:
             self.cellMorphologyWidget = NetworkXWidget()
             return self.cellMorphologyWidget
 
     def displayCellMorphology(self, cellpath):
         cell = moose.element(cellpath)
-        print('HERE')
+        print('HERE', cell.path)
         graph = cell_to_graph(cell)
         self.getCellMorphologyWidget().displayGraph(graph)
 
@@ -359,10 +364,10 @@ class CellView(QtWidgets.QWidget):
         # hsolve = moose.HSolve('%s/solver' % (params['cell'].path))
         # hsolve.dt = simdt
         # hsolve.target = params['cell'].path
-        mutils.setDefaultDt(elecdt=simdt, plotdt2=plotdt)
-        mutils.assignDefaultTicks(modelRoot=params['modelRoot'],
-                                  dataRoot=params['dataRoot'],
-                                  solver='hsolve')
+        # setDefaultDt(elecdt=simdt, plotdt2=plotdt)
+        # assignDefaultTicks(modelRoot=params['modelRoot'],
+        #                           dataRoot=params['dataRoot'],
+        #                           solver='hsolve')
         delay = float(str(self.delayText.text())) * 1e-3
         width =  float(str(self.widthText.text())) * 1e-3
         levelMin =  float(str(self.ampMinText.text())) * 1e-12
@@ -397,6 +402,7 @@ class CellView(QtWidgets.QWidget):
             alpha = 0.1 + 0.9 * params['stimulus'].level[0] / levelMax
             color = cmap(ii*1.0/cnt, cnt)
             self.vmAxes.plot(ts * 1e3, vm * 1e3, color=color, label='%g pA' % (params['stimulus'].level[0]*1e12), alpha=0.8)
+            self.vmAxes.set_ylim(-70, 120)
             self.stimAxes.plot(ts * 1e3, stim * 1e12, color=color, label='Current (pA)')
             self.plotCanvas.draw()
             params['stimulus'].level[0] += levelStep

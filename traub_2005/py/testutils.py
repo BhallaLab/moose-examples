@@ -6,9 +6,9 @@
 # Maintainer: 
 # Created: Sat May 26 10:41:37 2012 (+0530)
 # Version: 
-# Last-Updated: Sat Aug  6 15:45:51 2016 (-0400)
-#           By: subha
-#     Update #: 414
+# Last-Updated: Tue May 30 16:30:46 2023 (+0530)
+#           By: Subhasis Ray
+#     Update #: 422
 # URL: 
 # Keywords: 
 # Compatibility: 
@@ -40,7 +40,6 @@ from matplotlib import pyplot as plt
 import unittest
 
 import moose
-from moose import utils as mutils
 import config
 import channelbase
 
@@ -56,6 +55,7 @@ SIMDT = 5e-6
 PLOTDT = 0.25e-3
 
 lib = moose.Neutral(config.modelSettings.libpath)
+
 
 def setup_clocks(simdt, plotdt):
     print( 'Setting up clocks: simdt', simdt, 'plotdt', plotdt)
@@ -101,11 +101,13 @@ def assign_clocks(model_container, data_container, solver='euler'):
     data_container
 
     """
+    model_path = model_container if isinstance(model_container, str) else model_container.path
+    data_path = data_container if isinstance(data_container, str) else data_container.path
     moose.useClock(STIMCLOCK,
-                   model_container.path+'/##[TYPE=PulseGen]',
+                   model_path+'/##[TYPE=PulseGen]',
                    'process')
     moose.useClock(PLOTCLOCK,
-                   data_container.path+'/##[TYPE=Table]',
+                   data_path+'/##[TYPE=Table]',
                    'process')
     if solver == 'hsolve':
         for neuron in moose.wildcardFind('%s/##[TYPE=Neuron]'):
@@ -113,22 +115,23 @@ def assign_clocks(model_container, data_container, solver='euler'):
             solver.dt = moose.element('/clock/tick[0]').dt
             solver.target = neuron.path
         moose.useClock(INITCLOCK,
-                       model_container.path+'/##[TYPE=HSolve]',
+                       model_path+'/##[TYPE=HSolve]',
                        'process')
     else:
         moose.useClock(INITCLOCK, 
-                       model_container.path+'/##[TYPE=Compartment]', 
+                       model_path+'/##[TYPE=Compartment]', 
                        'init')
         moose.useClock(ELECCLOCK,
-                       model_container.path+'/##[TYPE=Compartment]', 
+                       model_path+'/##[TYPE=Compartment]', 
                        'process')
         moose.useClock(CHANCLOCK, 
-                       model_container.path+'/##[TYPE=HHChannel]',
+                       model_path+'/##[TYPE=HHChannel]',
                        'process')
         moose.useClock(POOLCLOCK,
-                       model_container.path+'/##[TYPE=CaConc]',
+                       model_path+'/##[TYPE=CaConc]',
                        'process')
-    
+
+        
 def step_run(simtime, steptime, verbose=True):
     """Run the simulation in steps of `steptime` for `simtime`."""
     clock = moose.Clock('/clock')
