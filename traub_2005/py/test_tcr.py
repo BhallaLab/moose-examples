@@ -6,16 +6,16 @@
 # Maintainer: 
 # Created: Mon Jul 16 16:12:55 2012 (+0530)
 # Version: 
-# Last-Updated: Sun Jun 25 16:30:03 2017 (-0400)
-#           By: subha
-#     Update #: 531
+# Last-Updated: Wed Jun  7 11:39:10 2023 (+0530)
+#           By: Subhasis Ray
+#     Update #: 532
 
 import unittest
 from cell_test_util import setup_current_step_model, SingleCellCurrentStepTest
 import testutils
 import cells
 import moose
-from moose import utils
+
 import pylab
 
 simdt = 5e-6
