@@ -36,11 +36,13 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 # General Public License for more details.
 #
+'''
 try:
     import sbml
 except Exception as e:
     print( "[INFO ] Failed to import sbml. Quitting.. \nThis module can be installed by using `pip` in terminal:\n\t $ pip install python-libsbml --user" )
     quit()
+'''
 import sys
 import os.path
 
@@ -83,7 +85,7 @@ If someone wants to load anyother file then
         runtime = float(sys.argv[2])
     sbmlId = moose.element('/')
     # Loading the sbml file into MOOSE, models are loaded in path/model
-    sbmlId = moose.readSBML(filepath,'/sbml')[0]
+    sbmlId = moose.readSBML(filepath,'/sbml')
     if isinstance(sbmlId, (list, tuple)):
         print(sbmlId)
 
